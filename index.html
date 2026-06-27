@@ -9,8 +9,6 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
 html,body{width:100%;height:100%;background:#008080;overflow:hidden;}
-#fp-msg{position:fixed;top:3%;left:0;right:0;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:clamp(11px,2vw,16px);color:rgba(255,255,255,0.18);letter-spacing:0.3em;pointer-events:none;z-index:99998;opacity:0;transition:opacity 3s ease;}
-#fp-msg.visible{opacity:1;}
 #w95-layer{position:fixed;inset:0;pointer-events:none;z-index:99999;font-family:'IBM Plex Mono',monospace;}
 #w95-taskbar{position:fixed;bottom:0;left:0;right:0;height:30px;background:#c0c0c0;border-top:1px solid #fff;display:flex;align-items:center;padding:0 6px;gap:4px;pointer-events:all;z-index:100;}
 #w95-start{height:22px;padding:0 10px;background:#c0c0c0;border:1px solid;border-color:#fff #808080 #808080 #fff;font-size:11px;font-weight:700;font-family:'IBM Plex Mono',monospace;cursor:pointer;display:flex;align-items:center;gap:5px;pointer-events:all;letter-spacing:0.05em;}
@@ -18,7 +16,7 @@ html,body{width:100%;height:100%;background:#008080;overflow:hidden;}
 #w95-start-logo{width:14px;height:14px;display:grid;grid-template-columns:1fr 1fr;gap:1px;flex-shrink:0;}
 #w95-start-logo span{display:block;}
 #w95-taskbar-social{display:flex;align-items:center;gap:2px;margin-left:4px;}
-.w95-social-btn{width:22px;height:22px;background:#c0c0c0;border:1px solid;border-color:#fff #808080 #808080 #fff;cursor:pointer;display:flex;align-items:center;justify-content:center;pointer-events:all;text-decoration:none;font-size:13px;flex-shrink:0;}
+.w95-social-btn{width:22px;height:22px;background:#c0c0c0;border:1px solid;border-color:#fff #808080 #808080 #fff;cursor:pointer;display:flex;align-items:center;justify-content:center;pointer-events:all;text-decoration:none;flex-shrink:0;}
 .w95-social-btn:active{border-color:#808080 #fff #fff #808080;}
 #w95-clock{margin-left:auto;height:22px;padding:0 10px;background:#c0c0c0;border:1px solid;border-color:#808080 #fff #fff #808080;font-size:11px;font-family:'IBM Plex Mono',monospace;display:flex;align-items:center;letter-spacing:0.1em;pointer-events:all;white-space:nowrap;}
 #w95-start-menu{position:fixed;bottom:30px;left:0;width:220px;background:#c0c0c0;border:1px solid;border-color:#fff #808080 #808080 #fff;display:none;flex-direction:row;pointer-events:all;z-index:200;box-shadow:2px 2px 0 #000;}
@@ -54,20 +52,22 @@ html,body{width:100%;height:100%;background:#008080;overflow:hidden;}
 .w95-win-openlink{display:block;text-align:center;font-size:10px;font-family:'IBM Plex Mono',monospace;background:#c0c0c0;border-top:1px solid #808080;padding:4px;color:#000080;cursor:pointer;text-decoration:none;flex-shrink:0;}
 .w95-win-openlink:hover{background:#000080;color:#fff;}
 .w95-resize{position:absolute;right:0;bottom:0;width:14px;height:14px;cursor:se-resize;opacity:0.5;}
+#w95-hourglass{position:fixed;inset:0;background:#008080;z-index:999999;display:flex;align-items:center;justify-content:center;pointer-events:all;transition:opacity 0.6s;}
+#w95-hourglass-inner{font-family:'IBM Plex Mono',monospace;color:#fff;font-size:28px;animation:hgspin 1s linear infinite;}
+@keyframes hgspin{0%{transform:rotate(0deg);}50%{transform:rotate(180deg);}100%{transform:rotate(180deg);}  }
 .w95-taskbtn{height:22px;padding:0 8px;background:#c0c0c0;border:1px solid;border-color:#fff #808080 #808080 #fff;font-size:10px;font-family:'IBM Plex Mono',monospace;cursor:pointer;max-width:130px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;pointer-events:all;letter-spacing:0.02em;}
 .w95-taskbtn.active{border-color:#808080 #fff #fff #808080;background:#b0b0b0;}
 @media(max-width:768px){
   .w95-icon{width:56px;}
   .w95-icon-img.square{width:44px;height:44px;}
   .w95-icon-label{font-size:8px;}
-  .w95-taskbtn{max-width:70px;font-size:9px;}
   #w95-start-menu{width:180px;}
 }
 </style>
 </head>
 <body>
 
-<div id="fp-msg">FREE PALESTINE</div>
+<div id="w95-hourglass"><div id="w95-hourglass-inner">⧗</div></div>
 
 <div id="w95-layer">
   <div id="w95-icons"></div>
@@ -84,10 +84,10 @@ html,body{width:100%;height:100%;background:#008080;overflow:hidden;}
     </button>
     <div id="w95-taskbar-social">
       <a href="https://www.instagram.com/simone_falcomer/" target="_blank" class="w95-social-btn" title="Instagram">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#000" stroke="none"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="#000" stroke="none"/></svg>
       </a>
       <a href="https://www.linkedin.com/in/simone-falcomer-5bb16828a/" target="_blank" class="w95-social-btn" title="LinkedIn">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="#000"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#000"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
       </a>
     </div>
     <div id="w95-taskbtns" style="display:flex;gap:2px;flex:1;overflow:hidden;"></div>
@@ -101,6 +101,14 @@ html,body{width:100%;height:100%;background:#008080;overflow:hidden;}
 
 <script>
 (function(){
+
+  // Clessidra apertura sito
+  var hg = document.getElementById('w95-hourglass');
+  setTimeout(function(){
+    hg.style.opacity='0';
+    setTimeout(function(){hg.remove();},600);
+  },1400);
+
   var W = window.innerWidth;
   var H = window.innerHeight;
   var isMobile = W < 768;
@@ -112,7 +120,6 @@ html,body{width:100%;height:100%;background:#008080;overflow:hidden;}
     var rowH = Math.floor((H - 120 - BOTTOM) / 4);
     return { x: 4 + col * colW, y: 120 + row * rowH };
   }
-
   function dpos(px, py){
     return {
       x: Math.floor(px * (W - ICON) / 100),
@@ -217,20 +224,14 @@ html,body{width:100%;height:100%;background:#008080;overflow:hidden;}
   function makePCIcon(){
     var c=document.createElement('canvas');c.width=52;c.height=52;
     var x=c.getContext('2d');
-    // Monitor
     x.fillStyle='#c0c0c0';x.fillRect(6,4,40,28);
     x.fillStyle='#000080';x.fillRect(8,6,36,24);
     x.fillStyle='#000';x.fillRect(6,4,40,1);x.fillRect(6,31,40,1);x.fillRect(6,4,1,28);x.fillRect(45,4,1,28);
-    // Stand
-    x.fillStyle='#808080';x.fillRect(20,32,12,4);
-    x.fillRect(16,36,20,3);
-    // Screen content
+    x.fillStyle='#808080';x.fillRect(20,32,12,4);x.fillRect(16,36,20,3);
     x.fillStyle='#fff';x.fillRect(12,10,6,2);x.fillRect(12,14,18,2);x.fillRect(12,18,14,2);
     var img=document.createElement('img');img.src=c.toDataURL();
-    img.style.cssText='width:52px;height:52px;display:block;margin:0 auto;image-rendering:auto;';
-    return img;
+    img.style.cssText='width:52px;height:52px;display:block;margin:0 auto;';return img;
   }
-
   function makeVogueIcon(photoUrl){
     var img=document.createElement('img');img.src=photoUrl;img.className='w95-icon-img natural';return img;
   }
@@ -279,35 +280,34 @@ html,body{width:100%;height:100%;background:#008080;overflow:hidden;}
   var zTop=1000;
   function bringToFront(el){el.style.zIndex=++zTop;}
 
+  function showHourglass(){
+    var h=document.createElement('div');
+    h.style.cssText='position:fixed;inset:0;background:rgba(0,128,128,0.5);z-index:999998;display:flex;align-items:center;justify-content:center;pointer-events:all;';
+    h.innerHTML='<div style="font-size:24px;animation:hgspin 1s linear infinite;">⧗</div>';
+    document.body.appendChild(h);
+    setTimeout(function(){h.remove();},700);
+  }
+
   function makeWin(f){
     var w=document.createElement('div');w.className='w95-win';
-    var wW=isMobile?Math.min(W-20,340):380;
-    var wH=isMobile?Math.min(H-80,480):420;
+    var wW=isMobile?Math.min(W-20,340):400;
+    var wH=isMobile?Math.min(H-80,500):440;
     w.style.cssText='left:20px;top:20px;width:'+wW+'px;height:'+wH+'px;z-index:'+(++zTop)+';';
     if(f.open) w.classList.add('open');
     var bar=document.createElement('div');bar.className='w95-winbar';
     var title=document.createElement('div');title.className='w95-wintitle';title.textContent=f.name;bar.appendChild(title);
     var btns=document.createElement('div');btns.className='w95-winbtns';
     function wbtn(label,fn){var b=document.createElement('button');b.className='w95-wbtn';b.textContent=label;b.addEventListener('click',function(e){e.stopPropagation();fn();});return b;}
-    var tbtn=null;
-    if(f.showInTaskbar!==false){
-      tbtn=document.createElement('button');tbtn.className='w95-taskbtn';tbtn.textContent=f.name||'…';taskbtns.appendChild(tbtn);
-      tbtn.addEventListener('click',function(){
-        if(w.classList.contains('open')){w.classList.remove('open');tbtn.classList.remove('active');}
-        else{w.classList.add('open');tbtn.classList.add('active');bringToFront(w);}
-      });
-    }
-    btns.appendChild(wbtn('_',function(){w.classList.remove('open');if(tbtn)tbtn.classList.remove('active');}));
+    btns.appendChild(wbtn('_',function(){w.classList.remove('open');}));
     btns.appendChild(wbtn('□',function(){
       if(w._maximized){
         w.style.left=w._prevLeft;w.style.top=w._prevTop;w.style.width=w._prevW;w.style.height=w._prevH;w._maximized=false;
       } else {
-        w._prevLeft=w.style.left;w._prevTop=w.style.top;
-        w._prevW=w.style.width;w._prevH=w.style.height;
+        w._prevLeft=w.style.left;w._prevTop=w.style.top;w._prevW=w.style.width;w._prevH=w.style.height;
         w.style.left='0px';w.style.top='0px';w.style.width='100vw';w.style.height='calc(100vh - 30px)';w._maximized=true;
       }
     }));
-    btns.appendChild(wbtn('✕',function(){w.classList.remove('open');if(tbtn)tbtn.classList.remove('active');}));
+    btns.appendChild(wbtn('✕',function(){w.classList.remove('open');}));
     bar.appendChild(btns);
     var body=document.createElement('div');body.className='w95-winbody';
     if(f.content) body.innerHTML=f.content;
@@ -318,31 +318,29 @@ html,body{width:100%;height:100%;background:#008080;overflow:hidden;}
     document.addEventListener('mousemove',function(e){if(!resizing)return;w.style.width=Math.max(200,rsw+(e.clientX-rsx))+'px';w.style.height=Math.max(150,rsh+(e.clientY-rsy))+'px';});
     document.addEventListener('mouseup',function(){resizing=false;});
     w.appendChild(bar);w.appendChild(body);w.appendChild(rsz);
-    w.addEventListener('mousedown',function(){bringToFront(w);if(tbtn)tbtn.classList.add('active');});
+    w.addEventListener('mousedown',function(){bringToFront(w);});
     var bd=false,box=0,boy=0;
     bar.addEventListener('mousedown',function(e){if(e.target.closest('.w95-winbtns'))return;e.preventDefault();bd=true;box=e.clientX-w.offsetLeft;boy=e.clientY-w.offsetTop;bringToFront(w);});
     document.addEventListener('mousemove',function(e){if(!bd)return;w.style.left=Math.max(0,e.clientX-box)+'px';w.style.top=Math.max(0,e.clientY-boy)+'px';});
     document.addEventListener('mouseup',function(){bd=false;});
-    winLayer.appendChild(w);return {win:w,tbtn:tbtn};
+    winLayer.appendChild(w);return w;
   }
 
   function makeIframeWin(f){
-    var result=makeWin(f);
-    var w=result.win;
+    var w=makeWin(f);
     var body=w.querySelector('.w95-winbody');
-    // iframe
     var iframe=document.createElement('iframe');
-    iframe.src=f.url;
+    iframe.src='about:blank';
     iframe.setAttribute('allowfullscreen','');
     body.appendChild(iframe);
-    // "Apri nel sito" link
     var openLink=document.createElement('a');
-    openLink.href=f.url;
-    openLink.target='_blank';
+    openLink.href=f.url;openLink.target='_blank';
     openLink.className='w95-win-openlink';
-    openLink.textContent='↗ Apri nel sito originale';
+    openLink.textContent='↗ Open in original website';
     w.appendChild(openLink);
-    return result;
+    w._iframeUrl=f.url;
+    w._iframe=iframe;
+    return w;
   }
 
   var contactWin=(function(){
@@ -368,12 +366,11 @@ html,body{width:100%;height:100%;background:#008080;overflow:hidden;}
   })();
 
   FOLDERS.forEach(function(f){
-    if(f.icon==='question') return;
     var item=document.createElement('div');item.className='w95-menu-item';
     item.textContent=(f.icon==='photo'||f.icon==='vogue'?'🖼 ':f.icon==='pc'?'💻 ':'📁 ')+f.name;
     item.addEventListener('click',function(){
       document.getElementById('w95-start-menu').classList.remove('open');
-      if(f.type==='link'&&f.url&&f.url!=='INSERISCI_URL_QUI'&&f.url!=='INSERISCI_URL_INFO_QUI') window.open(f.url,'_blank');
+      if(f.type==='link'&&f.url&&f.url.indexOf('INSERISCI')<0) window.open(f.url,'_blank');
     });
     menuItems.appendChild(item);
   });
@@ -386,48 +383,50 @@ html,body{width:100%;height:100%;background:#008080;overflow:hidden;}
   menuItems.appendChild(ci);
 
   FOLDERS.forEach(function(f,i){
-    var result=null;
-    if(f.type==='window') result=makeWin(f);
-    else if(f.type==='iframe') result=makeIframeWin(f);
-    var win=result?result.win:null;
-    var tbtn=result?result.tbtn:null;
+    var win=null;
+    if(f.type==='window') win=makeWin(f);
+    else if(f.type==='iframe') win=makeIframeWin(f);
     var pos=getPos(f);
     var ic=document.createElement('div');ic.className='w95-icon';
     ic.appendChild(makeIcon(f.icon,f.photoUrl));
     var lbl=document.createElement('div');lbl.className='w95-icon-label';lbl.textContent=f.name;
     ic.appendChild(lbl);
     ic.style.cssText='left:'+pos.x+'px;top:'+pos.y+'px;z-index:'+(500+i)+';';
-    var dragging=false,moved=false,ox=0,oy=0,sx=0,sy=0;
-    var lastTap=0;
+    var dragging=false,moved=false,ox=0,oy=0,sx=0,sy=0,lastTap=0;
 
     function openItem(){
-      if(f.type==='window'&&win){win.classList.add('open');bringToFront(win);if(tbtn)tbtn.classList.add('active');}
-      else if(f.type==='iframe'&&win){win.classList.add('open');bringToFront(win);if(tbtn)tbtn.classList.add('active');}
-      else if(f.type==='link'&&f.url&&f.url!=='INSERISCI_URL_QUI'&&f.url!=='INSERISCI_URL_INFO_QUI') window.open(f.url,'_blank');
+      showHourglass();
+      setTimeout(function(){
+        if(win){
+          win.classList.add('open');
+          bringToFront(win);
+          if(win._iframe&&win._iframe.src==='about:blank') win._iframe.src=win._iframeUrl;
+        } else if(f.type==='link'&&f.url&&f.url.indexOf('INSERISCI')<0){
+          window.open(f.url,'_blank');
+        }
+      },400);
     }
 
-    function startDrag(clientX,clientY){
+    function startDrag(cx,cy){
       dragging=true;moved=false;
-      ox=clientX-ic.offsetLeft;oy=clientY-ic.offsetTop;
-      sx=clientX;sy=clientY;ic.style.zIndex=++zTop;
+      ox=cx-ic.offsetLeft;oy=cy-ic.offsetTop;
+      sx=cx;sy=cy;ic.style.zIndex=++zTop;
       document.querySelectorAll('.w95-icon').forEach(function(w){w.classList.remove('sel');});
       ic.classList.add('sel');
     }
-    function doDrag(clientX,clientY){
+    function doDrag(cx,cy){
       if(!dragging)return;
-      if(Math.abs(clientX-sx)>6||Math.abs(clientY-sy)>6) moved=true;
-      ic.style.left=Math.max(0,clientX-ox)+'px';
-      ic.style.top=Math.max(0,clientY-oy)+'px';
+      if(Math.abs(cx-sx)>6||Math.abs(cy-sy)>6) moved=true;
+      ic.style.left=Math.max(0,cx-ox)+'px';
+      ic.style.top=Math.max(0,cy-oy)+'px';
     }
     function endDrag(){
       if(!dragging)return;
       dragging=false;
       if(!moved){
         if(isMobile){
-          // Singolo tap su mobile
           openItem();
         } else {
-          // Doppio click su desktop
           var now=Date.now();
           if(now-lastTap<500) openItem();
           lastTap=now;
@@ -465,12 +464,26 @@ html,body{width:100%;height:100%;background:#008080;overflow:hidden;}
   updateClock();
   setInterval(updateClock,1000);
 
-  var fp=document.getElementById('fp-msg');
-  function showFP(){
-    fp.classList.add('visible');
-    setTimeout(function(){fp.classList.remove('visible');},4000);
-  }
-  setTimeout(function(){showFP();setInterval(showFP,12000);},3000);
+  // Frasi fantasma in posizioni e momenti diversi
+  var PHRASES=[
+    {text:'FREE PALESTINE',              top:'6%',  left:'50%', delay:4000,  interval:20000},
+    {text:'DRAW THE TIME',               top:'22%', left:'12%', delay:8000,  interval:24000},
+    {text:'I AM A GOOD MAN?',            top:'58%', left:'75%', delay:13000, interval:27000},
+    {text:'AN IDEA, A CONCEPT, AN IDEA?',top:'78%', left:'35%', delay:6000,  interval:32000},
+    {text:'FREE PALESTINE',              top:'42%', left:'82%', delay:22000, interval:21000},
+    {text:'DRAW THE TIME',               top:'68%', left:'8%',  delay:16000, interval:29000},
+    {text:'I AM A GOOD MAN?',            top:'15%', left:'60%', delay:30000, interval:35000},
+    {text:'AN IDEA, A CONCEPT, AN IDEA?',top:'88%', left:'55%', delay:10000, interval:38000},
+  ];
+
+  PHRASES.forEach(function(p){
+    var el=document.createElement('div');
+    el.style.cssText='position:fixed;top:'+p.top+';left:'+p.left+';transform:translateX(-50%);font-family:IBM Plex Mono,monospace;font-size:clamp(9px,1.2vw,13px);color:rgba(255,255,255,0.14);letter-spacing:0.3em;pointer-events:none;z-index:99998;opacity:0;transition:opacity 3s ease;white-space:nowrap;';
+    el.textContent=p.text;
+    document.body.appendChild(el);
+    function show(){el.style.opacity='1';setTimeout(function(){el.style.opacity='0';},4000);}
+    setTimeout(function(){show();setInterval(show,p.interval);},p.delay);
+  });
 
 })();
 </script>
