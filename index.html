@@ -16,11 +16,11 @@
 *{box-sizing:border-box;margin:0;padding:0;}
 html,body{width:100%;height:100%;overflow:hidden;font-family:'IBM Plex Mono',monospace;}
 body.win95{background:#008080;}
-body.macos{background:#f0f0f0;}
+body.macos{background:#1d1d1f;}
 
 .phantom{position:fixed;pointer-events:none;z-index:99998;opacity:0;transition:opacity 3s ease;white-space:nowrap;font-family:'IBM Plex Mono',monospace;font-size:clamp(9px,1.2vw,13px);letter-spacing:0.3em;}
 body.win95 .phantom{color:rgba(255,255,255,0.13);}
-body.macos .phantom{color:rgba(0,0,0,0.07);}
+body.macos .phantom{color:rgba(255,255,255,0.08);}
 .phantom.visible{opacity:1;}
 
 /* ══ WIN95 ══ */
@@ -49,7 +49,7 @@ body.macos .phantom{color:rgba(0,0,0,0.07);}
 .w95-icon-img.natural{width:auto;max-width:64px;height:auto;max-height:80px;object-fit:contain;border:1px solid rgba(0,0,0,0.3);}
 .w95-icon-label{margin-top:3px;font-size:9px;line-height:1.3;word-break:break-word;font-family:'IBM Plex Mono',monospace;}
 body.win95 .w95-icon-label{color:#fff;text-shadow:1px 1px 0 #000,0 0 4px rgba(0,0,0,0.8);}
-body.macos .w95-icon-label{color:#000;}
+body.macos .w95-icon-label{color:#fff;text-shadow:0 1px 3px rgba(0,0,0,0.9);}
 .w95-icon.sel .w95-icon-label{background:#000080;color:#fff;}
 .w95-icon.sel .w95-icon-img{opacity:0.75;outline:1px solid #000080;}
 
@@ -71,7 +71,7 @@ body.macos .w95-icon-label{color:#000;}
 .w95-win-openlink:hover{background:#000080;color:#fff;}
 .w95-resize{position:absolute;right:0;bottom:0;width:14px;height:14px;cursor:se-resize;opacity:0.5;}
 
-/* AI Chat Win95 */
+/* AI Win95 */
 .ai-winbody{display:flex;flex-direction:column;height:100%;}
 .ai-messages{flex:1;overflow-y:auto;padding:8px;display:flex;flex-direction:column;gap:6px;}
 .ai-msg{font-size:11px;font-family:'IBM Plex Mono',monospace;line-height:1.6;padding:6px 8px;max-width:92%;}
@@ -90,54 +90,120 @@ body.macos .w95-icon-label{color:#000;}
 body.macos #mac-layer{display:block;}
 body.macos #w95-layer{display:none;}
 
-#mac-menubar{position:fixed;top:0;left:0;right:0;height:24px;background:rgba(255,255,255,0.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,0.1);display:flex;align-items:center;padding:0 12px;gap:0;pointer-events:all;z-index:100;}
-#mac-apple-btn{font-size:16px;cursor:pointer;padding:0 10px;position:relative;user-select:none;}
-#mac-apple-menu{position:fixed;top:24px;left:0;background:rgba(255,255,255,0.96);backdrop-filter:blur(20px);border:1px solid rgba(0,0,0,0.15);border-radius:6px;box-shadow:0 8px 32px rgba(0,0,0,0.2);display:none;flex-direction:column;min-width:200px;padding:4px 0;z-index:300;pointer-events:all;}
+/* Menubar macOS fedele */
+#mac-menubar{
+  position:fixed;top:0;left:0;right:0;height:28px;
+  background:rgba(30,30,30,0.88);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(255,255,255,0.08);
+  display:flex;align-items:center;
+  pointer-events:all;z-index:100;
+  font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue',sans-serif;
+}
+#mac-apple-btn{
+  width:48px;height:28px;display:flex;align-items:center;justify-content:center;
+  cursor:pointer;position:relative;user-select:none;flex-shrink:0;
+}
+#mac-apple-btn:hover{background:rgba(255,255,255,0.1);}
+#mac-apple-svg{width:16px;height:16px;}
+#mac-apple-menu{
+  position:fixed;top:28px;left:4px;
+  background:rgba(30,30,30,0.96);
+  backdrop-filter:blur(40px);-webkit-backdrop-filter:blur(40px);
+  border:1px solid rgba(255,255,255,0.15);
+  border-radius:8px;
+  box-shadow:0 12px 40px rgba(0,0,0,0.6);
+  display:none;flex-direction:column;
+  min-width:210px;padding:5px 0;
+  z-index:300;pointer-events:all;
+}
 #mac-apple-menu.open{display:flex;}
-.mac-apple-item{padding:5px 16px;font-size:13px;font-family:-apple-system,sans-serif;cursor:pointer;color:#000;}
-.mac-apple-item:hover{background:#0070f3;color:#fff;}
-.mac-apple-sep{height:1px;background:rgba(0,0,0,0.1);margin:3px 0;}
-#mac-menubar-center{flex:1;display:flex;align-items:center;justify-content:center;gap:20px;}
-.mac-menu-word{font-size:13px;font-family:-apple-system,sans-serif;cursor:pointer;opacity:0.8;padding:0 4px;}
-.mac-menu-word:hover{opacity:1;}
-#mac-menubar-right{display:flex;align-items:center;gap:10px;font-size:12px;font-family:-apple-system,sans-serif;opacity:0.8;margin-left:auto;}
+.mac-apple-item{
+  padding:5px 16px;font-size:13px;
+  font-family:-apple-system,sans-serif;
+  cursor:pointer;color:rgba(255,255,255,0.9);
+  display:flex;align-items:center;gap:8px;
+}
+.mac-apple-item:hover{background:rgba(255,255,255,0.12);}
+.mac-apple-sep{height:1px;background:rgba(255,255,255,0.1);margin:4px 0;}
+#mac-menubar-words{display:flex;align-items:center;gap:2px;margin-left:4px;}
+.mac-menu-word{
+  padding:0 10px;height:28px;display:flex;align-items:center;
+  font-size:13px;font-family:-apple-system,sans-serif;
+  cursor:pointer;color:rgba(255,255,255,0.85);font-weight:400;
+}
+.mac-menu-word:hover{background:rgba(255,255,255,0.1);border-radius:4px;}
+#mac-menubar-right{
+  margin-left:auto;display:flex;align-items:center;gap:6px;
+  font-size:13px;font-family:-apple-system,sans-serif;
+  color:rgba(255,255,255,0.85);padding-right:12px;
+}
+#mac-weather-display{opacity:0.8;}
+#mac-clock-display{font-weight:400;}
 
-#mac-dock{position:fixed;right:8px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.28);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.5);border-radius:18px;padding:8px 5px;display:flex;flex-direction:column;gap:6px;pointer-events:all;z-index:100;box-shadow:0 8px 32px rgba(0,0,0,0.12);}
-.mac-dock-icon{width:52px;height:52px;border-radius:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform 0.18s cubic-bezier(.34,1.8,.64,1);overflow:visible;position:relative;flex-shrink:0;}
-.mac-dock-icon:hover{transform:scale(1.6);}
-.mac-dock-icon:active{transform:scale(0.9);}
-.mac-dock-icon img{width:100%;height:100%;object-fit:cover;border-radius:12px;display:block;}
-.mac-dock-icon.folder-icon{background:linear-gradient(145deg,#5eb5f7,#3d8fd4);}
-.mac-dock-icon.doc-icon{background:linear-gradient(145deg,#fff,#e8e8e8);border:1px solid #ddd;}
-.mac-dock-icon.pc-icon{background:linear-gradient(145deg,#636363,#333);}
-.mac-dock-icon.ai-icon{background:linear-gradient(135deg,#a855f7,#7c3aed,#4f46e5);}
-.mac-dock-label{position:absolute;bottom:-22px;left:50%;transform:translateX(-50%);white-space:nowrap;font-size:10px;font-family:-apple-system,sans-serif;background:rgba(0,0,0,0.75);color:#fff;padding:2px 7px;border-radius:4px;opacity:0;pointer-events:none;transition:opacity 0.15s;z-index:10;}
+/* Dock macOS */
+#mac-dock{
+  position:fixed;right:10px;top:50%;transform:translateY(-50%);
+  background:rgba(255,255,255,0.12);
+  backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+  border:1px solid rgba(255,255,255,0.2);
+  border-radius:20px;padding:10px 6px;
+  display:flex;flex-direction:column;gap:8px;
+  pointer-events:all;z-index:100;
+  box-shadow:0 8px 40px rgba(0,0,0,0.4),inset 0 1px 0 rgba(255,255,255,0.15);
+}
+.mac-dock-icon{
+  width:54px;height:54px;border-radius:13px;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:transform 0.2s cubic-bezier(.34,1.8,.64,1);
+  overflow:visible;position:relative;flex-shrink:0;
+}
+.mac-dock-icon:hover{transform:scale(1.65);}
+.mac-dock-icon:active{transform:scale(0.88);}
+.mac-dock-icon img{width:100%;height:100%;object-fit:cover;border-radius:13px;display:block;box-shadow:0 2px 8px rgba(0,0,0,0.4);}
+.mac-dock-icon.folder-icon{background:linear-gradient(145deg,#5eb5f7,#2d8fd4);box-shadow:0 2px 8px rgba(0,0,0,0.3);}
+.mac-dock-icon.doc-icon{background:linear-gradient(145deg,#f5f5f5,#ddd);border:1px solid #ccc;box-shadow:0 2px 8px rgba(0,0,0,0.2);}
+.mac-dock-icon.pc-icon{background:linear-gradient(145deg,#555,#222);box-shadow:0 2px 8px rgba(0,0,0,0.4);}
+.mac-dock-icon.ai-icon{background:linear-gradient(135deg,#a855f7,#7c3aed,#4f46e5);box-shadow:0 2px 8px rgba(124,58,237,0.5);}
+.mac-dock-label{
+  position:absolute;right:calc(100% + 10px);top:50%;transform:translateY(-50%);
+  white-space:nowrap;font-size:12px;
+  font-family:-apple-system,sans-serif;
+  background:rgba(20,20,20,0.9);color:#fff;
+  padding:4px 10px;border-radius:6px;
+  opacity:0;pointer-events:none;
+  transition:opacity 0.15s;z-index:10;
+  box-shadow:0 2px 8px rgba(0,0,0,0.3);
+}
 .mac-dock-icon:hover .mac-dock-label{opacity:1;}
 
-.mac-win{position:fixed;background:#fff;border-radius:10px;box-shadow:0 20px 60px rgba(0,0,0,0.25);display:none;flex-direction:column;pointer-events:all;min-width:300px;overflow:hidden;}
+/* macOS windows */
+.mac-win{position:fixed;background:rgba(28,28,28,0.95);border-radius:12px;box-shadow:0 24px 60px rgba(0,0,0,0.6);display:none;flex-direction:column;pointer-events:all;min-width:300px;overflow:hidden;border:1px solid rgba(255,255,255,0.1);}
 .mac-win.open{display:flex;}
-.mac-winbar{height:28px;background:linear-gradient(to bottom,#f5f5f5,#e8e8e8);display:flex;align-items:center;padding:0 10px;cursor:grab;user-select:none;flex-shrink:0;border-bottom:1px solid #d0d0d0;}
+.mac-winbar{height:30px;background:rgba(40,40,40,0.95);display:flex;align-items:center;padding:0 12px;cursor:grab;user-select:none;flex-shrink:0;border-bottom:1px solid rgba(255,255,255,0.08);}
 .mac-winbar:active{cursor:grabbing;}
-.mac-winbtns{display:flex;gap:7px;align-items:center;}
-.mac-wbtn{width:12px;height:12px;border-radius:50%;cursor:pointer;flex-shrink:0;border:none;padding:0;}
-.mac-wintitle{flex:1;text-align:center;font-size:12px;color:#555;font-family:-apple-system,sans-serif;pointer-events:none;}
-.mac-winbody{flex:1;overflow:hidden;font-size:13px;font-family:-apple-system,sans-serif;}
+.mac-winbtns{display:flex;gap:8px;align-items:center;}
+.mac-wbtn{width:13px;height:13px;border-radius:50%;cursor:pointer;flex-shrink:0;border:none;padding:0;box-shadow:inset 0 1px 0 rgba(255,255,255,0.2);}
+.mac-wintitle{flex:1;text-align:center;font-size:13px;color:rgba(255,255,255,0.6);font-family:-apple-system,sans-serif;pointer-events:none;font-weight:400;}
+.mac-winbody{flex:1;overflow:hidden;font-size:13px;font-family:-apple-system,sans-serif;color:#fff;}
 .mac-winbody.padded{padding:20px;overflow-y:auto;}
 .mac-winbody iframe{width:100%;height:100%;border:none;}
-.mac-win-openlink{display:block;text-align:center;font-size:11px;font-family:-apple-system,sans-serif;background:#f5f5f5;border-top:1px solid #eee;padding:6px;color:#007aff;text-decoration:none;flex-shrink:0;cursor:pointer;}
+.mac-win-openlink{display:block;text-align:center;font-size:12px;font-family:-apple-system,sans-serif;background:rgba(0,0,0,0.3);border-top:1px solid rgba(255,255,255,0.08);padding:8px;color:#64b5f6;text-decoration:none;flex-shrink:0;cursor:pointer;}
+.mac-win-openlink:hover{background:rgba(255,255,255,0.08);}
 
-/* AI Chat macOS */
+/* AI macOS */
 .mac-ai-body{display:flex;flex-direction:column;height:100%;}
-.mac-ai-messages{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:10px;}
+.mac-ai-messages{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px;}
 .mac-ai-msg{font-size:13px;font-family:-apple-system,sans-serif;line-height:1.6;padding:9px 13px;border-radius:16px;max-width:85%;}
-.mac-ai-msg.user{background:#007aff;color:#fff;align-self:flex-end;border-radius:16px 16px 4px 16px;}
-.mac-ai-msg.bot{background:#f0f0f0;color:#000;align-self:flex-start;border-radius:16px 16px 16px 4px;}
-.mac-ai-msg.loading{color:#888;font-style:italic;}
-.mac-ai-input-row{display:flex;border-top:1px solid #eee;padding:8px;gap:6px;flex-shrink:0;align-items:center;}
-.mac-ai-input{flex:1;border:1px solid #ddd;border-radius:20px;padding:7px 14px;font-size:13px;font-family:-apple-system,sans-serif;outline:none;}
-.mac-ai-send{padding:7px 16px;background:#007aff;color:#fff;border:none;border-radius:20px;cursor:pointer;font-size:13px;font-family:-apple-system,sans-serif;}
-.mac-ai-send:disabled{opacity:0.5;cursor:default;}
-.mac-ai-counter{font-size:10px;font-family:-apple-system,sans-serif;color:#999;padding:0 12px 6px;flex-shrink:0;text-align:right;}
+.mac-ai-msg.user{background:#0a7aff;color:#fff;align-self:flex-end;border-radius:16px 16px 4px 16px;}
+.mac-ai-msg.bot{background:rgba(255,255,255,0.12);color:#fff;align-self:flex-start;border-radius:16px 16px 16px 4px;}
+.mac-ai-msg.loading{color:rgba(255,255,255,0.5);font-style:italic;}
+.mac-ai-input-row{display:flex;border-top:1px solid rgba(255,255,255,0.08);padding:10px;gap:8px;flex-shrink:0;align-items:center;}
+.mac-ai-input{flex:1;border:1px solid rgba(255,255,255,0.15);border-radius:20px;padding:8px 14px;font-size:13px;font-family:-apple-system,sans-serif;outline:none;background:rgba(255,255,255,0.08);color:#fff;}
+.mac-ai-input::placeholder{color:rgba(255,255,255,0.4);}
+.mac-ai-send{padding:8px 16px;background:#0a7aff;color:#fff;border:none;border-radius:20px;cursor:pointer;font-size:13px;font-family:-apple-system,sans-serif;}
+.mac-ai-send:disabled{opacity:0.4;cursor:default;}
+.mac-ai-counter{font-size:11px;font-family:-apple-system,sans-serif;color:rgba(255,255,255,0.4);padding:0 14px 8px;flex-shrink:0;text-align:right;}
 
 #w95-hourglass{position:fixed;inset:0;background:#008080;z-index:999999;display:flex;align-items:center;justify-content:center;pointer-events:all;transition:opacity 0.6s;}
 #w95-hourglass-inner{font-size:28px;color:#fff;animation:hgspin 1s linear infinite;}
@@ -147,9 +213,9 @@ body.macos #w95-layer{display:none;}
   .w95-icon{width:56px;}
   .w95-icon-img.square{width:44px;height:44px;}
   .w95-icon-label{font-size:8px;}
-  #mac-dock{padding:5px 3px;gap:4px;}
-  .mac-dock-icon{width:42px;height:42px;}
-  #mac-menubar-center{display:none;}
+  #mac-dock{padding:6px 4px;gap:5px;}
+  .mac-dock-icon{width:44px;height:44px;}
+  #mac-menubar-words{display:none;}
 }
 </style>
 </head>
@@ -198,7 +264,10 @@ body.macos #w95-layer{display:none;}
 
 <div id="mac-layer">
   <div id="mac-menubar">
-    <div id="mac-apple-btn">🍎
+    <div id="mac-apple-btn">
+      <svg id="mac-apple-svg" viewBox="0 0 24 24" fill="rgba(255,255,255,0.9)">
+        <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+      </svg>
       <div id="mac-apple-menu">
         <div class="mac-apple-item" onclick="openInfoWin();closeMacApple()">📄 More Info</div>
         <div class="mac-apple-item" onclick="openAIWin();closeMacApple()">🤖 Chat with Simone AI</div>
@@ -206,10 +275,10 @@ body.macos #w95-layer{display:none;}
         <div class="mac-apple-sep"></div>
         <div class="mac-apple-item" onclick="openMacContact();closeMacApple()">✉️ Contact</div>
         <div class="mac-apple-sep"></div>
-        <div class="mac-apple-item" onclick="switchToWin95();closeMacApple()">Switch to Win95</div>
+        <div class="mac-apple-item" onclick="switchToWin95();closeMacApple()">↩ Switch to Win95</div>
       </div>
     </div>
-    <div id="mac-menubar-center">
+    <div id="mac-menubar-words">
       <span class="mac-menu-word" onclick="openMacContact()">Contact</span>
       <span class="mac-menu-word" onclick="window.open('https://www.instagram.com/simone_falcomer/','_blank')">Instagram</span>
       <span class="mac-menu-word" onclick="window.open('https://open.spotify.com/playlist/6b1ZTAE5B0gDHnoaorifkN','_blank')">Spotify</span>
@@ -219,7 +288,6 @@ body.macos #w95-layer{display:none;}
       <span id="mac-clock-display">00:00</span>
     </div>
   </div>
-  <div id="mac-icons"></div>
   <div id="mac-wins"></div>
   <div id="mac-dock"></div>
 </div>
@@ -227,9 +295,8 @@ body.macos #w95-layer{display:none;}
 <script>
 (function(){
 
-var WORKER_URL = 'https://simone-ai.falcomersimone.workers.dev';
-
-var AI_SYSTEM = 'You are "Chat with Simone AI", the personal AI agent of Simone Falcomer — a photographer and Art Director based in Barcelona, Italy-born. You know everything about him:\n\n- He studied photojournalism at Grisart Academy in Barcelona\n- He is currently studying Fine Arts in Barcelona\n- He works across fashion, documentary and artistic practice\n- He shoots on analogue film: 35mm and medium format\n- He also manages digital studio production\n- His editorial work has been published in Vogue Nederland, Neo2, Kultblut Magazine, Vein Magazine and Cake Magazine\n- His commercial clients include Marni and Outsiders Division\n- He works internally as Image Director at Acceptance Letter Studio\n- He is represented by Fang.Agency\n- Contact: falcomersimone@gmail.com / +34 607 699 642\n- Instagram: @simone_falcomer\n\nHis visual language draws from mid-20th century photography, neoclassical sculpture, Baroque painting and Italian Renaissance art. He chases time through his lens and reflects on the relativity of time and human transformation.\n\nBe warm, concise and human. Answers max 100 words. Always end with a natural call to action like "Feel free to reach out: falcomersimone@gmail.com". If asked something completely unrelated to Simone or photography, gently redirect: "I am here to tell you about Simone and his work!"';
+var WORKER_URL='https://simone-ai.falcomersimone.workers.dev';
+var AI_SYSTEM='You are "Chat with Simone AI", the personal AI agent of Simone Falcomer — a photographer and Art Director based in Barcelona, Italy-born. You know everything about him:\n\n- He studied photojournalism at Grisart Academy in Barcelona\n- He is currently studying Fine Arts in Barcelona\n- He works across fashion, documentary and artistic practice\n- He shoots on analogue film: 35mm and medium format\n- He also manages digital studio production\n- His editorial work has been published in Vogue Nederland, Neo2, Kultblut Magazine, Vein Magazine and Cake Magazine\n- His commercial clients include Marni and Outsiders Division\n- He works internally as Image Director at Acceptance Letter Studio\n- He is represented by Fang.Agency\n- Contact: falcomersimone@gmail.com / +34 607 699 642\n- Instagram: @simone_falcomer\n\nHis visual language draws from mid-20th century photography, neoclassical sculpture, Baroque painting and Italian Renaissance art. He chases time through his lens and reflects on the relativity of time and human transformation.\n\nBe warm, concise and human. Answers max 100 words. Always end with a natural call to action like "Feel free to reach out: falcomersimone@gmail.com". If asked something completely unrelated to Simone or photography, gently redirect: "I am here to tell you about Simone and his work!"';
 
 // Hourglass
 var hg=document.getElementById('w95-hourglass');
@@ -268,7 +335,6 @@ function switchToMac(){
 function switchToWin95(){document.body.classList.remove('macos');document.body.classList.add('win95');}
 window.switchToWin95=switchToWin95;
 
-// Dims
 var W=window.innerWidth,H=window.innerHeight,isMobile=W<768;
 var ICON=64,BOTTOM=40;
 function mpos(col,row){var cW=Math.floor((W-8)/4),rH=Math.floor((H-120-BOTTOM)/4);return{x:4+col*cW,y:120+row*rH};}
@@ -296,34 +362,25 @@ var FOLDERS=[
 
 function getPos(f){return isMobile?f.mob:f.dsk;}
 
-// Icons
 function makeAIIcon(){
   var c=document.createElement('canvas');c.width=52;c.height=52;
   var x=c.getContext('2d');
   var g=x.createLinearGradient(0,0,52,52);
   g.addColorStop(0,'#a855f7');g.addColorStop(0.5,'#7c3aed');g.addColorStop(1,'#4f46e5');
-  x.fillStyle=g;
-  x.beginPath();x.roundRect(0,0,52,52,10);x.fill();
-  // Robot face
-  x.fillStyle='#fff';
-  x.fillRect(10,14,32,24);
-  x.fillStyle=g;
-  x.beginPath();x.roundRect(10,14,32,24,4);x.fill();
+  x.fillStyle=g;x.beginPath();x.roundRect(0,0,52,52,10);x.fill();
   x.fillStyle='rgba(255,255,255,0.9)';
-  // Eyes
-  x.beginPath();x.arc(19,24,4,0,Math.PI*2);x.fill();
-  x.beginPath();x.arc(33,24,4,0,Math.PI*2);x.fill();
-  // Pupils
+  x.beginPath();x.arc(18,26,5,0,Math.PI*2);x.fill();
+  x.beginPath();x.arc(34,26,5,0,Math.PI*2);x.fill();
   x.fillStyle='#7c3aed';
-  x.beginPath();x.arc(19,24,2,0,Math.PI*2);x.fill();
-  x.beginPath();x.arc(33,24,2,0,Math.PI*2);x.fill();
-  // Mouth
-  x.strokeStyle='rgba(255,255,255,0.9)';x.lineWidth=2;x.lineCap='round';
-  x.beginPath();x.moveTo(16,32);x.lineTo(36,32);x.stroke();
-  // Antenna
-  x.beginPath();x.moveTo(26,14);x.lineTo(26,8);x.stroke();
-  x.fillStyle='rgba(255,255,255,0.9)';
-  x.beginPath();x.arc(26,7,3,0,Math.PI*2);x.fill();
+  x.beginPath();x.arc(18,26,2.5,0,Math.PI*2);x.fill();
+  x.beginPath();x.arc(34,26,2.5,0,Math.PI*2);x.fill();
+  x.strokeStyle='rgba(255,255,255,0.9)';x.lineWidth=2.5;x.lineCap='round';
+  x.beginPath();x.moveTo(16,35);x.quadraticCurveTo(26,40,36,35);x.stroke();
+  x.beginPath();x.moveTo(26,16);x.lineTo(26,9);x.stroke();
+  x.fillStyle='rgba(255,255,255,0.9)';x.beginPath();x.arc(26,8,3.5,0,Math.PI*2);x.fill();
+  x.strokeStyle='rgba(255,255,255,0.5)';x.lineWidth=1.5;
+  x.beginPath();x.moveTo(10,26);x.lineTo(13,26);x.stroke();
+  x.beginPath();x.moveTo(39,26);x.lineTo(42,26);x.stroke();
   var img=document.createElement('img');img.src=c.toDataURL();
   img.style.cssText='width:52px;height:52px;display:block;margin:0 auto;';return img;
 }
@@ -373,7 +430,6 @@ function makeIcon(type,photoUrl){
   return makeFolderIcon();
 }
 
-// Win helpers
 var iconLayer=document.getElementById('w95-icons');
 var winLayer=document.getElementById('w95-wins');
 var zTop=1000;
@@ -431,7 +487,6 @@ function makeIframeWin(f){
   w._iframe=iframe;w._iframeUrl=f.url;return w;
 }
 
-// Info Win
 var infoWin=null;
 function openInfoWin(){
   if(!infoWin){
@@ -444,7 +499,6 @@ function openInfoWin(){
 }
 window.openInfoWin=openInfoWin;
 
-// AI Win Win95
 function makeAIWin(){
   var w=makeBaseWin('Chat with Simone AI',isMobile?Math.min(W-20,340):380,isMobile?Math.min(H-80,460):480);
   var body=document.createElement('div');body.className='w95-winbody';
@@ -457,13 +511,10 @@ function makeAIWin(){
   inputRow.appendChild(input);inputRow.appendChild(send);
   inner.appendChild(msgs);inner.appendChild(counter);inner.appendChild(inputRow);
   body.appendChild(inner);w.appendChild(body);
-
   var welcome=document.createElement('div');welcome.className='ai-msg bot';
   welcome.textContent='Hi! I\'m Simone\'s AI — ask me anything about his work, projects, or background. You have 5 questions!';
   msgs.appendChild(welcome);
-
   var qLeft=5,history=[];
-
   function sendMsg(){
     if(qLeft<=0)return;
     var text=input.value.trim();if(!text)return;
@@ -474,11 +525,8 @@ function makeAIWin(){
     var loading=document.createElement('div');loading.className='ai-msg bot loading';loading.textContent='Thinking...';msgs.appendChild(loading);
     msgs.scrollTop=msgs.scrollHeight;
     history.push({role:'user',content:text});
-    fetch(WORKER_URL,{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({messages:history,system:AI_SYSTEM})
-    }).then(function(r){return r.json();})
+    fetch(WORKER_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:history,system:AI_SYSTEM})})
+    .then(function(r){return r.json();})
     .then(function(d){
       loading.remove();
       var reply=d.content&&d.content[0]?d.content[0].text:'Sorry, something went wrong. Try again!';
@@ -487,8 +535,7 @@ function makeAIWin(){
       msgs.scrollTop=msgs.scrollHeight;
       if(qLeft===0){var end=document.createElement('div');end.className='ai-msg bot';end.style.fontStyle='italic';end.textContent='Session ended. Write directly to falcomersimone@gmail.com!';msgs.appendChild(end);}
     }).catch(function(){
-      loading.remove();
-      qLeft++;counter.textContent=qLeft+' questions remaining';
+      loading.remove();qLeft++;counter.textContent=qLeft+' questions remaining';
       if(qLeft>0){input.disabled=false;send.disabled=false;}
       var err=document.createElement('div');err.className='ai-msg bot';err.textContent='Connection issue — please try again!';msgs.appendChild(err);
     });
@@ -499,13 +546,9 @@ function makeAIWin(){
 }
 
 var aiWinEl=null;
-function openAIWin(){
-  if(!aiWinEl) aiWinEl=makeAIWin();
-  aiWinEl.classList.add('open');bringToFront(aiWinEl);
-}
+function openAIWin(){if(!aiWinEl)aiWinEl=makeAIWin();aiWinEl.classList.add('open');bringToFront(aiWinEl);}
 window.openAIWin=openAIWin;
 
-// Contact
 var contactWin=(function(){
   var w=makeBaseWin('Contact',270,195);
   var body=document.createElement('div');body.className='w95-winbody padded';
@@ -514,7 +557,6 @@ var contactWin=(function(){
 })();
 window.openMacContact=function(){contactWin.classList.add('open');bringToFront(contactWin);};
 
-// Menu Start
 document.getElementById('menu-info').addEventListener('click',function(){document.getElementById('w95-start-menu').classList.remove('open');openInfoWin();});
 document.getElementById('menu-ai').addEventListener('click',function(){document.getElementById('w95-start-menu').classList.remove('open');openAIWin();});
 document.getElementById('menu-spotify').addEventListener('click',function(){document.getElementById('w95-start-menu').classList.remove('open');window.open('https://open.spotify.com/playlist/6b1ZTAE5B0gDHnoaorifkN','_blank');});
@@ -522,13 +564,11 @@ document.getElementById('menu-contact').addEventListener('click',function(){docu
 document.getElementById('menu-settings').addEventListener('click',function(){document.getElementById('w95-start-menu').classList.remove('open');switchToMac();});
 document.getElementById('w95-start').addEventListener('click',function(e){e.stopPropagation();document.getElementById('w95-start-menu').classList.toggle('open');});
 
-// macOS Apple Menu
 document.getElementById('mac-apple-btn').addEventListener('click',function(e){e.stopPropagation();document.getElementById('mac-apple-menu').classList.toggle('open');});
 function closeMacApple(){document.getElementById('mac-apple-menu').classList.remove('open');}
 window.closeMacApple=closeMacApple;
 document.addEventListener('click',function(){closeMacApple();});
 
-// Desktop Icons Win95
 FOLDERS.forEach(function(f,i){
   var win=null;
   if(f.type==='window') win=makeWin(f);
@@ -576,25 +616,24 @@ function buildMacDock(){
 
     if(f.icon==='ai'){
       di.classList.add('ai-icon');
-      di.innerHTML='<svg width="28" height="28" viewBox="0 0 24 24" fill="white"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>';
+      di.innerHTML='<svg width="30" height="30" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" fill="white"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>';
     } else if(f.icon==='photo'&&f.photoUrl){
-      var img=document.createElement('img');img.src=f.photoUrl;img.style.cssText='width:100%;height:100%;object-fit:cover;border-radius:12px;';di.appendChild(img);
+      var img=document.createElement('img');img.src=f.photoUrl;di.appendChild(img);
     } else if(f.icon==='folder'){
       di.classList.add('folder-icon');
-      di.innerHTML='<svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M10 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg>';
+      di.innerHTML='<svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M10 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg>';
     } else if(f.icon==='doc'){
       di.classList.add('doc-icon');
-      di.innerHTML='<svg width="22" height="26" viewBox="0 0 22 26" fill="none"><rect x="1" y="0" width="21" height="26" rx="2" fill="#fff" stroke="#ddd"/><path d="M14 0l7 7h-7V0z" fill="#e0e0e0"/><rect x="3" y="10" width="14" height="1.5" rx="1" fill="#ccc"/><rect x="3" y="14" width="12" height="1.5" rx="1" fill="#ccc"/><rect x="3" y="18" width="10" height="1.5" rx="1" fill="#ccc"/></svg>';
+      di.innerHTML='<svg width="24" height="28" viewBox="0 0 24 28" fill="none"><rect x="1" y="0" width="22" height="28" rx="3" fill="white" stroke="#ddd"/><path d="M15 0l8 8h-8V0z" fill="#e0e0e0"/><rect x="3" y="11" width="14" height="1.5" rx="1" fill="#ccc"/><rect x="3" y="15" width="12" height="1.5" rx="1" fill="#ccc"/><rect x="3" y="19" width="10" height="1.5" rx="1" fill="#ccc"/></svg>';
     } else if(f.icon==='pc'){
       di.classList.add('pc-icon');
-      di.innerHTML='<svg width="26" height="26" viewBox="0 0 24 24" fill="white"><rect x="2" y="3" width="20" height="13" rx="2"/><path d="M8 21h8M12 16v5" stroke="white" stroke-width="1.5"/></svg>';
+      di.innerHTML='<svg width="28" height="28" viewBox="0 0 24 24" fill="none"><rect x="2" y="3" width="20" height="13" rx="2" fill="white"/><path d="M8 21h8M12 16v5" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>';
     } else if(f.icon==='vogue'){
-      var img=document.createElement('img');img.src=f.photoUrl;img.style.cssText='width:100%;height:100%;object-fit:cover;border-radius:12px;';di.appendChild(img);
+      var img=document.createElement('img');img.src=f.photoUrl;di.appendChild(img);
     }
 
     var lbl=document.createElement('div');lbl.className='mac-dock-label';lbl.textContent=f.name;di.appendChild(lbl);
 
-    // Mac window
     var mwin=null;
     if(f.type==='window'||f.type==='iframe'){
       mwin=document.createElement('div');mwin.className='mac-win';
@@ -607,7 +646,7 @@ function buildMacDock(){
       mbtns.appendChild(mbtn('#febc2e',function(){mwin.classList.remove('open');}));
       mbtns.appendChild(mbtn('#28c840',function(){
         if(mwin._max){mwin.style.left=mwin._pl;mwin.style.top=mwin._pt;mwin.style.width=mwin._pw;mwin.style.height=mwin._ph;mwin._max=false;}
-        else{mwin._pl=mwin.style.left;mwin._pt=mwin.style.top;mwin._pw=mwin.style.width;mwin._ph=mwin.style.height;mwin.style.left='0';mwin.style.top='24px';mwin.style.width='100vw';mwin.style.height='calc(100vh - 24px)';mwin._max=true;}
+        else{mwin._pl=mwin.style.left;mwin._pt=mwin.style.top;mwin._pw=mwin.style.width;mwin._ph=mwin.style.height;mwin.style.left='0';mwin.style.top='28px';mwin.style.width='100vw';mwin.style.height='calc(100vh - 28px)';mwin._max=true;}
       }));
       mbar.appendChild(mbtns);
       var mtitle=document.createElement('div');mtitle.className='mac-wintitle';mtitle.textContent=f.name;mbar.appendChild(mtitle);
@@ -622,7 +661,7 @@ function buildMacDock(){
       mwin.addEventListener('mousedown',function(){bringToFront(mwin);});
       var mbd=false,mbx=0,mby=0;
       mbar.addEventListener('mousedown',function(e){if(e.target.closest('.mac-winbtns'))return;e.preventDefault();mbd=true;mbx=e.clientX-mwin.offsetLeft;mby=e.clientY-mwin.offsetTop;bringToFront(mwin);});
-      document.addEventListener('mousemove',function(e){if(!mbd)return;mwin.style.left=Math.max(0,e.clientX-mbx)+'px';mwin.style.top=Math.max(24,e.clientY-mby)+'px';});
+      document.addEventListener('mousemove',function(e){if(!mbd)return;mwin.style.left=Math.max(0,e.clientX-mbx)+'px';mwin.style.top=Math.max(28,e.clientY-mby)+'px';});
       document.addEventListener('mouseup',function(){mbd=false;});
       macWins.appendChild(mwin);
     }
