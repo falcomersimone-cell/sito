@@ -13,11 +13,19 @@ html,body{width:100%;background:#000;overflow-x:hidden;}
   position:fixed;
   inset:0;
   z-index:0;
+  background-image:url('https://i.ibb.co/JwBR3ttX/Edito-Sarah-Beauty5893.jpg');
+  background-size:cover;
+  background-position:center top;
+  background-repeat:no-repeat;
+  transition:transform 0.4s ease, filter 0.4s ease;
 }
-#bg-canvas{
-  width:100%;
-  height:100%;
-  display:block;
+
+#bg-overlay{
+  position:fixed;
+  inset:0;
+  z-index:1;
+  background:rgba(0,0,0,0.38);
+  pointer-events:none;
 }
 
 #scroll-layer{
@@ -28,32 +36,32 @@ html,body{width:100%;background:#000;overflow-x:hidden;}
 
 #content{
   padding:8vw 6vw 20vw;
-  position:relative;
 }
 
 .bio-block{
   font-family:'Playfair Display',serif;
   font-weight:900;
-  font-size:clamp(36px,7vw,110px);
+  font-size:clamp(32px,6.5vw,100px);
   color:#fff;
-  line-height:1.0;
+  line-height:1.05;
   letter-spacing:-0.02em;
-  margin-bottom:8vw;
-  mix-blend-mode:normal;
+  margin-bottom:7vw;
+  text-shadow:0 2px 30px rgba(0,0,0,0.4);
 }
 
 .bio-block.contact-block{
-  font-size:clamp(22px,4vw,60px);
+  font-size:clamp(20px,3.5vw,56px);
   margin-top:10vw;
   border-top:2px solid rgba(255,255,255,0.3);
   padding-top:6vw;
-  line-height:1.3;
+  line-height:1.5;
 }
 
-.bio-block a{
+.bio-block.contact-block a{
   color:#fff;
   text-decoration:none;
-  border-bottom:2px solid rgba(255,255,255,0.4);
+  border-bottom:1px solid rgba(255,255,255,0.4);
+  display:inline;
 }
 
 #back{
@@ -65,14 +73,22 @@ html,body{width:100%;background:#000;overflow-x:hidden;}
   font-size:11px;
   color:#fff;
   text-decoration:none;
-  background:rgba(0,0,0,0.5);
-  padding:6px 12px;
-  border:1px solid rgba(255,255,255,0.3);
+  background:rgba(0,0,0,0.55);
+  padding:6px 14px;
+  border:1px solid rgba(255,255,255,0.35);
   letter-spacing:0.1em;
-  backdrop-filter:blur(4px);
+  backdrop-filter:blur(6px);
+  -webkit-backdrop-filter:blur(6px);
 }
-#back:hover{background:rgba(0,0,0,0.8);}
+#back:hover{background:rgba(0,0,0,0.85);}
 
+/* Effetto liquid su scroll */
+body.scrolling #bg-fixed{
+  filter:saturate(1.6) hue-rotate(15deg) blur(1px);
+  transform:scale(1.02) skewX(0.8deg);
+}
+
+/* Gallery strip */
 #gallery-wrap{
   position:relative;
   z-index:10;
@@ -83,15 +99,17 @@ html,body{width:100%;background:#000;overflow-x:hidden;}
 #gallery-strip{
   display:flex;
   width:max-content;
-  animation:stripscroll 28s linear infinite;
+  animation:stripscroll 30s linear infinite;
 }
+#gallery-strip:hover{animation-play-state:paused;}
 .gimg{
-  height:35vmin;
+  height:38vmin;
   width:auto;
   object-fit:cover;
-  opacity:0.75;
+  opacity:0.78;
   margin-right:3px;
   flex-shrink:0;
+  display:block;
 }
 @keyframes stripscroll{
   0%{transform:translateX(0);}
@@ -102,10 +120,8 @@ html,body{width:100%;background:#000;overflow-x:hidden;}
 <body>
 
 <a href="javascript:history.back()" id="back">← BACK</a>
-
-<div id="bg-fixed">
-  <canvas id="bg-canvas"></canvas>
-</div>
+<div id="bg-fixed"></div>
+<div id="bg-overlay"></div>
 
 <div id="scroll-layer">
   <div id="content">
@@ -152,121 +168,41 @@ html,body{width:100%;background:#000;overflow-x:hidden;}
 
   <div id="gallery-wrap">
     <div id="gallery-strip">
-      <img class="gimg" src="https://i.ibb.co/DDN6KXQf/4.jpg">
-      <img class="gimg" src="https://i.ibb.co/C3HdzswJ/6.jpg">
-      <img class="gimg" src="https://i.ibb.co/TDBQSP6Y/Acceptance-Letter25.jpg">
-      <img class="gimg" src="https://i.ibb.co/MxcbGWbN/Edito-Sarah-Beauty5403.jpg">
-      <img class="gimg" src="https://i.ibb.co/vvhmc8DV/Edito-Sarah-Beauty5563-1.jpg">
-      <img class="gimg" src="https://i.ibb.co/JwBR3ttX/Edito-Sarah-Beauty5893.jpg">
-      <img class="gimg" src="https://i.ibb.co/DDN6KXQf/4.jpg">
-      <img class="gimg" src="https://i.ibb.co/C3HdzswJ/6.jpg">
-      <img class="gimg" src="https://i.ibb.co/TDBQSP6Y/Acceptance-Letter25.jpg">
-      <img class="gimg" src="https://i.ibb.co/MxcbGWbN/Edito-Sarah-Beauty5403.jpg">
-      <img class="gimg" src="https://i.ibb.co/vvhmc8DV/Edito-Sarah-Beauty5563-1.jpg">
-      <img class="gimg" src="https://i.ibb.co/JwBR3ttX/Edito-Sarah-Beauty5893.jpg">
+      <img class="gimg" src="https://i.ibb.co/DDN6KXQf/4.jpg" alt="">
+      <img class="gimg" src="https://i.ibb.co/C3HdzswJ/6.jpg" alt="">
+      <img class="gimg" src="https://i.ibb.co/TDBQSP6Y/Acceptance-Letter25.jpg" alt="">
+      <img class="gimg" src="https://i.ibb.co/MxcbGWbN/Edito-Sarah-Beauty5403.jpg" alt="">
+      <img class="gimg" src="https://i.ibb.co/vvhmc8DV/Edito-Sarah-Beauty5563-1.jpg" alt="">
+      <img class="gimg" src="https://i.ibb.co/JwBR3ttX/Edito-Sarah-Beauty5893.jpg" alt="">
+      <img class="gimg" src="https://i.ibb.co/DDN6KXQf/4.jpg" alt="">
+      <img class="gimg" src="https://i.ibb.co/C3HdzswJ/6.jpg" alt="">
+      <img class="gimg" src="https://i.ibb.co/TDBQSP6Y/Acceptance-Letter25.jpg" alt="">
+      <img class="gimg" src="https://i.ibb.co/MxcbGWbN/Edito-Sarah-Beauty5403.jpg" alt="">
+      <img class="gimg" src="https://i.ibb.co/vvhmc8DV/Edito-Sarah-Beauty5563-1.jpg" alt="">
+      <img class="gimg" src="https://i.ibb.co/JwBR3ttX/Edito-Sarah-Beauty5893.jpg" alt="">
     </div>
   </div>
 </div>
 
 <script>
 (function(){
-  var canvas = document.getElementById('bg-canvas');
-  var ctx = canvas.getContext('2d');
-  var W, H;
-  var img = new Image();
-  img.crossOrigin = 'anonymous';
-  img.src = 'https://i.ibb.co/JwBR3ttX/Edito-Sarah-Beauty5893.jpg';
-
-  var isScrolling = false;
-  var isTouching = false;
-  var liquidAmount = 0;
   var scrollTimeout;
+  var isScrolling = false;
 
-  function resize(){
-    W = canvas.width = window.innerWidth;
-    H = canvas.height = window.innerHeight;
-  }
-  window.addEventListener('resize', resize);
-  resize();
-
-  window.addEventListener('scroll', function(){
-    isScrolling = true;
+  function onScroll(){
+    if(!isScrolling){
+      isScrolling = true;
+      document.body.classList.add('scrolling');
+    }
     clearTimeout(scrollTimeout);
-    scrollTimeout = setTimeout(function(){ isScrolling = false; }, 200);
-  });
-
-  document.addEventListener('touchstart', function(){ isTouching = true; }, {passive:true});
-  document.addEventListener('touchend', function(){ isTouching = false; }, {passive:true});
-  document.addEventListener('touchmove', function(){ isTouching = true; }, {passive:true});
-
-  var offscreen = document.createElement('canvas');
-  var octx = offscreen.getContext('2d');
-  var imgDrawn = false;
-
-  function cacheImg(){
-    offscreen.width = W;
-    offscreen.height = H;
-    var ratio = Math.max(W/img.naturalWidth, H/img.naturalHeight);
-    var iw = img.naturalWidth * ratio;
-    var ih = img.naturalHeight * ratio;
-    var ix = (W - iw) / 2;
-    var iy = (H - ih) / 2;
-    octx.drawImage(img, ix, iy, iw, ih);
-    imgDrawn = true;
+    scrollTimeout = setTimeout(function(){
+      isScrolling = false;
+      document.body.classList.remove('scrolling');
+    }, 350);
   }
 
-  function drawFrame(){
-    if(!imgDrawn) return;
-
-    ctx.clearRect(0,0,W,H);
-
-    var active = isScrolling || isTouching;
-    var target = active ? 1 : 0;
-    liquidAmount += (target - liquidAmount) * 0.06;
-
-    if(liquidAmount < 0.01){
-      ctx.drawImage(offscreen, 0, 0);
-      return;
-    }
-
-    var t = Date.now();
-    var sliceH = 3;
-    for(var y = 0; y < H; y += sliceH){
-      var a = liquidAmount;
-      var dx = Math.sin(y * 0.018 + t * 0.002) * a * 35
-             + Math.cos(y * 0.007 + t * 0.0015) * a * 15;
-      var sy = y + Math.sin(y * 0.012 + t * 0.001) * a * 8;
-      sy = Math.max(0, Math.min(H - sliceH, sy));
-
-      ctx.save();
-      ctx.drawImage(offscreen, 0, sy, W, sliceH, dx, y, W, sliceH);
-      ctx.restore();
-    }
-
-    if(liquidAmount > 0.2){
-      var hue = (t * 0.04) % 360;
-      ctx.save();
-      ctx.globalAlpha = liquidAmount * 0.1;
-      ctx.fillStyle = 'hsl('+hue+',60%,50%)';
-      ctx.fillRect(0,0,W,H);
-      ctx.restore();
-    }
-  }
-
-  function loop(){
-    drawFrame();
-    requestAnimationFrame(loop);
-  }
-
-  img.onload = function(){
-    cacheImg();
-    loop();
-  };
-
-  window.addEventListener('resize', function(){
-    if(img.complete && img.naturalWidth > 0) cacheImg();
-  });
-
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('touchmove', onScroll, {passive:true});
 })();
 </script>
 </body>
