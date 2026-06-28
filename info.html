@@ -9,23 +9,17 @@
 *{box-sizing:border-box;margin:0;padding:0;}
 html,body{width:100%;background:#000;overflow-x:hidden;overflow-y:scroll;}
 
-#bg-wrap{
+#bg-fixed{
   position:fixed;inset:0;z-index:0;
-  overflow:hidden;
-}
-#bg-img{
-  position:absolute;
-  top:-10%;left:-10%;
-  width:120%;height:120%;
   background-image:url('https://falcomersimone-cell.github.io/sito/Edito%20Sarah%20Beauty5893.jpg');
-  background-size:cover;
-  background-position:center;
-  background-repeat:no-repeat;
-  transform:translateY(0px);
-  will-change:transform;
+  background-size:cover;background-position:center top;background-repeat:no-repeat;
+  transition:transform 0.5s ease;
 }
-
 #bg-overlay{position:fixed;inset:0;z-index:1;background:rgba(0,0,0,0.38);pointer-events:none;}
+
+body.scrolling #bg-fixed{
+  transform:scale(1.05) skewX(1.5deg);
+}
 
 #scroll-layer{position:relative;z-index:10;min-height:100vh;}
 #content{padding:8vw 6vw 20vw;}
@@ -48,7 +42,7 @@ html,body{width:100%;background:#000;overflow-x:hidden;overflow-y:scroll;}
   font-family:'IBM Plex Mono',monospace;font-size:11px;
   color:#fff;background:rgba(0,0,0,0.6);
   padding:8px 16px;border:1px solid rgba(255,255,255,0.4);
-  letter-spacing:0.1em;cursor:pointer;
+  letter-spacing:0.1em;
   backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
   text-decoration:none;display:inline-block;
 }
@@ -63,7 +57,7 @@ html,body{width:100%;background:#000;overflow-x:hidden;overflow-y:scroll;}
 <body>
 
 <a id="back" href="https://simonefalcomer.art">← BACK</a>
-<div id="bg-wrap"><div id="bg-img"></div></div>
+<div id="bg-fixed"></div>
 <div id="bg-overlay"></div>
 
 <div id="scroll-layer">
@@ -101,38 +95,14 @@ html,body{width:100%;background:#000;overflow-x:hidden;overflow-y:scroll;}
 </div>
 
 <script>
-var bgImg = document.getElementById('bg-img');
-var lastScroll = 0;
-var ticking = false;
-
-function updateParallax() {
-  var scrollY = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-  var moveY = scrollY * 0.3;
-  bgImg.style.transform = 'translateY(-' + moveY + 'px)';
-  ticking = false;
+var t;
+function onScroll(){
+  document.body.classList.add('scrolling');
+  clearTimeout(t);
+  t=setTimeout(function(){document.body.classList.remove('scrolling');},400);
 }
-
-function onScroll() {
-  lastScroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-  if (!ticking) {
-    requestAnimationFrame(updateParallax);
-    ticking = true;
-  }
-}
-
-window.addEventListener('scroll', onScroll, {passive: true});
-document.addEventListener('scroll', onScroll, {passive: true});
-document.body.addEventListener('scroll', onScroll, {passive: true});
-
-// Touch support
-var touchStartY = 0;
-document.addEventListener('touchstart', function(e) {
-  touchStartY = e.touches[0].clientY;
-}, {passive: true});
-
-document.addEventListener('touchmove', function(e) {
-  onScroll();
-}, {passive: true});
+window.addEventListener('scroll',onScroll,{passive:true});
+window.addEventListener('touchmove',onScroll,{passive:true});
 </script>
 </body>
 </html>
