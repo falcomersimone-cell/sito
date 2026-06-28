@@ -17,26 +17,21 @@ html,body{width:100%;background:#000;overflow-x:hidden;}
   background-size:cover;
   background-position:center top;
   background-repeat:no-repeat;
-  transition:transform 0.4s ease, filter 0.4s ease;
+  transition:transform 0.5s ease, filter 0.5s ease;
+  will-change:transform,filter;
 }
-
 #bg-overlay{
-  position:fixed;
-  inset:0;
-  z-index:1;
-  background:rgba(0,0,0,0.38);
-  pointer-events:none;
+  position:fixed;inset:0;z-index:1;
+  background:rgba(0,0,0,0.38);pointer-events:none;
+}
+body.scrolling #bg-fixed{
+  filter:saturate(2) hue-rotate(25deg) brightness(1.1);
+  transform:scale(1.04) skewX(1.2deg) skewY(0.4deg);
 }
 
-#scroll-layer{
-  position:relative;
-  z-index:10;
-  min-height:100vh;
-}
+#scroll-layer{position:relative;z-index:10;min-height:100vh;}
 
-#content{
-  padding:8vw 6vw 20vw;
-}
+#content{padding:8vw 6vw 20vw;}
 
 .bio-block{
   font-family:'Playfair Display',serif;
@@ -46,9 +41,8 @@ html,body{width:100%;background:#000;overflow-x:hidden;}
   line-height:1.05;
   letter-spacing:-0.02em;
   margin-bottom:7vw;
-  text-shadow:0 2px 30px rgba(0,0,0,0.4);
+  text-shadow:0 2px 30px rgba(0,0,0,0.5);
 }
-
 .bio-block.contact-block{
   font-size:clamp(20px,3.5vw,56px);
   margin-top:10vw;
@@ -56,153 +50,93 @@ html,body{width:100%;background:#000;overflow-x:hidden;}
   padding-top:6vw;
   line-height:1.5;
 }
-
 .bio-block.contact-block a{
-  color:#fff;
-  text-decoration:none;
-  border-bottom:1px solid rgba(255,255,255,0.4);
-  display:inline;
+  color:#fff;text-decoration:none;
+  border-bottom:1px solid rgba(255,255,255,0.4);display:inline;
 }
 
 #back{
-  position:fixed;
-  top:16px;
-  left:16px;
-  z-index:100;
-  font-family:'IBM Plex Mono',monospace;
-  font-size:11px;
-  color:#fff;
-  text-decoration:none;
-  background:rgba(0,0,0,0.55);
-  padding:6px 14px;
-  border:1px solid rgba(255,255,255,0.35);
-  letter-spacing:0.1em;
-  backdrop-filter:blur(6px);
-  -webkit-backdrop-filter:blur(6px);
+  position:fixed;top:16px;left:16px;z-index:100;
+  font-family:'IBM Plex Mono',monospace;font-size:11px;
+  color:#fff;text-decoration:none;
+  background:rgba(0,0,0,0.55);padding:6px 14px;
+  border:1px solid rgba(255,255,255,0.35);letter-spacing:0.1em;
+  cursor:pointer;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
 }
 #back:hover{background:rgba(0,0,0,0.85);}
 
-/* Effetto liquid su scroll */
-body.scrolling #bg-fixed{
-  filter:saturate(1.6) hue-rotate(15deg) blur(1px);
-  transform:scale(1.02) skewX(0.8deg);
-}
-
-/* Gallery strip */
 #gallery-wrap{
-  position:relative;
-  z-index:10;
-  background:#000;
-  overflow:hidden;
-  padding:3px 0;
+  position:relative;z-index:10;background:#000;overflow:hidden;padding:3px 0;
 }
 #gallery-strip{
-  display:flex;
-  width:max-content;
+  display:flex;width:max-content;
   animation:stripscroll 30s linear infinite;
 }
 #gallery-strip:hover{animation-play-state:paused;}
-.gimg{
-  height:38vmin;
-  width:auto;
-  object-fit:cover;
-  opacity:0.78;
-  margin-right:3px;
-  flex-shrink:0;
-  display:block;
-}
-@keyframes stripscroll{
-  0%{transform:translateX(0);}
-  100%{transform:translateX(-50%);}
-}
+.gimg{height:38vmin;width:auto;object-fit:cover;opacity:0.78;margin-right:3px;flex-shrink:0;display:block;}
+@keyframes stripscroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
 </style>
 </head>
 <body>
 
-<a href="javascript:history.back()" id="back">← BACK</a>
+<div id="back" onclick="goBack()">← BACK</div>
 <div id="bg-fixed"></div>
 <div id="bg-overlay"></div>
 
 <div id="scroll-layer">
   <div id="content">
-
-    <div class="bio-block">
-      Simone Falcomer is a photographer and Art Director based in Barcelona.
-    </div>
-
-    <div class="bio-block">
-      Born in Italy, he studied photojournalism at Grisart Academy in Barcelona, where he developed a solid and personal approach to the image.
-    </div>
-
-    <div class="bio-block">
-      He is currently studying Fine Arts in Barcelona while working as a freelance photographer across fashion, documentary and artistic practice.
-    </div>
-
-    <div class="bio-block">
-      His work is in constant evolution — each project brings him into unknown territory, always outside his comfort zone.
-    </div>
-
-    <div class="bio-block">
-      He shoots on analogue film, working in 35mm and medium format. He uses photography as a tool, believing his fullest expression is still ahead of him.
-    </div>
-
-    <div class="bio-block">
-      Through the lens, Simone chases time as it passes. He reflects on the relativity of time and on the inner and outer transformations of himself, of people, and of the world.
-    </div>
-
-    <div class="bio-block">
-      His visual language draws from mid-20th century photography, neoclassical sculpture, Baroque painting and Italian Renaissance art.
-    </div>
-
-    <div class="bio-block">
-      Editorial work published in Vogue Nederland, Neo2, Kultblut Magazine, Vein Magazine and Cake Magazine. Commercial clients include Marni and Outsiders Division. Image Director at Acceptance Letter Studio.
-    </div>
-
+    <div class="bio-block">Simone Falcomer is a photographer and Art Director based in Barcelona.</div>
+    <div class="bio-block">Born in Italy, he studied photojournalism at Grisart Academy in Barcelona, where he developed a solid and personal approach to the image.</div>
+    <div class="bio-block">He is currently studying Fine Arts in Barcelona while working as a freelance photographer across fashion, documentary and artistic practice.</div>
+    <div class="bio-block">His work is in constant evolution — each project brings him into unknown territory, always outside his comfort zone.</div>
+    <div class="bio-block">He shoots on analogue film, working in 35mm and medium format. He uses photography as a tool, believing his fullest expression is still ahead of him.</div>
+    <div class="bio-block">Through the lens, Simone chases time as it passes. He reflects on the relativity of time and on the inner and outer transformations of himself, of people, and of the world.</div>
+    <div class="bio-block">His visual language draws from mid-20th century photography, neoclassical sculpture, Baroque painting and Italian Renaissance art.</div>
+    <div class="bio-block">Editorial work published in Vogue Nederland, Neo2, Kultblut Magazine, Vein Magazine and Cake Magazine. Commercial clients include Marni and Outsiders Division. Image Director at Acceptance Letter Studio.</div>
     <div class="bio-block contact-block">
       For inquiries<br>
       <a href="mailto:falcomersimone@gmail.com">falcomersimone@gmail.com</a><br>
       <a href="https://wa.me/34607699642">+34 607 699 642</a>
     </div>
-
   </div>
 
   <div id="gallery-wrap">
     <div id="gallery-strip">
-      <img class="gimg" src="https://i.ibb.co/DDN6KXQf/4.jpg" alt="">
-      <img class="gimg" src="https://i.ibb.co/C3HdzswJ/6.jpg" alt="">
-      <img class="gimg" src="https://i.ibb.co/TDBQSP6Y/Acceptance-Letter25.jpg" alt="">
-      <img class="gimg" src="https://i.ibb.co/MxcbGWbN/Edito-Sarah-Beauty5403.jpg" alt="">
-      <img class="gimg" src="https://i.ibb.co/vvhmc8DV/Edito-Sarah-Beauty5563-1.jpg" alt="">
-      <img class="gimg" src="https://i.ibb.co/JwBR3ttX/Edito-Sarah-Beauty5893.jpg" alt="">
-      <img class="gimg" src="https://i.ibb.co/DDN6KXQf/4.jpg" alt="">
-      <img class="gimg" src="https://i.ibb.co/C3HdzswJ/6.jpg" alt="">
-      <img class="gimg" src="https://i.ibb.co/TDBQSP6Y/Acceptance-Letter25.jpg" alt="">
-      <img class="gimg" src="https://i.ibb.co/MxcbGWbN/Edito-Sarah-Beauty5403.jpg" alt="">
-      <img class="gimg" src="https://i.ibb.co/vvhmc8DV/Edito-Sarah-Beauty5563-1.jpg" alt="">
-      <img class="gimg" src="https://i.ibb.co/JwBR3ttX/Edito-Sarah-Beauty5893.jpg" alt="">
+      <img class="gimg" src="https://i.ibb.co/DDN6KXQf/4.jpg">
+      <img class="gimg" src="https://i.ibb.co/C3HdzswJ/6.jpg">
+      <img class="gimg" src="https://i.ibb.co/TDBQSP6Y/Acceptance-Letter25.jpg">
+      <img class="gimg" src="https://i.ibb.co/MxcbGWbN/Edito-Sarah-Beauty5403.jpg">
+      <img class="gimg" src="https://i.ibb.co/vvhmc8DV/Edito-Sarah-Beauty5563-1.jpg">
+      <img class="gimg" src="https://i.ibb.co/JwBR3ttX/Edito-Sarah-Beauty5893.jpg">
+      <img class="gimg" src="https://i.ibb.co/DDN6KXQf/4.jpg">
+      <img class="gimg" src="https://i.ibb.co/C3HdzswJ/6.jpg">
+      <img class="gimg" src="https://i.ibb.co/TDBQSP6Y/Acceptance-Letter25.jpg">
+      <img class="gimg" src="https://i.ibb.co/MxcbGWbN/Edito-Sarah-Beauty5403.jpg">
+      <img class="gimg" src="https://i.ibb.co/vvhmc8DV/Edito-Sarah-Beauty5563-1.jpg">
+      <img class="gimg" src="https://i.ibb.co/JwBR3ttX/Edito-Sarah-Beauty5893.jpg">
     </div>
   </div>
 </div>
 
 <script>
+function goBack(){
+  // Se siamo dentro un iframe, manda messaggio al parent per chiudere la finestra
+  if(window.parent !== window){
+    window.parent.postMessage('closeInfoWin','*');
+  } else {
+    window.history.back();
+  }
+}
+
 (function(){
   var scrollTimeout;
-  var isScrolling = false;
-
   function onScroll(){
-    if(!isScrolling){
-      isScrolling = true;
-      document.body.classList.add('scrolling');
-    }
+    document.body.classList.add('scrolling');
     clearTimeout(scrollTimeout);
-    scrollTimeout = setTimeout(function(){
-      isScrolling = false;
-      document.body.classList.remove('scrolling');
-    }, 350);
+    scrollTimeout=setTimeout(function(){document.body.classList.remove('scrolling');},350);
   }
-
-  window.addEventListener('scroll', onScroll, {passive:true});
-  window.addEventListener('touchmove', onScroll, {passive:true});
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('touchmove',onScroll,{passive:true});
 })();
 </script>
 </body>
