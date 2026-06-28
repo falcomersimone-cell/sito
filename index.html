@@ -3,55 +3,59 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Simone Falcomer</title>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&family=-apple-system&display=swap" rel="stylesheet">
+<title>Simone Falcomer — Photographer & Art Director</title>
+<meta name="description" content="Simone Falcomer is a photographer and Art Director based in Barcelona. Editorial work in Vogue Nederland, Neo2, Vein Magazine, Cake Magazine. Clients include Marni, Outsiders Division.">
+<meta name="keywords" content="Simone Falcomer, photographer Barcelona, art director, fashion photography, documentary photography, Vogue Nederland, Neo2, Marni">
+<meta name="author" content="Simone Falcomer">
+<meta property="og:title" content="Simone Falcomer — Photographer & Art Director">
+<meta property="og:description" content="Photographer and Art Director based in Barcelona.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
 html,body{width:100%;height:100%;overflow:hidden;font-family:'IBM Plex Mono',monospace;}
-
-/* ── TEMI ── */
 body.win95{background:#008080;}
 body.macos{background:#f0f0f0;}
 
-/* ── FRASI FANTASMA ── */
+/* Frasi fantasma */
 .phantom{position:fixed;pointer-events:none;z-index:99998;opacity:0;transition:opacity 3s ease;white-space:nowrap;font-family:'IBM Plex Mono',monospace;font-size:clamp(9px,1.2vw,13px);letter-spacing:0.3em;}
-body.win95 .phantom{color:rgba(255,255,255,0.14);}
-body.macos .phantom{color:rgba(0,0,0,0.08);}
+body.win95 .phantom{color:rgba(255,255,255,0.13);}
+body.macos .phantom{color:rgba(0,0,0,0.07);}
 .phantom.visible{opacity:1;}
 
-/* ══ WIN95 LAYER ══ */
-#w95-layer{position:fixed;inset:0;pointer-events:none;z-index:99999;}
+/* ══ WIN95 ══ */
+#w95-layer{position:fixed;inset:0;pointer-events:none;z-index:9999;}
 #w95-taskbar{position:fixed;bottom:0;left:0;right:0;height:30px;background:#c0c0c0;border-top:1px solid #fff;display:flex;align-items:center;padding:0 6px;gap:4px;pointer-events:all;z-index:100;}
-#w95-start{height:22px;padding:0 10px;background:#c0c0c0;border:1px solid;border-color:#fff #808080 #808080 #fff;font-size:11px;font-weight:700;font-family:'IBM Plex Mono',monospace;cursor:pointer;display:flex;align-items:center;gap:5px;pointer-events:all;letter-spacing:0.05em;}
+#w95-start{height:22px;padding:0 10px;background:#c0c0c0;border:1px solid;border-color:#fff #808080 #808080 #fff;font-size:11px;font-weight:700;font-family:'IBM Plex Mono',monospace;cursor:pointer;display:flex;align-items:center;gap:5px;letter-spacing:0.05em;}
 #w95-start:active{border-color:#808080 #fff #fff #808080;}
 #w95-start-logo{width:14px;height:14px;display:grid;grid-template-columns:1fr 1fr;gap:1px;flex-shrink:0;}
 #w95-start-logo span{display:block;}
 #w95-taskbar-social{display:flex;align-items:center;gap:2px;margin-left:4px;}
-.w95-social-btn{width:22px;height:22px;background:#c0c0c0;border:1px solid;border-color:#fff #808080 #808080 #fff;cursor:pointer;display:flex;align-items:center;justify-content:center;pointer-events:all;text-decoration:none;flex-shrink:0;}
+.w95-social-btn{width:22px;height:22px;background:#c0c0c0;border:1px solid;border-color:#fff #808080 #808080 #fff;cursor:pointer;display:flex;align-items:center;justify-content:center;text-decoration:none;flex-shrink:0;}
 .w95-social-btn:active{border-color:#808080 #fff #fff #808080;}
-#w95-weather{height:22px;padding:0 8px;background:#c0c0c0;border:1px solid;border-color:#808080 #fff #fff #808080;font-size:10px;font-family:'IBM Plex Mono',monospace;display:flex;align-items:center;gap:3px;pointer-events:all;white-space:nowrap;}
-#w95-clock{height:22px;padding:0 8px;background:#c0c0c0;border:1px solid;border-color:#808080 #fff #fff #808080;font-size:11px;font-family:'IBM Plex Mono',monospace;display:flex;align-items:center;letter-spacing:0.1em;pointer-events:all;white-space:nowrap;}
-#w95-start-menu{position:fixed;bottom:30px;left:0;width:240px;background:#c0c0c0;border:1px solid;border-color:#fff #808080 #808080 #fff;display:none;flex-direction:row;pointer-events:all;z-index:200;box-shadow:2px 2px 0 #000;}
+#w95-weather{height:22px;padding:0 8px;background:#c0c0c0;border:1px solid;border-color:#808080 #fff #fff #808080;font-size:10px;font-family:'IBM Plex Mono',monospace;display:flex;align-items:center;white-space:nowrap;}
+#w95-clock{height:22px;padding:0 8px;background:#c0c0c0;border:1px solid;border-color:#808080 #fff #fff #808080;font-size:11px;font-family:'IBM Plex Mono',monospace;display:flex;align-items:center;letter-spacing:0.1em;white-space:nowrap;}
+#w95-start-menu{position:fixed;bottom:30px;left:0;width:240px;background:#c0c0c0;border:1px solid;border-color:#fff #808080 #808080 #fff;display:none;flex-direction:row;z-index:200;box-shadow:2px 2px 0 #000;pointer-events:all;}
 #w95-start-menu.open{display:flex;}
-#w95-start-menu-stripe{width:22px;background:#000080;display:flex;align-items:flex-end;padding:6px 4px;writing-mode:vertical-rl;transform:rotate(180deg);font-size:10px;color:#c0c0c0;font-weight:700;letter-spacing:3px;flex-shrink:0;font-family:'IBM Plex Mono',monospace;}
+#w95-start-menu-stripe{width:22px;background:#000080;display:flex;align-items:flex-end;padding:6px 4px;writing-mode:vertical-rl;transform:rotate(180deg);font-size:10px;color:#c0c0c0;font-weight:700;letter-spacing:3px;flex-shrink:0;}
 #w95-start-menu-items{flex:1;padding:4px 0;overflow-y:auto;max-height:80vh;}
-.w95-menu-item{padding:7px 14px;font-size:11px;cursor:pointer;display:flex;align-items:center;gap:10px;white-space:nowrap;font-family:'IBM Plex Mono',monospace;letter-spacing:0.02em;}
+.w95-menu-item{padding:7px 14px;font-size:11px;cursor:pointer;display:flex;align-items:center;gap:10px;white-space:nowrap;font-family:'IBM Plex Mono',monospace;}
 .w95-menu-item:hover{background:#000080;color:#fff;}
 .w95-menu-sep{height:1px;background:#808080;margin:3px 8px;}
-.w95-menu-item .menu-icon{width:16px;height:16px;flex-shrink:0;}
 
 /* Icons */
 .w95-icon{position:absolute;pointer-events:all;cursor:default;text-align:center;width:64px;}
 .w95-icon-img{margin:0 auto;display:block;}
 .w95-icon-img.square{width:52px;height:52px;object-fit:contain;object-position:center;border:1px solid rgba(0,0,0,0.3);background:#111;}
 .w95-icon-img.natural{width:auto;max-width:64px;height:auto;max-height:80px;object-fit:contain;border:1px solid rgba(0,0,0,0.3);}
-.w95-icon-label{margin-top:3px;font-size:9px;line-height:1.3;word-break:break-word;font-family:'IBM Plex Mono',monospace;letter-spacing:0.02em;}
+.w95-icon-label{margin-top:3px;font-size:9px;line-height:1.3;word-break:break-word;font-family:'IBM Plex Mono',monospace;}
 body.win95 .w95-icon-label{color:#fff;text-shadow:1px 1px 0 #000,0 0 4px rgba(0,0,0,0.8);}
-body.macos .w95-icon-label{color:#000;text-shadow:none;}
+body.macos .w95-icon-label{color:#000;}
 .w95-icon.sel .w95-icon-label{background:#000080;color:#fff;}
 .w95-icon.sel .w95-icon-img{opacity:0.75;outline:1px solid #000080;}
 
-/* Windows */
+/* Win95 Windows */
 .w95-win{position:fixed;background:#c0c0c0;border:1px solid;border-color:#fff #808080 #808080 #fff;box-shadow:2px 2px 0 #000;display:none;flex-direction:column;pointer-events:all;min-width:200px;}
 .w95-win.open{display:flex;}
 .w95-winbar{height:20px;background:linear-gradient(to right,#000080,#1084d0);display:flex;align-items:center;padding:0 4px;cursor:grab;user-select:none;flex-shrink:0;}
@@ -64,63 +68,94 @@ body.macos .w95-icon-label{color:#000;text-shadow:none;}
 .w95-winbody.padded{padding:16px;overflow-y:auto;}
 .w95-winbody iframe{width:100%;height:100%;border:none;display:block;}
 .w95-winbody h1{font-size:13px;font-weight:700;margin-bottom:4px;}
-.w95-winbody h2{font-size:10px;font-weight:400;color:#555;margin-bottom:14px;}
+.w95-winbody h2{font-size:10px;color:#555;margin-bottom:14px;}
 .w95-winbody p{font-size:11px;color:#222;line-height:1.8;margin-bottom:8px;}
 .w95-winbody a{color:#000080;font-size:11px;display:block;margin-bottom:8px;text-decoration:none;}
 .w95-winbody a:hover{text-decoration:underline;}
-.w95-win-openlink{display:block;text-align:center;font-size:10px;font-family:'IBM Plex Mono',monospace;background:#c0c0c0;border-top:1px solid #808080;padding:4px;color:#000080;cursor:pointer;text-decoration:none;flex-shrink:0;}
+.w95-win-openlink{display:block;text-align:center;font-size:10px;font-family:'IBM Plex Mono',monospace;background:#c0c0c0;border-top:1px solid #808080;padding:4px;color:#000080;text-decoration:none;flex-shrink:0;cursor:pointer;}
 .w95-win-openlink:hover{background:#000080;color:#fff;}
 .w95-resize{position:absolute;right:0;bottom:0;width:14px;height:14px;cursor:se-resize;opacity:0.5;}
 
-/* ══ MACOS LAYER ══ */
-#mac-layer{position:fixed;inset:0;pointer-events:none;z-index:99999;display:none;}
+/* AI Chat */
+#ai-win .w95-winbody{display:flex;flex-direction:column;}
+#ai-messages{flex:1;overflow-y:auto;padding:8px;display:flex;flex-direction:column;gap:8px;}
+.ai-msg{font-size:11px;font-family:'IBM Plex Mono',monospace;line-height:1.6;padding:6px 8px;max-width:90%;}
+.ai-msg.user{background:#000080;color:#fff;align-self:flex-end;}
+.ai-msg.bot{background:#e8e8e8;color:#000;align-self:flex-start;border:1px solid #ccc;}
+.ai-msg.bot.loading{color:#888;font-style:italic;}
+#ai-input-row{display:flex;border-top:1px solid #808080;flex-shrink:0;}
+#ai-input{flex:1;border:none;padding:6px 8px;font-size:11px;font-family:'IBM Plex Mono',monospace;background:#fff;outline:none;}
+#ai-send{padding:6px 10px;background:#c0c0c0;border:none;border-left:1px solid #808080;cursor:pointer;font-size:11px;font-family:'IBM Plex Mono',monospace;}
+#ai-send:hover{background:#000080;color:#fff;}
+#ai-counter{font-size:9px;font-family:'IBM Plex Mono',monospace;color:#808080;padding:2px 8px;background:#c0c0c0;border-top:1px solid #ddd;flex-shrink:0;text-align:right;}
+
+/* ══ MACOS ══ */
+#mac-layer{position:fixed;inset:0;pointer-events:none;z-index:9999;display:none;}
 body.macos #mac-layer{display:block;}
 body.macos #w95-layer{display:none;}
 
-#mac-menubar{position:fixed;top:0;left:0;right:0;height:24px;background:rgba(255,255,255,0.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,0.1);display:flex;align-items:center;padding:0 12px;gap:16px;pointer-events:all;z-index:100;font-size:13px;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif;}
-#mac-apple{font-size:15px;cursor:pointer;}
-#mac-menu-items{display:flex;gap:14px;font-size:12px;color:#000;}
-#mac-menu-items span{cursor:pointer;opacity:0.8;}
-#mac-menu-items span:hover{opacity:1;}
-#mac-menubar-right{margin-left:auto;display:flex;align-items:center;gap:10px;font-size:12px;color:#000;}
-#mac-weather-display{opacity:0.8;}
-#mac-clock{opacity:0.8;}
+#mac-menubar{position:fixed;top:0;left:0;right:0;height:24px;background:rgba(255,255,255,0.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,0.1);display:flex;align-items:center;padding:0 12px;gap:0;pointer-events:all;z-index:100;font-size:13px;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif;}
+#mac-apple-btn{font-size:16px;cursor:pointer;padding:0 10px;position:relative;}
+#mac-apple-menu{position:fixed;top:24px;left:0;background:rgba(255,255,255,0.95);backdrop-filter:blur(20px);border:1px solid rgba(0,0,0,0.15);border-radius:6px;box-shadow:0 8px 32px rgba(0,0,0,0.2);display:none;flex-direction:column;min-width:200px;padding:4px 0;z-index:200;pointer-events:all;}
+#mac-apple-menu.open{display:flex;}
+.mac-apple-item{padding:5px 16px;font-size:13px;font-family:-apple-system,sans-serif;cursor:pointer;color:#000;}
+.mac-apple-item:hover{background:#0070f3;color:#fff;}
+.mac-apple-sep{height:1px;background:rgba(0,0,0,0.1);margin:3px 0;}
+#mac-menubar-center{flex:1;display:flex;align-items:center;justify-content:center;gap:20px;}
+.mac-menu-word{font-size:13px;font-family:-apple-system,sans-serif;cursor:pointer;opacity:0.8;padding:0 4px;}
+.mac-menu-word:hover{opacity:1;}
+#mac-menubar-right{display:flex;align-items:center;gap:10px;font-size:12px;font-family:-apple-system,sans-serif;opacity:0.8;margin-left:auto;}
 
-#mac-dock{position:fixed;right:8px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.3);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.5);border-radius:16px;padding:8px 4px;display:flex;flex-direction:column;gap:6px;pointer-events:all;z-index:100;box-shadow:0 8px 32px rgba(0,0,0,0.15);}
-.mac-dock-icon{width:48px;height:48px;border-radius:10px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform 0.15s;overflow:hidden;position:relative;}
-.mac-dock-icon:hover{transform:scale(1.2);}
-.mac-dock-icon img{width:100%;height:100%;object-fit:cover;border-radius:10px;}
+#mac-dock{position:fixed;right:8px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.28);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.5);border-radius:18px;padding:8px 5px;display:flex;flex-direction:column;gap:6px;pointer-events:all;z-index:100;box-shadow:0 8px 32px rgba(0,0,0,0.12);}
+.mac-dock-icon{width:48px;height:48px;border-radius:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform 0.15s cubic-bezier(.34,1.56,.64,1);overflow:hidden;position:relative;flex-shrink:0;}
+.mac-dock-icon:hover{transform:scale(1.35);}
+.mac-dock-icon:active{transform:scale(0.9);}
+.mac-dock-icon img{width:100%;height:100%;object-fit:cover;border-radius:12px;}
 .mac-dock-icon.folder-icon{background:linear-gradient(145deg,#5eb5f7,#3d8fd4);}
 .mac-dock-icon.doc-icon{background:linear-gradient(145deg,#fff,#e8e8e8);border:1px solid #ddd;}
-.mac-dock-icon.pc-icon{background:linear-gradient(145deg,#555,#333);}
-.mac-dock-label{position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);white-space:nowrap;font-size:10px;font-family:-apple-system,sans-serif;background:rgba(0,0,0,0.7);color:#fff;padding:2px 6px;border-radius:4px;opacity:0;pointer-events:none;transition:opacity 0.15s;}
+.mac-dock-icon.pc-icon{background:linear-gradient(145deg,#636363,#333);}
+.mac-dock-icon.ai-icon{background:linear-gradient(145deg,#a855f7,#7c3aed);}
+.mac-dock-label{position:absolute;bottom:-22px;left:50%;transform:translateX(-50%);white-space:nowrap;font-size:10px;font-family:-apple-system,sans-serif;background:rgba(0,0,0,0.75);color:#fff;padding:2px 7px;border-radius:4px;opacity:0;pointer-events:none;transition:opacity 0.15s;z-index:10;}
 .mac-dock-icon:hover .mac-dock-label{opacity:1;}
 
 /* macOS windows */
 .mac-win{position:fixed;background:#fff;border-radius:10px;box-shadow:0 20px 60px rgba(0,0,0,0.25);display:none;flex-direction:column;pointer-events:all;min-width:300px;overflow:hidden;}
 .mac-win.open{display:flex;}
-.mac-winbar{height:28px;background:linear-gradient(to bottom,#f0f0f0,#e0e0e0);display:flex;align-items:center;padding:0 10px;cursor:grab;user-select:none;flex-shrink:0;border-bottom:1px solid #ccc;}
+.mac-winbar{height:28px;background:linear-gradient(to bottom,#f5f5f5,#e8e8e8);display:flex;align-items:center;padding:0 10px;cursor:grab;user-select:none;flex-shrink:0;border-bottom:1px solid #d0d0d0;}
 .mac-winbar:active{cursor:grabbing;}
-.mac-winbtns{display:flex;gap:6px;align-items:center;}
+.mac-winbtns{display:flex;gap:7px;align-items:center;}
 .mac-wbtn{width:12px;height:12px;border-radius:50%;cursor:pointer;flex-shrink:0;border:none;padding:0;}
 .mac-wintitle{flex:1;text-align:center;font-size:12px;color:#555;font-family:-apple-system,sans-serif;pointer-events:none;}
 .mac-winbody{flex:1;overflow:hidden;font-size:13px;font-family:-apple-system,sans-serif;}
 .mac-winbody.padded{padding:20px;overflow-y:auto;}
 .mac-winbody iframe{width:100%;height:100%;border:none;}
-.mac-win-openlink{display:block;text-align:center;font-size:11px;font-family:-apple-system,sans-serif;background:#f5f5f5;border-top:1px solid #eee;padding:6px;color:#007aff;cursor:pointer;text-decoration:none;flex-shrink:0;}
+.mac-win-openlink{display:block;text-align:center;font-size:11px;font-family:-apple-system,sans-serif;background:#f5f5f5;border-top:1px solid #eee;padding:6px;color:#007aff;text-decoration:none;flex-shrink:0;cursor:pointer;}
 .mac-resize{position:absolute;right:0;bottom:0;width:14px;height:14px;cursor:se-resize;}
+
+/* AI macOS */
+#mac-ai-win .mac-winbody{display:flex;flex-direction:column;}
+#mac-ai-messages{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:10px;}
+.mac-ai-msg{font-size:13px;font-family:-apple-system,sans-serif;line-height:1.6;padding:8px 12px;border-radius:12px;max-width:85%;}
+.mac-ai-msg.user{background:#007aff;color:#fff;align-self:flex-end;border-radius:12px 12px 4px 12px;}
+.mac-ai-msg.bot{background:#f0f0f0;color:#000;align-self:flex-start;border-radius:12px 12px 12px 4px;}
+.mac-ai-msg.bot.loading{color:#888;font-style:italic;}
+#mac-ai-input-row{display:flex;border-top:1px solid #eee;padding:8px;gap:6px;flex-shrink:0;}
+#mac-ai-input{flex:1;border:1px solid #ddd;border-radius:18px;padding:6px 14px;font-size:13px;font-family:-apple-system,sans-serif;outline:none;}
+#mac-ai-send{padding:6px 14px;background:#007aff;color:#fff;border:none;border-radius:18px;cursor:pointer;font-size:13px;font-family:-apple-system,sans-serif;}
+#mac-ai-counter{font-size:10px;font-family:-apple-system,sans-serif;color:#999;padding:0 12px 6px;flex-shrink:0;text-align:right;}
 
 /* Hourglass */
 #w95-hourglass{position:fixed;inset:0;background:#008080;z-index:999999;display:flex;align-items:center;justify-content:center;pointer-events:all;transition:opacity 0.6s;}
-#w95-hourglass-inner{font-size:28px;animation:hgspin 1s linear infinite;color:#fff;}
+#w95-hourglass-inner{font-size:28px;color:#fff;animation:hgspin 1s linear infinite;}
 @keyframes hgspin{0%,49%{transform:rotate(0deg);}50%,100%{transform:rotate(180deg);}}
 
 @media(max-width:768px){
   .w95-icon{width:56px;}
   .w95-icon-img.square{width:44px;height:44px;}
   .w95-icon-label{font-size:8px;}
-  #mac-dock{right:4px;padding:6px 3px;}
+  #mac-dock{padding:5px 3px;gap:4px;}
   .mac-dock-icon{width:40px;height:40px;}
+  #mac-menubar-center{display:none;}
 }
 </style>
 </head>
@@ -128,7 +163,7 @@ body.macos #w95-layer{display:none;}
 
 <div id="w95-hourglass"><div id="w95-hourglass-inner">⧗</div></div>
 
-<!-- WIN95 LAYER -->
+<!-- WIN95 -->
 <div id="w95-layer">
   <div id="w95-icons"></div>
   <div id="w95-wins"></div>
@@ -150,36 +185,46 @@ body.macos #w95-layer{display:none;}
         <svg width="14" height="14" viewBox="0 0 24 24" fill="#000"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
       </a>
     </div>
-    <div id="w95-taskbtns" style="display:flex;gap:2px;flex:1;overflow:hidden;"></div>
+    <div style="flex:1;"></div>
     <div id="w95-weather">🌡 --°</div>
     <div id="w95-clock">00:00</div>
     <div id="w95-start-menu">
       <div id="w95-start-menu-stripe">Simone Falcomer</div>
       <div id="w95-start-menu-items">
         <div class="w95-menu-item" id="menu-info">📄 More Info</div>
+        <div class="w95-menu-item" id="menu-ai">🤖 Simone AI Agent</div>
         <div class="w95-menu-item" id="menu-spotify">🎵 My Spotify Playlist</div>
         <div class="w95-menu-sep"></div>
         <div class="w95-menu-item" id="menu-contact">✉️ Contact</div>
         <div class="w95-menu-sep"></div>
-        <div class="w95-menu-item" id="menu-settings">⚙️ Change Settings → macOS</div>
+        <div class="w95-menu-item" id="menu-settings">⚙️ Switch to macOS</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- MACOS LAYER -->
+<!-- MACOS -->
 <div id="mac-layer">
   <div id="mac-menubar">
-    <span id="mac-apple">🍎</span>
-    <div id="mac-menu-items">
-      <span onclick="openMacContact()">Contact</span>
-      <span onclick="window.open('https://www.instagram.com/simone_falcomer/','_blank')">Instagram</span>
-      <span onclick="window.open('https://open.spotify.com/playlist/6b1ZTAE5B0gDHnoaorifkN','_blank')">Spotify</span>
-      <span onclick="switchToWin95()">⚙ Win95 Mode</span>
+    <div id="mac-apple-btn">🍎
+      <div id="mac-apple-menu">
+        <div class="mac-apple-item" onclick="openMacInfo()">📄 More Info</div>
+        <div class="mac-apple-item" onclick="openMacAI()">🤖 Simone AI Agent</div>
+        <div class="mac-apple-item" onclick="window.open('https://open.spotify.com/playlist/6b1ZTAE5B0gDHnoaorifkN','_blank');closeMacApple()">🎵 My Spotify</div>
+        <div class="mac-apple-sep"></div>
+        <div class="mac-apple-item" onclick="openMacContact();closeMacApple()">✉️ Contact</div>
+        <div class="mac-apple-sep"></div>
+        <div class="mac-apple-item" onclick="switchToWin95();closeMacApple()">Switch to Win95</div>
+      </div>
+    </div>
+    <div id="mac-menubar-center">
+      <span class="mac-menu-word" onclick="openMacContact()">Contact</span>
+      <span class="mac-menu-word" onclick="window.open('https://www.instagram.com/simone_falcomer/','_blank')">Instagram</span>
+      <span class="mac-menu-word" onclick="window.open('https://open.spotify.com/playlist/6b1ZTAE5B0gDHnoaorifkN','_blank')">Spotify</span>
     </div>
     <div id="mac-menubar-right">
       <span id="mac-weather-display">--°</span>
-      <span id="mac-clock">00:00</span>
+      <span id="mac-clock-display">00:00</span>
     </div>
   </div>
   <div id="mac-icons"></div>
@@ -190,360 +235,392 @@ body.macos #w95-layer{display:none;}
 <script>
 (function(){
 
-  // ── CLESSIDRA ──
-  var hg=document.getElementById('w95-hourglass');
-  setTimeout(function(){hg.style.opacity='0';setTimeout(function(){hg.remove();},600);},1400);
+// ── API KEY — sostituisci con la tua ──
+var ANTHROPIC_API_KEY = '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';
 
-  // ── METEO ──
-  function fetchWeather(){
-    if(!navigator.geolocation) return;
-    navigator.geolocation.getCurrentPosition(function(pos){
-      var lat=pos.coords.latitude, lon=pos.coords.longitude;
-      fetch('https://api.open-meteo.com/v1/forecast?latitude='+lat+'&longitude='+lon+'&current_weather=true&temperature_unit=celsius')
-        .then(function(r){return r.json();})
-        .then(function(d){
-          var temp=Math.round(d.current_weather.temperature);
-          document.getElementById('w95-weather').textContent='🌡 '+temp+'°C';
-          document.getElementById('mac-weather-display').textContent=temp+'°C';
-        }).catch(function(){});
-    },function(){});
-  }
-  fetchWeather();
+// ── HOURGLASS ──
+var hg=document.getElementById('w95-hourglass');
+setTimeout(function(){hg.style.opacity='0';setTimeout(function(){hg.remove();},600);},1400);
 
-  // ── CLOCK ──
-  function updateClock(){
-    var now=new Date();
-    var t=now.getHours().toString().padStart(2,'0')+':'+now.getMinutes().toString().padStart(2,'0');
-    document.getElementById('w95-clock').textContent=t;
-    document.getElementById('mac-clock').textContent=t;
-  }
-  updateClock();
-  setInterval(updateClock,1000);
+// ── METEO ──
+function fetchWeather(){
+  if(!navigator.geolocation)return;
+  navigator.geolocation.getCurrentPosition(function(pos){
+    fetch('https://api.open-meteo.com/v1/forecast?latitude='+pos.coords.latitude+'&longitude='+pos.coords.longitude+'&current_weather=true')
+      .then(function(r){return r.json();})
+      .then(function(d){
+        var t=Math.round(d.current_weather.temperature)+'°C';
+        document.getElementById('w95-weather').textContent='🌡 '+t;
+        document.getElementById('mac-weather-display').textContent=t;
+      }).catch(function(){});
+  },function(){});
+}
+fetchWeather();
 
-  // ── SWITCH TEMA ──
-  function switchToMac(){
-    document.body.classList.remove('win95');
-    document.body.classList.add('macos');
-    document.body.style.background='#f0f0f0';
-    buildMacIcons();
-  }
-  function switchToWin95(){
-    document.body.classList.remove('macos');
-    document.body.classList.add('win95');
-    document.body.style.background='#008080';
-    document.getElementById('w95-start-menu').classList.remove('open');
-  }
-  window.switchToWin95=switchToWin95;
+// ── CLOCK ──
+function updateClock(){
+  var now=new Date();
+  var t=now.getHours().toString().padStart(2,'0')+':'+now.getMinutes().toString().padStart(2,'0');
+  document.getElementById('w95-clock').textContent=t;
+  document.getElementById('mac-clock-display').textContent=t;
+}
+updateClock();setInterval(updateClock,1000);
 
-  // ── DIMENSIONI ──
-  var W=window.innerWidth, H=window.innerHeight;
-  var isMobile=W<768;
-  var ICON=64, BOTTOM=40;
-  function mpos(col,row){
-    var cW=Math.floor((W-8)/4), rH=Math.floor((H-120-BOTTOM)/4);
-    return{x:4+col*cW, y:120+row*rH};
+// ── THEME SWITCH ──
+function switchToMac(){
+  document.body.classList.remove('win95');
+  document.body.classList.add('macos');
+  document.getElementById('w95-start-menu').classList.remove('open');
+  buildMacDock();
+}
+function switchToWin95(){
+  document.body.classList.remove('macos');
+  document.body.classList.add('win95');
+}
+window.switchToWin95=switchToWin95;
+
+// ── DIMENSIONI ──
+var W=window.innerWidth,H=window.innerHeight,isMobile=W<768;
+var ICON=64,BOTTOM=40;
+function mpos(col,row){var cW=Math.floor((W-8)/4),rH=Math.floor((H-120-BOTTOM)/4);return{x:4+col*cW,y:120+row*rH};}
+function dpos(px,py){return{x:Math.floor(px*(W-ICON)/100),y:Math.floor(py*(H-ICON-BOTTOM)/100)};}
+
+// ── FOLDERS ──
+var FOLDERS=[
+  {id:"about",name:"About",icon:"doc",type:"window",open:false,mob:mpos(0,0),dsk:dpos(3,4),winX:50,winY:30,winW:280,winH:210,
+   content:'<div class="padded"><h1>Simone Falcomer</h1><h2>Photographer & Artist — Based in Barcelona</h2><p>Represented by Fang.Agency</p><p><a href="mailto:falcomersimone@gmail.com">falcomersimone@gmail.com</a></p></div>'},
+  {id:"info",name:"More Info",icon:"pc",type:"infowin",mob:mpos(0,1),dsk:dpos(3,22)},
+  {id:"ecommerce",name:"E-commerce",icon:"folder",type:"link",url:"INSERISCI_URL_QUI",mob:mpos(0,2),dsk:dpos(63,68)},
+  {id:"work",name:"Work",icon:"folder",type:"link",url:"INSERISCI_URL_QUI",mob:mpos(0,3),dsk:dpos(14,75)},
+  {id:"personal",name:"Personal Project",icon:"folder",type:"link",url:"INSERISCI_URL_QUI",mob:mpos(1,0),dsk:dpos(48,45)},
+  {id:"marni",name:"Marni FW25",icon:"photo",photoUrl:"https://www.marni.com/dw/image/v2/AAPK_PRD/on/demandware.static/-/Library-Sites-marni-shared/default/dw13a0070c/FW25VOL.2/DETAILS__01__DSC1376.jpg?sw=3000",type:"iframe",url:"https://www.marni.com/en-us/marni-fw25-vol2.html",mob:mpos(1,1),dsk:dpos(34,8)},
+  {id:"ed1",name:"Vein Magazine",icon:"photo",photoUrl:"https://vein.es/wp-content/uploads/2026/02/momentum-simone-falcomer1.jpg",type:"iframe",url:"https://vein.es/momentum-by-simone-falcomer/",mob:mpos(1,2),dsk:dpos(78,60)},
+  {id:"ed7",name:"Vein Magazine",icon:"photo",photoUrl:"https://vein.es/wp-content/uploads/2025/12/Outsiders-division-kindergarden-riot-lookbook-veinmagazine49.jpg",type:"iframe",url:"https://vein.es/kindergarten-riot-outsiders-divisions-playful-rebellion-unveiled/outsiders-division-kindergarden-riot-lookbook-veinmagazine49/",mob:mpos(1,3),dsk:dpos(24,54)},
+  {id:"ed2",name:"Cake Magazine",icon:"photo",photoUrl:"https://api.cake-mag.com/wp-content/uploads/2025/09/CAKEDIGITALMac-17-1483x1080.jpg",type:"iframe",url:"https://www.cake-mag.com/in-the-next-town-over",mob:mpos(2,0),dsk:dpos(57,80)},
+  {id:"ed3",name:"Cake Magazine",icon:"photo",photoUrl:"https://api.cake-mag.com/wp-content/uploads/2025/10/CAKEDIGITALMac4-7-2048x1491.jpg",type:"iframe",url:"https://www.cake-mag.com/nobody-new",mob:mpos(2,1),dsk:dpos(44,28)},
+  {id:"ed4",name:"Neo2 Magazine",icon:"photo",photoUrl:"https://www.neo2.com/wp-content/uploads/2024/12/bares-moda-tradicionales-barcelona-2025-1.jpg",type:"iframe",url:"https://www.neo2.com/los-bares-de-moda-de-barcelona-son-los-mas-tradicionales/",mob:mpos(2,2),dsk:dpos(7,46)},
+  {id:"ed5",name:"Neo2 Magazine",icon:"photo",photoUrl:"https://www.neo2.com/wp-content/uploads/2025/05/editorial-moda-mentira-simone-falcomer-2.jpg",type:"iframe",url:"https://www.neo2.com/las-mentiras-de-la-moda-de-la-autoexpresion-al-autoengano/",mob:mpos(2,3),dsk:dpos(88,33)},
+  {id:"ed6",name:"Neo2 Magazine",icon:"photo",photoUrl:"https://www.neo2.com/wp-content/uploads/2024/12/supermercados-moda-shopping-6.jpg",type:"iframe",url:"https://www.neo2.com/supermercados-de-amor-moda-estilismo/",mob:mpos(3,0),dsk:dpos(32,70)},
+  {id:"vogue",name:"Vogue NL",icon:"vogue",photoUrl:"https://i.ibb.co/PvsXwLrF/IMG-8080.jpg",type:"window",open:false,showInTaskbar:false,mob:mpos(3,1),dsk:dpos(82,8),winX:30,winY:20,winW:250,winH:340,content:'<img src="https://i.ibb.co/PvsXwLrF/IMG-8080.jpg" style="width:100%;height:100%;object-fit:contain;display:block;background:#111;">'},
+  {id:"acceptance",name:"Image Director at Acceptance Letter",icon:"photo",photoUrl:"https://cdn.shopify.com/s/files/1/0939/0037/4344/files/Acceptance_Letter02_227e9984-ee0c-419b-8916-3d944a49afea.jpg?v=1768844577",type:"iframe",url:"https://www.acceptanceletterstudio.eu/",mob:mpos(3,2),dsk:dpos(52,14)},
+];
+
+function getPos(f){return isMobile?f.mob:f.dsk;}
+
+// ── ICONE WIN95 ──
+function makePCIcon(){
+  var c=document.createElement('canvas');c.width=52;c.height=52;
+  var x=c.getContext('2d');
+  x.fillStyle='#c0c0c0';x.fillRect(4,2,44,32);
+  x.fillStyle='#808080';x.fillRect(4,2,44,1);x.fillRect(4,33,44,1);x.fillRect(4,2,1,32);x.fillRect(47,2,1,32);
+  x.fillStyle='#000080';x.fillRect(6,4,40,28);
+  x.fillStyle='#00cc44';x.fillRect(8,6,6,2);
+  x.fillStyle='rgba(255,255,255,0.5)';x.fillRect(8,10,24,2);x.fillRect(8,14,18,2);x.fillRect(8,18,14,2);
+  x.fillStyle='#a0a0a0';x.fillRect(20,34,12,4);x.fillRect(16,38,20,2);
+  x.fillStyle='#d0d0d0';x.fillRect(14,41,10,8);
+  x.fillStyle='#a0a0a0';x.fillRect(14,41,10,1);x.fillRect(14,41,1,8);x.fillRect(23,41,1,8);
+  x.fillStyle='#888';x.fillRect(16,44,6,2);x.fillRect(16,48,6,1);
+  var img=document.createElement('img');img.src=c.toDataURL();
+  img.style.cssText='width:52px;height:52px;display:block;margin:0 auto;image-rendering:pixelated;';return img;
+}
+function makeFolderIcon(){
+  var c=document.createElement('canvas');c.width=46;c.height=40;
+  var x=c.getContext('2d');
+  x.fillStyle='#e8c000';x.fillRect(0,8,42,30);
+  x.fillStyle='#ffd700';x.fillRect(0,4,16,6);
+  x.fillStyle='#b89000';x.fillRect(0,36,42,2);x.fillRect(40,8,2,30);
+  x.fillStyle='rgba(255,255,255,0.2)';x.fillRect(0,8,42,5);
+  var img=document.createElement('img');img.src=c.toDataURL();
+  img.style.cssText='width:42px;height:40px;display:block;margin:0 auto;image-rendering:pixelated;';return img;
+}
+function makeDocIcon(){
+  var c=document.createElement('canvas');c.width=36;c.height=46;
+  var x=c.getContext('2d');
+  x.fillStyle='#fff';x.fillRect(2,0,30,42);
+  x.fillStyle='#000';x.fillRect(2,0,1,42);x.fillRect(31,0,1,42);x.fillRect(2,0,30,1);x.fillRect(2,41,30,1);
+  x.fillStyle='#ddd';x.fillRect(22,0,10,10);
+  x.fillStyle='#999';x.fillRect(22,0,10,1);x.fillRect(22,0,1,10);
+  x.fillStyle='#333';for(var i=0;i<4;i++)x.fillRect(6,12+i*6,20,1);
+  var img=document.createElement('img');img.src=c.toDataURL();
+  img.style.cssText='width:36px;height:46px;display:block;margin:0 auto;image-rendering:pixelated;';return img;
+}
+function makeIcon(type,photoUrl){
+  if(type==='pc') return makePCIcon();
+  if(type==='vogue'){var i=document.createElement('img');i.src=photoUrl;i.className='w95-icon-img natural';return i;}
+  if(type==='folder') return makeFolderIcon();
+  if(type==='doc') return makeDocIcon();
+  if(type==='photo'&&photoUrl){var i=document.createElement('img');i.src=photoUrl;i.className='w95-icon-img square';i.style.objectPosition='center';return i;}
+  return makeFolderIcon();
+}
+
+// ── WIN HELPER ──
+var iconLayer=document.getElementById('w95-icons');
+var winLayer=document.getElementById('w95-wins');
+var zTop=1000;
+function bringToFront(el){el.style.zIndex=++zTop;}
+
+function showHourglass(){
+  var h=document.createElement('div');
+  h.style.cssText='position:fixed;inset:0;background:rgba(0,128,128,0.35);z-index:999998;display:flex;align-items:center;justify-content:center;pointer-events:all;';
+  h.innerHTML='<div style="font-size:24px;color:#fff;animation:hgspin 1s linear infinite;">⧗</div>';
+  document.body.appendChild(h);setTimeout(function(){h.remove();},600);
+}
+
+function makeBaseWin(name,wW,wH,extraBtns){
+  var w=document.createElement('div');w.className='w95-win';
+  wW=wW||(isMobile?Math.min(W-20,360):420);
+  wH=wH||(isMobile?Math.min(H-80,500):460);
+  w.style.cssText='left:20px;top:20px;width:'+wW+'px;height:'+wH+'px;z-index:'+(++zTop)+';';
+  var bar=document.createElement('div');bar.className='w95-winbar';
+  var title=document.createElement('div');title.className='w95-wintitle';title.textContent=name;bar.appendChild(title);
+  var btns=document.createElement('div');btns.className='w95-winbtns';
+  function wbtn(l,fn){var b=document.createElement('button');b.className='w95-wbtn';b.textContent=l;b.addEventListener('click',function(e){e.stopPropagation();fn();});return b;}
+  btns.appendChild(wbtn('_',function(){w.classList.remove('open');}));
+  btns.appendChild(wbtn('□',function(){
+    if(w._max){w.style.left=w._pl;w.style.top=w._pt;w.style.width=w._pw;w.style.height=w._ph;w._max=false;}
+    else{w._pl=w.style.left;w._pt=w.style.top;w._pw=w.style.width;w._ph=w.style.height;w.style.cssText+='left:0;top:0;width:100vw;height:calc(100vh - 30px);';w._max=true;}
+  }));
+  btns.appendChild(wbtn('✕',function(){w.classList.remove('open');}));
+  bar.appendChild(btns);
+  w.appendChild(bar);
+  w.addEventListener('mousedown',function(){bringToFront(w);});
+  var bd=false,bx=0,by=0;
+  bar.addEventListener('mousedown',function(e){if(e.target.closest('.w95-winbtns'))return;e.preventDefault();bd=true;bx=e.clientX-w.offsetLeft;by=e.clientY-w.offsetTop;bringToFront(w);});
+  document.addEventListener('mousemove',function(e){if(!bd)return;w.style.left=Math.max(0,e.clientX-bx)+'px';w.style.top=Math.max(0,e.clientY-by)+'px';});
+  document.addEventListener('mouseup',function(){bd=false;});
+  winLayer.appendChild(w);return w;
+}
+
+function makeWin(f){
+  var w=makeBaseWin(f.name);
+  if(f.open)w.classList.add('open');
+  var body=document.createElement('div');body.className='w95-winbody';if(f.content)body.innerHTML=f.content;
+  var rsz=document.createElement('div');rsz.className='w95-resize';
+  rsz.innerHTML='<svg width="14" height="14" viewBox="0 0 14 14"><path d="M14 0L0 14M14 7L7 14M14 11L11 14" stroke="#808080" stroke-width="1"/></svg>';
+  var rz=false,rx=0,ry=0,rw=0,rh=0;
+  rsz.addEventListener('mousedown',function(e){e.preventDefault();e.stopPropagation();rz=true;rx=e.clientX;ry=e.clientY;rw=w.offsetWidth;rh=w.offsetHeight;});
+  document.addEventListener('mousemove',function(e){if(!rz)return;w.style.width=Math.max(200,rw+(e.clientX-rx))+'px';w.style.height=Math.max(150,rh+(e.clientY-ry))+'px';});
+  document.addEventListener('mouseup',function(){rz=false;});
+  w.appendChild(body);w.appendChild(rsz);return w;
+}
+
+function makeIframeWin(f){
+  var w=makeWin(f);
+  var body=w.querySelector('.w95-winbody');
+  var iframe=document.createElement('iframe');iframe.src='about:blank';body.appendChild(iframe);
+  var ol=document.createElement('a');ol.href=f.url;ol.target='_blank';ol.className='w95-win-openlink';ol.textContent='↗ Open in original website';w.appendChild(ol);
+  w._iframe=iframe;w._iframeUrl=f.url;return w;
+}
+
+// Info window (iframe di info.html)
+var infoWin=null;
+function openInfoWin(){
+  if(!infoWin){
+    infoWin=makeBaseWin('More Info', isMobile?Math.min(W-10,390):520, isMobile?Math.min(H-40,580):540);
+    var body=document.createElement('div');body.className='w95-winbody';
+    var iframe=document.createElement('iframe');iframe.src='https://falcomersimone-cell.github.io/sito/info.html';body.appendChild(iframe);
+    infoWin.appendChild(body);
   }
-  function dpos(px,py){
-    return{x:Math.floor(px*(W-ICON)/100), y:Math.floor(py*(H-ICON-BOTTOM)/100)};
+  infoWin.classList.add('open');bringToFront(infoWin);
+}
+window.openMacInfo=openInfoWin;
+
+// Contact window
+var contactWin=(function(){
+  var w=makeBaseWin('Contact',270,195);
+  var body=document.createElement('div');body.className='w95-winbody padded';
+  body.innerHTML='<h1>Contact</h1><br><a href="https://www.instagram.com/simone_falcomer/" target="_blank">📷 Instagram</a><a href="https://wa.me/34607699642" target="_blank">📱 +34 607 699 642</a><a href="mailto:falcomersimone@gmail.com">✉️ falcomersimone@gmail.com</a>';
+  w.appendChild(body);return w;
+})();
+window.openMacContact=function(){contactWin.classList.add('open');bringToFront(contactWin);};
+
+// ── AI AGENT WIN95 ──
+var aiWin=(function(){
+  var w=makeBaseWin('Simone AI Agent',isMobile?Math.min(W-20,340):380,isMobile?Math.min(H-80,460):440);
+  w.id='ai-win';
+  var body=document.createElement('div');body.className='w95-winbody';body.style.display='flex';body.style.flexDirection='column';
+  var msgs=document.createElement('div');msgs.id='ai-messages';
+  var counter=document.createElement('div');counter.id='ai-counter';counter.textContent='5 questions remaining';
+  var inputRow=document.createElement('div');inputRow.id='ai-input-row';
+  var input=document.createElement('input');input.id='ai-input';input.type='text';input.placeholder='Ask me about Simone...';
+  var send=document.createElement('button');send.id='ai-send';send.textContent='Send';
+  inputRow.appendChild(input);inputRow.appendChild(send);
+  body.appendChild(msgs);body.appendChild(counter);body.appendChild(inputRow);
+  w.appendChild(body);
+
+  // Messaggio benvenuto
+  var welcome=document.createElement('div');welcome.className='ai-msg bot';
+  welcome.textContent='Hi! I\'m Simone\'s AI agent. Ask me anything about his work, background or projects. You have 5 questions.';
+  msgs.appendChild(welcome);
+
+  var questionsLeft=5;
+  var history=[];
+
+  function sendMsg(){
+    if(questionsLeft<=0)return;
+    var text=input.value.trim();if(!text)return;
+    input.value='';
+    var userMsg=document.createElement('div');userMsg.className='ai-msg user';userMsg.textContent=text;msgs.appendChild(userMsg);
+    questionsLeft--;counter.textContent=questionsLeft+' question'+(questionsLeft===1?'':'s')+' remaining';
+    if(questionsLeft===0){input.disabled=true;send.disabled=true;}
+    var loading=document.createElement('div');loading.className='ai-msg bot loading';loading.textContent='Thinking...';msgs.appendChild(loading);
+    msgs.scrollTop=msgs.scrollHeight;
+    history.push({role:'user',content:text});
+    fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','x-api-key':ANTHROPIC_API_KEY,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-6',
+        max_tokens:200,
+        system:'You are the AI agent of Simone Falcomer, a photographer and Art Director based in Barcelona. Only answer questions about Simone — his work, biography, style, clients, publications. Keep answers under 120 words, warm and professional. Always end with "— Book Simone: falcomersimone@gmail.com". If asked anything unrelated to Simone, say: "I can only answer questions about Simone Falcomer and his work."',
+        messages:history
+      })
+    }).then(function(r){return r.json();})
+    .then(function(d){
+      loading.remove();
+      var reply=d.content&&d.content[0]?d.content[0].text:'Sorry, something went wrong.';
+      history.push({role:'assistant',content:reply});
+      var botMsg=document.createElement('div');botMsg.className='ai-msg bot';botMsg.textContent=reply;
+      msgs.appendChild(botMsg);msgs.scrollTop=msgs.scrollHeight;
+      if(questionsLeft===0){var end=document.createElement('div');end.className='ai-msg bot';end.style.fontStyle='italic';end.textContent='Session ended. Contact Simone directly at falcomersimone@gmail.com';msgs.appendChild(end);}
+    }).catch(function(){loading.remove();var err=document.createElement('div');err.className='ai-msg bot';err.textContent='Connection error. Try again.';msgs.appendChild(err);questionsLeft++;counter.textContent=questionsLeft+' questions remaining';if(questionsLeft>0){input.disabled=false;send.disabled=false;}});
   }
 
-  // ── FOLDERS ──
-  var FOLDERS=[
-    {id:"about",name:"About",icon:"doc",type:"window",open:false,mob:mpos(0,0),dsk:dpos(3,4),winX:50,winY:30,winW:280,winH:210,
-     content:'<div class="padded"><h1>Simone Falcomer</h1><h2>Photographer & Artist — Based in Barcelona</h2><p>Represented by Fang.Agency</p><p>For inquiries:<br><a href="mailto:falcomersimone@gmail.com">falcomersimone@gmail.com</a></p></div>'},
-    {id:"info",name:"More Info",icon:"pc",type:"link",url:"https://falcomersimone-cell.github.io/sito/info.html",mob:mpos(0,1),dsk:dpos(3,22)},
-    {id:"ecommerce",name:"E-commerce",icon:"folder",type:"link",url:"INSERISCI_URL_QUI",mob:mpos(0,2),dsk:dpos(63,68)},
-    {id:"work",name:"Work",icon:"folder",type:"link",url:"INSERISCI_URL_QUI",mob:mpos(0,3),dsk:dpos(14,75)},
-    {id:"personal",name:"Personal Project",icon:"folder",type:"link",url:"INSERISCI_URL_QUI",mob:mpos(1,0),dsk:dpos(48,45)},
-    {id:"marni",name:"Marni FW25",icon:"photo",photoUrl:"https://www.marni.com/dw/image/v2/AAPK_PRD/on/demandware.static/-/Library-Sites-marni-shared/default/dw13a0070c/FW25VOL.2/DETAILS__01__DSC1376.jpg?sw=3000",type:"iframe",url:"https://www.marni.com/en-us/marni-fw25-vol2.html",mob:mpos(1,1),dsk:dpos(34,8)},
-    {id:"ed1",name:"Vein Magazine",icon:"photo",photoUrl:"https://vein.es/wp-content/uploads/2026/02/momentum-simone-falcomer1.jpg",type:"iframe",url:"https://vein.es/momentum-by-simone-falcomer/",mob:mpos(1,2),dsk:dpos(78,60)},
-    {id:"ed7",name:"Vein Magazine",icon:"photo",photoUrl:"https://vein.es/wp-content/uploads/2025/12/Outsiders-division-kindergarden-riot-lookbook-veinmagazine49.jpg",type:"iframe",url:"https://vein.es/kindergarten-riot-outsiders-divisions-playful-rebellion-unveiled/outsiders-division-kindergarden-riot-lookbook-veinmagazine49/",mob:mpos(1,3),dsk:dpos(24,54)},
-    {id:"ed2",name:"Cake Magazine",icon:"photo",photoUrl:"https://api.cake-mag.com/wp-content/uploads/2025/09/CAKEDIGITALMac-17-1483x1080.jpg",type:"iframe",url:"https://www.cake-mag.com/in-the-next-town-over",mob:mpos(2,0),dsk:dpos(57,80)},
-    {id:"ed3",name:"Cake Magazine",icon:"photo",photoUrl:"https://api.cake-mag.com/wp-content/uploads/2025/10/CAKEDIGITALMac4-7-2048x1491.jpg",type:"iframe",url:"https://www.cake-mag.com/nobody-new",mob:mpos(2,1),dsk:dpos(44,28)},
-    {id:"ed4",name:"Neo2 Magazine",icon:"photo",photoUrl:"https://www.neo2.com/wp-content/uploads/2024/12/bares-moda-tradicionales-barcelona-2025-1.jpg",type:"iframe",url:"https://www.neo2.com/los-bares-de-moda-de-barcelona-son-los-mas-tradicionales/",mob:mpos(2,2),dsk:dpos(7,46)},
-    {id:"ed5",name:"Neo2 Magazine",icon:"photo",photoUrl:"https://www.neo2.com/wp-content/uploads/2025/05/editorial-moda-mentira-simone-falcomer-2.jpg",type:"iframe",url:"https://www.neo2.com/las-mentiras-de-la-moda-de-la-autoexpresion-al-autoengano/",mob:mpos(2,3),dsk:dpos(88,33)},
-    {id:"ed6",name:"Neo2 Magazine",icon:"photo",photoUrl:"https://www.neo2.com/wp-content/uploads/2024/12/supermercados-moda-shopping-6.jpg",type:"iframe",url:"https://www.neo2.com/supermercados-de-amor-moda-estilismo/",mob:mpos(3,0),dsk:dpos(32,70)},
-    {id:"vogue",name:"Vogue NL",icon:"vogue",photoUrl:"https://i.ibb.co/PvsXwLrF/IMG-8080.jpg",type:"window",open:false,showInTaskbar:false,mob:mpos(3,1),dsk:dpos(82,8),winX:30,winY:20,winW:250,winH:340,content:'<img src="https://i.ibb.co/PvsXwLrF/IMG-8080.jpg" style="width:100%;height:100%;object-fit:contain;display:block;background:#111;">'},
-    {id:"acceptance",name:"Image Director at Acceptance Letter",icon:"photo",photoUrl:"https://cdn.shopify.com/s/files/1/0939/0037/4344/files/Acceptance_Letter02_227e9984-ee0c-419b-8916-3d944a49afea.jpg?v=1768844577",type:"iframe",url:"https://www.acceptanceletterstudio.eu/",mob:mpos(3,2),dsk:dpos(52,14)},
-  ];
+  send.addEventListener('click',sendMsg);
+  input.addEventListener('keydown',function(e){if(e.key==='Enter')sendMsg();});
+  return w;
+})();
+function openAIWin(){aiWin.classList.add('open');bringToFront(aiWin);}
+window.openMacAI=openAIWin;
 
-  function getPos(f){return isMobile?f.mob:f.dsk;}
+// ── MENU START ──
+document.getElementById('menu-info').addEventListener('click',function(){document.getElementById('w95-start-menu').classList.remove('open');openInfoWin();});
+document.getElementById('menu-ai').addEventListener('click',function(){document.getElementById('w95-start-menu').classList.remove('open');openAIWin();});
+document.getElementById('menu-spotify').addEventListener('click',function(){document.getElementById('w95-start-menu').classList.remove('open');window.open('https://open.spotify.com/playlist/6b1ZTAE5B0gDHnoaorifkN','_blank');});
+document.getElementById('menu-contact').addEventListener('click',function(){document.getElementById('w95-start-menu').classList.remove('open');contactWin.classList.add('open');bringToFront(contactWin);});
+document.getElementById('menu-settings').addEventListener('click',function(){document.getElementById('w95-start-menu').classList.remove('open');switchToMac();});
+document.getElementById('w95-start').addEventListener('click',function(e){e.stopPropagation();document.getElementById('w95-start-menu').classList.toggle('open');});
 
-  // ── ICONE WIN95 ──
-  function makePCIcon(){
-    var c=document.createElement('canvas');c.width=52;c.height=52;
-    var x=c.getContext('2d');
-    // Monitor CRT
-    x.fillStyle='#c0c0c0';x.fillRect(4,2,44,32);
-    x.fillStyle='#808080';x.fillRect(4,2,44,1);x.fillRect(4,33,44,1);x.fillRect(4,2,1,32);x.fillRect(47,2,1,32);
-    x.fillStyle='#000080';x.fillRect(6,4,40,28);
-    // Schermo
-    x.fillStyle='#00ff00';x.fillRect(8,6,6,2);
-    x.fillStyle='rgba(255,255,255,0.6)';x.fillRect(8,10,24,2);x.fillRect(8,14,20,2);x.fillRect(8,18,16,2);
-    // Base monitor
-    x.fillStyle='#a0a0a0';x.fillRect(20,34,12,4);x.fillRect(16,38,20,2);
-    // Tower/case
-    x.fillStyle='#d0d0d0';x.fillRect(14,41,10,8);
-    x.fillStyle='#a0a0a0';x.fillRect(14,41,10,1);x.fillRect(14,41,1,8);x.fillRect(23,41,1,8);
-    x.fillStyle='#808080';x.fillRect(16,43,6,1);x.fillRect(16,46,6,1);
-    // Floppy
-    x.fillStyle='#888';x.fillRect(16,43,6,2);
-    var img=document.createElement('img');img.src=c.toDataURL();
-    img.style.cssText='width:52px;height:52px;display:block;margin:0 auto;image-rendering:pixelated;';
-    return img;
+// macOS apple menu
+document.getElementById('mac-apple-btn').addEventListener('click',function(e){e.stopPropagation();document.getElementById('mac-apple-menu').classList.toggle('open');});
+function closeMacApple(){document.getElementById('mac-apple-menu').classList.remove('open');}
+window.closeMacApple=closeMacApple;
+document.addEventListener('click',function(){closeMacApple();});
+
+// ── ICONE WIN95 ──
+FOLDERS.forEach(function(f,i){
+  var win=null;
+  if(f.type==='window') win=makeWin(f);
+  else if(f.type==='iframe') win=makeIframeWin(f);
+  var pos=getPos(f);
+  var ic=document.createElement('div');ic.className='w95-icon';
+  ic.appendChild(makeIcon(f.icon,f.photoUrl));
+  var lbl=document.createElement('div');lbl.className='w95-icon-label';lbl.textContent=f.name;ic.appendChild(lbl);
+  ic.style.cssText='left:'+pos.x+'px;top:'+pos.y+'px;z-index:'+(500+i)+';';
+  var dragging=false,moved=false,ox=0,oy=0,sx=0,sy=0,lastTap=0;
+  function openItem(){
+    showHourglass();
+    setTimeout(function(){
+      if(f.type==='infowin'){openInfoWin();return;}
+      if(win){win.classList.add('open');bringToFront(win);if(win._iframe&&win._iframe.src==='about:blank')win._iframe.src=win._iframeUrl;}
+      else if(f.url&&f.url.indexOf('INSERISCI')<0) window.location.href=f.url;
+    },400);
   }
-  function makeVogueIcon(u){var i=document.createElement('img');i.src=u;i.className='w95-icon-img natural';return i;}
-  function makeFolderIcon(){
-    var c=document.createElement('canvas');c.width=46;c.height=40;
-    var x=c.getContext('2d');
-    x.fillStyle='#e8c000';x.fillRect(0,8,42,30);
-    x.fillStyle='#ffd700';x.fillRect(0,4,16,6);
-    x.fillStyle='#b89000';x.fillRect(0,36,42,2);x.fillRect(40,8,2,30);
-    x.fillStyle='rgba(255,255,255,0.2)';x.fillRect(0,8,42,5);
-    var img=document.createElement('img');img.src=c.toDataURL();
-    img.style.cssText='width:42px;height:40px;display:block;margin:0 auto;image-rendering:pixelated;';return img;
-  }
-  function makeDocIcon(){
-    var c=document.createElement('canvas');c.width=36;c.height=46;
-    var x=c.getContext('2d');
-    x.fillStyle='#fff';x.fillRect(2,0,30,42);
-    x.fillStyle='#000';x.fillRect(2,0,1,42);x.fillRect(31,0,1,42);x.fillRect(2,0,30,1);x.fillRect(2,41,30,1);
-    x.fillStyle='#ddd';x.fillRect(22,0,10,10);
-    x.fillStyle='#999';x.fillRect(22,0,10,1);x.fillRect(22,0,1,10);
-    x.fillStyle='#333';for(var i=0;i<4;i++)x.fillRect(6,12+i*6,20,1);
-    var img=document.createElement('img');img.src=c.toDataURL();
-    img.style.cssText='width:36px;height:46px;display:block;margin:0 auto;image-rendering:pixelated;';return img;
-  }
-  function makeIcon(type,photoUrl){
-    if(type==='pc') return makePCIcon();
-    if(type==='vogue') return makeVogueIcon(photoUrl);
-    if(type==='folder') return makeFolderIcon();
-    if(type==='doc') return makeDocIcon();
-    if(type==='photo'&&photoUrl){
-      var img=document.createElement('img');img.src=photoUrl;
-      img.className='w95-icon-img square';img.style.objectPosition='center';return img;
+  function startDrag(cx,cy){dragging=true;moved=false;ox=cx-ic.offsetLeft;oy=cy-ic.offsetTop;sx=cx;sy=cy;ic.style.zIndex=++zTop;document.querySelectorAll('.w95-icon').forEach(function(w){w.classList.remove('sel');});ic.classList.add('sel');}
+  function doDrag(cx,cy){if(!dragging)return;if(Math.abs(cx-sx)>6||Math.abs(cy-sy)>6)moved=true;ic.style.left=Math.max(0,cx-ox)+'px';ic.style.top=Math.max(0,cy-oy)+'px';}
+  function endDrag(){if(!dragging)return;dragging=false;if(!moved){if(isMobile){openItem();}else{var now=Date.now();if(now-lastTap<500)openItem();lastTap=now;}}}
+  ic.addEventListener('mousedown',function(e){e.preventDefault();startDrag(e.clientX,e.clientY);});
+  ic.addEventListener('touchstart',function(e){e.preventDefault();startDrag(e.touches[0].clientX,e.touches[0].clientY);},{passive:false});
+  document.addEventListener('mousemove',function(e){doDrag(e.clientX,e.clientY);});
+  document.addEventListener('touchmove',function(e){if(dragging)doDrag(e.touches[0].clientX,e.touches[0].clientY);},{passive:true});
+  document.addEventListener('mouseup',endDrag);
+  document.addEventListener('touchend',endDrag);
+  iconLayer.appendChild(ic);
+});
+
+document.addEventListener('click',function(e){
+  if(!e.target.closest('.w95-icon'))document.querySelectorAll('.w95-icon').forEach(function(w){w.classList.remove('sel');});
+  if(!e.target.closest('#w95-start')&&!e.target.closest('#w95-start-menu'))document.getElementById('w95-start-menu').classList.remove('open');
+});
+
+// ── MACOS DOCK ──
+function buildMacDock(){
+  var dock=document.getElementById('mac-dock');
+  var macWins=document.getElementById('mac-wins');
+  dock.innerHTML='';macWins.innerHTML='';
+
+  // AI icon nel dock
+  var aiDock={id:'ai',name:'Simone AI',icon:'ai',type:'ai'};
+  var allDock=[aiDock].concat(FOLDERS);
+
+  allDock.forEach(function(f,i){
+    var di=document.createElement('div');di.className='mac-dock-icon';
+    if(f.icon==='photo'&&f.photoUrl){var img=document.createElement('img');img.src=f.photoUrl;di.appendChild(img);}
+    else if(f.icon==='folder'){di.classList.add('folder-icon');di.innerHTML='<svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M10 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg>';}
+    else if(f.icon==='doc'){di.classList.add('doc-icon');di.innerHTML='<svg width="22" height="26" viewBox="0 0 22 26" fill="none"><rect x="1" y="0" width="21" height="26" rx="2" fill="#fff" stroke="#ddd"/><path d="M14 0l7 7h-7V0z" fill="#e0e0e0"/><rect x="3" y="10" width="14" height="1.5" rx="1" fill="#ccc"/><rect x="3" y="14" width="12" height="1.5" rx="1" fill="#ccc"/><rect x="3" y="18" width="10" height="1.5" rx="1" fill="#ccc"/></svg>';}
+    else if(f.icon==='pc'){di.classList.add('pc-icon');di.innerHTML='<svg width="26" height="26" viewBox="0 0 24 24" fill="white"><rect x="2" y="3" width="20" height="13" rx="2"/><path d="M8 21h8M12 16v5" stroke="white" stroke-width="1.5"/></svg>';}
+    else if(f.icon==='ai'){di.classList.add('ai-icon');di.innerHTML='<svg width="26" height="26" viewBox="0 0 24 24" fill="white"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>';}
+    else if(f.icon==='vogue'){var img=document.createElement('img');img.src=f.photoUrl;di.appendChild(img);}
+
+    var lbl=document.createElement('div');lbl.className='mac-dock-label';lbl.textContent=f.name||f.id;di.appendChild(lbl);
+
+    // Mac window
+    var mwin=null;
+    if(f.type!=='link'&&f.type!=='ai'&&f.type!=='infowin'){
+      mwin=document.createElement('div');mwin.className='mac-win';
+      var wW2=isMobile?Math.min(W-20,360):420,wH2=isMobile?Math.min(H-80,500):460;
+      mwin.style.cssText='left:40px;top:36px;width:'+wW2+'px;height:'+wH2+'px;z-index:'+(++zTop)+';';
+      var mbar=document.createElement('div');mbar.className='mac-winbar';
+      var mbtns=document.createElement('div');mbtns.className='mac-winbtns';
+      function mbtn(col,fn){var b=document.createElement('div');b.className='mac-wbtn';b.style.background=col;b.addEventListener('click',function(e){e.stopPropagation();fn();});return b;}
+      mbtns.appendChild(mbtn('#ff5f57',function(){mwin.classList.remove('open');}));
+      mbtns.appendChild(mbtn('#febc2e',function(){mwin.classList.remove('open');}));
+      mbtns.appendChild(mbtn('#28c840',function(){
+        if(mwin._max){mwin.style.left=mwin._pl;mwin.style.top=mwin._pt;mwin.style.width=mwin._pw;mwin.style.height=mwin._ph;mwin._max=false;}
+        else{mwin._pl=mwin.style.left;mwin._pt=mwin.style.top;mwin._pw=mwin.style.width;mwin._ph=mwin.style.height;mwin.style.left='0';mwin.style.top='24px';mwin.style.width='100vw';mwin.style.height='calc(100vh - 24px)';mwin._max=true;}
+      }));
+      mbar.appendChild(mbtns);
+      var mtitle=document.createElement('div');mtitle.className='mac-wintitle';mtitle.textContent=f.name;mbar.appendChild(mtitle);
+      var mbody=document.createElement('div');mbody.className='mac-winbody';
+      if(f.content){mbody.classList.add('padded');mbody.innerHTML=f.content;}
+      else if(f.type==='iframe'){var mif=document.createElement('iframe');mif.src='about:blank';mbody.appendChild(mif);var mol=document.createElement('a');mol.href=f.url;mol.target='_blank';mol.className='mac-win-openlink';mol.textContent='↗ Open in original website';mwin.appendChild(mol);mwin._iframe=mif;mwin._iframeUrl=f.url;}
+      mwin.appendChild(mbar);mwin.appendChild(mbody);
+      mwin.addEventListener('mousedown',function(){bringToFront(mwin);});
+      var mbd=false,mbx=0,mby=0;
+      mbar.addEventListener('mousedown',function(e){if(e.target.closest('.mac-winbtns'))return;e.preventDefault();mbd=true;mbx=e.clientX-mwin.offsetLeft;mby=e.clientY-mwin.offsetTop;bringToFront(mwin);});
+      document.addEventListener('mousemove',function(e){if(!mbd)return;mwin.style.left=Math.max(0,e.clientX-mbx)+'px';mwin.style.top=Math.max(24,e.clientY-mby)+'px';});
+      document.addEventListener('mouseup',function(){mbd=false;});
+      macWins.appendChild(mwin);
     }
-    return makeFolderIcon();
-  }
 
-  // ── WINDOWS WIN95 ──
-  var iconLayer=document.getElementById('w95-icons');
-  var winLayer=document.getElementById('w95-wins');
-  var zTop=1000;
-  function bringToFront(el){el.style.zIndex=++zTop;}
-
-  function showHourglass(){
-    var h=document.createElement('div');
-    h.style.cssText='position:fixed;inset:0;background:rgba(0,128,128,0.4);z-index:999998;display:flex;align-items:center;justify-content:center;pointer-events:all;';
-    h.innerHTML='<div style="font-size:24px;color:#fff;animation:hgspin 1s linear infinite;">⧗</div>';
-    document.body.appendChild(h);
-    setTimeout(function(){h.remove();},600);
-  }
-
-  function makeWin(f){
-    var w=document.createElement('div');w.className='w95-win';
-    var wW=isMobile?Math.min(W-20,340):400, wH=isMobile?Math.min(H-80,480):440;
-    w.style.cssText='left:20px;top:30px;width:'+wW+'px;height:'+wH+'px;z-index:'+(++zTop)+';';
-    if(f.open)w.classList.add('open');
-    var bar=document.createElement('div');bar.className='w95-winbar';
-    var title=document.createElement('div');title.className='w95-wintitle';title.textContent=f.name;bar.appendChild(title);
-    var btns=document.createElement('div');btns.className='w95-winbtns';
-    function wbtn(l,fn){var b=document.createElement('button');b.className='w95-wbtn';b.textContent=l;b.addEventListener('click',function(e){e.stopPropagation();fn();});return b;}
-    btns.appendChild(wbtn('_',function(){w.classList.remove('open');}));
-    btns.appendChild(wbtn('□',function(){
-      if(w._max){w.style.left=w._pl;w.style.top=w._pt;w.style.width=w._pw;w.style.height=w._ph;w._max=false;}
-      else{w._pl=w.style.left;w._pt=w.style.top;w._pw=w.style.width;w._ph=w.style.height;w.style.left='0';w.style.top='0';w.style.width='100vw';w.style.height='calc(100vh - 30px)';w._max=true;}
-    }));
-    btns.appendChild(wbtn('✕',function(){w.classList.remove('open');}));
-    bar.appendChild(btns);
-    var body=document.createElement('div');body.className='w95-winbody';if(f.content)body.innerHTML=f.content;
-    var rsz=document.createElement('div');rsz.className='w95-resize';
-    rsz.innerHTML='<svg width="14" height="14" viewBox="0 0 14 14"><path d="M14 0L0 14M14 7L7 14M14 11L11 14" stroke="#808080" stroke-width="1"/></svg>';
-    var rz=false,rx=0,ry=0,rw=0,rh=0;
-    rsz.addEventListener('mousedown',function(e){e.preventDefault();e.stopPropagation();rz=true;rx=e.clientX;ry=e.clientY;rw=w.offsetWidth;rh=w.offsetHeight;});
-    document.addEventListener('mousemove',function(e){if(!rz)return;w.style.width=Math.max(200,rw+(e.clientX-rx))+'px';w.style.height=Math.max(150,rh+(e.clientY-ry))+'px';});
-    document.addEventListener('mouseup',function(){rz=false;});
-    w.appendChild(bar);w.appendChild(body);w.appendChild(rsz);
-    w.addEventListener('mousedown',function(){bringToFront(w);});
-    var bd=false,bx=0,by=0;
-    bar.addEventListener('mousedown',function(e){if(e.target.closest('.w95-winbtns'))return;e.preventDefault();bd=true;bx=e.clientX-w.offsetLeft;by=e.clientY-w.offsetTop;bringToFront(w);});
-    document.addEventListener('mousemove',function(e){if(!bd)return;w.style.left=Math.max(0,e.clientX-bx)+'px';w.style.top=Math.max(0,e.clientY-by)+'px';});
-    document.addEventListener('mouseup',function(){bd=false;});
-    winLayer.appendChild(w);return w;
-  }
-
-  function makeIframeWin(f){
-    var w=makeWin(f);
-    var body=w.querySelector('.w95-winbody');
-    var iframe=document.createElement('iframe');iframe.src='about:blank';body.appendChild(iframe);
-    var ol=document.createElement('a');ol.href=f.url;ol.target='_blank';ol.className='w95-win-openlink';ol.textContent='↗ Open in original website';w.appendChild(ol);
-    w._iframeUrl=f.url;w._iframe=iframe;return w;
-  }
-
-  // Contact window
-  var contactWin=(function(){
-    var w=document.createElement('div');w.className='w95-win';
-    w.style.cssText='left:50px;top:40px;width:270px;height:195px;z-index:'+(++zTop)+';';
-    var bar=document.createElement('div');bar.className='w95-winbar';
-    var t=document.createElement('div');t.className='w95-wintitle';t.textContent='Contact';bar.appendChild(t);
-    var btns=document.createElement('div');btns.className='w95-winbtns';
-    function wbtn(l,fn){var b=document.createElement('button');b.className='w95-wbtn';b.textContent=l;b.addEventListener('click',function(e){e.stopPropagation();fn();});return b;}
-    btns.appendChild(wbtn('✕',function(){w.classList.remove('open');}));bar.appendChild(btns);
-    var body=document.createElement('div');body.className='w95-winbody padded';
-    body.innerHTML='<h1>Contact</h1><br><a href="https://www.instagram.com/simone_falcomer/" target="_blank">📷 Instagram</a><a href="https://wa.me/34607699642" target="_blank">📱 +34 607 699 642</a><a href="mailto:falcomersimone@gmail.com">✉️ falcomersimone@gmail.com</a>';
-    var bd=false,bx=0,by=0;
-    bar.addEventListener('mousedown',function(e){if(e.target.closest('.w95-winbtns'))return;e.preventDefault();bd=true;bx=e.clientX-w.offsetLeft;by=e.clientY-w.offsetTop;bringToFront(w);});
-    document.addEventListener('mousemove',function(e){if(!bd)return;w.style.left=Math.max(0,e.clientX-bx)+'px';w.style.top=Math.max(0,e.clientY-by)+'px';});
-    document.addEventListener('mouseup',function(){bd=false;});
-    w.appendChild(bar);w.appendChild(body);w.addEventListener('mousedown',function(){bringToFront(w);});
-    winLayer.appendChild(w);return w;
-  })();
-  window.openMacContact=function(){contactWin.classList.add('open');bringToFront(contactWin);};
-
-  // ── MENU START ──
-  document.getElementById('menu-info').addEventListener('click',function(){
-    document.getElementById('w95-start-menu').classList.remove('open');
-    window.open('https://falcomersimone-cell.github.io/sito/info.html','_blank');
-  });
-  document.getElementById('menu-spotify').addEventListener('click',function(){
-    document.getElementById('w95-start-menu').classList.remove('open');
-    window.open('https://open.spotify.com/playlist/6b1ZTAE5B0gDHnoaorifkN','_blank');
-  });
-  document.getElementById('menu-contact').addEventListener('click',function(){
-    document.getElementById('w95-start-menu').classList.remove('open');
-    contactWin.classList.add('open');bringToFront(contactWin);
-  });
-  document.getElementById('menu-settings').addEventListener('click',function(){
-    document.getElementById('w95-start-menu').classList.remove('open');
-    switchToMac();
-  });
-
-  document.getElementById('w95-start').addEventListener('click',function(e){
-    e.stopPropagation();
-    document.getElementById('w95-start-menu').classList.toggle('open');
-  });
-
-  // ── ICONE WIN95 SUL DESKTOP ──
-  FOLDERS.forEach(function(f,i){
-    var win=null;
-    if(f.type==='window') win=makeWin(f);
-    else if(f.type==='iframe') win=makeIframeWin(f);
-    var pos=getPos(f);
-    var ic=document.createElement('div');ic.className='w95-icon';
-    ic.appendChild(makeIcon(f.icon,f.photoUrl));
-    var lbl=document.createElement('div');lbl.className='w95-icon-label';lbl.textContent=f.name;ic.appendChild(lbl);
-    ic.style.cssText='left:'+pos.x+'px;top:'+pos.y+'px;z-index:'+(500+i)+';';
-    var dragging=false,moved=false,ox=0,oy=0,sx=0,sy=0,lastTap=0;
-    function openItem(){
-      showHourglass();
-      setTimeout(function(){
-        if(win){win.classList.add('open');bringToFront(win);if(win._iframe&&win._iframe.src==='about:blank')win._iframe.src=win._iframeUrl;}
-        else if(f.url&&f.url.indexOf('INSERISCI')<0) window.location.href=f.url;
-      },400);
-    }
-    function startDrag(cx,cy){dragging=true;moved=false;ox=cx-ic.offsetLeft;oy=cy-ic.offsetTop;sx=cx;sy=cy;ic.style.zIndex=++zTop;document.querySelectorAll('.w95-icon').forEach(function(w){w.classList.remove('sel');});ic.classList.add('sel');}
-    function doDrag(cx,cy){if(!dragging)return;if(Math.abs(cx-sx)>6||Math.abs(cy-sy)>6)moved=true;ic.style.left=Math.max(0,cx-ox)+'px';ic.style.top=Math.max(0,cy-oy)+'px';}
-    function endDrag(){if(!dragging)return;dragging=false;if(!moved){if(isMobile){openItem();}else{var now=Date.now();if(now-lastTap<500)openItem();lastTap=now;}}}
-    ic.addEventListener('mousedown',function(e){e.preventDefault();startDrag(e.clientX,e.clientY);});
-    ic.addEventListener('touchstart',function(e){e.preventDefault();startDrag(e.touches[0].clientX,e.touches[0].clientY);},{passive:false});
-    document.addEventListener('mousemove',function(e){doDrag(e.clientX,e.clientY);});
-    document.addEventListener('touchmove',function(e){if(dragging)doDrag(e.touches[0].clientX,e.touches[0].clientY);},{passive:true});
-    document.addEventListener('mouseup',endDrag);
-    document.addEventListener('touchend',endDrag);
-    iconLayer.appendChild(ic);
-  });
-
-  document.addEventListener('click',function(e){
-    if(!e.target.closest('.w95-icon'))document.querySelectorAll('.w95-icon').forEach(function(w){w.classList.remove('sel');});
-    if(!e.target.closest('#w95-start')&&!e.target.closest('#w95-start-menu'))document.getElementById('w95-start-menu').classList.remove('open');
-  });
-
-  // ── MACOS ──
-  function buildMacIcons(){
-    var macIconsEl=document.getElementById('mac-icons');
-    var macWinsEl=document.getElementById('mac-wins');
-    var dock=document.getElementById('mac-dock');
-    macIconsEl.innerHTML='';macWinsEl.innerHTML='';dock.innerHTML='';
-
-    FOLDERS.forEach(function(f,i){
-      // Dock icon
-      var di=document.createElement('div');di.className='mac-dock-icon';
-      di.style.position='relative';
-      if(f.icon==='photo'&&f.photoUrl){
-        var img=document.createElement('img');img.src=f.photoUrl;img.style.cssText='width:100%;height:100%;object-fit:cover;border-radius:10px;';di.appendChild(img);
-      } else if(f.icon==='folder'){
-        di.classList.add('folder-icon');
-        di.innerHTML='<svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M10 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg>';
-      } else if(f.icon==='doc'){
-        di.classList.add('doc-icon');
-        di.innerHTML='<svg width="24" height="28" viewBox="0 0 24 28" fill="none"><rect x="2" y="0" width="20" height="28" rx="2" fill="#fff" stroke="#ddd"/><path d="M14 0l6 6h-6V0z" fill="#e0e0e0"/><rect x="5" y="10" width="14" height="1.5" rx="1" fill="#ccc"/><rect x="5" y="14" width="12" height="1.5" rx="1" fill="#ccc"/><rect x="5" y="18" width="10" height="1.5" rx="1" fill="#ccc"/></svg>';
-      } else if(f.icon==='pc'){
-        di.classList.add('pc-icon');
-        di.innerHTML='<svg width="28" height="28" viewBox="0 0 24 24" fill="white"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>';
-      } else if(f.icon==='vogue'){
-        var img=document.createElement('img');img.src=f.photoUrl;img.style.cssText='width:100%;height:100%;object-fit:cover;border-radius:10px;';di.appendChild(img);
-      }
-      var lbl=document.createElement('div');lbl.className='mac-dock-label';lbl.textContent=f.name;di.appendChild(lbl);
-
-      // Mac window
-      var mwin=null;
-      if(f.type==='window'||f.type==='iframe'){
-        mwin=document.createElement('div');mwin.className='mac-win';
-        var wW=isMobile?Math.min(W-20,360):420, wH=isMobile?Math.min(H-80,500):460;
-        mwin.style.cssText='left:40px;top:40px;width:'+wW+'px;height:'+wH+'px;z-index:'+(++zTop)+';';
-        var mbar=document.createElement('div');mbar.className='mac-winbar';
-        var mbtns=document.createElement('div');mbtns.className='mac-winbtns';
-        function mbtn(col,fn){var b=document.createElement('div');b.className='mac-wbtn';b.style.background=col;b.addEventListener('click',function(e){e.stopPropagation();fn();});return b;}
-        mbtns.appendChild(mbtn('#ff5f57',function(){mwin.classList.remove('open');}));
-        mbtns.appendChild(mbtn('#febc2e',function(){mwin.classList.remove('open');}));
-        mbtns.appendChild(mbtn('#28c840',function(){
-          if(mwin._max){mwin.style.left=mwin._pl;mwin.style.top=mwin._pt;mwin.style.width=mwin._pw;mwin.style.height=mwin._ph;mwin._max=false;}
-          else{mwin._pl=mwin.style.left;mwin._pt=mwin.style.top;mwin._pw=mwin.style.width;mwin._ph=mwin.style.height;mwin.style.left='0';mwin.style.top='24px';mwin.style.width='100vw';mwin.style.height='calc(100vh - 24px)';mwin._max=true;}
-        }));
-        mbar.appendChild(mbtns);
-        var mtitle=document.createElement('div');mtitle.className='mac-wintitle';mtitle.textContent=f.name;mbar.appendChild(mtitle);
-        var mbody=document.createElement('div');mbody.className='mac-winbody';
-        if(f.content) mbody.innerHTML=f.content;
-        else if(f.type==='iframe'){
-          var iframe=document.createElement('iframe');iframe.src='about:blank';mbody.appendChild(iframe);
-          var ol=document.createElement('a');ol.href=f.url;ol.target='_blank';ol.className='mac-win-openlink';ol.textContent='↗ Open in original website';mwin.appendChild(ol);
-          mwin._iframe=iframe;mwin._iframeUrl=f.url;
-        }
-        mwin.appendChild(mbar);mwin.appendChild(mbody);
-        mwin.addEventListener('mousedown',function(){bringToFront(mwin);});
-        var mbd=false,mbx=0,mby=0;
-        mbar.addEventListener('mousedown',function(e){if(e.target.closest('.mac-winbtns'))return;e.preventDefault();mbd=true;mbx=e.clientX-mwin.offsetLeft;mby=e.clientY-mwin.offsetTop;bringToFront(mwin);});
-        document.addEventListener('mousemove',function(e){if(!mbd)return;mwin.style.left=Math.max(0,e.clientX-mbx)+'px';mwin.style.top=Math.max(24,e.clientY-mby)+'px';});
-        document.addEventListener('mouseup',function(){mbd=false;});
-        macWinsEl.appendChild(mwin);
-      }
-
-      di.addEventListener('click',function(){
-        if(f.type==='link'&&f.url&&f.url.indexOf('INSERISCI')<0){window.location.href=f.url;return;}
-        if(mwin){mwin.classList.add('open');bringToFront(mwin);if(mwin._iframe&&mwin._iframe.src==='about:blank')mwin._iframe.src=mwin._iframeUrl;}
-      });
-      dock.appendChild(di);
+    di.addEventListener('click',function(){
+      if(f.type==='ai'){openAIWin();return;}
+      if(f.type==='infowin'){openInfoWin();return;}
+      if(f.type==='link'&&f.url&&f.url.indexOf('INSERISCI')<0){window.location.href=f.url;return;}
+      if(mwin){mwin.classList.add('open');bringToFront(mwin);if(mwin._iframe&&mwin._iframe.src==='about:blank')mwin._iframe.src=mwin._iframeUrl;}
     });
-  }
-
-  // ── FRASI FANTASMA ──
-  var PHRASES=[
-    {text:'FREE PALESTINE',top:'6%',left:'50%',delay:4000,interval:20000},
-    {text:'DRAW THE TIME',top:'22%',left:'12%',delay:8000,interval:24000},
-    {text:'I AM A GOOD MAN?',top:'58%',left:'75%',delay:13000,interval:27000},
-    {text:'AN IDEA, A CONCEPT, AN IDEA?',top:'78%',left:'35%',delay:6000,interval:32000},
-    {text:'FREE PALESTINE',top:'42%',left:'82%',delay:22000,interval:21000},
-    {text:'DRAW THE TIME',top:'68%',left:'8%',delay:16000,interval:29000},
-    {text:'I AM A GOOD MAN?',top:'15%',left:'60%',delay:30000,interval:35000},
-    {text:'AN IDEA, A CONCEPT, AN IDEA?',top:'88%',left:'55%',delay:10000,interval:38000},
-  ];
-  PHRASES.forEach(function(p){
-    var el=document.createElement('div');el.className='phantom';
-    el.style.cssText='top:'+p.top+';left:'+p.left+';transform:translateX(-50%);';
-    el.textContent=p.text;document.body.appendChild(el);
-    function show(){el.classList.add('visible');setTimeout(function(){el.classList.remove('visible');},4000);}
-    setTimeout(function(){show();setInterval(show,p.interval);},p.delay);
+    dock.appendChild(di);
   });
+}
+
+// ── FRASI FANTASMA ──
+var PHRASES=[
+  {text:'FREE PALESTINE',top:'6%',left:'50%',delay:4000,interval:20000},
+  {text:'DRAW THE TIME',top:'22%',left:'12%',delay:8000,interval:24000},
+  {text:'I AM A GOOD MAN?',top:'58%',left:'75%',delay:13000,interval:27000},
+  {text:'AN IDEA, A CONCEPT, AN IDEA?',top:'78%',left:'35%',delay:6000,interval:32000},
+  {text:'FREE PALESTINE',top:'42%',left:'82%',delay:22000,interval:21000},
+  {text:'DRAW THE TIME',top:'68%',left:'8%',delay:16000,interval:29000},
+  {text:'I AM A GOOD MAN?',top:'15%',left:'60%',delay:30000,interval:35000},
+  {text:'AN IDEA, A CONCEPT, AN IDEA?',top:'88%',left:'55%',delay:10000,interval:38000},
+];
+PHRASES.forEach(function(p){
+  var el=document.createElement('div');el.className='phantom';
+  el.style.cssText='top:'+p.top+';left:'+p.left+';transform:translateX(-50%);';
+  el.textContent=p.text;document.body.appendChild(el);
+  function show(){el.classList.add('visible');setTimeout(function(){el.classList.remove('visible');},4000);}
+  setTimeout(function(){show();setInterval(show,p.interval);},p.delay);
+});
 
 })();
 </script>
