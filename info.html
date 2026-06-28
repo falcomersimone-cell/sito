@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>Simone Falcomer — Info</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
 html,body{width:100%;background:#000;overflow-x:hidden;overflow-y:scroll;}
@@ -13,12 +13,16 @@ html,body{width:100%;background:#000;overflow-x:hidden;overflow-y:scroll;}
   position:fixed;inset:0;z-index:0;
   background-image:url('https://falcomersimone-cell.github.io/sito/Edito%20Sarah%20Beauty5893.jpg');
   background-size:cover;background-position:center top;background-repeat:no-repeat;
-  transition:transform 0.5s ease;
+  transition:transform 0.4s ease,filter 0.4s ease;
+  -webkit-transition:-webkit-transform 0.4s ease,-webkit-filter 0.4s ease;
 }
 #bg-overlay{position:fixed;inset:0;z-index:1;background:rgba(0,0,0,0.38);pointer-events:none;}
 
 body.scrolling #bg-fixed{
-  transform:scale(1.05) skewX(1.5deg);
+  -webkit-transform:scale(1.04) skewX(1.2deg) skewY(0.3deg);
+  transform:scale(1.04) skewX(1.2deg) skewY(0.3deg);
+  -webkit-filter:blur(1px);
+  filter:blur(1px);
 }
 
 #scroll-layer{position:relative;z-index:10;min-height:100vh;}
@@ -46,7 +50,6 @@ body.scrolling #bg-fixed{
   backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
   text-decoration:none;display:inline-block;
 }
-#back:hover{background:rgba(0,0,0,0.9);}
 
 #gallery-wrap{position:relative;z-index:10;background:#000;overflow:hidden;padding:3px 0;}
 #gallery-strip{display:flex;width:max-content;animation:stripscroll 30s linear infinite;}
