@@ -9,22 +9,8 @@
 *{box-sizing:border-box;margin:0;padding:0;}
 html,body{width:100%;background:#000;overflow-x:hidden;overflow-y:scroll;}
 
-#bg-fixed{
-  position:fixed;inset:0;z-index:0;
-  background-image:url('https://falcomersimone-cell.github.io/sito/Edito%20Sarah%20Beauty5893.jpg');
-  background-size:cover;background-position:center top;background-repeat:no-repeat;
-  transition:transform 0.4s ease,filter 0.4s ease;
-  -webkit-transition:-webkit-transform 0.4s ease,-webkit-filter 0.4s ease;
-}
-#bg-overlay{position:fixed;inset:0;z-index:1;background:rgba(0,0,0,0.38);pointer-events:none;}
-
-body.scrolling #bg-fixed{
-  -webkit-transform:scale(1.04) skewX(1.2deg) skewY(0.3deg);
-  transform:scale(1.04) skewX(1.2deg) skewY(0.3deg);
-  -webkit-filter:blur(1px);
-  filter:blur(1px);
-}
-
+#bg-canvas{position:fixed;inset:0;z-index:0;width:100%;height:100%;display:block;}
+#bg-overlay{position:fixed;inset:0;z-index:1;background:rgba(0,0,0,0.35);pointer-events:none;}
 #scroll-layer{position:relative;z-index:10;min-height:100vh;}
 #content{padding:8vw 6vw 20vw;}
 
@@ -60,7 +46,7 @@ body.scrolling #bg-fixed{
 <body>
 
 <a id="back" href="https://simonefalcomer.art">← BACK</a>
-<div id="bg-fixed"></div>
+<canvas id="bg-canvas"></canvas>
 <div id="bg-overlay"></div>
 
 <div id="scroll-layer">
@@ -98,14 +84,87 @@ body.scrolling #bg-fixed{
 </div>
 
 <script>
-var t;
-function onScroll(){
-  document.body.classList.add('scrolling');
-  clearTimeout(t);
-  t=setTimeout(function(){document.body.classList.remove('scrolling');},400);
-}
-window.addEventListener('scroll',onScroll,{passive:true});
-window.addEventListener('touchmove',onScroll,{passive:true});
+(function(){
+  var canvas=document.getElementById('bg-canvas');
+  var ctx=canvas.getContext('2d');
+  var W,H;
+  var img=new Image();
+  img.src='https://falcomersimone-cell.github.io/sito/Edito%20Sarah%20Beauty5893.jpg';
+
+  var isScrolling=false;
+  var scrollTimeout;
+  var liquidAmount=0;
+
+  function resize(){
+    W=canvas.width=window.innerWidth;
+    H=canvas.height=window.innerHeight;
+  }
+  window.addEventListener('resize',resize);
+  resize();
+
+  function onScroll(){
+    isScrolling=true;
+    clearTimeout(scrollTimeout);
+    scrollTimeout=setTimeout(function(){isScrolling=false;},300);
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('touchmove',onScroll,{passive:true});
+
+  var offscreen=document.createElement('canvas');
+  var octx=offscreen.getContext('2d');
+  var imgLoaded=false;
+
+  function cacheImg(){
+    offscreen.width=W;offscreen.height=H;
+    var ratio=Math.max(W/img.naturalWidth,H/img.naturalHeight);
+    var iw=img.naturalWidth*ratio,ih=img.naturalHeight*ratio;
+    octx.drawImage(img,(W-iw)/2,(H-ih)/2,iw,ih);
+    imgLoaded=true;
+  }
+
+  function drawFrame(){
+    var target=isScrolling?1:0;
+    liquidAmount+=(target-liquidAmount)*0.07;
+    ctx.clearRect(0,0,W,H);
+
+    if(!imgLoaded){
+      ctx.fillStyle='#111';ctx.fillRect(0,0,W,H);
+      requestAnimationFrame(drawFrame);
+      return;
+    }
+
+    if(liquidAmount<0.01){
+      ctx.drawImage(offscreen,0,0);
+      requestAnimationFrame(drawFrame);
+      return;
+    }
+
+    var t=Date.now();
+    var sliceH=3;
+    for(var y=0;y<H;y+=sliceH){
+      var dx=Math.sin(y*0.018+t*0.002)*liquidAmount*35
+            +Math.cos(y*0.007+t*0.0015)*liquidAmount*15;
+      ctx.drawImage(offscreen,0,y,W,sliceH,dx,y,W,sliceH);
+    }
+    requestAnimationFrame(drawFrame);
+  }
+
+  img.onload=function(){
+    cacheImg();
+    drawFrame();
+  };
+
+  window.addEventListener('resize',function(){
+    if(imgLoaded) cacheImg();
+  });
+
+  setTimeout(function(){
+    if(!imgLoaded){
+      ctx.fillStyle='#111';ctx.fillRect(0,0,W,H);
+      drawFrame();
+    }
+  },3000);
+})();
 </script>
 </body>
 </html>
