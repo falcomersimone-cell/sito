@@ -7,25 +7,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
-html{height:100%;}
-body{width:100%;background:#000;overflow-x:hidden;overflow-y:scroll;}
+html,body{width:100%;background:#000;overflow-x:hidden;overflow-y:scroll;}
 
-#bg-fixed{
+#bg-canvas{
   position:fixed;inset:0;z-index:0;
-  background-image:url('https://i.ibb.co/JwBR3ttX/Edito-Sarah-Beauty5893.jpg');
-  background-size:cover;background-position:center top;background-repeat:no-repeat;
-  transition:transform 0.5s ease, filter 0.5s ease;
+  width:100%;height:100%;display:block;
 }
+
 #bg-overlay{
   position:fixed;inset:0;z-index:1;
-  background:rgba(0,0,0,0.38);pointer-events:none;
-}
-#bg-fixed.liquid{
-  filter:saturate(2.5) hue-rotate(30deg) brightness(1.2);
-  transform:scale(1.05) skewX(1.5deg);
+  background:rgba(0,0,0,0.35);pointer-events:none;
 }
 
-#scroll-layer{position:relative;z-index:10;min-height:200vh;}
+#scroll-layer{position:relative;z-index:10;min-height:100vh;}
 #content{padding:8vw 6vw 20vw;}
 
 .bio-block{
@@ -61,7 +55,7 @@ body{width:100%;background:#000;overflow-x:hidden;overflow-y:scroll;}
 <body>
 
 <a id="back" href="javascript:window.history.back()">← BACK</a>
-<div id="bg-fixed"></div>
+<canvas id="bg-canvas"></canvas>
 <div id="bg-overlay"></div>
 
 <div id="scroll-layer">
@@ -99,16 +93,98 @@ body{width:100%;background:#000;overflow-x:hidden;overflow-y:scroll;}
 </div>
 
 <script>
-var bg = document.getElementById('bg-fixed');
-var scrollTimeout;
+(function(){
+  var canvas=document.getElementById('bg-canvas');
+  var ctx=canvas.getContext('2d');
+  var W,H;
+  var img=new Image();
+  img.crossOrigin='anonymous';
+  img.src='https://i.ibb.co/JwBR3ttX/Edito-Sarah-Beauty5893.jpg';
 
-document.addEventListener('scroll', function(){
-  bg.classList.add('liquid');
-  clearTimeout(scrollTimeout);
-  scrollTimeout = setTimeout(function(){
-    bg.classList.remove('liquid');
-  }, 400);
-});
+  var isScrolling=false;
+  var scrollTimeout;
+  var liquidAmount=0;
+
+  function resize(){
+    W=canvas.width=window.innerWidth;
+    H=canvas.height=window.innerHeight;
+  }
+  window.addEventListener('resize',resize);
+  resize();
+
+  document.addEventListener('scroll',function(){
+    isScrolling=true;
+    clearTimeout(scrollTimeout);
+    scrollTimeout=setTimeout(function(){isScrolling=false;},300);
+  },{passive:true});
+
+  document.addEventListener('touchmove',function(){
+    isScrolling=true;
+    clearTimeout(scrollTimeout);
+    scrollTimeout=setTimeout(function(){isScrolling=false;},300);
+  },{passive:true});
+
+  var offscreen=document.createElement('canvas');
+  var octx=offscreen.getContext('2d');
+  var imgLoaded=false;
+
+  function cacheImg(){
+    offscreen.width=W;offscreen.height=H;
+    var ratio=Math.max(W/img.naturalWidth,H/img.naturalHeight);
+    var iw=img.naturalWidth*ratio,ih=img.naturalHeight*ratio;
+    var ix=(W-iw)/2,iy=(H-ih)/2;
+    octx.drawImage(img,ix,iy,iw,ih);
+    imgLoaded=true;
+  }
+
+  function drawFrame(){
+    var target=isScrolling?1:0;
+    liquidAmount+=(target-liquidAmount)*0.07;
+    ctx.clearRect(0,0,W,H);
+    if(!imgLoaded){
+      ctx.fillStyle='#111';ctx.fillRect(0,0,W,H);
+      requestAnimationFrame(drawFrame);return;
+    }
+    if(liquidAmount<0.01){
+      ctx.drawImage(offscreen,0,0);
+      requestAnimationFrame(drawFrame);return;
+    }
+    var t=Date.now();
+    var sliceH=3;
+    for(var y=0;y<H;y+=sliceH){
+      var dx=Math.sin(y*0.018+t*0.002)*liquidAmount*35
+            +Math.cos(y*0.007+t*0.0015)*liquidAmount*15;
+      ctx.drawImage(offscreen,0,y,W,sliceH,dx,y,W,sliceH);
+    }
+    if(liquidAmount>0.2){
+      var hue=(t*0.04)%360;
+      ctx.save();
+      ctx.globalAlpha=liquidAmount*0.12;
+      ctx.fillStyle='hsl('+hue+',60%,50%)';
+      ctx.fillRect(0,0,W,H);
+      ctx.restore();
+    }
+    requestAnimationFrame(drawFrame);
+  }
+
+  img.onload=function(){
+    cacheImg();
+    drawFrame();
+  };
+
+  window.addEventListener('resize',function(){
+    if(imgLoaded) cacheImg();
+  });
+
+  // Fallback se immagine non carica
+  setTimeout(function(){
+    if(!imgLoaded){
+      ctx.fillStyle='#111';ctx.fillRect(0,0,W,H);
+      drawFrame();
+    }
+  },3000);
+
+})();
 </script>
 </body>
 </html>
