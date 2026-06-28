@@ -4,207 +4,268 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Simone Falcomer — Info</title>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
-html,body{width:100%;min-height:100%;background:#fff;font-family:'IBM Plex Mono',monospace;overflow-x:hidden;}
+html,body{width:100%;background:#000;overflow-x:hidden;}
 
-/* HERO — foto liquide */
-#hero{position:relative;width:100%;height:100vh;overflow:hidden;background:#000;}
-#hero canvas{position:absolute;inset:0;width:100%;height:100%;display:block;}
-#hero-text{position:absolute;inset:0;display:flex;align-items:flex-end;padding:40px;z-index:10;pointer-events:none;}
-#hero-name{font-size:clamp(28px,5vw,64px);font-weight:700;color:#fff;letter-spacing:0.04em;text-shadow:0 2px 20px rgba(0,0,0,0.5);line-height:1.1;}
-#hero-sub{font-size:clamp(11px,1.5vw,16px);color:rgba(255,255,255,0.7);letter-spacing:0.15em;margin-top:8px;}
+#bg-fixed{
+  position:fixed;
+  inset:0;
+  z-index:0;
+}
+#bg-canvas{
+  width:100%;
+  height:100%;
+  display:block;
+}
 
-/* BIO */
-#bio{background:#fff;padding:80px 40px 60px;}
-#bio-inner{max-width:720px;margin:0 auto;}
-#bio p{font-size:clamp(14px,1.6vw,19px);line-height:1.9;color:#111;margin-bottom:28px;letter-spacing:0.01em;}
-#bio .contact{margin-top:48px;padding-top:32px;border-top:1px solid #ddd;}
-#bio .contact p{font-size:13px;color:#555;margin-bottom:6px;}
-#bio .contact a{color:#000;text-decoration:none;border-bottom:1px solid #000;}
+#scroll-layer{
+  position:relative;
+  z-index:10;
+  min-height:100vh;
+}
 
-/* GALLERY LIQUIDA */
-#gallery{background:#000;padding:0;overflow:hidden;}
-#gallery-strip{display:flex;width:max-content;animation:stripscroll 30s linear infinite;}
-#gallery-strip:hover{animation-play-state:paused;}
-.gimg{width:auto;height:60vmin;object-fit:cover;opacity:0.85;transition:opacity 0.4s;flex-shrink:0;margin-right:3px;filter:contrast(1.05);}
-.gimg:hover{opacity:1;}
+#content{
+  padding:8vw 6vw 20vw;
+  position:relative;
+}
 
+.bio-block{
+  font-family:'Playfair Display',serif;
+  font-weight:900;
+  font-size:clamp(36px,7vw,110px);
+  color:#fff;
+  line-height:1.0;
+  letter-spacing:-0.02em;
+  margin-bottom:8vw;
+  mix-blend-mode:normal;
+}
+
+.bio-block.contact-block{
+  font-size:clamp(22px,4vw,60px);
+  margin-top:10vw;
+  border-top:2px solid rgba(255,255,255,0.3);
+  padding-top:6vw;
+  line-height:1.3;
+}
+
+.bio-block a{
+  color:#fff;
+  text-decoration:none;
+  border-bottom:2px solid rgba(255,255,255,0.4);
+}
+
+#back{
+  position:fixed;
+  top:16px;
+  left:16px;
+  z-index:100;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:11px;
+  color:#fff;
+  text-decoration:none;
+  background:rgba(0,0,0,0.5);
+  padding:6px 12px;
+  border:1px solid rgba(255,255,255,0.3);
+  letter-spacing:0.1em;
+  backdrop-filter:blur(4px);
+}
+#back:hover{background:rgba(0,0,0,0.8);}
+
+#gallery-wrap{
+  position:relative;
+  z-index:10;
+  background:#000;
+  overflow:hidden;
+  padding:3px 0;
+}
+#gallery-strip{
+  display:flex;
+  width:max-content;
+  animation:stripscroll 28s linear infinite;
+}
+.gimg{
+  height:35vmin;
+  width:auto;
+  object-fit:cover;
+  opacity:0.75;
+  margin-right:3px;
+  flex-shrink:0;
+}
 @keyframes stripscroll{
   0%{transform:translateX(0);}
   100%{transform:translateX(-50%);}
 }
-
-/* BACK LINK */
-#back{position:fixed;top:16px;left:16px;z-index:100;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#fff;text-decoration:none;background:rgba(0,0,0,0.4);padding:6px 12px;border:1px solid rgba(255,255,255,0.3);letter-spacing:0.1em;backdrop-filter:blur(4px);}
-#back:hover{background:rgba(0,0,0,0.7);}
 </style>
 </head>
 <body>
 
 <a href="javascript:history.back()" id="back">← BACK</a>
 
-<div id="hero">
-  <canvas id="lsd-canvas"></canvas>
-  <div id="hero-text">
-    <div>
-      <div id="hero-name">Simone Falcomer</div>
-      <div id="hero-sub">Photographer & Art Director — Barcelona</div>
-    </div>
-  </div>
+<div id="bg-fixed">
+  <canvas id="bg-canvas"></canvas>
 </div>
 
-<div id="bio">
-  <div id="bio-inner">
-    <p>Simone Falcomer is a photographer and Art Director based in Barcelona. Born in Italy, he studied photojournalism at Grisart Academy in Barcelona, where he developed a solid and personal approach to the image. He is currently studying Fine Arts in Barcelona while working as a freelance photographer across fashion, documentary and artistic practice.</p>
-    <p>His work is in constant evolution — each project brings him into unknown territory, always outside his comfort zone. He shoots on analogue film, working in 35mm and medium format, and manages digital studio production. He uses photography as a tool, believing his fullest expression is still ahead of him — a search for ways to capture what he feels.</p>
-    <p>Through the lens, Simone chases time as it passes. He spends hours reflecting on the relativity of time and on the inner and outer transformations of himself, of people, and of the world. His visual language draws from mid-20th century photography, neoclassical sculpture, Baroque painting and Italian Renaissance art. Although he plans his work methodically, he always moves toward surprising and unconventional results.</p>
-    <p>His editorial work has been published in Vogue Nederland, Neo2, Kultblut Magazine, Vein Magazine and Cake Magazine. His commercial clients include Marni and Outsiders Division. He works internally as Image Director at Acceptance Letter Studio.</p>
-    <div class="contact">
-      <p>For inquiries</p>
-      <p><a href="mailto:falcomersimone@gmail.com">falcomersimone@gmail.com</a></p>
-      <p><a href="https://wa.me/34607699642">+34 607 699 642</a></p>
-    </div>
-  </div>
-</div>
+<div id="scroll-layer">
+  <div id="content">
 
-<div id="gallery">
-  <div id="gallery-strip">
-    <img class="gimg" src="https://i.ibb.co/DDN6KXQf/4.jpg">
-    <img class="gimg" src="https://i.ibb.co/C3HdzswJ/6.jpg">
-    <img class="gimg" src="https://i.ibb.co/TDBQSP6Y/Acceptance-Letter25.jpg">
-    <img class="gimg" src="https://i.ibb.co/MxcbGWbN/Edito-Sarah-Beauty5403.jpg">
-    <img class="gimg" src="https://i.ibb.co/vvhmc8DV/Edito-Sarah-Beauty5563-1.jpg">
-    <img class="gimg" src="https://i.ibb.co/JwBR3ttX/Edito-Sarah-Beauty5893.jpg">
-    <!-- duplicato per loop infinito -->
-    <img class="gimg" src="https://i.ibb.co/DDN6KXQf/4.jpg">
-    <img class="gimg" src="https://i.ibb.co/C3HdzswJ/6.jpg">
-    <img class="gimg" src="https://i.ibb.co/TDBQSP6Y/Acceptance-Letter25.jpg">
-    <img class="gimg" src="https://i.ibb.co/MxcbGWbN/Edito-Sarah-Beauty5403.jpg">
-    <img class="gimg" src="https://i.ibb.co/vvhmc8DV/Edito-Sarah-Beauty5563-1.jpg">
-    <img class="gimg" src="https://i.ibb.co/JwBR3ttX/Edito-Sarah-Beauty5893.jpg">
+    <div class="bio-block">
+      Simone Falcomer is a photographer and Art Director based in Barcelona.
+    </div>
+
+    <div class="bio-block">
+      Born in Italy, he studied photojournalism at Grisart Academy in Barcelona, where he developed a solid and personal approach to the image.
+    </div>
+
+    <div class="bio-block">
+      He is currently studying Fine Arts in Barcelona while working as a freelance photographer across fashion, documentary and artistic practice.
+    </div>
+
+    <div class="bio-block">
+      His work is in constant evolution — each project brings him into unknown territory, always outside his comfort zone.
+    </div>
+
+    <div class="bio-block">
+      He shoots on analogue film, working in 35mm and medium format. He uses photography as a tool, believing his fullest expression is still ahead of him.
+    </div>
+
+    <div class="bio-block">
+      Through the lens, Simone chases time as it passes. He reflects on the relativity of time and on the inner and outer transformations of himself, of people, and of the world.
+    </div>
+
+    <div class="bio-block">
+      His visual language draws from mid-20th century photography, neoclassical sculpture, Baroque painting and Italian Renaissance art.
+    </div>
+
+    <div class="bio-block">
+      Editorial work published in Vogue Nederland, Neo2, Kultblut Magazine, Vein Magazine and Cake Magazine. Commercial clients include Marni and Outsiders Division. Image Director at Acceptance Letter Studio.
+    </div>
+
+    <div class="bio-block contact-block">
+      For inquiries<br>
+      <a href="mailto:falcomersimone@gmail.com">falcomersimone@gmail.com</a><br>
+      <a href="https://wa.me/34607699642">+34 607 699 642</a>
+    </div>
+
+  </div>
+
+  <div id="gallery-wrap">
+    <div id="gallery-strip">
+      <img class="gimg" src="https://i.ibb.co/DDN6KXQf/4.jpg">
+      <img class="gimg" src="https://i.ibb.co/C3HdzswJ/6.jpg">
+      <img class="gimg" src="https://i.ibb.co/TDBQSP6Y/Acceptance-Letter25.jpg">
+      <img class="gimg" src="https://i.ibb.co/MxcbGWbN/Edito-Sarah-Beauty5403.jpg">
+      <img class="gimg" src="https://i.ibb.co/vvhmc8DV/Edito-Sarah-Beauty5563-1.jpg">
+      <img class="gimg" src="https://i.ibb.co/JwBR3ttX/Edito-Sarah-Beauty5893.jpg">
+      <img class="gimg" src="https://i.ibb.co/DDN6KXQf/4.jpg">
+      <img class="gimg" src="https://i.ibb.co/C3HdzswJ/6.jpg">
+      <img class="gimg" src="https://i.ibb.co/TDBQSP6Y/Acceptance-Letter25.jpg">
+      <img class="gimg" src="https://i.ibb.co/MxcbGWbN/Edito-Sarah-Beauty5403.jpg">
+      <img class="gimg" src="https://i.ibb.co/vvhmc8DV/Edito-Sarah-Beauty5563-1.jpg">
+      <img class="gimg" src="https://i.ibb.co/JwBR3ttX/Edito-Sarah-Beauty5893.jpg">
+    </div>
   </div>
 </div>
 
 <script>
 (function(){
-  var canvas = document.getElementById('lsd-canvas');
+  var canvas = document.getElementById('bg-canvas');
   var ctx = canvas.getContext('2d');
   var W, H;
-  var imgs = [
-    'https://i.ibb.co/DDN6KXQf/4.jpg',
-    'https://i.ibb.co/C3HdzswJ/6.jpg',
-    'https://i.ibb.co/TDBQSP6Y/Acceptance-Letter25.jpg',
-    'https://i.ibb.co/MxcbGWbN/Edito-Sarah-Beauty5403.jpg',
-    'https://i.ibb.co/vvhmc8DV/Edito-Sarah-Beauty5563-1.jpg',
-    'https://i.ibb.co/JwBR3ttX/Edito-Sarah-Beauty5893.jpg'
-  ];
+  var img = new Image();
+  img.crossOrigin = 'anonymous';
+  img.src = 'https://i.ibb.co/JwBR3ttX/Edito-Sarah-Beauty5893.jpg';
 
-  var loaded = [];
-  var loadCount = 0;
+  var isScrolling = false;
+  var isTouching = false;
+  var liquidAmount = 0;
+  var scrollTimeout;
 
   function resize(){
-    W = canvas.width = canvas.offsetWidth;
-    H = canvas.height = canvas.offsetHeight;
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
   }
   window.addEventListener('resize', resize);
   resize();
 
-  imgs.forEach(function(src){
-    var img = new Image();
-    img.crossOrigin = 'anonymous';
-    img.onload = function(){ loaded.push(img); loadCount++; if(loadCount===imgs.length) startAnim(); };
-    img.onerror = function(){ loadCount++; if(loadCount===imgs.length) startAnim(); };
-    img.src = src;
+  window.addEventListener('scroll', function(){
+    isScrolling = true;
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(function(){ isScrolling = false; }, 200);
   });
 
-  var cur = 0;
-  var next = 1;
-  var alpha = 0;
-  var dir = 1;
-  var t = 0;
+  document.addEventListener('touchstart', function(){ isTouching = true; }, {passive:true});
+  document.addEventListener('touchend', function(){ isTouching = false; }, {passive:true});
+  document.addEventListener('touchmove', function(){ isTouching = true; }, {passive:true});
 
-  function drawImg(img, alpha, offset){
-    if(!img) return;
-    ctx.save();
-    ctx.globalAlpha = alpha;
-    var ratio = Math.max(W/img.width, H/img.height);
-    var iw = img.width * ratio;
-    var ih = img.height * ratio;
-    var ix = (W - iw) / 2 + Math.sin(t * 0.0003 + offset) * 18;
-    var iy = (H - ih) / 2 + Math.cos(t * 0.0002 + offset) * 12;
-    ctx.drawImage(img, ix, iy, iw, ih);
-    ctx.restore();
+  var offscreen = document.createElement('canvas');
+  var octx = offscreen.getContext('2d');
+  var imgDrawn = false;
+
+  function cacheImg(){
+    offscreen.width = W;
+    offscreen.height = H;
+    var ratio = Math.max(W/img.naturalWidth, H/img.naturalHeight);
+    var iw = img.naturalWidth * ratio;
+    var ih = img.naturalHeight * ratio;
+    var ix = (W - iw) / 2;
+    var iy = (H - ih) / 2;
+    octx.drawImage(img, ix, iy, iw, ih);
+    imgDrawn = true;
   }
 
-  function applyLiquid(){
-    // Overlay colorato sottile che pulsa
-    var hue = (t * 0.02) % 360;
-    ctx.save();
-    ctx.globalAlpha = 0.06;
-    ctx.fillStyle = 'hsl('+hue+',60%,50%)';
-    ctx.fillRect(0,0,W,H);
-    ctx.restore();
+  function drawFrame(){
+    if(!imgDrawn) return;
 
-    // Distorsione orizzontale sottile con linee
-    ctx.save();
-    ctx.globalAlpha = 0.03;
-    for(var i=0;i<H;i+=4){
-      var shift = Math.sin(i*0.02 + t*0.001) * 3;
-      var imgData = ctx.getImageData(0,i,W,1);
-      ctx.putImageData(imgData, shift, i);
+    ctx.clearRect(0,0,W,H);
+
+    var active = isScrolling || isTouching;
+    var target = active ? 1 : 0;
+    liquidAmount += (target - liquidAmount) * 0.06;
+
+    if(liquidAmount < 0.01){
+      ctx.drawImage(offscreen, 0, 0);
+      return;
     }
-    ctx.restore();
+
+    var t = Date.now();
+    var sliceH = 3;
+    for(var y = 0; y < H; y += sliceH){
+      var a = liquidAmount;
+      var dx = Math.sin(y * 0.018 + t * 0.002) * a * 35
+             + Math.cos(y * 0.007 + t * 0.0015) * a * 15;
+      var sy = y + Math.sin(y * 0.012 + t * 0.001) * a * 8;
+      sy = Math.max(0, Math.min(H - sliceH, sy));
+
+      ctx.save();
+      ctx.drawImage(offscreen, 0, sy, W, sliceH, dx, y, W, sliceH);
+      ctx.restore();
+    }
+
+    if(liquidAmount > 0.2){
+      var hue = (t * 0.04) % 360;
+      ctx.save();
+      ctx.globalAlpha = liquidAmount * 0.1;
+      ctx.fillStyle = 'hsl('+hue+',60%,50%)';
+      ctx.fillRect(0,0,W,H);
+      ctx.restore();
+    }
   }
 
-  function startAnim(){
-    function frame(ts){
-      if(!t) t = ts;
-      var dt = ts - t;
-      t = ts;
-
-      resize();
-      ctx.clearRect(0,0,W,H);
-
-      if(loaded.length >= 2){
-        alpha += 0.0008 * dir;
-        if(alpha >= 1){
-          alpha = 1; dir = -1;
-          setTimeout(function(){ dir = 1; cur = next; next = (next+1) % loaded.length; alpha = 0; }, 2000);
-        }
-        if(alpha < 0) alpha = 0;
-
-        drawImg(loaded[cur], 1, 0);
-        drawImg(loaded[next], Math.max(0, alpha), 1.5);
-      } else if(loaded.length === 1){
-        drawImg(loaded[0], 1, 0);
-      }
-
-      applyLiquid();
-      requestAnimationFrame(frame);
-    }
-    requestAnimationFrame(frame);
+  function loop(){
+    drawFrame();
+    requestAnimationFrame(loop);
   }
 
-  // Se le immagini non caricano per CORS, mostra sfondo animato
-  setTimeout(function(){
-    if(loaded.length === 0){
-      (function fallback(ts){
-        ctx.clearRect(0,0,W,H);
-        var g = ctx.createRadialGradient(
-          W/2 + Math.sin(ts*0.001)*100, H/2 + Math.cos(ts*0.0008)*80, 0,
-          W/2, H/2, Math.max(W,H)
-        );
-        var hue = (ts*0.02)%360;
-        g.addColorStop(0,'hsl('+hue+',40%,20%)');
-        g.addColorStop(1,'hsl('+(hue+120)+',30%,5%)');
-        ctx.fillStyle=g;
-        ctx.fillRect(0,0,W,H);
-        requestAnimationFrame(fallback);
-      })(0);
-    }
-  }, 3000);
+  img.onload = function(){
+    cacheImg();
+    loop();
+  };
+
+  window.addEventListener('resize', function(){
+    if(img.complete && img.naturalWidth > 0) cacheImg();
+  });
 
 })();
 </script>
