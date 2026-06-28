@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Simone Falcomer — Photographer & Art Director</title>
 <meta name="description" content="Simone Falcomer is a photographer and Art Director based in Barcelona. Editorial work in Vogue Nederland, Neo2, Vein Magazine, Cake Magazine. Clients include Marni, Outsiders Division.">
-<meta name="keywords" content="Simone Falcomer, photographer Barcelona, art director, fashion photography, documentary photography, Vogue Nederland, Neo2, Marni">
+<meta name="keywords" content="Simone Falcomer, photographer Barcelona, art director, fashion photography, Vogue Nederland, Neo2, Marni">
 <meta name="author" content="Simone Falcomer">
 <meta property="og:title" content="Simone Falcomer — Photographer & Art Director">
 <meta property="og:description" content="Photographer and Art Director based in Barcelona.">
@@ -18,7 +18,6 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'IBM Plex Mono',mon
 body.win95{background:#008080;}
 body.macos{background:#f0f0f0;}
 
-/* Frasi fantasma */
 .phantom{position:fixed;pointer-events:none;z-index:99998;opacity:0;transition:opacity 3s ease;white-space:nowrap;font-family:'IBM Plex Mono',monospace;font-size:clamp(9px,1.2vw,13px);letter-spacing:0.3em;}
 body.win95 .phantom{color:rgba(255,255,255,0.13);}
 body.macos .phantom{color:rgba(0,0,0,0.07);}
@@ -44,7 +43,6 @@ body.macos .phantom{color:rgba(0,0,0,0.07);}
 .w95-menu-item:hover{background:#000080;color:#fff;}
 .w95-menu-sep{height:1px;background:#808080;margin:3px 8px;}
 
-/* Icons */
 .w95-icon{position:absolute;pointer-events:all;cursor:default;text-align:center;width:64px;}
 .w95-icon-img{margin:0 auto;display:block;}
 .w95-icon-img.square{width:52px;height:52px;object-fit:contain;object-position:center;border:1px solid rgba(0,0,0,0.3);background:#111;}
@@ -55,7 +53,6 @@ body.macos .w95-icon-label{color:#000;}
 .w95-icon.sel .w95-icon-label{background:#000080;color:#fff;}
 .w95-icon.sel .w95-icon-img{opacity:0.75;outline:1px solid #000080;}
 
-/* Win95 Windows */
 .w95-win{position:fixed;background:#c0c0c0;border:1px solid;border-color:#fff #808080 #808080 #fff;box-shadow:2px 2px 0 #000;display:none;flex-direction:column;pointer-events:all;min-width:200px;}
 .w95-win.open{display:flex;}
 .w95-winbar{height:20px;background:linear-gradient(to right,#000080,#1084d0);display:flex;align-items:center;padding:0 4px;cursor:grab;user-select:none;flex-shrink:0;}
@@ -69,34 +66,33 @@ body.macos .w95-icon-label{color:#000;}
 .w95-winbody iframe{width:100%;height:100%;border:none;display:block;}
 .w95-winbody h1{font-size:13px;font-weight:700;margin-bottom:4px;}
 .w95-winbody h2{font-size:10px;color:#555;margin-bottom:14px;}
-.w95-winbody p{font-size:11px;color:#222;line-height:1.8;margin-bottom:8px;}
 .w95-winbody a{color:#000080;font-size:11px;display:block;margin-bottom:8px;text-decoration:none;}
-.w95-winbody a:hover{text-decoration:underline;}
 .w95-win-openlink{display:block;text-align:center;font-size:10px;font-family:'IBM Plex Mono',monospace;background:#c0c0c0;border-top:1px solid #808080;padding:4px;color:#000080;text-decoration:none;flex-shrink:0;cursor:pointer;}
 .w95-win-openlink:hover{background:#000080;color:#fff;}
 .w95-resize{position:absolute;right:0;bottom:0;width:14px;height:14px;cursor:se-resize;opacity:0.5;}
 
-/* AI Chat */
-#ai-win .w95-winbody{display:flex;flex-direction:column;}
-#ai-messages{flex:1;overflow-y:auto;padding:8px;display:flex;flex-direction:column;gap:8px;}
-.ai-msg{font-size:11px;font-family:'IBM Plex Mono',monospace;line-height:1.6;padding:6px 8px;max-width:90%;}
+/* AI Chat Win95 */
+.ai-winbody{display:flex;flex-direction:column;height:100%;}
+.ai-messages{flex:1;overflow-y:auto;padding:8px;display:flex;flex-direction:column;gap:6px;}
+.ai-msg{font-size:11px;font-family:'IBM Plex Mono',monospace;line-height:1.6;padding:6px 8px;max-width:92%;}
 .ai-msg.user{background:#000080;color:#fff;align-self:flex-end;}
 .ai-msg.bot{background:#e8e8e8;color:#000;align-self:flex-start;border:1px solid #ccc;}
-.ai-msg.bot.loading{color:#888;font-style:italic;}
-#ai-input-row{display:flex;border-top:1px solid #808080;flex-shrink:0;}
-#ai-input{flex:1;border:none;padding:6px 8px;font-size:11px;font-family:'IBM Plex Mono',monospace;background:#fff;outline:none;}
-#ai-send{padding:6px 10px;background:#c0c0c0;border:none;border-left:1px solid #808080;cursor:pointer;font-size:11px;font-family:'IBM Plex Mono',monospace;}
-#ai-send:hover{background:#000080;color:#fff;}
-#ai-counter{font-size:9px;font-family:'IBM Plex Mono',monospace;color:#808080;padding:2px 8px;background:#c0c0c0;border-top:1px solid #ddd;flex-shrink:0;text-align:right;}
+.ai-msg.loading{color:#808080;font-style:italic;}
+.ai-input-row{display:flex;border-top:1px solid #808080;flex-shrink:0;}
+.ai-input{flex:1;border:none;padding:6px 8px;font-size:11px;font-family:'IBM Plex Mono',monospace;background:#fff;outline:none;}
+.ai-send{padding:6px 10px;background:#c0c0c0;border:none;border-left:1px solid #808080;cursor:pointer;font-size:11px;font-family:'IBM Plex Mono',monospace;}
+.ai-send:hover{background:#000080;color:#fff;}
+.ai-send:disabled{opacity:0.5;cursor:default;}
+.ai-counter{font-size:9px;font-family:'IBM Plex Mono',monospace;color:#808080;padding:2px 8px;background:#c0c0c0;border-top:1px solid #ddd;flex-shrink:0;text-align:right;}
 
 /* ══ MACOS ══ */
 #mac-layer{position:fixed;inset:0;pointer-events:none;z-index:9999;display:none;}
 body.macos #mac-layer{display:block;}
 body.macos #w95-layer{display:none;}
 
-#mac-menubar{position:fixed;top:0;left:0;right:0;height:24px;background:rgba(255,255,255,0.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,0.1);display:flex;align-items:center;padding:0 12px;gap:0;pointer-events:all;z-index:100;font-size:13px;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif;}
-#mac-apple-btn{font-size:16px;cursor:pointer;padding:0 10px;position:relative;}
-#mac-apple-menu{position:fixed;top:24px;left:0;background:rgba(255,255,255,0.95);backdrop-filter:blur(20px);border:1px solid rgba(0,0,0,0.15);border-radius:6px;box-shadow:0 8px 32px rgba(0,0,0,0.2);display:none;flex-direction:column;min-width:200px;padding:4px 0;z-index:200;pointer-events:all;}
+#mac-menubar{position:fixed;top:0;left:0;right:0;height:24px;background:rgba(255,255,255,0.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,0.1);display:flex;align-items:center;padding:0 12px;gap:0;pointer-events:all;z-index:100;}
+#mac-apple-btn{font-size:16px;cursor:pointer;padding:0 10px;position:relative;user-select:none;}
+#mac-apple-menu{position:fixed;top:24px;left:0;background:rgba(255,255,255,0.96);backdrop-filter:blur(20px);border:1px solid rgba(0,0,0,0.15);border-radius:6px;box-shadow:0 8px 32px rgba(0,0,0,0.2);display:none;flex-direction:column;min-width:200px;padding:4px 0;z-index:300;pointer-events:all;}
 #mac-apple-menu.open{display:flex;}
 .mac-apple-item{padding:5px 16px;font-size:13px;font-family:-apple-system,sans-serif;cursor:pointer;color:#000;}
 .mac-apple-item:hover{background:#0070f3;color:#fff;}
@@ -107,18 +103,17 @@ body.macos #w95-layer{display:none;}
 #mac-menubar-right{display:flex;align-items:center;gap:10px;font-size:12px;font-family:-apple-system,sans-serif;opacity:0.8;margin-left:auto;}
 
 #mac-dock{position:fixed;right:8px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.28);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.5);border-radius:18px;padding:8px 5px;display:flex;flex-direction:column;gap:6px;pointer-events:all;z-index:100;box-shadow:0 8px 32px rgba(0,0,0,0.12);}
-.mac-dock-icon{width:48px;height:48px;border-radius:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform 0.15s cubic-bezier(.34,1.56,.64,1);overflow:hidden;position:relative;flex-shrink:0;}
-.mac-dock-icon:hover{transform:scale(1.35);}
+.mac-dock-icon{width:52px;height:52px;border-radius:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform 0.18s cubic-bezier(.34,1.8,.64,1);overflow:visible;position:relative;flex-shrink:0;}
+.mac-dock-icon:hover{transform:scale(1.6);}
 .mac-dock-icon:active{transform:scale(0.9);}
-.mac-dock-icon img{width:100%;height:100%;object-fit:cover;border-radius:12px;}
+.mac-dock-icon img{width:100%;height:100%;object-fit:cover;border-radius:12px;display:block;}
 .mac-dock-icon.folder-icon{background:linear-gradient(145deg,#5eb5f7,#3d8fd4);}
 .mac-dock-icon.doc-icon{background:linear-gradient(145deg,#fff,#e8e8e8);border:1px solid #ddd;}
 .mac-dock-icon.pc-icon{background:linear-gradient(145deg,#636363,#333);}
-.mac-dock-icon.ai-icon{background:linear-gradient(145deg,#a855f7,#7c3aed);}
+.mac-dock-icon.ai-icon{background:linear-gradient(135deg,#a855f7,#7c3aed,#4f46e5);}
 .mac-dock-label{position:absolute;bottom:-22px;left:50%;transform:translateX(-50%);white-space:nowrap;font-size:10px;font-family:-apple-system,sans-serif;background:rgba(0,0,0,0.75);color:#fff;padding:2px 7px;border-radius:4px;opacity:0;pointer-events:none;transition:opacity 0.15s;z-index:10;}
 .mac-dock-icon:hover .mac-dock-label{opacity:1;}
 
-/* macOS windows */
 .mac-win{position:fixed;background:#fff;border-radius:10px;box-shadow:0 20px 60px rgba(0,0,0,0.25);display:none;flex-direction:column;pointer-events:all;min-width:300px;overflow:hidden;}
 .mac-win.open{display:flex;}
 .mac-winbar{height:28px;background:linear-gradient(to bottom,#f5f5f5,#e8e8e8);display:flex;align-items:center;padding:0 10px;cursor:grab;user-select:none;flex-shrink:0;border-bottom:1px solid #d0d0d0;}
@@ -130,21 +125,20 @@ body.macos #w95-layer{display:none;}
 .mac-winbody.padded{padding:20px;overflow-y:auto;}
 .mac-winbody iframe{width:100%;height:100%;border:none;}
 .mac-win-openlink{display:block;text-align:center;font-size:11px;font-family:-apple-system,sans-serif;background:#f5f5f5;border-top:1px solid #eee;padding:6px;color:#007aff;text-decoration:none;flex-shrink:0;cursor:pointer;}
-.mac-resize{position:absolute;right:0;bottom:0;width:14px;height:14px;cursor:se-resize;}
 
-/* AI macOS */
-#mac-ai-win .mac-winbody{display:flex;flex-direction:column;}
-#mac-ai-messages{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:10px;}
-.mac-ai-msg{font-size:13px;font-family:-apple-system,sans-serif;line-height:1.6;padding:8px 12px;border-radius:12px;max-width:85%;}
-.mac-ai-msg.user{background:#007aff;color:#fff;align-self:flex-end;border-radius:12px 12px 4px 12px;}
-.mac-ai-msg.bot{background:#f0f0f0;color:#000;align-self:flex-start;border-radius:12px 12px 12px 4px;}
-.mac-ai-msg.bot.loading{color:#888;font-style:italic;}
-#mac-ai-input-row{display:flex;border-top:1px solid #eee;padding:8px;gap:6px;flex-shrink:0;}
-#mac-ai-input{flex:1;border:1px solid #ddd;border-radius:18px;padding:6px 14px;font-size:13px;font-family:-apple-system,sans-serif;outline:none;}
-#mac-ai-send{padding:6px 14px;background:#007aff;color:#fff;border:none;border-radius:18px;cursor:pointer;font-size:13px;font-family:-apple-system,sans-serif;}
-#mac-ai-counter{font-size:10px;font-family:-apple-system,sans-serif;color:#999;padding:0 12px 6px;flex-shrink:0;text-align:right;}
+/* AI Chat macOS */
+.mac-ai-body{display:flex;flex-direction:column;height:100%;}
+.mac-ai-messages{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:10px;}
+.mac-ai-msg{font-size:13px;font-family:-apple-system,sans-serif;line-height:1.6;padding:9px 13px;border-radius:16px;max-width:85%;}
+.mac-ai-msg.user{background:#007aff;color:#fff;align-self:flex-end;border-radius:16px 16px 4px 16px;}
+.mac-ai-msg.bot{background:#f0f0f0;color:#000;align-self:flex-start;border-radius:16px 16px 16px 4px;}
+.mac-ai-msg.loading{color:#888;font-style:italic;}
+.mac-ai-input-row{display:flex;border-top:1px solid #eee;padding:8px;gap:6px;flex-shrink:0;align-items:center;}
+.mac-ai-input{flex:1;border:1px solid #ddd;border-radius:20px;padding:7px 14px;font-size:13px;font-family:-apple-system,sans-serif;outline:none;}
+.mac-ai-send{padding:7px 16px;background:#007aff;color:#fff;border:none;border-radius:20px;cursor:pointer;font-size:13px;font-family:-apple-system,sans-serif;}
+.mac-ai-send:disabled{opacity:0.5;cursor:default;}
+.mac-ai-counter{font-size:10px;font-family:-apple-system,sans-serif;color:#999;padding:0 12px 6px;flex-shrink:0;text-align:right;}
 
-/* Hourglass */
 #w95-hourglass{position:fixed;inset:0;background:#008080;z-index:999999;display:flex;align-items:center;justify-content:center;pointer-events:all;transition:opacity 0.6s;}
 #w95-hourglass-inner{font-size:28px;color:#fff;animation:hgspin 1s linear infinite;}
 @keyframes hgspin{0%,49%{transform:rotate(0deg);}50%,100%{transform:rotate(180deg);}}
@@ -154,7 +148,7 @@ body.macos #w95-layer{display:none;}
   .w95-icon-img.square{width:44px;height:44px;}
   .w95-icon-label{font-size:8px;}
   #mac-dock{padding:5px 3px;gap:4px;}
-  .mac-dock-icon{width:40px;height:40px;}
+  .mac-dock-icon{width:42px;height:42px;}
   #mac-menubar-center{display:none;}
 }
 </style>
@@ -163,7 +157,6 @@ body.macos #w95-layer{display:none;}
 
 <div id="w95-hourglass"><div id="w95-hourglass-inner">⧗</div></div>
 
-<!-- WIN95 -->
 <div id="w95-layer">
   <div id="w95-icons"></div>
   <div id="w95-wins"></div>
@@ -192,7 +185,7 @@ body.macos #w95-layer{display:none;}
       <div id="w95-start-menu-stripe">Simone Falcomer</div>
       <div id="w95-start-menu-items">
         <div class="w95-menu-item" id="menu-info">📄 More Info</div>
-        <div class="w95-menu-item" id="menu-ai">🤖 Simone AI Agent</div>
+        <div class="w95-menu-item" id="menu-ai">🤖 Chat with Simone AI</div>
         <div class="w95-menu-item" id="menu-spotify">🎵 My Spotify Playlist</div>
         <div class="w95-menu-sep"></div>
         <div class="w95-menu-item" id="menu-contact">✉️ Contact</div>
@@ -203,13 +196,12 @@ body.macos #w95-layer{display:none;}
   </div>
 </div>
 
-<!-- MACOS -->
 <div id="mac-layer">
   <div id="mac-menubar">
     <div id="mac-apple-btn">🍎
       <div id="mac-apple-menu">
-        <div class="mac-apple-item" onclick="openMacInfo()">📄 More Info</div>
-        <div class="mac-apple-item" onclick="openMacAI()">🤖 Simone AI Agent</div>
+        <div class="mac-apple-item" onclick="openInfoWin();closeMacApple()">📄 More Info</div>
+        <div class="mac-apple-item" onclick="openAIWin();closeMacApple()">🤖 Chat with Simone AI</div>
         <div class="mac-apple-item" onclick="window.open('https://open.spotify.com/playlist/6b1ZTAE5B0gDHnoaorifkN','_blank');closeMacApple()">🎵 My Spotify</div>
         <div class="mac-apple-sep"></div>
         <div class="mac-apple-item" onclick="openMacContact();closeMacApple()">✉️ Contact</div>
@@ -235,14 +227,15 @@ body.macos #w95-layer{display:none;}
 <script>
 (function(){
 
-// ── API KEY — sostituisci con la tua ──
-var ANTHROPIC_API_KEY = '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';
+var WORKER_URL = 'https://simone-ai.falcomersimone.workers.dev';
 
-// ── HOURGLASS ──
+var AI_SYSTEM = 'You are "Chat with Simone AI", the personal AI agent of Simone Falcomer — a photographer and Art Director based in Barcelona, Italy-born. You know everything about him:\n\n- He studied photojournalism at Grisart Academy in Barcelona\n- He is currently studying Fine Arts in Barcelona\n- He works across fashion, documentary and artistic practice\n- He shoots on analogue film: 35mm and medium format\n- He also manages digital studio production\n- His editorial work has been published in Vogue Nederland, Neo2, Kultblut Magazine, Vein Magazine and Cake Magazine\n- His commercial clients include Marni and Outsiders Division\n- He works internally as Image Director at Acceptance Letter Studio\n- He is represented by Fang.Agency\n- Contact: falcomersimone@gmail.com / +34 607 699 642\n- Instagram: @simone_falcomer\n\nHis visual language draws from mid-20th century photography, neoclassical sculpture, Baroque painting and Italian Renaissance art. He chases time through his lens and reflects on the relativity of time and human transformation.\n\nBe warm, concise and human. Answers max 100 words. Always end with a natural call to action like "Feel free to reach out: falcomersimone@gmail.com". If asked something completely unrelated to Simone or photography, gently redirect: "I am here to tell you about Simone and his work!"';
+
+// Hourglass
 var hg=document.getElementById('w95-hourglass');
 setTimeout(function(){hg.style.opacity='0';setTimeout(function(){hg.remove();},600);},1400);
 
-// ── METEO ──
+// Meteo
 function fetchWeather(){
   if(!navigator.geolocation)return;
   navigator.geolocation.getCurrentPosition(function(pos){
@@ -257,7 +250,7 @@ function fetchWeather(){
 }
 fetchWeather();
 
-// ── CLOCK ──
+// Clock
 function updateClock(){
   var now=new Date();
   var t=now.getHours().toString().padStart(2,'0')+':'+now.getMinutes().toString().padStart(2,'0');
@@ -266,48 +259,74 @@ function updateClock(){
 }
 updateClock();setInterval(updateClock,1000);
 
-// ── THEME SWITCH ──
+// Theme
 function switchToMac(){
-  document.body.classList.remove('win95');
-  document.body.classList.add('macos');
+  document.body.classList.remove('win95');document.body.classList.add('macos');
   document.getElementById('w95-start-menu').classList.remove('open');
   buildMacDock();
 }
-function switchToWin95(){
-  document.body.classList.remove('macos');
-  document.body.classList.add('win95');
-}
+function switchToWin95(){document.body.classList.remove('macos');document.body.classList.add('win95');}
 window.switchToWin95=switchToWin95;
 
-// ── DIMENSIONI ──
+// Dims
 var W=window.innerWidth,H=window.innerHeight,isMobile=W<768;
 var ICON=64,BOTTOM=40;
 function mpos(col,row){var cW=Math.floor((W-8)/4),rH=Math.floor((H-120-BOTTOM)/4);return{x:4+col*cW,y:120+row*rH};}
 function dpos(px,py){return{x:Math.floor(px*(W-ICON)/100),y:Math.floor(py*(H-ICON-BOTTOM)/100)};}
 
-// ── FOLDERS ──
 var FOLDERS=[
   {id:"about",name:"About",icon:"doc",type:"window",open:false,mob:mpos(0,0),dsk:dpos(3,4),winX:50,winY:30,winW:280,winH:210,
    content:'<div class="padded"><h1>Simone Falcomer</h1><h2>Photographer & Artist — Based in Barcelona</h2><p>Represented by Fang.Agency</p><p><a href="mailto:falcomersimone@gmail.com">falcomersimone@gmail.com</a></p></div>'},
   {id:"info",name:"More Info",icon:"pc",type:"infowin",mob:mpos(0,1),dsk:dpos(3,22)},
-  {id:"ecommerce",name:"E-commerce",icon:"folder",type:"link",url:"INSERISCI_URL_QUI",mob:mpos(0,2),dsk:dpos(63,68)},
-  {id:"work",name:"Work",icon:"folder",type:"link",url:"INSERISCI_URL_QUI",mob:mpos(0,3),dsk:dpos(14,75)},
-  {id:"personal",name:"Personal Project",icon:"folder",type:"link",url:"INSERISCI_URL_QUI",mob:mpos(1,0),dsk:dpos(48,45)},
-  {id:"marni",name:"Marni FW25",icon:"photo",photoUrl:"https://www.marni.com/dw/image/v2/AAPK_PRD/on/demandware.static/-/Library-Sites-marni-shared/default/dw13a0070c/FW25VOL.2/DETAILS__01__DSC1376.jpg?sw=3000",type:"iframe",url:"https://www.marni.com/en-us/marni-fw25-vol2.html",mob:mpos(1,1),dsk:dpos(34,8)},
-  {id:"ed1",name:"Vein Magazine",icon:"photo",photoUrl:"https://vein.es/wp-content/uploads/2026/02/momentum-simone-falcomer1.jpg",type:"iframe",url:"https://vein.es/momentum-by-simone-falcomer/",mob:mpos(1,2),dsk:dpos(78,60)},
-  {id:"ed7",name:"Vein Magazine",icon:"photo",photoUrl:"https://vein.es/wp-content/uploads/2025/12/Outsiders-division-kindergarden-riot-lookbook-veinmagazine49.jpg",type:"iframe",url:"https://vein.es/kindergarten-riot-outsiders-divisions-playful-rebellion-unveiled/outsiders-division-kindergarden-riot-lookbook-veinmagazine49/",mob:mpos(1,3),dsk:dpos(24,54)},
-  {id:"ed2",name:"Cake Magazine",icon:"photo",photoUrl:"https://api.cake-mag.com/wp-content/uploads/2025/09/CAKEDIGITALMac-17-1483x1080.jpg",type:"iframe",url:"https://www.cake-mag.com/in-the-next-town-over",mob:mpos(2,0),dsk:dpos(57,80)},
-  {id:"ed3",name:"Cake Magazine",icon:"photo",photoUrl:"https://api.cake-mag.com/wp-content/uploads/2025/10/CAKEDIGITALMac4-7-2048x1491.jpg",type:"iframe",url:"https://www.cake-mag.com/nobody-new",mob:mpos(2,1),dsk:dpos(44,28)},
-  {id:"ed4",name:"Neo2 Magazine",icon:"photo",photoUrl:"https://www.neo2.com/wp-content/uploads/2024/12/bares-moda-tradicionales-barcelona-2025-1.jpg",type:"iframe",url:"https://www.neo2.com/los-bares-de-moda-de-barcelona-son-los-mas-tradicionales/",mob:mpos(2,2),dsk:dpos(7,46)},
-  {id:"ed5",name:"Neo2 Magazine",icon:"photo",photoUrl:"https://www.neo2.com/wp-content/uploads/2025/05/editorial-moda-mentira-simone-falcomer-2.jpg",type:"iframe",url:"https://www.neo2.com/las-mentiras-de-la-moda-de-la-autoexpresion-al-autoengano/",mob:mpos(2,3),dsk:dpos(88,33)},
-  {id:"ed6",name:"Neo2 Magazine",icon:"photo",photoUrl:"https://www.neo2.com/wp-content/uploads/2024/12/supermercados-moda-shopping-6.jpg",type:"iframe",url:"https://www.neo2.com/supermercados-de-amor-moda-estilismo/",mob:mpos(3,0),dsk:dpos(32,70)},
-  {id:"vogue",name:"Vogue NL",icon:"vogue",photoUrl:"https://i.ibb.co/PvsXwLrF/IMG-8080.jpg",type:"window",open:false,showInTaskbar:false,mob:mpos(3,1),dsk:dpos(82,8),winX:30,winY:20,winW:250,winH:340,content:'<img src="https://i.ibb.co/PvsXwLrF/IMG-8080.jpg" style="width:100%;height:100%;object-fit:contain;display:block;background:#111;">'},
-  {id:"acceptance",name:"Image Director at Acceptance Letter",icon:"photo",photoUrl:"https://cdn.shopify.com/s/files/1/0939/0037/4344/files/Acceptance_Letter02_227e9984-ee0c-419b-8916-3d944a49afea.jpg?v=1768844577",type:"iframe",url:"https://www.acceptanceletterstudio.eu/",mob:mpos(3,2),dsk:dpos(52,14)},
+  {id:"ai",name:"Chat with Simone AI",icon:"ai",type:"aiwin",mob:mpos(0,2),dsk:dpos(3,42)},
+  {id:"ecommerce",name:"E-commerce",icon:"folder",type:"link",url:"INSERISCI_URL_QUI",mob:mpos(0,3),dsk:dpos(63,68)},
+  {id:"work",name:"Work",icon:"folder",type:"link",url:"INSERISCI_URL_QUI",mob:mpos(1,0),dsk:dpos(14,75)},
+  {id:"personal",name:"Personal Project",icon:"folder",type:"link",url:"INSERISCI_URL_QUI",mob:mpos(1,1),dsk:dpos(48,45)},
+  {id:"marni",name:"Marni FW25",icon:"photo",photoUrl:"https://www.marni.com/dw/image/v2/AAPK_PRD/on/demandware.static/-/Library-Sites-marni-shared/default/dw13a0070c/FW25VOL.2/DETAILS__01__DSC1376.jpg?sw=3000",type:"iframe",url:"https://www.marni.com/en-us/marni-fw25-vol2.html",mob:mpos(1,2),dsk:dpos(34,8)},
+  {id:"ed1",name:"Vein Magazine",icon:"photo",photoUrl:"https://vein.es/wp-content/uploads/2026/02/momentum-simone-falcomer1.jpg",type:"iframe",url:"https://vein.es/momentum-by-simone-falcomer/",mob:mpos(1,3),dsk:dpos(78,60)},
+  {id:"ed7",name:"Vein Magazine",icon:"photo",photoUrl:"https://vein.es/wp-content/uploads/2025/12/Outsiders-division-kindergarden-riot-lookbook-veinmagazine49.jpg",type:"iframe",url:"https://vein.es/kindergarten-riot-outsiders-divisions-playful-rebellion-unveiled/outsiders-division-kindergarden-riot-lookbook-veinmagazine49/",mob:mpos(2,0),dsk:dpos(24,54)},
+  {id:"ed2",name:"Cake Magazine",icon:"photo",photoUrl:"https://api.cake-mag.com/wp-content/uploads/2025/09/CAKEDIGITALMac-17-1483x1080.jpg",type:"iframe",url:"https://www.cake-mag.com/in-the-next-town-over",mob:mpos(2,1),dsk:dpos(57,80)},
+  {id:"ed3",name:"Cake Magazine",icon:"photo",photoUrl:"https://api.cake-mag.com/wp-content/uploads/2025/10/CAKEDIGITALMac4-7-2048x1491.jpg",type:"iframe",url:"https://www.cake-mag.com/nobody-new",mob:mpos(2,2),dsk:dpos(44,28)},
+  {id:"ed4",name:"Neo2 Magazine",icon:"photo",photoUrl:"https://www.neo2.com/wp-content/uploads/2024/12/bares-moda-tradicionales-barcelona-2025-1.jpg",type:"iframe",url:"https://www.neo2.com/los-bares-de-moda-de-barcelona-son-los-mas-tradicionales/",mob:mpos(2,3),dsk:dpos(7,46)},
+  {id:"ed5",name:"Neo2 Magazine",icon:"photo",photoUrl:"https://www.neo2.com/wp-content/uploads/2025/05/editorial-moda-mentira-simone-falcomer-2.jpg",type:"iframe",url:"https://www.neo2.com/las-mentiras-de-la-moda-de-la-autoexpresion-al-autoengano/",mob:mpos(3,0),dsk:dpos(88,33)},
+  {id:"ed6",name:"Neo2 Magazine",icon:"photo",photoUrl:"https://www.neo2.com/wp-content/uploads/2024/12/supermercados-moda-shopping-6.jpg",type:"iframe",url:"https://www.neo2.com/supermercados-de-amor-moda-estilismo/",mob:mpos(3,1),dsk:dpos(32,70)},
+  {id:"vogue",name:"Vogue NL",icon:"vogue",photoUrl:"https://i.ibb.co/PvsXwLrF/IMG-8080.jpg",type:"window",open:false,showInTaskbar:false,mob:mpos(3,2),dsk:dpos(82,8),winX:30,winY:20,winW:250,winH:340,content:'<img src="https://i.ibb.co/PvsXwLrF/IMG-8080.jpg" style="width:100%;height:100%;object-fit:contain;display:block;background:#111;">'},
+  {id:"acceptance",name:"Image Director at Acceptance Letter",icon:"photo",photoUrl:"https://cdn.shopify.com/s/files/1/0939/0037/4344/files/Acceptance_Letter02_227e9984-ee0c-419b-8916-3d944a49afea.jpg?v=1768844577",type:"iframe",url:"https://www.acceptanceletterstudio.eu/",mob:mpos(3,3),dsk:dpos(52,14)},
 ];
 
 function getPos(f){return isMobile?f.mob:f.dsk;}
 
-// ── ICONE WIN95 ──
+// Icons
+function makeAIIcon(){
+  var c=document.createElement('canvas');c.width=52;c.height=52;
+  var x=c.getContext('2d');
+  var g=x.createLinearGradient(0,0,52,52);
+  g.addColorStop(0,'#a855f7');g.addColorStop(0.5,'#7c3aed');g.addColorStop(1,'#4f46e5');
+  x.fillStyle=g;
+  x.beginPath();x.roundRect(0,0,52,52,10);x.fill();
+  // Robot face
+  x.fillStyle='#fff';
+  x.fillRect(10,14,32,24);
+  x.fillStyle=g;
+  x.beginPath();x.roundRect(10,14,32,24,4);x.fill();
+  x.fillStyle='rgba(255,255,255,0.9)';
+  // Eyes
+  x.beginPath();x.arc(19,24,4,0,Math.PI*2);x.fill();
+  x.beginPath();x.arc(33,24,4,0,Math.PI*2);x.fill();
+  // Pupils
+  x.fillStyle='#7c3aed';
+  x.beginPath();x.arc(19,24,2,0,Math.PI*2);x.fill();
+  x.beginPath();x.arc(33,24,2,0,Math.PI*2);x.fill();
+  // Mouth
+  x.strokeStyle='rgba(255,255,255,0.9)';x.lineWidth=2;x.lineCap='round';
+  x.beginPath();x.moveTo(16,32);x.lineTo(36,32);x.stroke();
+  // Antenna
+  x.beginPath();x.moveTo(26,14);x.lineTo(26,8);x.stroke();
+  x.fillStyle='rgba(255,255,255,0.9)';
+  x.beginPath();x.arc(26,7,3,0,Math.PI*2);x.fill();
+  var img=document.createElement('img');img.src=c.toDataURL();
+  img.style.cssText='width:52px;height:52px;display:block;margin:0 auto;';return img;
+}
 function makePCIcon(){
   var c=document.createElement('canvas');c.width=52;c.height=52;
   var x=c.getContext('2d');
@@ -345,6 +364,7 @@ function makeDocIcon(){
   img.style.cssText='width:36px;height:46px;display:block;margin:0 auto;image-rendering:pixelated;';return img;
 }
 function makeIcon(type,photoUrl){
+  if(type==='ai') return makeAIIcon();
   if(type==='pc') return makePCIcon();
   if(type==='vogue'){var i=document.createElement('img');i.src=photoUrl;i.className='w95-icon-img natural';return i;}
   if(type==='folder') return makeFolderIcon();
@@ -353,7 +373,7 @@ function makeIcon(type,photoUrl){
   return makeFolderIcon();
 }
 
-// ── WIN HELPER ──
+// Win helpers
 var iconLayer=document.getElementById('w95-icons');
 var winLayer=document.getElementById('w95-wins');
 var zTop=1000;
@@ -366,7 +386,7 @@ function showHourglass(){
   document.body.appendChild(h);setTimeout(function(){h.remove();},600);
 }
 
-function makeBaseWin(name,wW,wH,extraBtns){
+function makeBaseWin(name,wW,wH){
   var w=document.createElement('div');w.className='w95-win';
   wW=wW||(isMobile?Math.min(W-20,360):420);
   wH=wH||(isMobile?Math.min(H-80,500):460);
@@ -378,11 +398,10 @@ function makeBaseWin(name,wW,wH,extraBtns){
   btns.appendChild(wbtn('_',function(){w.classList.remove('open');}));
   btns.appendChild(wbtn('□',function(){
     if(w._max){w.style.left=w._pl;w.style.top=w._pt;w.style.width=w._pw;w.style.height=w._ph;w._max=false;}
-    else{w._pl=w.style.left;w._pt=w.style.top;w._pw=w.style.width;w._ph=w.style.height;w.style.cssText+='left:0;top:0;width:100vw;height:calc(100vh - 30px);';w._max=true;}
+    else{w._pl=w.style.left;w._pt=w.style.top;w._pw=w.style.width;w._ph=w.style.height;w.style.left='0';w.style.top='0';w.style.width='100vw';w.style.height='calc(100vh - 30px)';w._max=true;}
   }));
   btns.appendChild(wbtn('✕',function(){w.classList.remove('open');}));
-  bar.appendChild(btns);
-  w.appendChild(bar);
+  bar.appendChild(btns);w.appendChild(bar);
   w.addEventListener('mousedown',function(){bringToFront(w);});
   var bd=false,bx=0,by=0;
   bar.addEventListener('mousedown',function(e){if(e.target.closest('.w95-winbtns'))return;e.preventDefault();bd=true;bx=e.clientX-w.offsetLeft;by=e.clientY-w.offsetTop;bringToFront(w);});
@@ -412,20 +431,81 @@ function makeIframeWin(f){
   w._iframe=iframe;w._iframeUrl=f.url;return w;
 }
 
-// Info window (iframe di info.html)
+// Info Win
 var infoWin=null;
 function openInfoWin(){
   if(!infoWin){
-    infoWin=makeBaseWin('More Info', isMobile?Math.min(W-10,390):520, isMobile?Math.min(H-40,580):540);
+    infoWin=makeBaseWin('More Info',isMobile?Math.min(W-10,390):520,isMobile?Math.min(H-40,580):540);
     var body=document.createElement('div');body.className='w95-winbody';
     var iframe=document.createElement('iframe');iframe.src='https://falcomersimone-cell.github.io/sito/info.html';body.appendChild(iframe);
     infoWin.appendChild(body);
   }
   infoWin.classList.add('open');bringToFront(infoWin);
 }
-window.openMacInfo=openInfoWin;
+window.openInfoWin=openInfoWin;
 
-// Contact window
+// AI Win Win95
+function makeAIWin(){
+  var w=makeBaseWin('Chat with Simone AI',isMobile?Math.min(W-20,340):380,isMobile?Math.min(H-80,460):480);
+  var body=document.createElement('div');body.className='w95-winbody';
+  var inner=document.createElement('div');inner.className='ai-winbody';
+  var msgs=document.createElement('div');msgs.className='ai-messages';
+  var counter=document.createElement('div');counter.className='ai-counter';counter.textContent='5 questions remaining';
+  var inputRow=document.createElement('div');inputRow.className='ai-input-row';
+  var input=document.createElement('input');input.className='ai-input';input.type='text';input.placeholder='Ask me about Simone...';
+  var send=document.createElement('button');send.className='ai-send';send.textContent='Send';
+  inputRow.appendChild(input);inputRow.appendChild(send);
+  inner.appendChild(msgs);inner.appendChild(counter);inner.appendChild(inputRow);
+  body.appendChild(inner);w.appendChild(body);
+
+  var welcome=document.createElement('div');welcome.className='ai-msg bot';
+  welcome.textContent='Hi! I\'m Simone\'s AI — ask me anything about his work, projects, or background. You have 5 questions!';
+  msgs.appendChild(welcome);
+
+  var qLeft=5,history=[];
+
+  function sendMsg(){
+    if(qLeft<=0)return;
+    var text=input.value.trim();if(!text)return;
+    input.value='';
+    var um=document.createElement('div');um.className='ai-msg user';um.textContent=text;msgs.appendChild(um);
+    qLeft--;counter.textContent=qLeft+' question'+(qLeft===1?'':'s')+' remaining';
+    if(qLeft===0){input.disabled=true;send.disabled=true;}
+    var loading=document.createElement('div');loading.className='ai-msg bot loading';loading.textContent='Thinking...';msgs.appendChild(loading);
+    msgs.scrollTop=msgs.scrollHeight;
+    history.push({role:'user',content:text});
+    fetch(WORKER_URL,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({messages:history,system:AI_SYSTEM})
+    }).then(function(r){return r.json();})
+    .then(function(d){
+      loading.remove();
+      var reply=d.content&&d.content[0]?d.content[0].text:'Sorry, something went wrong. Try again!';
+      history.push({role:'assistant',content:reply});
+      var bm=document.createElement('div');bm.className='ai-msg bot';bm.textContent=reply;msgs.appendChild(bm);
+      msgs.scrollTop=msgs.scrollHeight;
+      if(qLeft===0){var end=document.createElement('div');end.className='ai-msg bot';end.style.fontStyle='italic';end.textContent='Session ended. Write directly to falcomersimone@gmail.com!';msgs.appendChild(end);}
+    }).catch(function(){
+      loading.remove();
+      qLeft++;counter.textContent=qLeft+' questions remaining';
+      if(qLeft>0){input.disabled=false;send.disabled=false;}
+      var err=document.createElement('div');err.className='ai-msg bot';err.textContent='Connection issue — please try again!';msgs.appendChild(err);
+    });
+  }
+  send.addEventListener('click',sendMsg);
+  input.addEventListener('keydown',function(e){if(e.key==='Enter')sendMsg();});
+  return w;
+}
+
+var aiWinEl=null;
+function openAIWin(){
+  if(!aiWinEl) aiWinEl=makeAIWin();
+  aiWinEl.classList.add('open');bringToFront(aiWinEl);
+}
+window.openAIWin=openAIWin;
+
+// Contact
 var contactWin=(function(){
   var w=makeBaseWin('Contact',270,195);
   var body=document.createElement('div');body.className='w95-winbody padded';
@@ -434,66 +514,7 @@ var contactWin=(function(){
 })();
 window.openMacContact=function(){contactWin.classList.add('open');bringToFront(contactWin);};
 
-// ── AI AGENT WIN95 ──
-var aiWin=(function(){
-  var w=makeBaseWin('Simone AI Agent',isMobile?Math.min(W-20,340):380,isMobile?Math.min(H-80,460):440);
-  w.id='ai-win';
-  var body=document.createElement('div');body.className='w95-winbody';body.style.display='flex';body.style.flexDirection='column';
-  var msgs=document.createElement('div');msgs.id='ai-messages';
-  var counter=document.createElement('div');counter.id='ai-counter';counter.textContent='5 questions remaining';
-  var inputRow=document.createElement('div');inputRow.id='ai-input-row';
-  var input=document.createElement('input');input.id='ai-input';input.type='text';input.placeholder='Ask me about Simone...';
-  var send=document.createElement('button');send.id='ai-send';send.textContent='Send';
-  inputRow.appendChild(input);inputRow.appendChild(send);
-  body.appendChild(msgs);body.appendChild(counter);body.appendChild(inputRow);
-  w.appendChild(body);
-
-  // Messaggio benvenuto
-  var welcome=document.createElement('div');welcome.className='ai-msg bot';
-  welcome.textContent='Hi! I\'m Simone\'s AI agent. Ask me anything about his work, background or projects. You have 5 questions.';
-  msgs.appendChild(welcome);
-
-  var questionsLeft=5;
-  var history=[];
-
-  function sendMsg(){
-    if(questionsLeft<=0)return;
-    var text=input.value.trim();if(!text)return;
-    input.value='';
-    var userMsg=document.createElement('div');userMsg.className='ai-msg user';userMsg.textContent=text;msgs.appendChild(userMsg);
-    questionsLeft--;counter.textContent=questionsLeft+' question'+(questionsLeft===1?'':'s')+' remaining';
-    if(questionsLeft===0){input.disabled=true;send.disabled=true;}
-    var loading=document.createElement('div');loading.className='ai-msg bot loading';loading.textContent='Thinking...';msgs.appendChild(loading);
-    msgs.scrollTop=msgs.scrollHeight;
-    history.push({role:'user',content:text});
-    fetch('https://api.anthropic.com/v1/messages',{
-      method:'POST',
-      headers:{'Content-Type':'application/json','x-api-key':ANTHROPIC_API_KEY,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
-      body:JSON.stringify({
-        model:'claude-sonnet-4-6',
-        max_tokens:200,
-        system:'You are the AI agent of Simone Falcomer, a photographer and Art Director based in Barcelona. Only answer questions about Simone — his work, biography, style, clients, publications. Keep answers under 120 words, warm and professional. Always end with "— Book Simone: falcomersimone@gmail.com". If asked anything unrelated to Simone, say: "I can only answer questions about Simone Falcomer and his work."',
-        messages:history
-      })
-    }).then(function(r){return r.json();})
-    .then(function(d){
-      loading.remove();
-      var reply=d.content&&d.content[0]?d.content[0].text:'Sorry, something went wrong.';
-      history.push({role:'assistant',content:reply});
-      var botMsg=document.createElement('div');botMsg.className='ai-msg bot';botMsg.textContent=reply;
-      msgs.appendChild(botMsg);msgs.scrollTop=msgs.scrollHeight;
-      if(questionsLeft===0){var end=document.createElement('div');end.className='ai-msg bot';end.style.fontStyle='italic';end.textContent='Session ended. Contact Simone directly at falcomersimone@gmail.com';msgs.appendChild(end);}
-    }).catch(function(){loading.remove();var err=document.createElement('div');err.className='ai-msg bot';err.textContent='Connection error. Try again.';msgs.appendChild(err);questionsLeft++;counter.textContent=questionsLeft+' questions remaining';if(questionsLeft>0){input.disabled=false;send.disabled=false;}});
-  }
-
-  send.addEventListener('click',sendMsg);
-  input.addEventListener('keydown',function(e){if(e.key==='Enter')sendMsg();});
-  return w;
-})();
-function openAIWin(){aiWin.classList.add('open');bringToFront(aiWin);}
-window.openMacAI=openAIWin;
-
-// ── MENU START ──
+// Menu Start
 document.getElementById('menu-info').addEventListener('click',function(){document.getElementById('w95-start-menu').classList.remove('open');openInfoWin();});
 document.getElementById('menu-ai').addEventListener('click',function(){document.getElementById('w95-start-menu').classList.remove('open');openAIWin();});
 document.getElementById('menu-spotify').addEventListener('click',function(){document.getElementById('w95-start-menu').classList.remove('open');window.open('https://open.spotify.com/playlist/6b1ZTAE5B0gDHnoaorifkN','_blank');});
@@ -501,13 +522,13 @@ document.getElementById('menu-contact').addEventListener('click',function(){docu
 document.getElementById('menu-settings').addEventListener('click',function(){document.getElementById('w95-start-menu').classList.remove('open');switchToMac();});
 document.getElementById('w95-start').addEventListener('click',function(e){e.stopPropagation();document.getElementById('w95-start-menu').classList.toggle('open');});
 
-// macOS apple menu
+// macOS Apple Menu
 document.getElementById('mac-apple-btn').addEventListener('click',function(e){e.stopPropagation();document.getElementById('mac-apple-menu').classList.toggle('open');});
 function closeMacApple(){document.getElementById('mac-apple-menu').classList.remove('open');}
 window.closeMacApple=closeMacApple;
 document.addEventListener('click',function(){closeMacApple();});
 
-// ── ICONE WIN95 ──
+// Desktop Icons Win95
 FOLDERS.forEach(function(f,i){
   var win=null;
   if(f.type==='window') win=makeWin(f);
@@ -522,6 +543,7 @@ FOLDERS.forEach(function(f,i){
     showHourglass();
     setTimeout(function(){
       if(f.type==='infowin'){openInfoWin();return;}
+      if(f.type==='aiwin'){openAIWin();return;}
       if(win){win.classList.add('open');bringToFront(win);if(win._iframe&&win._iframe.src==='about:blank')win._iframe.src=win._iframeUrl;}
       else if(f.url&&f.url.indexOf('INSERISCI')<0) window.location.href=f.url;
     },400);
@@ -543,30 +565,38 @@ document.addEventListener('click',function(e){
   if(!e.target.closest('#w95-start')&&!e.target.closest('#w95-start-menu'))document.getElementById('w95-start-menu').classList.remove('open');
 });
 
-// ── MACOS DOCK ──
+// macOS Dock
 function buildMacDock(){
   var dock=document.getElementById('mac-dock');
   var macWins=document.getElementById('mac-wins');
   dock.innerHTML='';macWins.innerHTML='';
 
-  // AI icon nel dock
-  var aiDock={id:'ai',name:'Simone AI',icon:'ai',type:'ai'};
-  var allDock=[aiDock].concat(FOLDERS);
-
-  allDock.forEach(function(f,i){
+  FOLDERS.forEach(function(f){
     var di=document.createElement('div');di.className='mac-dock-icon';
-    if(f.icon==='photo'&&f.photoUrl){var img=document.createElement('img');img.src=f.photoUrl;di.appendChild(img);}
-    else if(f.icon==='folder'){di.classList.add('folder-icon');di.innerHTML='<svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M10 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg>';}
-    else if(f.icon==='doc'){di.classList.add('doc-icon');di.innerHTML='<svg width="22" height="26" viewBox="0 0 22 26" fill="none"><rect x="1" y="0" width="21" height="26" rx="2" fill="#fff" stroke="#ddd"/><path d="M14 0l7 7h-7V0z" fill="#e0e0e0"/><rect x="3" y="10" width="14" height="1.5" rx="1" fill="#ccc"/><rect x="3" y="14" width="12" height="1.5" rx="1" fill="#ccc"/><rect x="3" y="18" width="10" height="1.5" rx="1" fill="#ccc"/></svg>';}
-    else if(f.icon==='pc'){di.classList.add('pc-icon');di.innerHTML='<svg width="26" height="26" viewBox="0 0 24 24" fill="white"><rect x="2" y="3" width="20" height="13" rx="2"/><path d="M8 21h8M12 16v5" stroke="white" stroke-width="1.5"/></svg>';}
-    else if(f.icon==='ai'){di.classList.add('ai-icon');di.innerHTML='<svg width="26" height="26" viewBox="0 0 24 24" fill="white"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>';}
-    else if(f.icon==='vogue'){var img=document.createElement('img');img.src=f.photoUrl;di.appendChild(img);}
 
-    var lbl=document.createElement('div');lbl.className='mac-dock-label';lbl.textContent=f.name||f.id;di.appendChild(lbl);
+    if(f.icon==='ai'){
+      di.classList.add('ai-icon');
+      di.innerHTML='<svg width="28" height="28" viewBox="0 0 24 24" fill="white"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>';
+    } else if(f.icon==='photo'&&f.photoUrl){
+      var img=document.createElement('img');img.src=f.photoUrl;img.style.cssText='width:100%;height:100%;object-fit:cover;border-radius:12px;';di.appendChild(img);
+    } else if(f.icon==='folder'){
+      di.classList.add('folder-icon');
+      di.innerHTML='<svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M10 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg>';
+    } else if(f.icon==='doc'){
+      di.classList.add('doc-icon');
+      di.innerHTML='<svg width="22" height="26" viewBox="0 0 22 26" fill="none"><rect x="1" y="0" width="21" height="26" rx="2" fill="#fff" stroke="#ddd"/><path d="M14 0l7 7h-7V0z" fill="#e0e0e0"/><rect x="3" y="10" width="14" height="1.5" rx="1" fill="#ccc"/><rect x="3" y="14" width="12" height="1.5" rx="1" fill="#ccc"/><rect x="3" y="18" width="10" height="1.5" rx="1" fill="#ccc"/></svg>';
+    } else if(f.icon==='pc'){
+      di.classList.add('pc-icon');
+      di.innerHTML='<svg width="26" height="26" viewBox="0 0 24 24" fill="white"><rect x="2" y="3" width="20" height="13" rx="2"/><path d="M8 21h8M12 16v5" stroke="white" stroke-width="1.5"/></svg>';
+    } else if(f.icon==='vogue'){
+      var img=document.createElement('img');img.src=f.photoUrl;img.style.cssText='width:100%;height:100%;object-fit:cover;border-radius:12px;';di.appendChild(img);
+    }
+
+    var lbl=document.createElement('div');lbl.className='mac-dock-label';lbl.textContent=f.name;di.appendChild(lbl);
 
     // Mac window
     var mwin=null;
-    if(f.type!=='link'&&f.type!=='ai'&&f.type!=='infowin'){
+    if(f.type==='window'||f.type==='iframe'){
       mwin=document.createElement('div');mwin.className='mac-win';
       var wW2=isMobile?Math.min(W-20,360):420,wH2=isMobile?Math.min(H-80,500):460;
       mwin.style.cssText='left:40px;top:36px;width:'+wW2+'px;height:'+wH2+'px;z-index:'+(++zTop)+';';
@@ -583,7 +613,11 @@ function buildMacDock(){
       var mtitle=document.createElement('div');mtitle.className='mac-wintitle';mtitle.textContent=f.name;mbar.appendChild(mtitle);
       var mbody=document.createElement('div');mbody.className='mac-winbody';
       if(f.content){mbody.classList.add('padded');mbody.innerHTML=f.content;}
-      else if(f.type==='iframe'){var mif=document.createElement('iframe');mif.src='about:blank';mbody.appendChild(mif);var mol=document.createElement('a');mol.href=f.url;mol.target='_blank';mol.className='mac-win-openlink';mol.textContent='↗ Open in original website';mwin.appendChild(mol);mwin._iframe=mif;mwin._iframeUrl=f.url;}
+      else if(f.type==='iframe'){
+        var mif=document.createElement('iframe');mif.src='about:blank';mbody.appendChild(mif);
+        var mol=document.createElement('a');mol.href=f.url;mol.target='_blank';mol.className='mac-win-openlink';mol.textContent='↗ Open in original website';mwin.appendChild(mol);
+        mwin._iframe=mif;mwin._iframeUrl=f.url;
+      }
       mwin.appendChild(mbar);mwin.appendChild(mbody);
       mwin.addEventListener('mousedown',function(){bringToFront(mwin);});
       var mbd=false,mbx=0,mby=0;
@@ -594,7 +628,7 @@ function buildMacDock(){
     }
 
     di.addEventListener('click',function(){
-      if(f.type==='ai'){openAIWin();return;}
+      if(f.type==='aiwin'){openAIWin();return;}
       if(f.type==='infowin'){openInfoWin();return;}
       if(f.type==='link'&&f.url&&f.url.indexOf('INSERISCI')<0){window.location.href=f.url;return;}
       if(mwin){mwin.classList.add('open');bringToFront(mwin);if(mwin._iframe&&mwin._iframe.src==='about:blank')mwin._iframe.src=mwin._iframeUrl;}
@@ -603,7 +637,7 @@ function buildMacDock(){
   });
 }
 
-// ── FRASI FANTASMA ──
+// Frasi fantasma
 var PHRASES=[
   {text:'FREE PALESTINE',top:'6%',left:'50%',delay:4000,interval:20000},
   {text:'DRAW THE TIME',top:'22%',left:'12%',delay:8000,interval:24000},
