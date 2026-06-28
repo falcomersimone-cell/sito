@@ -80,6 +80,12 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'IBM Plex Mono',mon
 #w95-hourglass-inner{font-size:28px;color:#fff;animation:hgspin 1s linear infinite;}
 @keyframes hgspin{0%,49%{transform:rotate(0deg);}50%,100%{transform:rotate(180deg);}}
 
+@media(min-width:769px){
+  .w95-icon{width:80px;}
+  .w95-icon-img.square{width:66px;height:66px;}
+  .w95-icon-img.natural{max-width:80px;max-height:100px;}
+  .w95-icon-label{font-size:10px;}
+}
 @media(max-width:768px){
   .w95-icon{width:56px;}
   .w95-icon-img.square{width:44px;height:44px;}
@@ -120,7 +126,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'IBM Plex Mono',mon
       <div id="w95-start-menu-items">
         <div class="w95-menu-item" id="menu-info">📄 More Info</div>
         <div class="w95-menu-item" id="menu-ai">🤖 Chat with Simone AI</div>
-        <div class="w95-menu-item" id="menu-spotify">🎵 My Spotify Playlist</div>
+        <div class="w95-menu-item" id="menu-spotify">🎵 My Spotify</div>
         <div class="w95-menu-sep"></div>
         <div class="w95-menu-item" id="menu-contact">✉️ Contact</div>
       </div>
@@ -165,7 +171,7 @@ function dpos(px,py){return{x:Math.floor(px*(W-ICON)/100),y:Math.floor(py*(H-ICO
 
 var FOLDERS=[
   {id:"about",name:"About",icon:"doc",type:"window",mob:mpos(0,0),dsk:dpos(3,4),
-   content:'<div class="padded"><h1 style="font-size:13px;font-weight:700;margin-bottom:4px;">Simone Falcomer</h1><h2 style="font-size:10px;color:#555;margin-bottom:14px;">Photographer & Artist — Based in Barcelona</h2><p style="font-size:11px;line-height:1.8;">Represented by Fang.Agency</p><a href="mailto:falcomersimone@gmail.com">falcomersimone@gmail.com</a></div>'},
+   content:'<div class="padded"><h1 style="font-size:13px;font-weight:700;margin-bottom:4px;">Simone Falcomer</h1><h2 style="font-size:10px;color:#555;margin-bottom:14px;">Photographer & Art Director — Based in Barcelona</h2><p style="font-size:11px;line-height:1.8;">Represented by Fang.Agency</p><a href="mailto:falcomersimone@gmail.com">falcomersimone@gmail.com</a></div>'},
   {id:"info",name:"More Info",icon:"pc",type:"newpage",url:"https://falcomersimone-cell.github.io/sito/info.html",mob:mpos(0,1),dsk:dpos(3,22)},
   {id:"ai",name:"Chat with Simone AI",icon:"ai",type:"aiwin",mob:mpos(0,2),dsk:dpos(3,42)},
   {id:"ecommerce",name:"E-commerce",icon:"folder",type:"link",url:"INSERISCI_URL_QUI",mob:mpos(0,3),dsk:dpos(63,68)},
@@ -367,7 +373,7 @@ document.getElementById('menu-info').addEventListener('click',function(){
   window.open('https://falcomersimone-cell.github.io/sito/info.html','_blank');
 });
 document.getElementById('menu-ai').addEventListener('click',function(){document.getElementById('w95-start-menu').classList.remove('open');openAIWin();});
-document.getElementById('menu-spotify').addEventListener('click',function(){document.getElementById('w95-start-menu').classList.remove('open');window.open('https://open.spotify.com/playlist/6b1ZTAE5B0gDHnoaorifkN','_blank');});
+document.getElementById('menu-spotify').addEventListener('click',function(){document.getElementById('w95-start-menu').classList.remove('open');window.open('https://open.spotify.com/user/a23m6kfwzqrv5g7pn0lirqqso?si=0e79dafc47304ea4','_blank');});
 document.getElementById('menu-contact').addEventListener('click',function(){document.getElementById('w95-start-menu').classList.remove('open');contactWin.classList.add('open');bringToFront(contactWin);});
 document.getElementById('w95-start').addEventListener('click',function(e){e.stopPropagation();document.getElementById('w95-start-menu').classList.toggle('open');});
 
