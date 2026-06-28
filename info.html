@@ -2,21 +2,24 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>Simone Falcomer — Info</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
 html,body{width:100%;background:#000;overflow-x:hidden;overflow-y:scroll;}
 
-#bg-canvas{
+#bg-fixed{
   position:fixed;inset:0;z-index:0;
-  width:100%;height:100%;display:block;
+  background-image:url('https://falcomersimone-cell.github.io/sito/Edito%20Sarah%20Beauty5893.jpg');
+  background-size:cover;background-position:center top;background-repeat:no-repeat;
+  transition:transform 0.5s ease,filter 0.5s ease;
 }
+#bg-overlay{position:fixed;inset:0;z-index:1;background:rgba(0,0,0,0.38);pointer-events:none;}
 
-#bg-overlay{
-  position:fixed;inset:0;z-index:1;
-  background:rgba(0,0,0,0.35);pointer-events:none;
+body.scrolling #bg-fixed{
+  filter:saturate(2.2) hue-rotate(30deg) brightness(1.15);
+  transform:scale(1.05) skewX(1.5deg);
 }
 
 #scroll-layer{position:relative;z-index:10;min-height:100vh;}
@@ -54,8 +57,8 @@ html,body{width:100%;background:#000;overflow-x:hidden;overflow-y:scroll;}
 </head>
 <body>
 
-<a id="back" href="https://falcomersimone-cell.github.io/sito/">← BACK</a>
-<canvas id="bg-canvas"></canvas>
+<a id="back" href="https://simonefalcomer.art">← BACK</a>
+<div id="bg-fixed"></div>
 <div id="bg-overlay"></div>
 
 <div id="scroll-layer">
@@ -67,7 +70,7 @@ html,body{width:100%;background:#000;overflow-x:hidden;overflow-y:scroll;}
     <div class="bio-block">He shoots on analogue film, working in 35mm and medium format. He uses photography as a tool, believing his fullest expression is still ahead of him.</div>
     <div class="bio-block">Through the lens, Simone chases time as it passes. He reflects on the relativity of time and on the inner and outer transformations of himself, of people, and of the world.</div>
     <div class="bio-block">His visual language draws from mid-20th century photography, neoclassical sculpture, Baroque painting and Italian Renaissance art.</div>
-    <div class="bio-block">Editorial work published in Vogue Nederland, Neo2, Kultblut Magazine, Vein Magazine and Cake Magazine. Commercial clients include Marni and Outsiders Division. Image Director at Acceptance Letter Studio.</div>
+    <div class="bio-block">Editorial work published in Vogue Nederland, Neo2, Kultblut Magazine, Vein Magazine and Cake Magazine. Commercial clients include Marni, Missoni and Outsiders Division. Image Director at Acceptance Letter Studio.</div>
     <div class="bio-block contact-block">
       For inquiries<br>
       <a href="mailto:falcomersimone@gmail.com">falcomersimone@gmail.com</a><br>
@@ -93,98 +96,17 @@ html,body{width:100%;background:#000;overflow-x:hidden;overflow-y:scroll;}
 </div>
 
 <script>
-(function(){
-  var canvas=document.getElementById('bg-canvas');
-  var ctx=canvas.getContext('2d');
-  var W,H;
-  var img=new Image();
-
-  img.src='https://falcomersimone-cell.github.io/sito/Edito%20Sarah%20Beauty5893.jpg';
-
-  var isScrolling=false;
-  var scrollTimeout;
-  var liquidAmount=0;
-
-  function resize(){
-    W=canvas.width=window.innerWidth;
-    H=canvas.height=window.innerHeight;
-  }
-  window.addEventListener('resize',resize);
-  resize();
-
-  document.addEventListener('scroll',function(){
-    isScrolling=true;
-    clearTimeout(scrollTimeout);
-    scrollTimeout=setTimeout(function(){isScrolling=false;},300);
-  },{passive:true});
-
-  document.addEventListener('touchmove',function(){
-    isScrolling=true;
-    clearTimeout(scrollTimeout);
-    scrollTimeout=setTimeout(function(){isScrolling=false;},300);
-  },{passive:true});
-
-  var offscreen=document.createElement('canvas');
-  var octx=offscreen.getContext('2d');
-  var imgLoaded=false;
-
-  function cacheImg(){
-    offscreen.width=W;offscreen.height=H;
-    var ratio=Math.max(W/img.naturalWidth,H/img.naturalHeight);
-    var iw=img.naturalWidth*ratio,ih=img.naturalHeight*ratio;
-    var ix=(W-iw)/2,iy=(H-ih)/2;
-    octx.drawImage(img,ix,iy,iw,ih);
-    imgLoaded=true;
-  }
-
-  function drawFrame(){
-    var target=isScrolling?1:0;
-    liquidAmount+=(target-liquidAmount)*0.07;
-    ctx.clearRect(0,0,W,H);
-    if(!imgLoaded){
-      ctx.fillStyle='#111';ctx.fillRect(0,0,W,H);
-      requestAnimationFrame(drawFrame);return;
-    }
-    if(liquidAmount<0.01){
-      ctx.drawImage(offscreen,0,0);
-      requestAnimationFrame(drawFrame);return;
-    }
-    var t=Date.now();
-    var sliceH=3;
-    for(var y=0;y<H;y+=sliceH){
-      var dx=Math.sin(y*0.018+t*0.002)*liquidAmount*35
-            +Math.cos(y*0.007+t*0.0015)*liquidAmount*15;
-      ctx.drawImage(offscreen,0,y,W,sliceH,dx,y,W,sliceH);
-    }
-    if(liquidAmount>0.2){
-      var hue=(t*0.04)%360;
-      ctx.save();
-      ctx.globalAlpha=liquidAmount*0.12;
-      ctx.fillStyle='hsl('+hue+',60%,50%)';
-      ctx.fillRect(0,0,W,H);
-      ctx.restore();
-    }
-    requestAnimationFrame(drawFrame);
-  }
-
-  img.onload=function(){
-    cacheImg();
-    drawFrame();
-  };
-
-  window.addEventListener('resize',function(){
-    if(imgLoaded) cacheImg();
-  });
-
-  // Fallback se immagine non carica
-  setTimeout(function(){
-    if(!imgLoaded){
-      ctx.fillStyle='#111';ctx.fillRect(0,0,W,H);
-      drawFrame();
-    }
-  },3000);
-
-})();
+var scrollTimeout;
+document.addEventListener('scroll',function(){
+  document.body.classList.add('scrolling');
+  clearTimeout(scrollTimeout);
+  scrollTimeout=setTimeout(function(){document.body.classList.remove('scrolling');},400);
+},{passive:true});
+document.addEventListener('touchmove',function(){
+  document.body.classList.add('scrolling');
+  clearTimeout(scrollTimeout);
+  scrollTimeout=setTimeout(function(){document.body.classList.remove('scrolling');},400);
+},{passive:true});
 </script>
 </body>
 </html>
