@@ -499,6 +499,11 @@ function openInfoWin(){
 }
 window.openInfoWin=openInfoWin;
 
+// Ascolta il messaggio "back" dalla pagina info dentro iframe
+window.addEventListener('message',function(e){
+  if(e.data==='closeInfoWin'&&infoWin){infoWin.classList.remove('open');}
+});
+
 function makeAIWin(){
   var w=makeBaseWin('Chat with Simone AI',isMobile?Math.min(W-20,340):380,isMobile?Math.min(H-80,460):480);
   var body=document.createElement('div');body.className='w95-winbody';
