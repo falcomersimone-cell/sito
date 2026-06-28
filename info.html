@@ -7,23 +7,25 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
-html,body{width:100%;background:#000;overflow-x:hidden;}
+html{height:100%;}
+body{width:100%;background:#000;overflow-x:hidden;overflow-y:scroll;}
 
 #bg-fixed{
   position:fixed;inset:0;z-index:0;
   background-image:url('https://i.ibb.co/JwBR3ttX/Edito-Sarah-Beauty5893.jpg');
   background-size:cover;background-position:center top;background-repeat:no-repeat;
-  transition:transform 0.5s ease,filter 0.5s ease;
-  will-change:transform,filter;
+  transition:transform 0.5s ease, filter 0.5s ease;
 }
-#bg-overlay{position:fixed;inset:0;z-index:1;background:rgba(0,0,0,0.38);pointer-events:none;}
-
-body.scrolling #bg-fixed{
-  filter:saturate(2.2) hue-rotate(30deg) brightness(1.15) contrast(1.1);
-  transform:scale(1.05) skewX(1.5deg) skewY(0.5deg);
+#bg-overlay{
+  position:fixed;inset:0;z-index:1;
+  background:rgba(0,0,0,0.38);pointer-events:none;
+}
+#bg-fixed.liquid{
+  filter:saturate(2.5) hue-rotate(30deg) brightness(1.2);
+  transform:scale(1.05) skewX(1.5deg);
 }
 
-#scroll-layer{position:relative;z-index:10;min-height:100vh;}
+#scroll-layer{position:relative;z-index:10;min-height:200vh;}
 #content{padding:8vw 6vw 20vw;}
 
 .bio-block{
@@ -32,33 +34,33 @@ body.scrolling #bg-fixed{
   line-height:1.05;letter-spacing:-0.02em;margin-bottom:7vw;
   text-shadow:0 2px 30px rgba(0,0,0,0.5);
 }
-.bio-block.contact-block{
-  font-size:clamp(20px,3.5vw,56px);margin-top:10vw;
-  border-top:2px solid rgba(255,255,255,0.3);padding-top:6vw;line-height:1.5;
+.contact-block{
+  font-size:clamp(20px,3.5vw,56px)!important;
+  margin-top:10vw;border-top:2px solid rgba(255,255,255,0.3);
+  padding-top:6vw;line-height:1.5;
 }
-.bio-block.contact-block a{color:#fff;text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.4);display:inline;}
+.contact-block a{color:#fff;text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.4);}
 
 #back{
-  position:fixed;top:16px;left:16px;z-index:100;
+  position:fixed;top:16px;left:16px;z-index:1000;
   font-family:'IBM Plex Mono',monospace;font-size:11px;
-  color:#fff;text-decoration:none;background:rgba(0,0,0,0.55);
-  padding:6px 14px;border:1px solid rgba(255,255,255,0.35);
+  color:#fff;background:rgba(0,0,0,0.6);
+  padding:8px 16px;border:1px solid rgba(255,255,255,0.4);
   letter-spacing:0.1em;cursor:pointer;
   backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
-  display:block;
+  text-decoration:none;display:inline-block;
 }
-#back:hover{background:rgba(0,0,0,0.85);}
+#back:hover{background:rgba(0,0,0,0.9);}
 
 #gallery-wrap{position:relative;z-index:10;background:#000;overflow:hidden;padding:3px 0;}
 #gallery-strip{display:flex;width:max-content;animation:stripscroll 30s linear infinite;}
-#gallery-strip:hover{animation-play-state:paused;}
 .gimg{height:38vmin;width:auto;object-fit:cover;opacity:0.78;margin-right:3px;flex-shrink:0;display:block;}
 @keyframes stripscroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
 </style>
 </head>
 <body>
 
-<a id="back" href="javascript:void(0)" onclick="goBack()">← BACK</a>
+<a id="back" href="javascript:window.history.back()">← BACK</a>
 <div id="bg-fixed"></div>
 <div id="bg-overlay"></div>
 
@@ -97,24 +99,16 @@ body.scrolling #bg-fixed{
 </div>
 
 <script>
-function goBack(){
-  if(document.referrer && document.referrer !== ''){
-    window.history.back();
-  } else {
-    window.location.href='https://falcomersimone-cell.github.io/sito/';
-  }
-}
-
+var bg = document.getElementById('bg-fixed');
 var scrollTimeout;
-function onScroll(){
-  document.body.classList.add('scrolling');
+
+document.addEventListener('scroll', function(){
+  bg.classList.add('liquid');
   clearTimeout(scrollTimeout);
-  scrollTimeout=setTimeout(function(){
-    document.body.classList.remove('scrolling');
-  },400);
-}
-window.addEventListener('scroll',onScroll,{passive:true});
-document.addEventListener('touchmove',onScroll,{passive:true});
+  scrollTimeout = setTimeout(function(){
+    bg.classList.remove('liquid');
+  }, 400);
+});
 </script>
 </body>
 </html>
