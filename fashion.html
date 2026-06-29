@@ -43,51 +43,51 @@ html,body{background:#fff;font-family:'IBM Plex Mono',monospace;}
 <script>
 var BASE='https://falcomersimone-cell.github.io/sito/fashion/';
 var PHOTOS=[
-  '_03A1146.jpg',
-  '_03A1350.jpeg',
-  '_03A1354.jpeg',
-  '_DSC1337%20copy.jpeg',
-  '_DSC1376.jpeg',
-  '_DSC1828.jpeg',
-  '_DSC1832%20copy.jpeg',
-  '1.jpeg',
-  '2%20copy.jpeg',
-  '4.jpeg',
-  '6.jpeg',
-  '8.jpeg',
-  '11.jpeg',
-  '15.jpeg',
   '000015.jpeg',
   '000018.jpeg',
-  '000022%202.jpeg',
+  '000022 2.jpeg',
   '000022.jpeg',
   '000033.jpeg',
   '000034.jpeg',
-  '3182%20-%202025.5.3%20-%20Simone%20Falcomer%20-%20Kodak%20Gold%20200%20-28.jpeg',
-  '4054%20-%202026.03.03%20-%20Simone%20Falcomer%20-%20Ilford%20HP5-25.jpeg',
-  '5688%20-%202025.06.11%20-%20Simone%20Falcomer%20-%20Kodak%20Gold%20200-22%20copy.jpeg',
-  '5689%20-%202025.06.11%20-%20Simone%20Falcomer%20-%20Kodak%20Gold%20200-24%20copy.jpeg',
-  '5689%20-%202025.06.11%20-%20Simone%20Falcomer%20-%20Kodak%20Gold%20200-27%20copy.jpeg',
-  '5689%20-%202025.06.11%20-%20Simone%20Falcomer%20-%20Kodak%20Gold%20200-31%20copy.jpeg',
-  '6153%20-%202025.06.19%20-%20Simone%20Falcomer%20-%20Kodak%20Gold%20200-28.jpeg',
-  '6154%20-%202025.06.19%20-%20Simone%20Falcomer%20-%20Kodak%20Gold%20200-20.jpeg',
-  '6155%20-%202025.06.19%20-%20Simone%20Falcomer%20-%20Kodak%20Gold%20200-2.jpeg',
-  '6155%20-%202025.06.19%20-%20Simone%20Falcomer%20-%20Kodak%20Gold%20200-28.jpg',
-  '7810%20-%202025.07.12%20-%20Simone%20Falcomer%20-%20Kodak%20Gold%20200%20-8%20copy.jpeg',
-  '090325%20simone0643%20copy.jpeg',
-  '090325%20simone1080%20copy.jpeg',
-  'Acceptance%20Letter11%202.jpeg',
-  'Acceptance%20Letter25.jpeg',
-  'chabe3226.jpeg',
-  'chabe3269%201.jpeg',
-  'Edito%20Sarah%20Beauty5226.jpeg',
-  'extra3.jpeg',
+  '090325 simone0643 copy.jpeg',
+  '090325 simone1080 copy.jpeg',
+  '1.jpeg',
+  '11.jpeg',
+  '15.jpeg',
+  '2 copy.jpeg',
+  '3182 - 2025.5.3 - Simone Falcomer - Kodak Gold 200 -28.jpeg',
+  '4.jpeg',
+  '4054 - 2026.03.03 - Simone Falcomer - Ilford HP5-25.jpeg',
+  '5688 - 2025.06.11 - Simone Falcomer - Kodak Gold 200-22 copy.jpeg',
+  '5689 - 2025.06.11 - Simone Falcomer - Kodak Gold 200-24 copy.jpeg',
+  '5689 - 2025.06.11 - Simone Falcomer - Kodak Gold 200-27 copy.jpeg',
+  '5689 - 2025.06.11 - Simone Falcomer - Kodak Gold 200-31 copy.jpeg',
+  '6.jpeg',
+  '6153 - 2025.06.19 - Simone Falcomer - Kodak Gold 200-28.jpeg',
+  '6154 - 2025.06.19 - Simone Falcomer - Kodak Gold 200-20.jpeg',
+  '6155 - 2025.06.19 - Simone Falcomer - Kodak Gold 200-2.jpeg',
+  '6155 - 2025.06.19 - Simone Falcomer - Kodak Gold 200-28.jpg',
+  '7810 - 2025.07.12 - Simone Falcomer - Kodak Gold 200 -8 copy.jpeg',
+  '8.jpeg',
+  'Acceptance Letter11 2.jpeg',
+  'Acceptance Letter25.jpeg',
+  'Edito Sarah Beauty5226.jpeg',
   'TEST202602204769.jpeg',
-  'yd%201.jpeg',
-  'yd%208.jpeg',
-  'yd%2012.jpeg',
-  'yd%2038.jpeg',
-  'yd%2054.jpeg',
+  '_03A1146.jpeg',
+  '_03A1350.jpeg',
+  '_03A1354.jpeg',
+  '_DSC1337 copy.jpeg',
+  '_DSC1376.jpeg',
+  '_DSC1828.jpeg',
+  '_DSC1832 copy.jpeg',
+  'chabe3226.jpeg',
+  'chabe3269 1.jpeg',
+  'extra3.jpeg',
+  'yd 1.jpeg',
+  'yd 12.jpeg',
+  'yd 38.jpeg',
+  'yd 54.jpeg',
+  'yd 8.jpeg',
 ];
 var gallery=document.getElementById('gallery');
 var lightbox=document.getElementById('lightbox');
@@ -96,22 +96,22 @@ var currentIndex=0;
 PHOTOS.forEach(function(name,i){
   var wrap=document.createElement('div');wrap.className='photo-wrap';
   var img=document.createElement('img');
-  img.src=BASE+name;
+  img.src=BASE+encodeURIComponent(name);
   img.loading='lazy';img.alt='';
   img.addEventListener('click',function(){openLightbox(i);});
   wrap.appendChild(img);gallery.appendChild(wrap);
 });
-function openLightbox(i){currentIndex=i;lbImg.src=BASE+PHOTOS[i];lightbox.classList.add('open');}
+function openLightbox(i){currentIndex=i;lbImg.src=BASE+encodeURIComponent(PHOTOS[i]);lightbox.classList.add('open');}
 function closeLightbox(){lightbox.classList.remove('open');}
 document.getElementById('lb-close').addEventListener('click',closeLightbox);
-document.getElementById('lb-prev').addEventListener('click',function(){currentIndex=(currentIndex-1+PHOTOS.length)%PHOTOS.length;lbImg.src=BASE+PHOTOS[currentIndex];});
-document.getElementById('lb-next').addEventListener('click',function(){currentIndex=(currentIndex+1)%PHOTOS.length;lbImg.src=BASE+PHOTOS[currentIndex];});
+document.getElementById('lb-prev').addEventListener('click',function(){currentIndex=(currentIndex-1+PHOTOS.length)%PHOTOS.length;lbImg.src=BASE+encodeURIComponent(PHOTOS[currentIndex]);});
+document.getElementById('lb-next').addEventListener('click',function(){currentIndex=(currentIndex+1)%PHOTOS.length;lbImg.src=BASE+encodeURIComponent(PHOTOS[currentIndex]);});
 lightbox.addEventListener('click',function(e){if(e.target===lightbox)closeLightbox();});
 document.addEventListener('keydown',function(e){
   if(!lightbox.classList.contains('open'))return;
   if(e.key==='Escape')closeLightbox();
-  if(e.key==='ArrowLeft'){currentIndex=(currentIndex-1+PHOTOS.length)%PHOTOS.length;lbImg.src=BASE+PHOTOS[currentIndex];}
-  if(e.key==='ArrowRight'){currentIndex=(currentIndex+1)%PHOTOS.length;lbImg.src=BASE+PHOTOS[currentIndex];}
+  if(e.key==='ArrowLeft'){currentIndex=(currentIndex-1+PHOTOS.length)%PHOTOS.length;lbImg.src=BASE+encodeURIComponent(PHOTOS[currentIndex]);}
+  if(e.key==='ArrowRight'){currentIndex=(currentIndex+1)%PHOTOS.length;lbImg.src=BASE+encodeURIComponent(PHOTOS[currentIndex]);}
 });
 </script>
 </body>
