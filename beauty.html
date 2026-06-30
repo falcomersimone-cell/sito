@@ -7,31 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-html,body{background:#000;font-family:'IBM Plex Mono',monospace;overflow:hidden;height:100%;overscroll-behavior:none;touch-action:none;}
-
-#intro{
-  position:fixed;inset:0;background:#000;z-index:2000;
-  display:flex;align-items:center;justify-content:center;overflow:hidden;
-}
-#intro-photo{
-  position:absolute;top:50%;left:50%;
-  width:140px;height:180px;
-  transform:translate(-50%,-50%) scale(1);
-  background-size:cover;background-position:center;
-  opacity:0;
-}
-#loading-bar-wrap{
-  position:absolute;bottom:18%;left:50%;
-  transform:translateX(-50%);
-  width:220px;text-align:center;z-index:10;
-}
-#loading-label{font-size:10px;letter-spacing:0.3em;color:#fff;margin-bottom:10px;opacity:0.8;}
-#loading-track{width:100%;height:1px;background:rgba(255,255,255,0.2);position:relative;}
-#loading-fill{height:1px;width:0%;background:#fff;position:absolute;left:0;top:0;}
-#loading-pct{font-size:10px;letter-spacing:0.2em;color:#fff;margin-top:10px;opacity:0.6;}
-
-#site{opacity:0;height:100%;}
-#site.visible{opacity:1;transition:opacity 0.5s ease;}
+html,body{background:#000;font-family:'IBM Plex Mono',monospace;overflow:hidden;height:100%;overscroll-behavior:none;}
 
 header{
   position:fixed;top:0;left:0;right:0;height:50px;
@@ -45,6 +21,7 @@ header span{color:#fff;font-size:11px;letter-spacing:0.15em;}
   position:fixed;
   top:50px;left:0;right:0;bottom:0;
   overflow:hidden;
+  touch-action:none;
 }
 .slide{
   position:absolute;
@@ -62,7 +39,6 @@ header span{color:#fff;font-size:11px;letter-spacing:0.15em;}
   max-width:92vw;
   max-height:92vh;
   object-fit:contain;
-  cursor:pointer;
 }
 
 .nav-zone{
@@ -71,22 +47,16 @@ header span{color:#fff;font-size:11px;letter-spacing:0.15em;}
 }
 #nav-prev{left:0;}
 #nav-next{right:0;}
-
-#lightbox{display:none;position:fixed;inset:0;background:#000;z-index:999;align-items:center;justify-content:center;}
-#lightbox.open{display:flex;}
-#lightbox img{max-width:96vw;max-height:96vh;object-fit:contain;}
-#lb-close{position:fixed;top:16px;right:20px;color:#fff;font-size:24px;cursor:pointer;z-index:1000;}
 </style>
 </head>
 <body>
 
-<div id="site" class="visible">
+<div id="site">
   <header>
     <a href="https://simonefalcomer.art">← BACK</a>
     <span>SIMONE FALCOMER</span>
     <span>BEAUTY</span>
   </header>
-
   <div id="slides"></div>
   <div class="nav-zone" id="nav-prev"></div>
   <div class="nav-zone" id="nav-next"></div>
@@ -115,16 +85,15 @@ var PHOTOS = [
   'Simone Falcomer Photography Beauty 17.jpeg'
 ];
 
-/* ===== SLIDESHOW: one photo at a time, fixed, no liquid effect ===== */
 var slidesContainer = document.getElementById('slides');
 var current = 0;
 
 PHOTOS.forEach(function(name, idx){
   var slide = document.createElement('div');
   slide.className = 'slide' + (idx === 0 ? ' active' : '');
-  slide.dataset.index = idx;
   var img = document.createElement('img');
   img.src = BASE + encodeURIComponent(name);
+  img.loading = 'lazy';
   slide.appendChild(img);
   slidesContainer.appendChild(slide);
 });
@@ -148,9 +117,9 @@ if(!isTouch){
   document.getElementById('nav-next').style.display = 'none';
 }
 
-/* Scroll wheel: shorter lock, lower threshold */
+/* Scroll wheel desktop */
 var scrollLock = false;
-document.getElementById('slides').addEventListener('wheel', function(e){
+slidesContainer.addEventListener('wheel', function(e){
   e.preventDefault();
   if(scrollLock) return;
   if(Math.abs(e.deltaY) < 8) return;
@@ -160,31 +129,32 @@ document.getElementById('slides').addEventListener('wheel', function(e){
   setTimeout(function(){ scrollLock = false; }, 280);
 }, {passive:false});
 
-/* Touch swipe */
+/* Touch swipe mobile — preventDefault on touchmove stops browser back-swipe */
 var touchStartY = 0;
 var touchStartX = 0;
-document.getElementById('slides').addEventListener('touchstart', function(e){
+slidesContainer.addEventListener('touchstart', function(e){
   touchStartY = e.touches[0].clientY;
   touchStartX = e.touches[0].clientX;
 }, {passive:true});
-document.getElementById('slides').addEventListener('touchmove', function(e){
+
+slidesContainer.addEventListener('touchmove', function(e){
   e.preventDefault();
 }, {passive:false});
-document.getElementById('slides').addEventListener('touchend', function(e){
+
+slidesContainer.addEventListener('touchend', function(e){
   var diffY = touchStartY - e.changedTouches[0].clientY;
   var diffX = touchStartX - e.changedTouches[0].clientX;
-  if(Math.abs(diffY) > Math.abs(diffX) && Math.abs(diffY) > 50){
+  if(Math.abs(diffY) > Math.abs(diffX) && Math.abs(diffY) > 40){
     if(diffY > 0) goTo(current + 1);
     else goTo(current - 1);
   }
 }, {passive:true});
 
-/* Keyboard arrows */
+/* Keyboard */
 document.addEventListener('keydown', function(e){
   if(e.key === 'ArrowDown' || e.key === 'ArrowRight') goTo(current + 1);
   if(e.key === 'ArrowUp' || e.key === 'ArrowLeft') goTo(current - 1);
 });
 </script>
-
 </body>
 </html>
