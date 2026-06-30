@@ -1,1 +1,160 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simone Falcomer — Beauty</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#000;font-family:'IBM Plex Mono',monospace;}
+
+header{
+  position:fixed;top:0;left:0;right:0;
+  height:50px;
+  background:#000;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 20px;
+  z-index:100;
+  border-bottom:1px solid #222;
+}
+header a{color:#fff;font-size:11px;text-decoration:none;letter-spacing:0.1em;}
+header span{color:#fff;font-size:11px;letter-spacing:0.15em;}
+
+.hero{
+  padding:130px 20px 50px;
+  text-align:center;
+}
+.hero h1{
+  font-family:'Playfair Display',serif;
+  font-weight:900;
+  font-size:60px;
+  color:#fff;
+  line-height:1;
+}
+
+.photo{
+  width:100%;
+  text-align:center;
+  padding:10px;
+}
+.photo img{
+  max-width:100%;
+  max-height:90vh;
+  display:inline-block;
+  cursor:pointer;
+}
+
+footer{
+  text-align:center;
+  padding:60px 20px;
+  border-top:1px solid #222;
+}
+footer p{color:#888;font-size:11px;letter-spacing:0.15em;margin-bottom:12px;}
+footer a{color:#fff;font-size:14px;text-decoration:none;border-bottom:1px solid #fff;}
+
+#lightbox{
+  display:none;
+  position:fixed;inset:0;
+  background:#000;
+  z-index:999;
+  align-items:center;justify-content:center;
+}
+#lightbox.open{display:flex;}
+#lightbox img{max-width:95vw;max-height:95vh;object-fit:contain;}
+.lb-btn{position:fixed;color:#fff;font-size:30px;cursor:pointer;z-index:1000;padding:15px;}
+#lb-close{top:10px;right:15px;font-size:24px;}
+#lb-prev{left:5px;top:50%;transform:translateY(-50%);}
+#lb-next{right:5px;top:50%;transform:translateY(-50%);}
+</style>
+</head>
+<body>
+
+<header>
+  <a href="https://simonefalcomer.art">← BACK</a>
+  <span>SIMONE FALCOMER</span>
+  <span>BEAUTY</span>
+</header>
+
+<div class="hero">
+  <h1>BEAUTY</h1>
+</div>
+
+<div id="gallery"></div>
+
+<footer>
+  <p>FOR INQUIRIES</p>
+  <a href="mailto:falcomersimone@gmail.com">falcomersimone@gmail.com</a>
+</footer>
+
+<div id="lightbox">
+  <div class="lb-btn" id="lb-close">✕</div>
+  <div class="lb-btn" id="lb-prev">‹</div>
+  <img id="lb-img" src="">
+  <div class="lb-btn" id="lb-next">›</div>
+</div>
+
+<script>
+var BASE = 'https://falcomersimone-cell.github.io/sito/beauty/';
+
+// Ordine specifico richiesto, con estensioni esatte verificate
+var PHOTOS = [
+  'Simone Falcomer Photography Beauty 1.jpg',
+  'Simone Falcomer Photography Beauty 2.jpg',
+  'Simone Falcomer Photography Beauty 3.jpg',
+  'Simone Falcomer Photography Beauty 4.jpg',
+  'Simone Falcomer Photography Beauty 5.JPG',
+  'Simone Falcomer Photography Beauty 6.jpg',
+  'Simone Falcomer Photography Beauty 7.jpg',
+  'Simone Falcomer Photography Beauty 8.jpg',
+  'Simone Falcomer Photography Beauty 9.jpg',
+  'Simone Falcomer Photography Beauty 10.jpg',
+  'Simone Falcomer Photography Beauty11.jpg',
+  'Simone Falcomer Photography Beauty 12.jpg',
+  'Simone Falcomer Photography Beauty 13.jpg',
+  'Simone Falcomer Photography Beauty 14.jpg',
+  'Simone Falcomer Photography Beauty 15.jpg',
+  'Simone Falcomer Photography Beauty 16.jpg',
+  'Simone Falcomer Photography Beauty 17.jpg'
+];
+
+var gallery = document.getElementById('gallery');
+var lightbox = document.getElementById('lightbox');
+var lbImg = document.getElementById('lb-img');
+var current = 0;
+
+for (var j = 0; j < PHOTOS.length; j++) {
+  (function(index) {
+    var div = document.createElement('div');
+    div.className = 'photo';
+    var img = document.createElement('img');
+    img.src = BASE + encodeURIComponent(PHOTOS[index]);
+    img.onclick = function() {
+      current = index;
+      lbImg.src = img.src;
+      lightbox.classList.add('open');
+    };
+    div.appendChild(img);
+    gallery.appendChild(div);
+  })(j);
+}
+
+document.getElementById('lb-close').onclick = function() {
+  lightbox.classList.remove('open');
+};
+document.getElementById('lb-prev').onclick = function() {
+  current = (current - 1 + PHOTOS.length) % PHOTOS.length;
+  lbImg.src = BASE + encodeURIComponent(PHOTOS[current]);
+};
+document.getElementById('lb-next').onclick = function() {
+  current = (current + 1) % PHOTOS.length;
+  lbImg.src = BASE + encodeURIComponent(PHOTOS[current]);
+};
+lightbox.onclick = function(e) {
+  if (e.target === lightbox) lightbox.classList.remove('open');
+};
+</script>
+
+</body>
+</html>
