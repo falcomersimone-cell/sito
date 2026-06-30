@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-html,body{background:#000;font-family:'IBM Plex Mono',monospace;overflow-x:hidden;}
+html,body{background:#000;font-family:'IBM Plex Mono',monospace;overflow:hidden;height:100%;}
 
 #intro{
   position:fixed;inset:0;background:#000;z-index:2000;
@@ -30,7 +30,7 @@ html,body{background:#000;font-family:'IBM Plex Mono',monospace;overflow-x:hidde
 #loading-fill{height:1px;width:0%;background:#fff;position:absolute;left:0;top:0;}
 #loading-pct{font-size:10px;letter-spacing:0.2em;color:#fff;margin-top:10px;opacity:0.6;}
 
-#site{opacity:0;}
+#site{opacity:0;height:100%;}
 #site.visible{opacity:1;transition:opacity 0.5s ease;}
 
 header{
@@ -41,31 +41,47 @@ header{
 header a{color:#fff;font-size:11px;text-decoration:none;letter-spacing:0.1em;}
 header span{color:#fff;font-size:11px;letter-spacing:0.15em;}
 
-.hero{padding:130px 20px 50px;text-align:center;}
-.hero h1{font-family:'Playfair Display',serif;font-weight:900;font-size:60px;color:#fff;line-height:1;}
+#counter{
+  position:fixed;bottom:20px;left:50%;transform:translateX(-50%);
+  font-size:11px;color:rgba(255,255,255,0.5);letter-spacing:0.2em;
+  z-index:100;
+}
 
-.photo-wrap{
-  width:100%;text-align:center;padding:10px;
+#slides{
+  position:fixed;
+  top:50px;left:0;right:0;bottom:0;
   overflow:hidden;
 }
-.photo-wrap img{
-  max-width:100%;max-height:90vh;
-  display:inline-block;cursor:pointer;
-  transition:transform 0.15s ease-out, filter 0.15s ease-out;
-  will-change:transform;
+.slide{
+  position:absolute;
+  top:0;left:0;width:100%;height:100%;
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;
+  transition:opacity 0.5s ease;
+  pointer-events:none;
+}
+.slide.active{
+  opacity:1;
+  pointer-events:auto;
+}
+.slide img{
+  max-width:92vw;
+  max-height:92vh;
+  object-fit:contain;
+  cursor:pointer;
 }
 
-footer{text-align:center;padding:60px 20px;border-top:1px solid #222;}
-footer p{color:#888;font-size:11px;letter-spacing:0.15em;margin-bottom:12px;}
-footer a{color:#fff;font-size:14px;text-decoration:none;border-bottom:1px solid #fff;}
+.nav-zone{
+  position:fixed;top:50px;bottom:0;width:35%;
+  z-index:50;cursor:pointer;
+}
+#nav-prev{left:0;}
+#nav-next{right:0;}
 
 #lightbox{display:none;position:fixed;inset:0;background:#000;z-index:999;align-items:center;justify-content:center;}
 #lightbox.open{display:flex;}
-#lightbox img{max-width:95vw;max-height:95vh;object-fit:contain;}
-.lb-btn{position:fixed;color:#fff;font-size:30px;cursor:pointer;z-index:1000;padding:15px;}
-#lb-close{top:10px;right:15px;font-size:24px;}
-#lb-prev{left:5px;top:50%;transform:translateY(-50%);}
-#lb-next{right:5px;top:50%;transform:translateY(-50%);}
+#lightbox img{max-width:96vw;max-height:96vh;object-fit:contain;}
+#lb-close{position:fixed;top:16px;right:20px;color:#fff;font-size:24px;cursor:pointer;z-index:1000;}
 </style>
 </head>
 <body>
@@ -85,19 +101,16 @@ footer a{color:#fff;font-size:14px;text-decoration:none;border-bottom:1px solid 
     <span>SIMONE FALCOMER</span>
     <span>BEAUTY</span>
   </header>
-  <div class="hero"><h1>BEAUTY</h1></div>
-  <div id="gallery"></div>
-  <footer>
-    <p>FOR INQUIRIES</p>
-    <a href="mailto:falcomersimone@gmail.com">falcomersimone@gmail.com</a>
-  </footer>
+
+  <div id="slides"></div>
+  <div class="nav-zone" id="nav-prev"></div>
+  <div class="nav-zone" id="nav-next"></div>
+  <div id="counter">01 / 17</div>
 </div>
 
 <div id="lightbox">
-  <div class="lb-btn" id="lb-close">✕</div>
-  <div class="lb-btn" id="lb-prev">‹</div>
+  <div id="lb-close">✕</div>
   <img id="lb-img" src="">
-  <div class="lb-btn" id="lb-next">›</div>
 </div>
 
 <script>
@@ -125,7 +138,7 @@ var PHOTOS = [
 
 var INTRO_PHOTO = 'Simone Falcomer Photography Beauty 8.jpeg';
 
-/* ===== INTRO: faster, less zoom ===== */
+/* ===== INTRO ===== */
 var fill = document.getElementById('loading-fill');
 var pct = document.getElementById('loading-pct');
 var introPhoto = document.getElementById('intro-photo');
@@ -133,8 +146,6 @@ var introEl = document.getElementById('intro');
 var siteEl = document.getElementById('site');
 
 var progress = 0;
-var zoomStarted = false;
-
 function tickLoading(){
   if(progress < 100){
     progress += Math.random() * 14 + 8;
@@ -146,98 +157,103 @@ function tickLoading(){
     finishIntro();
   }
 }
-
 function finishIntro(){
   document.getElementById('loading-bar-wrap').style.transition = 'opacity 0.25s';
   document.getElementById('loading-bar-wrap').style.opacity = '0';
-
   setTimeout(function(){
     introEl.style.transition = 'opacity 0.4s ease';
     introEl.style.opacity = '0';
     siteEl.classList.add('visible');
   }, 250);
-
-  setTimeout(function(){
-    introEl.style.display = 'none';
-  }, 700);
+  setTimeout(function(){ introEl.style.display = 'none'; }, 700);
 }
-
 function startZoomImmediately(){
   introPhoto.style.backgroundImage = 'url(' + BASE + encodeURIComponent(INTRO_PHOTO) + ')';
   introPhoto.style.transition = 'opacity 0.3s ease';
   introPhoto.style.opacity = '1';
-
   setTimeout(function(){
     introPhoto.style.transition = 'transform 0.9s cubic-bezier(0.6,0,0.2,1)';
     introPhoto.style.transform = 'translate(-50%,-50%) scale(7)';
   }, 50);
 }
-
 startZoomImmediately();
 setTimeout(tickLoading, 100);
 
-/* ===== GALLERY: plain img tags, liquid via CSS transform on hover/scroll ===== */
-var gallery = document.getElementById('gallery');
-var lightbox = document.getElementById('lightbox');
-var lbImg = document.getElementById('lb-img');
+/* ===== SLIDESHOW: one photo at a time, fixed, no liquid effect ===== */
+var slidesContainer = document.getElementById('slides');
+var counter = document.getElementById('counter');
 var current = 0;
-var imgEls = [];
 
 PHOTOS.forEach(function(name, idx){
-  var wrap = document.createElement('div');
-  wrap.className = 'photo-wrap';
+  var slide = document.createElement('div');
+  slide.className = 'slide' + (idx === 0 ? ' active' : '');
+  slide.dataset.index = idx;
   var img = document.createElement('img');
   img.src = BASE + encodeURIComponent(name);
-  img.loading = 'lazy';
   img.addEventListener('click', function(){
-    current = idx;
-    lbImg.src = img.src;
-    lightbox.classList.add('open');
+    document.getElementById('lb-img').src = img.src;
+    document.getElementById('lightbox').classList.add('open');
   });
-  wrap.appendChild(img);
-  gallery.appendChild(wrap);
-  imgEls.push(img);
-
-  // Liquid hover: subtle skew + scale, no color shift
-  wrap.addEventListener('mousemove', function(e){
-    var rect = wrap.getBoundingClientRect();
-    var relX = (e.clientX - rect.left) / rect.width - 0.5;
-    var relY = (e.clientY - rect.top) / rect.height - 0.5;
-    img.style.transform = 'scale(1.03) skewX(' + (relX*3) + 'deg) skewY(' + (relY*1.5) + 'deg)';
-  });
-  wrap.addEventListener('mouseleave', function(){
-    img.style.transform = 'scale(1) skewX(0deg) skewY(0deg)';
-  });
+  slide.appendChild(img);
+  slidesContainer.appendChild(slide);
 });
 
-/* Liquid on scroll: subtle skew based on scroll velocity */
-var lastY = window.scrollY;
-var velocity = 0;
-window.addEventListener('scroll', function(){
-  var y = window.scrollY;
-  velocity = y - lastY;
-  lastY = y;
-  var amt = Math.max(-3, Math.min(3, velocity * 0.15));
-  imgEls.forEach(function(img){
-    img.style.transform = 'skewY(' + amt + 'deg)';
-  });
-  clearTimeout(window._scrollResetTimer);
-  window._scrollResetTimer = setTimeout(function(){
-    imgEls.forEach(function(img){ img.style.transform = 'skewY(0deg)'; });
-  }, 150);
+var slideEls = document.querySelectorAll('.slide');
+
+function updateCounter(){
+  counter.textContent = String(current + 1).padStart(2,'0') + ' / ' + String(PHOTOS.length).padStart(2,'0');
+}
+updateCounter();
+
+function goTo(idx){
+  idx = (idx + PHOTOS.length) % PHOTOS.length;
+  slideEls[current].classList.remove('active');
+  current = idx;
+  slideEls[current].classList.add('active');
+  updateCounter();
+}
+
+document.getElementById('nav-prev').addEventListener('click', function(){ goTo(current - 1); });
+document.getElementById('nav-next').addEventListener('click', function(){ goTo(current + 1); });
+
+/* Scroll wheel navigates one photo at a time */
+var scrollLock = false;
+document.getElementById('slides').addEventListener('wheel', function(e){
+  e.preventDefault();
+  if(scrollLock) return;
+  scrollLock = true;
+  if(e.deltaY > 0) goTo(current + 1);
+  else if(e.deltaY < 0) goTo(current - 1);
+  setTimeout(function(){ scrollLock = false; }, 450);
+}, {passive:false});
+
+/* Touch swipe */
+var touchStartY = 0;
+document.getElementById('slides').addEventListener('touchstart', function(e){
+  touchStartY = e.touches[0].clientY;
+}, {passive:true});
+document.getElementById('slides').addEventListener('touchend', function(e){
+  var diff = touchStartY - e.changedTouches[0].clientY;
+  if(Math.abs(diff) > 50){
+    if(diff > 0) goTo(current + 1);
+    else goTo(current - 1);
+  }
 }, {passive:true});
 
-/* ===== LIGHTBOX ===== */
-document.getElementById('lb-close').onclick = function(){ lightbox.classList.remove('open'); };
-document.getElementById('lb-prev').onclick = function(){
-  current = (current - 1 + PHOTOS.length) % PHOTOS.length;
-  lbImg.src = BASE + encodeURIComponent(PHOTOS[current]);
+/* Keyboard arrows */
+document.addEventListener('keydown', function(e){
+  if(document.getElementById('lightbox').classList.contains('open')) return;
+  if(e.key === 'ArrowDown' || e.key === 'ArrowRight') goTo(current + 1);
+  if(e.key === 'ArrowUp' || e.key === 'ArrowLeft') goTo(current - 1);
+});
+
+/* Lightbox close */
+document.getElementById('lb-close').onclick = function(){
+  document.getElementById('lightbox').classList.remove('open');
 };
-document.getElementById('lb-next').onclick = function(){
-  current = (current + 1) % PHOTOS.length;
-  lbImg.src = BASE + encodeURIComponent(PHOTOS[current]);
+document.getElementById('lightbox').onclick = function(e){
+  if(e.target.id === 'lightbox') this.classList.remove('open');
 };
-lightbox.onclick = function(e){ if(e.target === lightbox) lightbox.classList.remove('open'); };
 </script>
 
 </body>
