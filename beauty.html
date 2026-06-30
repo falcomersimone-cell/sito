@@ -9,90 +9,50 @@
 *{margin:0;padding:0;box-sizing:border-box;}
 html,body{background:#000;font-family:'IBM Plex Mono',monospace;overflow-x:hidden;}
 
-/* ===== INTRO LOADER ===== */
 #intro{
-  position:fixed;inset:0;
-  background:#000;
-  z-index:2000;
-  display:flex;
-  align-items:center;justify-content:center;
-  overflow:hidden;
+  position:fixed;inset:0;background:#000;z-index:2000;
+  display:flex;align-items:center;justify-content:center;overflow:hidden;
 }
 #intro-photo{
-  position:absolute;
-  top:50%;left:50%;
-  width:120px;height:160px;
+  position:absolute;top:50%;left:50%;
+  width:140px;height:180px;
   transform:translate(-50%,-50%) scale(1);
-  background-size:cover;
-  background-position:center;
+  background-size:cover;background-position:center;
   opacity:0;
-  filter:grayscale(0.3);
-  transition:none;
 }
 #loading-bar-wrap{
-  position:absolute;
-  bottom:18%;left:50%;
+  position:absolute;bottom:18%;left:50%;
   transform:translateX(-50%);
-  width:220px;
-  text-align:center;
-  z-index:10;
+  width:220px;text-align:center;z-index:10;
 }
-#loading-label{
-  font-size:10px;letter-spacing:0.3em;color:#fff;
-  margin-bottom:10px;
-  opacity:0.8;
-}
-#loading-track{
-  width:100%;height:1px;
-  background:rgba(255,255,255,0.2);
-  position:relative;
-}
-#loading-fill{
-  height:1px;width:0%;
-  background:#fff;
-  position:absolute;left:0;top:0;
-}
-#loading-pct{
-  font-size:10px;letter-spacing:0.2em;color:#fff;
-  margin-top:10px;
-  opacity:0.6;
-}
+#loading-label{font-size:10px;letter-spacing:0.3em;color:#fff;margin-bottom:10px;opacity:0.8;}
+#loading-track{width:100%;height:1px;background:rgba(255,255,255,0.2);position:relative;}
+#loading-fill{height:1px;width:0%;background:#fff;position:absolute;left:0;top:0;}
+#loading-pct{font-size:10px;letter-spacing:0.2em;color:#fff;margin-top:10px;opacity:0.6;}
 
-/* ===== MAIN SITE ===== */
 #site{opacity:0;}
-#site.visible{opacity:1;transition:opacity 0.6s ease;}
+#site.visible{opacity:1;transition:opacity 0.5s ease;}
 
 header{
-  position:fixed;top:0;left:0;right:0;
-  height:50px;
-  background:#000;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 20px;
-  z-index:100;
-  border-bottom:1px solid #222;
+  position:fixed;top:0;left:0;right:0;height:50px;
+  background:#000;display:flex;align-items:center;justify-content:space-between;
+  padding:0 20px;z-index:100;border-bottom:1px solid #222;
 }
 header a{color:#fff;font-size:11px;text-decoration:none;letter-spacing:0.1em;}
 header span{color:#fff;font-size:11px;letter-spacing:0.15em;}
 
 .hero{padding:130px 20px 50px;text-align:center;}
-.hero h1{
-  font-family:'Playfair Display',serif;font-weight:900;
-  font-size:60px;color:#fff;line-height:1;
-}
-
-#gallery{position:relative;}
+.hero h1{font-family:'Playfair Display',serif;font-weight:900;font-size:60px;color:#fff;line-height:1;}
 
 .photo-wrap{
-  width:100%;
-  text-align:center;
-  padding:10px;
-  position:relative;
+  width:100%;text-align:center;padding:10px;
+  overflow:hidden;
 }
-.photo-canvas{
-  max-width:100%;
-  max-height:90vh;
-  display:inline-block;
-  cursor:pointer;
+.photo-wrap img{
+  max-width:100%;max-height:90vh;
+  display:inline-block;cursor:pointer;
+  transition:transform 0.15s ease-out, filter 0.15s ease-out;
+  will-change:transform;
 }
 
 footer{text-align:center;padding:60px 20px;border-top:1px solid #222;}
@@ -125,11 +85,8 @@ footer a{color:#fff;font-size:14px;text-decoration:none;border-bottom:1px solid 
     <span>SIMONE FALCOMER</span>
     <span>BEAUTY</span>
   </header>
-
   <div class="hero"><h1>BEAUTY</h1></div>
-
   <div id="gallery"></div>
-
   <footer>
     <p>FOR INQUIRIES</p>
     <a href="mailto:falcomersimone@gmail.com">falcomersimone@gmail.com</a>
@@ -168,10 +125,7 @@ var PHOTOS = [
 
 var INTRO_PHOTO = 'Simone Falcomer Photography Beauty 8.jpeg';
 
-/* ===== INTRO ANIMATION ===== */
-var introImg = new Image();
-introImg.src = BASE + encodeURIComponent(INTRO_PHOTO);
-
+/* ===== INTRO: faster, less zoom ===== */
 var fill = document.getElementById('loading-fill');
 var pct = document.getElementById('loading-pct');
 var introPhoto = document.getElementById('intro-photo');
@@ -179,152 +133,99 @@ var introEl = document.getElementById('intro');
 var siteEl = document.getElementById('site');
 
 var progress = 0;
-var loadingDone = false;
+var zoomStarted = false;
 
 function tickLoading(){
   if(progress < 100){
-    progress += Math.random() * 6 + 2;
+    progress += Math.random() * 14 + 8;
     if(progress > 100) progress = 100;
     fill.style.width = progress + '%';
     pct.textContent = Math.floor(progress) + '%';
-    setTimeout(tickLoading, 90);
+    setTimeout(tickLoading, 40);
   } else {
-    loadingDone = true;
-    startZoom();
+    finishIntro();
   }
 }
 
-function startZoom(){
-  introPhoto.style.backgroundImage = 'url(' + introImg.src + ')';
-  document.getElementById('loading-bar-wrap').style.transition = 'opacity 0.4s';
+function finishIntro(){
+  document.getElementById('loading-bar-wrap').style.transition = 'opacity 0.25s';
   document.getElementById('loading-bar-wrap').style.opacity = '0';
 
-  introPhoto.style.transition = 'opacity 0.5s ease';
-  introPhoto.style.opacity = '1';
-
   setTimeout(function(){
-    introPhoto.style.transition = 'transform 1.4s cubic-bezier(0.7,0,0.3,1), filter 1.4s ease';
-    introPhoto.style.transform = 'translate(-50%,-50%) scale(14)';
-    introPhoto.style.filter = 'grayscale(0)';
-  }, 150);
-
-  setTimeout(function(){
-    introEl.style.transition = 'opacity 0.6s ease';
+    introEl.style.transition = 'opacity 0.4s ease';
     introEl.style.opacity = '0';
     siteEl.classList.add('visible');
-  }, 1500);
+  }, 250);
 
   setTimeout(function(){
     introEl.style.display = 'none';
-  }, 2100);
+  }, 700);
 }
 
-setTimeout(tickLoading, 200);
+function startZoomImmediately(){
+  introPhoto.style.backgroundImage = 'url(' + BASE + encodeURIComponent(INTRO_PHOTO) + ')';
+  introPhoto.style.transition = 'opacity 0.3s ease';
+  introPhoto.style.opacity = '1';
 
-/* ===== GALLERY WITH LIQUID EFFECT (canvas based, no color shift) ===== */
+  setTimeout(function(){
+    introPhoto.style.transition = 'transform 0.9s cubic-bezier(0.6,0,0.2,1)';
+    introPhoto.style.transform = 'translate(-50%,-50%) scale(7)';
+  }, 50);
+}
+
+startZoomImmediately();
+setTimeout(tickLoading, 100);
+
+/* ===== GALLERY: plain img tags, liquid via CSS transform on hover/scroll ===== */
 var gallery = document.getElementById('gallery');
 var lightbox = document.getElementById('lightbox');
 var lbImg = document.getElementById('lb-img');
 var current = 0;
-var canvases = [];
-
-function makeLiquidCanvas(src, idx){
-  var wrap = document.createElement('div');
-  wrap.className = 'photo-wrap';
-
-  var canvas = document.createElement('canvas');
-  canvas.className = 'photo-canvas';
-  wrap.appendChild(canvas);
-  gallery.appendChild(wrap);
-
-  var img = new Image();
-  img.crossOrigin = 'anonymous';
-  img.src = src;
-
-  var state = {
-    canvas: canvas,
-    ctx: canvas.getContext('2d'),
-    img: img,
-    loaded: false,
-    hoverAmount: 0,
-    targetHover: 0,
-    naturalW: 0,
-    naturalH: 0
-  };
-
-  img.onload = function(){
-    state.naturalW = img.naturalWidth;
-    state.naturalH = img.naturalHeight;
-    var maxW = Math.min(window.innerWidth - 20, 900);
-    var maxH = window.innerHeight * 0.9;
-    var ratio = Math.min(maxW / state.naturalW, maxH / state.naturalH, 1);
-    canvas.width = state.naturalW * ratio;
-    canvas.height = state.naturalH * ratio;
-    state.loaded = true;
-  };
-
-  canvas.addEventListener('mouseenter', function(){ state.targetHover = 1; });
-  canvas.addEventListener('mouseleave', function(){ state.targetHover = 0; });
-  canvas.addEventListener('click', function(){
-    current = idx;
-    lbImg.src = src;
-    lightbox.classList.add('open');
-  });
-
-  canvases.push(state);
-  return state;
-}
+var imgEls = [];
 
 PHOTOS.forEach(function(name, idx){
-  makeLiquidCanvas(BASE + encodeURIComponent(name), idx);
+  var wrap = document.createElement('div');
+  wrap.className = 'photo-wrap';
+  var img = document.createElement('img');
+  img.src = BASE + encodeURIComponent(name);
+  img.loading = 'lazy';
+  img.addEventListener('click', function(){
+    current = idx;
+    lbImg.src = img.src;
+    lightbox.classList.add('open');
+  });
+  wrap.appendChild(img);
+  gallery.appendChild(wrap);
+  imgEls.push(img);
+
+  // Liquid hover: subtle skew + scale, no color shift
+  wrap.addEventListener('mousemove', function(e){
+    var rect = wrap.getBoundingClientRect();
+    var relX = (e.clientX - rect.left) / rect.width - 0.5;
+    var relY = (e.clientY - rect.top) / rect.height - 0.5;
+    img.style.transform = 'scale(1.03) skewX(' + (relX*3) + 'deg) skewY(' + (relY*1.5) + 'deg)';
+  });
+  wrap.addEventListener('mouseleave', function(){
+    img.style.transform = 'scale(1) skewX(0deg) skewY(0deg)';
+  });
 });
 
-var scrollVelocity = 0;
-var lastScrollY = window.scrollY;
-
-function trackScroll(){
-  var sy = window.scrollY;
-  scrollVelocity = sy - lastScrollY;
-  lastScrollY = sy;
-}
-window.addEventListener('scroll', trackScroll, {passive:true});
-
-function animate(){
-  var t = Date.now() * 0.001;
-  var scrollFactor = Math.min(Math.abs(scrollVelocity) / 18, 1);
-  scrollVelocity *= 0.85;
-
-  canvases.forEach(function(state){
-    if(!state.loaded) return;
-    state.hoverAmount += (state.targetHover - state.hoverAmount) * 0.08;
-    var amount = Math.max(state.hoverAmount, scrollFactor * 0.6);
-
-    var ctx = state.ctx;
-    var W = state.canvas.width;
-    var H = state.canvas.height;
-    ctx.clearRect(0,0,W,H);
-
-    if(amount < 0.01){
-      ctx.drawImage(state.img, 0, 0, W, H);
-      return;
-    }
-
-    var sliceH = 4;
-    for(var y = 0; y < H; y += sliceH){
-      var wave = Math.sin(y * 0.025 + t * 1.6) * amount * 14;
-      var wave2 = Math.cos(y * 0.012 + t * 1.1) * amount * 6;
-      var dx = wave + wave2;
-      var srcY = y;
-      ctx.drawImage(state.img,
-        0, srcY * (state.naturalH/H), state.naturalW, sliceH * (state.naturalH/H),
-        dx, y, W, sliceH
-      );
-    }
+/* Liquid on scroll: subtle skew based on scroll velocity */
+var lastY = window.scrollY;
+var velocity = 0;
+window.addEventListener('scroll', function(){
+  var y = window.scrollY;
+  velocity = y - lastY;
+  lastY = y;
+  var amt = Math.max(-3, Math.min(3, velocity * 0.15));
+  imgEls.forEach(function(img){
+    img.style.transform = 'skewY(' + amt + 'deg)';
   });
-
-  requestAnimationFrame(animate);
-}
-requestAnimationFrame(animate);
+  clearTimeout(window._scrollResetTimer);
+  window._scrollResetTimer = setTimeout(function(){
+    imgEls.forEach(function(img){ img.style.transform = 'skewY(0deg)'; });
+  }, 150);
+}, {passive:true});
 
 /* ===== LIGHTBOX ===== */
 document.getElementById('lb-close').onclick = function(){ lightbox.classList.remove('open'); };
