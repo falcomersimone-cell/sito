@@ -7,109 +7,101 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
-html,body{background:#fff;font-family:'IBM Plex Mono',monospace;overflow-x:hidden;}
+html,body{background:#0a0a0a;font-family:'IBM Plex Mono',monospace;overflow-x:hidden;}
 
 #header{
   position:fixed;top:0;left:0;right:0;
   padding:18px 24px;
   display:flex;align-items:center;justify-content:space-between;
-  background:rgba(255,255,255,0.92);
-  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
-  z-index:200;border-bottom:1px solid #eee;
+  background:rgba(10,10,10,0.5);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  z-index:200;
+  mix-blend-mode:difference;
 }
-#header-title{font-size:11px;letter-spacing:0.25em;color:#000;font-weight:700;}
-#back{font-size:11px;letter-spacing:0.1em;color:#000;text-decoration:none;}
-#back:hover{opacity:0.5;}
-#counter{font-size:11px;letter-spacing:0.15em;color:#999;}
+#header-title{font-size:11px;letter-spacing:0.25em;color:#fff;font-weight:700;}
+#back{font-size:11px;letter-spacing:0.1em;color:#fff;text-decoration:none;}
+#back:hover{opacity:0.6;}
+#counter-top{font-size:11px;letter-spacing:0.15em;color:#fff;}
 
 #hero{
+  position:relative;
   height:100vh;
+  overflow:hidden;
+}
+#hero img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(0.75);}
+#hero-text{
+  position:absolute;inset:0;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
-  text-align:center;padding:0 24px;
-  border-bottom:1px solid #eee;
+  text-align:center;
 }
 #hero h1{
   font-family:'Playfair Display',serif;font-weight:900;
-  font-size:clamp(48px,12vw,180px);
-  line-height:0.95;letter-spacing:-0.02em;
-  color:#000;
+  font-size:clamp(48px,13vw,200px);
+  line-height:0.88;letter-spacing:-0.02em;
+  color:#fff;
+  text-shadow:0 4px 40px rgba(0,0,0,0.5);
 }
 #hero p{
-  font-size:12px;letter-spacing:0.3em;color:#999;margin-top:24px;
+  font-size:12px;letter-spacing:0.35em;color:rgba(255,255,255,0.8);margin-top:28px;
   text-transform:uppercase;
 }
 
-#gallery{padding:0;}
+#gallery{background:#0a0a0a;}
 
-.editorial-block{
+.frame{
   position:relative;
-  border-bottom:1px solid #f0f0f0;
+  width:100%;
+  background:#0a0a0a;
 }
+.frame img{
+  width:100%;
+  height:auto;
+  display:block;
+  cursor:pointer;
+  transition:opacity 0.4s ease;
+}
+.frame:hover img{opacity:0.92;}
 
-/* Full width hero shots */
-.block-full{width:100%;}
-.block-full img{width:100%;height:auto;display:block;max-height:92vh;object-fit:cover;}
-
-/* Two column */
-.block-pair{display:grid;grid-template-columns:1fr 1fr;}
-.block-pair img{width:100%;height:100%;object-fit:cover;display:block;}
-.block-pair .cell{aspect-ratio:3/4;overflow:hidden;}
-
-/* Asymmetric: small + large */
-.block-asym{display:grid;grid-template-columns:1fr 2fr;}
-@media(max-width:768px){.block-asym{grid-template-columns:1fr;}}
-.block-asym .cell{overflow:hidden;}
-.block-asym .cell.small{aspect-ratio:3/4;}
-.block-asym .cell.large{aspect-ratio:4/5;}
-.block-asym img{width:100%;height:100%;object-fit:cover;display:block;}
-
-/* Triple */
-.block-triple{display:grid;grid-template-columns:repeat(3,1fr);}
-@media(max-width:768px){.block-triple{grid-template-columns:1fr 1fr;}}
-.block-triple .cell{aspect-ratio:3/4;overflow:hidden;}
-.block-triple img{width:100%;height:100%;object-fit:cover;display:block;}
-
-.cell{cursor:pointer;position:relative;}
-.cell img,.block-full img{transition:transform 0.6s ease, opacity 0.4s ease;}
-.cell:hover img,.block-full:hover img{transform:scale(1.035);}
-
-.frame-number{
-  position:absolute;bottom:16px;left:16px;
-  font-family:'IBM Plex Mono',monospace;
-  font-size:10px;letter-spacing:0.15em;
-  color:#fff;mix-blend-mode:difference;
+.frame-meta{
+  position:absolute;bottom:24px;left:24px;
+  font-size:10px;letter-spacing:0.2em;color:#fff;
+  mix-blend-mode:difference;
   pointer-events:none;
 }
 
-.section-title{
-  padding:120px 24px 60px;
-  text-align:center;
-}
-.section-title span{
-  font-family:'Playfair Display',serif;
-  font-style:italic;font-weight:400;
-  font-size:clamp(24px,4vw,48px);
-  color:#000;
-}
+.frame-pair{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#0a0a0a;}
+.frame-pair .frame img{height:100%;object-fit:cover;}
+@media(max-width:768px){.frame-pair{grid-template-columns:1fr;}}
+
+.frame-trio{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:1px;background:#0a0a0a;}
+.frame-trio .frame img{height:100%;object-fit:cover;}
+@media(max-width:768px){.frame-trio{grid-template-columns:1fr 1fr;}}
 
 #footer-cta{
-  padding:140px 24px 100px;
+  position:relative;
+  min-height:80vh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
   text-align:center;
+  background:#0a0a0a;
+  padding:80px 24px;
 }
 #footer-cta h2{
-  font-family:'Playfair Display',serif;font-weight:900;
-  font-size:clamp(32px,6vw,80px);
-  margin-bottom:24px;
+  font-family:'Playfair Display',serif;font-weight:900;font-style:italic;
+  font-size:clamp(36px,7vw,100px);
+  color:#fff;
+  margin-bottom:32px;
+  line-height:1.05;
 }
 #footer-cta a{
-  font-size:11px;letter-spacing:0.2em;color:#000;
-  text-decoration:none;border-bottom:1px solid #000;
-  padding-bottom:4px;
+  font-size:12px;letter-spacing:0.25em;color:#fff;
+  text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.4);
+  padding-bottom:6px;
 }
+#footer-cta a:hover{border-color:#fff;}
 
-#lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.97);z-index:999;align-items:center;justify-content:center;}
+#lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.98);z-index:999;align-items:center;justify-content:center;}
 #lightbox.open{display:flex;}
-#lightbox img{max-width:90vw;max-height:90vh;object-fit:contain;}
+#lightbox img{max-width:92vw;max-height:92vh;object-fit:contain;}
 #lb-close{position:fixed;top:20px;right:24px;font-size:24px;color:#fff;cursor:pointer;z-index:1000;opacity:0.7;}
 #lb-close:hover{opacity:1;}
 #lb-prev,#lb-next{position:fixed;top:50%;transform:translateY(-50%);font-size:36px;color:#fff;cursor:pointer;z-index:1000;opacity:0.5;padding:20px;}
@@ -122,12 +114,15 @@ html,body{background:#fff;font-family:'IBM Plex Mono',monospace;overflow-x:hidde
 <div id="header">
   <a href="https://simonefalcomer.art" id="back">← BACK</a>
   <div id="header-title">SIMONE FALCOMER</div>
-  <div id="counter">FASHION WORK</div>
+  <div id="counter-top">FASHION WORK</div>
 </div>
 
 <div id="hero">
-  <h1>FASHION<br>WORK</h1>
-  <p>Editorial — Barcelona</p>
+  <img id="hero-img" src="">
+  <div id="hero-text">
+    <h1>FASHION<br>WORK</h1>
+    <p>Editorial — Barcelona</p>
+  </div>
 </div>
 
 <div id="gallery"></div>
@@ -147,12 +142,14 @@ html,body{background:#fff;font-family:'IBM Plex Mono',monospace;overflow-x:hidde
 
 <script>
 var BASE='https://falcomersimone-cell.github.io/sito/fashion/';
-var EXT_OVERRIDES = {18:'jpg', 21:'JPG', 25:'JPG', 34:'JPG'};
+var EXT_OVERRIDES = {18:'jpg'};
 var PHOTOS=[];
 for(var i=1;i<=44;i++){
   var ext = EXT_OVERRIDES[i] || 'jpeg';
   PHOTOS.push('Simone Falcomer Fashion Photography '+i+'.'+ext);
 }
+
+document.getElementById('hero-img').src = BASE+encodeURIComponent(PHOTOS[0]);
 
 var gallery=document.getElementById('gallery');
 var lightbox=document.getElementById('lightbox');
@@ -162,69 +159,48 @@ var currentIndex=0;
 
 function frameNum(i){return String(i+1).padStart(2,'0')+' / '+String(PHOTOS.length).padStart(2,'0');}
 
-function makeCell(idx, extraClass){
-  var cell=document.createElement('div');cell.className='cell'+(extraClass?' '+extraClass:'');
+function makeFrame(idx, heightClass){
+  var frame=document.createElement('div');frame.className='frame';
   var img=document.createElement('img');
   img.src=BASE+encodeURIComponent(PHOTOS[idx]);
   img.alt='';
-  cell.appendChild(img);
-  var num=document.createElement('div');num.className='frame-number';num.textContent=frameNum(idx);
-  cell.appendChild(num);
-  cell.addEventListener('click',function(){openLightbox(idx);});
-  return cell;
+  if(heightClass) img.style.cssText = heightClass;
+  frame.appendChild(img);
+  var meta=document.createElement('div');meta.className='frame-meta';meta.textContent=frameNum(idx);
+  frame.appendChild(meta);
+  frame.addEventListener('click',function(){openLightbox(idx);});
+  return frame;
 }
 
-function makeFull(idx){
-  var block=document.createElement('div');block.className='editorial-block block-full cell';
-  var img=document.createElement('img');
-  img.src=BASE+encodeURIComponent(PHOTOS[idx]);
-  img.alt='';
-  block.appendChild(img);
-  var num=document.createElement('div');num.className='frame-number';num.textContent=frameNum(idx);
-  block.appendChild(num);
-  block.addEventListener('click',function(){openLightbox(idx);});
-  return block;
-}
-
-// Pattern di layout: alterna full, pair, asym, triple per un feeling editoriale
-var pattern = ['full','pair','asym','triple','pair','full','asym','pair','triple','full','pair','asym'];
-var idx = 0;
+// Layout: alterna full-width grandi con coppie e triple, ritmo editoriale
+var pattern = ['full','full','pair','full','trio','full','pair','full','full','pair','trio','full'];
+var idx = 1; // partiamo da 1 perché 0 è già nell'hero
 var patternIdx = 0;
 
 while(idx < PHOTOS.length){
   var type = pattern[patternIdx % pattern.length];
   patternIdx++;
 
-  if(type==='full' && idx < PHOTOS.length){
-    gallery.appendChild(makeFull(idx));
+  if(type==='full'){
+    gallery.appendChild(makeFrame(idx));
     idx++;
   }
   else if(type==='pair' && idx+1 < PHOTOS.length){
-    var block=document.createElement('div');block.className='editorial-block block-pair';
-    block.appendChild(makeCell(idx)); idx++;
-    block.appendChild(makeCell(idx)); idx++;
+    var block=document.createElement('div');block.className='frame-pair';
+    block.appendChild(makeFrame(idx,'height:65vh;object-fit:cover;')); idx++;
+    block.appendChild(makeFrame(idx,'height:65vh;object-fit:cover;')); idx++;
     gallery.appendChild(block);
   }
-  else if(type==='asym' && idx+1 < PHOTOS.length){
-    var block=document.createElement('div');block.className='editorial-block block-asym';
-    var c1=makeCell(idx,'small'); idx++;
-    var c2=makeCell(idx,'large'); idx++;
-    block.appendChild(c1);block.appendChild(c2);
-    gallery.appendChild(block);
-  }
-  else if(type==='triple' && idx+2 < PHOTOS.length){
-    var block=document.createElement('div');block.className='editorial-block block-triple';
-    block.appendChild(makeCell(idx)); idx++;
-    block.appendChild(makeCell(idx)); idx++;
-    block.appendChild(makeCell(idx)); idx++;
+  else if(type==='trio' && idx+2 < PHOTOS.length){
+    var block=document.createElement('div');block.className='frame-trio';
+    block.appendChild(makeFrame(idx,'height:55vh;object-fit:cover;')); idx++;
+    block.appendChild(makeFrame(idx,'height:55vh;object-fit:cover;')); idx++;
+    block.appendChild(makeFrame(idx,'height:55vh;object-fit:cover;')); idx++;
     gallery.appendChild(block);
   }
   else {
-    // fallback: resto singolo
-    if(idx < PHOTOS.length){
-      gallery.appendChild(makeFull(idx));
-      idx++;
-    }
+    gallery.appendChild(makeFrame(idx));
+    idx++;
   }
 }
 
@@ -245,6 +221,10 @@ document.addEventListener('keydown',function(e){
   if(e.key==='ArrowLeft'){currentIndex=(currentIndex-1+PHOTOS.length)%PHOTOS.length;openLightbox(currentIndex);}
   if(e.key==='ArrowRight'){currentIndex=(currentIndex+1)%PHOTOS.length;openLightbox(currentIndex);}
 });
+
+// Hero click apre lightbox sulla prima foto
+document.getElementById('hero-img').addEventListener('click', function(){openLightbox(0);});
+document.getElementById('hero-img').style.cursor='pointer';
 </script>
 </body>
 </html>
