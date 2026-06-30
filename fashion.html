@@ -15,11 +15,10 @@ html,body{background:#fff;font-family:'IBM Plex Mono',monospace;}
 #gallery{padding:90px 24px 80px;columns:2;column-gap:24px;}
 @media(min-width:768px){#gallery{columns:3;column-gap:32px;padding:90px 40px 80px;}}
 @media(min-width:1200px){#gallery{columns:4;column-gap:32px;}}
-.photo-wrap{break-inside:avoid;margin-bottom:24px;overflow:hidden;cursor:pointer;}
+.photo-wrap{break-inside:avoid;margin-bottom:24px;overflow:hidden;cursor:pointer;background:#f5f5f5;min-height:100px;}
 .photo-wrap img{width:100%;height:auto;display:block;transition:opacity 0.3s ease;}
 .photo-wrap:hover img{opacity:0.85;}
 #sentinel{height:1px;}
-#loading{text-align:center;padding:20px;font-size:10px;letter-spacing:0.2em;color:#999;display:none;}
 #lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.95);z-index:999;align-items:center;justify-content:center;}
 #lightbox.open{display:flex;}
 #lightbox img{max-width:90vw;max-height:90vh;object-fit:contain;}
@@ -46,13 +45,12 @@ html,body{background:#fff;font-family:'IBM Plex Mono',monospace;}
 <script>
 var BASE='https://falcomersimone-cell.github.io/sito/fashion/';
 
+// Estensioni corrette verificate
+var EXT_OVERRIDES = {18:'jpg', 21:'JPG', 25:'JPG', 34:'JPG'};
+
 var PHOTOS=[];
 for(var i=1;i<=44;i++){
-  var ext = 'jpeg';
-  if(i===18) ext='jpg';
-  if(i===21) ext='JPG';
-  if(i===25) ext='JPG';
-  if(i===34) ext='JPG';
+  var ext = EXT_OVERRIDES[i] || 'jpeg';
   PHOTOS.push('Simone Falcomer Fashion Photography '+i+'.'+ext);
 }
 
@@ -60,39 +58,42 @@ var gallery=document.getElementById('gallery');
 var lightbox=document.getElementById('lightbox');
 var lbImg=document.getElementById('lb-img');
 var currentIndex=0;
+var loopCount=0;
 
-// Render iniziale
-var renderedCount = 0;
-var renderQueue = PHOTOS.slice();
-
-function renderBatch(count){
-  for(var b=0;b<count && renderQueue.length>0;b++){
-    var name = renderQueue.shift();
-    var realIndex = (renderedCount) % PHOTOS.length;
-    addPhoto(name, renderedCount);
-    renderedCount++;
-  }
-}
-
-function addPhoto(name, idx){
+function addPhoto(name, realIdx){
   var wrap=document.createElement('div');wrap.className='photo-wrap';
   var img=document.createElement('img');
   img.src=BASE+encodeURIComponent(name);
-  img.loading='lazy';img.alt='Simone Falcomer fashion photography';
-  img.addEventListener('click',function(){openLightbox(idx % PHOTOS.length);});
-  wrap.appendChild(img);gallery.appendChild(wrap);
+  img.loading='lazy';
+  img.alt='';
+  img.onerror=function(){ wrap.style.display='none'; };
+  img.addEventListener('click',function(){openLightbox(realIdx);});
+  wrap.appendChild(img);
+  gallery.appendChild(wrap);
 }
 
-renderBatch(PHOTOS.length);
+function renderFullSet(){
+  PHOTOS.forEach(function(name, idx){
+    addPhoto(name, idx);
+  });
+  loopCount++;
+}
 
-// Infinite scroll - quando arrivi in fondo, ricarica le stesse foto
+// Render iniziale
+renderFullSet();
+
+// Infinite scroll: aggiunge un altro set completo quando ci si avvicina al fondo
 var sentinel = document.getElementById('sentinel');
+var isLoading = false;
 var observer = new IntersectionObserver(function(entries){
-  if(entries[0].isIntersecting){
-    renderQueue = PHOTOS.slice();
-    renderBatch(PHOTOS.length);
+  if(entries[0].isIntersecting && !isLoading){
+    isLoading = true;
+    setTimeout(function(){
+      renderFullSet();
+      isLoading = false;
+    }, 100);
   }
-}, {rootMargin: '400px'});
+}, {rootMargin: '600px'});
 observer.observe(sentinel);
 
 function openLightbox(i){currentIndex=i;lbImg.src=BASE+encodeURIComponent(PHOTOS[i]);lightbox.classList.add('open');}
