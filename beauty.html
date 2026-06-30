@@ -3,182 +3,436 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Simone Falcomer — Beauty</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
+<title>Simone Falcomer — Photographer & Art Director</title>
+<meta name="description" content="Simone Falcomer is a photographer and Art Director based in Barcelona. Editorial work in Vogue Nederland, Neo2, Vein Magazine, Cake Magazine. Clients include Marni, Outsiders Division.">
+<meta name="keywords" content="Simone Falcomer, photographer Barcelona, art director, fashion photography, Vogue Nederland, Neo2, Marni">
+<meta name="author" content="Simone Falcomer">
+<meta property="og:title" content="Simone Falcomer — Photographer & Art Director">
+<meta property="og:description" content="Photographer and Art Director based in Barcelona.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
-html,body{background:#000;font-family:'IBM Plex Mono',monospace;overflow:hidden;height:100%;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{width:100%;height:100%;overflow:hidden;font-family:'IBM Plex Mono',monospace;background:#008080;}
 
-#intro{
-  position:fixed;inset:0;background:#000;z-index:2000;
-  display:flex;align-items:center;justify-content:center;overflow:hidden;
-}
-#intro-photo{
-  position:absolute;top:50%;left:50%;
-  width:140px;height:180px;
-  transform:translate(-50%,-50%) scale(1);
-  background-size:cover;background-position:center;
-  opacity:0;
-}
-#loading-bar-wrap{
-  position:absolute;bottom:18%;left:50%;
-  transform:translateX(-50%);
-  width:220px;text-align:center;z-index:10;
-}
-#loading-label{font-size:10px;letter-spacing:0.3em;color:#fff;margin-bottom:10px;opacity:0.8;}
-#loading-track{width:100%;height:1px;background:rgba(255,255,255,0.2);position:relative;}
-#loading-fill{height:1px;width:0%;background:#fff;position:absolute;left:0;top:0;}
-#loading-pct{font-size:10px;letter-spacing:0.2em;color:#fff;margin-top:10px;opacity:0.6;}
+.phantom{position:fixed;pointer-events:none;z-index:99998;opacity:0;transition:opacity 3s ease;white-space:nowrap;font-family:'IBM Plex Mono',monospace;font-size:clamp(9px,1.2vw,13px);letter-spacing:0.3em;color:rgba(255,255,255,0.13);}
+.phantom.visible{opacity:1;}
 
-#site{opacity:0;height:100%;}
-#site.visible{opacity:1;transition:opacity 0.5s ease;}
+#w95-layer{position:fixed;inset:0;pointer-events:none;z-index:9999;}
+#w95-taskbar{position:fixed;bottom:0;left:0;right:0;height:30px;background:#c0c0c0;border-top:1px solid #fff;display:flex;align-items:center;padding:0 6px;gap:4px;pointer-events:all;z-index:100;}
+#w95-start{height:22px;padding:0 10px;background:#c0c0c0;border:1px solid;border-color:#fff #808080 #808080 #fff;font-size:11px;font-weight:700;font-family:'IBM Plex Mono',monospace;cursor:pointer;display:flex;align-items:center;gap:5px;letter-spacing:0.05em;}
+#w95-start:active{border-color:#808080 #fff #fff #808080;}
+#w95-start-logo{width:14px;height:14px;display:grid;grid-template-columns:1fr 1fr;gap:1px;flex-shrink:0;}
+#w95-start-logo span{display:block;}
+#w95-taskbar-social{display:flex;align-items:center;gap:2px;margin-left:4px;}
+.w95-social-btn{width:22px;height:22px;background:#c0c0c0;border:1px solid;border-color:#fff #808080 #808080 #fff;cursor:pointer;display:flex;align-items:center;justify-content:center;text-decoration:none;flex-shrink:0;}
+.w95-social-btn:active{border-color:#808080 #fff #fff #808080;}
+#w95-weather{height:22px;padding:0 8px;background:#c0c0c0;border:1px solid;border-color:#808080 #fff #fff #808080;font-size:10px;font-family:'IBM Plex Mono',monospace;display:flex;align-items:center;white-space:nowrap;}
+#w95-clock{height:22px;padding:0 8px;background:#c0c0c0;border:1px solid;border-color:#808080 #fff #fff #808080;font-size:11px;font-family:'IBM Plex Mono',monospace;display:flex;align-items:center;letter-spacing:0.1em;white-space:nowrap;}
+#w95-start-menu{position:fixed;bottom:30px;left:0;width:240px;background:#c0c0c0;border:1px solid;border-color:#fff #808080 #808080 #fff;display:none;flex-direction:row;z-index:200;box-shadow:2px 2px 0 #000;pointer-events:all;}
+#w95-start-menu.open{display:flex;}
+#w95-start-menu-stripe{width:22px;background:#000080;display:flex;align-items:flex-end;padding:6px 4px;writing-mode:vertical-rl;transform:rotate(180deg);font-size:10px;color:#c0c0c0;font-weight:700;letter-spacing:3px;flex-shrink:0;}
+#w95-start-menu-items{flex:1;padding:4px 0;overflow-y:auto;max-height:80vh;}
+.w95-menu-item{padding:7px 14px;font-size:11px;cursor:pointer;display:flex;align-items:center;gap:10px;white-space:nowrap;font-family:'IBM Plex Mono',monospace;}
+.w95-menu-item:hover{background:#000080;color:#fff;}
+.w95-menu-sep{height:1px;background:#808080;margin:3px 8px;}
 
-header{
-  position:fixed;top:0;left:0;right:0;height:50px;
-  background:#000;display:flex;align-items:center;justify-content:space-between;
-  padding:0 20px;z-index:100;border-bottom:1px solid #222;
-}
-header a{color:#fff;font-size:11px;text-decoration:none;letter-spacing:0.1em;}
-header span{color:#fff;font-size:11px;letter-spacing:0.15em;}
+.w95-icon{position:absolute;pointer-events:all;cursor:default;text-align:center;width:64px;}
+.w95-icon-img{margin:0 auto;display:block;}
+.w95-icon-img.square{width:52px;height:52px;object-fit:contain;object-position:center;border:1px solid rgba(0,0,0,0.3);background:#111;}
+.desktop-large .w95-icon{width:80px;}
+.desktop-large .w95-icon-img.square{width:66px;height:66px;}
+.desktop-large .w95-icon-label{font-size:10px;}
+.w95-icon-img.natural{width:auto;max-width:64px;height:auto;max-height:80px;object-fit:contain;border:1px solid rgba(0,0,0,0.3);}
+.w95-icon-label{margin-top:3px;font-size:9px;line-height:1.3;word-break:break-word;font-family:'IBM Plex Mono',monospace;color:#fff;text-shadow:1px 1px 0 #000,0 0 4px rgba(0,0,0,0.8);}
+.w95-icon.sel .w95-icon-label{background:#000080;color:#fff;}
+.w95-icon.sel .w95-icon-img{opacity:0.75;outline:1px solid #000080;}
 
-#slides{
-  position:fixed;
-  top:50px;left:0;right:0;bottom:0;
-  overflow:hidden;
-}
-.slide{
-  position:absolute;
-  top:0;left:0;width:100%;height:100%;
-  display:flex;align-items:center;justify-content:center;
-  opacity:0;
-  transition:opacity 0.5s ease;
-  pointer-events:none;
-}
-.slide.active{
-  opacity:1;
-  pointer-events:auto;
-}
-.slide img{
-  max-width:92vw;
-  max-height:92vh;
-  object-fit:contain;
-  cursor:pointer;
-}
+.w95-win{position:fixed;background:#c0c0c0;border:1px solid;border-color:#fff #808080 #808080 #fff;box-shadow:2px 2px 0 #000;display:none;flex-direction:column;pointer-events:all;min-width:200px;}
+.w95-win.open{display:flex;}
+.w95-winbar{height:20px;background:linear-gradient(to right,#000080,#1084d0);display:flex;align-items:center;padding:0 4px;cursor:grab;user-select:none;flex-shrink:0;}
+.w95-winbar:active{cursor:grabbing;}
+.w95-wintitle{flex:1;font-size:11px;color:#fff;font-weight:700;pointer-events:none;white-space:nowrap;overflow:hidden;font-family:'IBM Plex Mono',monospace;}
+.w95-winbtns{display:flex;gap:2px;}
+.w95-wbtn{width:16px;height:14px;background:#c0c0c0;font-size:9px;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;border:1px solid;border-color:#fff #808080 #808080 #fff;line-height:1;}
+.w95-wbtn:active{border-color:#808080 #fff #fff #808080;}
+.w95-winbody{flex:1;overflow:hidden;background:#c0c0c0;font-size:12px;color:#000;font-family:'IBM Plex Mono',monospace;}
+.w95-winbody.padded{padding:16px;overflow-y:auto;}
+.w95-winbody iframe{width:100%;height:100%;border:none;display:block;}
+.w95-winbody a{color:#000080;font-size:11px;display:block;margin-bottom:8px;text-decoration:none;}
+.w95-win-openlink{display:block;text-align:center;font-size:10px;font-family:'IBM Plex Mono',monospace;background:#c0c0c0;border-top:1px solid #808080;padding:4px;color:#000080;text-decoration:none;flex-shrink:0;cursor:pointer;}
+.w95-win-openlink:hover{background:#000080;color:#fff;}
+.w95-resize{position:absolute;right:0;bottom:0;width:14px;height:14px;cursor:se-resize;opacity:0.5;}
 
-.nav-zone{
-  position:fixed;top:50px;bottom:0;width:35%;
-  z-index:50;cursor:pointer;
-}
-#nav-prev{left:0;}
-#nav-next{right:0;}
+/* AI Chat */
+.ai-winbody{display:flex;flex-direction:column;height:100%;}
+.ai-messages{flex:1;overflow-y:auto;padding:8px;display:flex;flex-direction:column;gap:6px;}
+.ai-msg{font-size:11px;font-family:'IBM Plex Mono',monospace;line-height:1.6;padding:6px 8px;max-width:92%;}
+.ai-msg.user{background:#000080;color:#fff;align-self:flex-end;}
+.ai-msg.bot{background:#e8e8e8;color:#000;align-self:flex-start;border:1px solid #ccc;}
+.ai-msg.loading{color:#808080;font-style:italic;}
+.ai-input-row{display:flex;border-top:1px solid #808080;flex-shrink:0;}
+.ai-input{flex:1;border:none;padding:6px 8px;font-size:11px;font-family:'IBM Plex Mono',monospace;background:#fff;outline:none;}
+.ai-send{padding:6px 10px;background:#c0c0c0;border:none;border-left:1px solid #808080;cursor:pointer;font-size:11px;font-family:'IBM Plex Mono',monospace;}
+.ai-send:hover{background:#000080;color:#fff;}
+.ai-send:disabled{opacity:0.5;cursor:default;}
+.ai-counter{font-size:9px;font-family:'IBM Plex Mono',monospace;color:#808080;padding:2px 8px;background:#c0c0c0;border-top:1px solid #ddd;flex-shrink:0;text-align:right;}
 
-#lightbox{display:none;position:fixed;inset:0;background:#000;z-index:999;align-items:center;justify-content:center;}
-#lightbox.open{display:flex;}
-#lightbox img{max-width:96vw;max-height:96vh;object-fit:contain;}
-#lb-close{position:fixed;top:16px;right:20px;color:#fff;font-size:24px;cursor:pointer;z-index:1000;}
+#w95-hourglass{position:fixed;inset:0;background:#008080;z-index:999999;display:flex;align-items:center;justify-content:center;pointer-events:all;transition:opacity 0.6s;}
+#w95-hourglass-inner{font-size:28px;color:#fff;animation:hgspin 1s linear infinite;}
+@keyframes hgspin{0%,49%{transform:rotate(0deg);}50%,100%{transform:rotate(180deg);}}
+
+@media(max-width:768px){
+  .w95-icon{width:56px;}
+  .w95-icon-img.square{width:44px;height:44px;}
+  .w95-icon-label{font-size:8px;}
+}
 </style>
 </head>
 <body>
 
-<div id="site" class="visible">
-  <header>
-    <a href="https://simonefalcomer.art">← BACK</a>
-    <span>SIMONE FALCOMER</span>
-    <span>BEAUTY</span>
-  </header>
+<div id="w95-hourglass"><div id="w95-hourglass-inner">⧗</div></div>
 
-  <div id="slides"></div>
-  <div class="nav-zone" id="nav-prev"></div>
-  <div class="nav-zone" id="nav-next"></div>
+<div id="w95-layer">
+  <div id="w95-icons"></div>
+  <div id="w95-wins"></div>
+  <div id="w95-taskbar">
+    <button id="w95-start">
+      <div id="w95-start-logo">
+        <span style="background:#f00;width:100%;height:100%;"></span>
+        <span style="background:#0f0;width:100%;height:100%;"></span>
+        <span style="background:#00f;width:100%;height:100%;"></span>
+        <span style="background:#ff0;width:100%;height:100%;"></span>
+      </div>
+      Start
+    </button>
+    <div id="w95-taskbar-social">
+      <a href="https://www.instagram.com/simone_falcomer/" target="_blank" class="w95-social-btn" title="Instagram">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="#000" stroke="none"/></svg>
+      </a>
+      <a href="https://www.linkedin.com/in/simone-falcomer-5bb16828a/" target="_blank" class="w95-social-btn" title="LinkedIn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#000"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      </a>
+    </div>
+    <div style="flex:1;"></div>
+    <div id="w95-weather">🌡 --°</div>
+    <div id="w95-clock">00:00</div>
+    <div id="w95-start-menu">
+      <div id="w95-start-menu-stripe">Simone Falcomer</div>
+      <div id="w95-start-menu-items">
+        <div class="w95-menu-item" id="menu-info">📄 More Info</div>
+        <div class="w95-menu-item" id="menu-ai">🤖 Chat with Simone AI</div>
+        <div class="w95-menu-item" id="menu-spotify">🎵 My Spotify</div>
+        <div class="w95-menu-sep"></div>
+        <div class="w95-menu-item" id="menu-contact">✉️ Contact</div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script>
-var BASE = 'https://falcomersimone-cell.github.io/sito/beauty/';
+(function(){
 
-var PHOTOS = [
-  'Simone Falcomer Photography Beauty 1.jpeg',
-  'Simone Falcomer Photography Beauty 2.jpeg',
-  'Simone Falcomer Photography Beauty 3.jpeg',
-  'Simone Falcomer Photography Beauty 4.jpeg',
-  'Simone Falcomer Photography Beauty 5.jpeg',
-  'Simone Falcomer Photography Beauty 6.jpeg',
-  'Simone Falcomer Photography Beauty 7.jpeg',
-  'Simone Falcomer Photography Beauty 8.jpeg',
-  'Simone Falcomer Photography Beauty 9.jpeg',
-  'Simone Falcomer Photography Beauty 10.jpeg',
-  'Simone Falcomer Photography Beauty11.jpeg',
-  'Simone Falcomer Photography Beauty 12.jpeg',
-  'Simone Falcomer Photography Beauty 13.jpeg',
-  'Simone Falcomer Photography Beauty 14.jpeg',
-  'Simone Falcomer Photography Beauty 15.jpeg',
-  'Simone Falcomer Photography Beauty 16.jpeg',
-  'Simone Falcomer Photography Beauty 17.jpeg'
+var WORKER_URL='https://simone-ai.falcomersimone.workers.dev';
+var AI_SYSTEM='You are "Chat with Simone AI", the personal AI agent of Simone Falcomer — a photographer and Art Director based in Barcelona, Italy-born. You know everything about him:\n\n- He studied photojournalism at Grisart Academy in Barcelona\n- He is currently studying Fine Arts in Barcelona\n- He works across fashion, documentary and artistic practice\n- He shoots on analogue film: 35mm and medium format\n- He also manages digital studio production\n- His editorial work has been published in Vogue Nederland, Neo2, Kultblut Magazine, Vein Magazine and Cake Magazine\n- His commercial clients include Marni and Outsiders Division\n- He works internally as Image Director at Acceptance Letter Studio\n- He is represented by Fang.Agency\n- Contact: falcomersimone@gmail.com / +34 607 699 642\n- Instagram: @simone_falcomer\n\nHis visual language draws from mid-20th century photography, neoclassical sculpture, Baroque painting and Italian Renaissance art.\n\nBe warm, concise and human. Answers max 100 words. Always end with "Feel free to reach out: falcomersimone@gmail.com". If asked something unrelated, say: "I am here to tell you about Simone and his work!"';
+
+// Hourglass
+var hg=document.getElementById('w95-hourglass');
+setTimeout(function(){hg.style.opacity='0';setTimeout(function(){hg.remove();},600);},1400);
+
+// Meteo
+function fetchWeather(){
+  if(!navigator.geolocation)return;
+  navigator.geolocation.getCurrentPosition(function(pos){
+    fetch('https://api.open-meteo.com/v1/forecast?latitude='+pos.coords.latitude+'&longitude='+pos.coords.longitude+'&current_weather=true')
+      .then(function(r){return r.json();})
+      .then(function(d){
+        document.getElementById('w95-weather').textContent='🌡 '+Math.round(d.current_weather.temperature)+'°C';
+      }).catch(function(){});
+  },function(){});
+}
+fetchWeather();
+
+// Clock
+function updateClock(){
+  var now=new Date();
+  document.getElementById('w95-clock').textContent=now.getHours().toString().padStart(2,'0')+':'+now.getMinutes().toString().padStart(2,'0');
+}
+updateClock();setInterval(updateClock,1000);
+
+var W=window.innerWidth,H=window.innerHeight,isMobile=W<768;
+if(!isMobile) document.getElementById('w95-icons').classList.add('desktop-large');
+var ICON=64,BOTTOM=40;
+function mpos(col,row){var cW=Math.floor((W-8)/4),rH=Math.floor((H-120-BOTTOM)/4);return{x:4+col*cW,y:120+row*rH};}
+function dpos(px,py){return{x:Math.floor(px*(W-ICON)/100),y:Math.floor(py*(H-ICON-BOTTOM)/100)};}
+
+var FOLDERS=[
+  {id:"about",name:"About",icon:"doc",type:"window",mob:mpos(0,0),dsk:dpos(3,4),
+   content:'<div class="padded"><h1 style="font-size:13px;font-weight:700;margin-bottom:4px;">Simone Falcomer</h1><h2 style="font-size:10px;color:#555;margin-bottom:14px;">Photographer & Art Director — Based in Barcelona</h2><p style="font-size:11px;line-height:1.8;">Represented by Fang.Agency</p><a href="mailto:falcomersimone@gmail.com">falcomersimone@gmail.com</a></div>'},
+  {id:"info",name:"More Info",icon:"pc",type:"newpage",url:"https://falcomersimone-cell.github.io/sito/info.html",mob:mpos(0,1),dsk:dpos(3,22)},
+  {id:"ai",name:"Chat with Simone AI",icon:"ai",type:"aiwin",mob:mpos(0,2),dsk:dpos(3,42)},
+  {id:"ecommerce",name:"E-commerce",icon:"folder",type:"link",url:"INSERISCI_URL_QUI",mob:mpos(0,3),dsk:dpos(63,68)},
+  {id:"work",name:"Fashion work",icon:"folder",type:"link",url:"https://falcomersimone-cell.github.io/sito/fashion.html",mob:mpos(1,0),dsk:dpos(14,75)},
+  {id:"personal",name:"Personal Projects",icon:"folder",type:"link",url:"INSERISCI_URL_QUI",mob:mpos(1,1),dsk:dpos(48,45)},
+  {id:"beauty",name:"Beauty",icon:"folder",type:"link",url:"https://simonefalcomer.art/beauty.html",mob:mpos(1,2),dsk:dpos(70,40)},
+  {id:"marni",name:"Marni FW25",icon:"photo",photoUrl:"https://www.marni.com/dw/image/v2/AAPK_PRD/on/demandware.static/-/Library-Sites-marni-shared/default/dw13a0070c/FW25VOL.2/DETAILS__01__DSC1376.jpg?sw=3000",type:"link",url:"https://www.marni.com/en-us/marni-fw25-vol2.html",mob:mpos(1,2),dsk:dpos(34,8)},
+  {id:"ed1",name:"Vein Magazine",icon:"photo",photoUrl:"https://vein.es/wp-content/uploads/2026/02/momentum-simone-falcomer1.jpg",type:"iframe",url:"https://vein.es/momentum-by-simone-falcomer/",mob:mpos(1,3),dsk:dpos(78,60)},
+  {id:"ed7",name:"Vein Magazine",icon:"photo",photoUrl:"https://vein.es/wp-content/uploads/2025/12/Outsiders-division-kindergarden-riot-lookbook-veinmagazine49.jpg",type:"iframe",url:"https://vein.es/kindergarten-riot-outsiders-divisions-playful-rebellion-unveiled/outsiders-division-kindergarden-riot-lookbook-veinmagazine49/",mob:mpos(2,0),dsk:dpos(24,54)},
+  {id:"ed2",name:"Cake Magazine",icon:"photo",photoUrl:"https://api.cake-mag.com/wp-content/uploads/2025/09/CAKEDIGITALMac-17-1483x1080.jpg",type:"iframe",url:"https://www.cake-mag.com/in-the-next-town-over",mob:mpos(2,1),dsk:dpos(57,80)},
+  {id:"ed3",name:"Cake Magazine",icon:"photo",photoUrl:"https://api.cake-mag.com/wp-content/uploads/2025/10/CAKEDIGITALMac4-7-2048x1491.jpg",type:"iframe",url:"https://www.cake-mag.com/nobody-new",mob:mpos(2,2),dsk:dpos(44,28)},
+  {id:"ed4",name:"Neo2 Magazine",icon:"photo",photoUrl:"https://www.neo2.com/wp-content/uploads/2024/12/bares-moda-tradicionales-barcelona-2025-1.jpg",type:"iframe",url:"https://www.neo2.com/los-bares-de-moda-de-barcelona-son-los-mas-tradicionales/",mob:mpos(2,3),dsk:dpos(7,46)},
+  {id:"ed5",name:"Neo2 Magazine",icon:"photo",photoUrl:"https://www.neo2.com/wp-content/uploads/2025/05/editorial-moda-mentira-simone-falcomer-2.jpg",type:"iframe",url:"https://www.neo2.com/las-mentiras-de-la-moda-de-la-autoexpresion-al-autoengano/",mob:mpos(3,0),dsk:dpos(88,33)},
+  {id:"ed6",name:"Neo2 Magazine",icon:"photo",photoUrl:"https://www.neo2.com/wp-content/uploads/2024/12/supermercados-moda-shopping-6.jpg",type:"iframe",url:"https://www.neo2.com/supermercados-de-amor-moda-estilismo/",mob:mpos(3,1),dsk:dpos(32,70)},
+  {id:"vogue",name:"Vogue NL print",icon:"vogue",photoUrl:"https://i.ibb.co/PvsXwLrF/IMG-8080.jpg",type:"window",mob:mpos(3,2),dsk:dpos(82,8),content:'<img src="https://i.ibb.co/PvsXwLrF/IMG-8080.jpg" style="width:100%;height:100%;object-fit:contain;display:block;background:#111;">'},
+  {id:"acceptance",name:"Image Director at Acceptance Letter",icon:"photo",photoUrl:"https://cdn.shopify.com/s/files/1/0939/0037/4344/files/Acceptance_Letter02_227e9984-ee0c-419b-8916-3d944a49afea.jpg?v=1768844577",type:"link",url:"https://www.acceptanceletterstudio.eu/",mob:mpos(3,3),dsk:dpos(52,14)},
+  {id:"kaltblut",name:"Kaltblut Magazine",icon:"photo",photoUrl:"https://falcomersimone-cell.github.io/sito/beauty/Simone%20Falcomer%20Photography%20Beauty%208.jpeg",type:"link",url:"https://www.kaltblut-magazine.com/esperpento/",mob:mpos(4,0),dsk:dpos(60,50)},
 ];
 
-/* ===== SLIDESHOW: one photo at a time, fixed, no liquid effect ===== */
-var slidesContainer = document.getElementById('slides');
-var current = 0;
+function getPos(f){return isMobile?f.mob:f.dsk;}
 
-PHOTOS.forEach(function(name, idx){
-  var slide = document.createElement('div');
-  slide.className = 'slide' + (idx === 0 ? ' active' : '');
-  slide.dataset.index = idx;
-  var img = document.createElement('img');
-  img.src = BASE + encodeURIComponent(name);
-  slide.appendChild(img);
-  slidesContainer.appendChild(slide);
-});
-
-var slideEls = document.querySelectorAll('.slide');
-
-function goTo(idx){
-  idx = (idx + PHOTOS.length) % PHOTOS.length;
-  slideEls[current].classList.remove('active');
-  current = idx;
-  slideEls[current].classList.add('active');
+function makeAIIcon(){
+  var c=document.createElement('canvas');c.width=52;c.height=52;
+  var x=c.getContext('2d');
+  var g=x.createLinearGradient(0,0,52,52);
+  g.addColorStop(0,'#a855f7');g.addColorStop(0.5,'#7c3aed');g.addColorStop(1,'#4f46e5');
+  x.fillStyle=g;x.beginPath();x.roundRect(0,0,52,52,10);x.fill();
+  x.fillStyle='rgba(255,255,255,0.9)';
+  x.beginPath();x.arc(18,26,5,0,Math.PI*2);x.fill();
+  x.beginPath();x.arc(34,26,5,0,Math.PI*2);x.fill();
+  x.fillStyle='#7c3aed';
+  x.beginPath();x.arc(18,26,2.5,0,Math.PI*2);x.fill();
+  x.beginPath();x.arc(34,26,2.5,0,Math.PI*2);x.fill();
+  x.strokeStyle='rgba(255,255,255,0.9)';x.lineWidth=2.5;x.lineCap='round';
+  x.beginPath();x.moveTo(16,35);x.quadraticCurveTo(26,41,36,35);x.stroke();
+  x.beginPath();x.moveTo(26,16);x.lineTo(26,9);x.stroke();
+  x.fillStyle='rgba(255,255,255,0.9)';x.beginPath();x.arc(26,8,3.5,0,Math.PI*2);x.fill();
+  var img=document.createElement('img');img.src=c.toDataURL();
+  img.style.cssText='width:52px;height:52px;display:block;margin:0 auto;';return img;
+}
+function makePCIcon(){
+  var c=document.createElement('canvas');c.width=52;c.height=52;
+  var x=c.getContext('2d');
+  x.fillStyle='#c0c0c0';x.fillRect(4,2,44,32);
+  x.fillStyle='#808080';x.fillRect(4,2,44,1);x.fillRect(4,33,44,1);x.fillRect(4,2,1,32);x.fillRect(47,2,1,32);
+  x.fillStyle='#000080';x.fillRect(6,4,40,28);
+  x.fillStyle='#00cc44';x.fillRect(8,6,6,2);
+  x.fillStyle='rgba(255,255,255,0.5)';x.fillRect(8,10,24,2);x.fillRect(8,14,18,2);x.fillRect(8,18,14,2);
+  x.fillStyle='#a0a0a0';x.fillRect(20,34,12,4);x.fillRect(16,38,20,2);
+  x.fillStyle='#d0d0d0';x.fillRect(14,41,10,8);
+  x.fillStyle='#a0a0a0';x.fillRect(14,41,10,1);x.fillRect(14,41,1,8);x.fillRect(23,41,1,8);
+  x.fillStyle='#888';x.fillRect(16,44,6,2);x.fillRect(16,48,6,1);
+  var img=document.createElement('img');img.src=c.toDataURL();
+  img.style.cssText='width:52px;height:52px;display:block;margin:0 auto;image-rendering:pixelated;';return img;
+}
+function makeFolderIcon(){
+  var c=document.createElement('canvas');c.width=46;c.height=40;
+  var x=c.getContext('2d');
+  x.fillStyle='#e8c000';x.fillRect(0,8,42,30);
+  x.fillStyle='#ffd700';x.fillRect(0,4,16,6);
+  x.fillStyle='#b89000';x.fillRect(0,36,42,2);x.fillRect(40,8,2,30);
+  x.fillStyle='rgba(255,255,255,0.2)';x.fillRect(0,8,42,5);
+  var img=document.createElement('img');img.src=c.toDataURL();
+  img.style.cssText='width:42px;height:40px;display:block;margin:0 auto;image-rendering:pixelated;';return img;
+}
+function makeDocIcon(){
+  var c=document.createElement('canvas');c.width=36;c.height=46;
+  var x=c.getContext('2d');
+  x.fillStyle='#fff';x.fillRect(2,0,30,42);
+  x.fillStyle='#000';x.fillRect(2,0,1,42);x.fillRect(31,0,1,42);x.fillRect(2,0,30,1);x.fillRect(2,41,30,1);
+  x.fillStyle='#ddd';x.fillRect(22,0,10,10);
+  x.fillStyle='#999';x.fillRect(22,0,10,1);x.fillRect(22,0,1,10);
+  x.fillStyle='#333';for(var i=0;i<4;i++)x.fillRect(6,12+i*6,20,1);
+  var img=document.createElement('img');img.src=c.toDataURL();
+  img.style.cssText='width:36px;height:46px;display:block;margin:0 auto;image-rendering:pixelated;';return img;
+}
+function makeIcon(type,photoUrl){
+  if(type==='ai') return makeAIIcon();
+  if(type==='pc') return makePCIcon();
+  if(type==='vogue'){var i=document.createElement('img');i.src=photoUrl;i.className='w95-icon-img natural';return i;}
+  if(type==='folder') return makeFolderIcon();
+  if(type==='doc') return makeDocIcon();
+  if(type==='photo'&&photoUrl){var i=document.createElement('img');i.src=photoUrl;i.className='w95-icon-img square';i.style.objectPosition='center';return i;}
+  return makeFolderIcon();
 }
 
-var isTouch = 'ontouchstart' in window;
+var iconLayer=document.getElementById('w95-icons');
+var winLayer=document.getElementById('w95-wins');
+var zTop=1000;
+function bringToFront(el){el.style.zIndex=++zTop;}
 
-if(!isTouch){
-  document.getElementById('nav-prev').addEventListener('click', function(){ goTo(current - 1); });
-  document.getElementById('nav-next').addEventListener('click', function(){ goTo(current + 1); });
-} else {
-  document.getElementById('nav-prev').style.display = 'none';
-  document.getElementById('nav-next').style.display = 'none';
+function showHourglass(){
+  var h=document.createElement('div');
+  h.style.cssText='position:fixed;inset:0;background:rgba(0,128,128,0.35);z-index:999998;display:flex;align-items:center;justify-content:center;pointer-events:all;';
+  h.innerHTML='<div style="font-size:24px;color:#fff;animation:hgspin 1s linear infinite;">⧗</div>';
+  document.body.appendChild(h);setTimeout(function(){h.remove();},600);
 }
 
-/* Scroll wheel: shorter lock, lower threshold */
-var scrollLock = false;
-document.getElementById('slides').addEventListener('wheel', function(e){
-  e.preventDefault();
-  if(scrollLock) return;
-  if(Math.abs(e.deltaY) < 8) return;
-  scrollLock = true;
-  if(e.deltaY > 0) goTo(current + 1);
-  else goTo(current - 1);
-  setTimeout(function(){ scrollLock = false; }, 280);
-}, {passive:false});
+function makeBaseWin(name,wW,wH){
+  var w=document.createElement('div');w.className='w95-win';
+  wW=wW||(isMobile?Math.min(W-20,360):420);
+  wH=wH||(isMobile?Math.min(H-80,500):460);
+  w.style.cssText='left:20px;top:20px;width:'+wW+'px;height:'+wH+'px;z-index:'+(++zTop)+';';
+  var bar=document.createElement('div');bar.className='w95-winbar';
+  var title=document.createElement('div');title.className='w95-wintitle';title.textContent=name;bar.appendChild(title);
+  var btns=document.createElement('div');btns.className='w95-winbtns';
+  function wbtn(l,fn){var b=document.createElement('button');b.className='w95-wbtn';b.textContent=l;b.addEventListener('click',function(e){e.stopPropagation();fn();});return b;}
+  btns.appendChild(wbtn('_',function(){w.classList.remove('open');}));
+  btns.appendChild(wbtn('□',function(){
+    if(w._max){w.style.left=w._pl;w.style.top=w._pt;w.style.width=w._pw;w.style.height=w._ph;w._max=false;}
+    else{w._pl=w.style.left;w._pt=w.style.top;w._pw=w.style.width;w._ph=w.style.height;w.style.left='0';w.style.top='0';w.style.width='100vw';w.style.height='calc(100vh - 30px)';w._max=true;}
+  }));
+  btns.appendChild(wbtn('✕',function(){w.classList.remove('open');}));
+  bar.appendChild(btns);w.appendChild(bar);
+  w.addEventListener('mousedown',function(){bringToFront(w);});
+  var bd=false,bx=0,by=0;
+  bar.addEventListener('mousedown',function(e){if(e.target.closest('.w95-winbtns'))return;e.preventDefault();bd=true;bx=e.clientX-w.offsetLeft;by=e.clientY-w.offsetTop;bringToFront(w);});
+  document.addEventListener('mousemove',function(e){if(!bd)return;w.style.left=Math.max(0,e.clientX-bx)+'px';w.style.top=Math.max(0,e.clientY-by)+'px';});
+  document.addEventListener('mouseup',function(){bd=false;});
+  winLayer.appendChild(w);return w;
+}
 
-/* Touch swipe */
-var touchStartY = 0;
-document.getElementById('slides').addEventListener('touchstart', function(e){
-  touchStartY = e.touches[0].clientY;
-}, {passive:true});
-document.getElementById('slides').addEventListener('touchend', function(e){
-  var diff = touchStartY - e.changedTouches[0].clientY;
-  if(Math.abs(diff) > 50){
-    if(diff > 0) goTo(current + 1);
-    else goTo(current - 1);
+function makeWin(f){
+  var w=makeBaseWin(f.name);
+  var body=document.createElement('div');body.className='w95-winbody';if(f.content)body.innerHTML=f.content;
+  var rsz=document.createElement('div');rsz.className='w95-resize';
+  rsz.innerHTML='<svg width="14" height="14" viewBox="0 0 14 14"><path d="M14 0L0 14M14 7L7 14M14 11L11 14" stroke="#808080" stroke-width="1"/></svg>';
+  var rz=false,rx=0,ry=0,rw=0,rh=0;
+  rsz.addEventListener('mousedown',function(e){e.preventDefault();e.stopPropagation();rz=true;rx=e.clientX;ry=e.clientY;rw=w.offsetWidth;rh=w.offsetHeight;});
+  document.addEventListener('mousemove',function(e){if(!rz)return;w.style.width=Math.max(200,rw+(e.clientX-rx))+'px';w.style.height=Math.max(150,rh+(e.clientY-ry))+'px';});
+  document.addEventListener('mouseup',function(){rz=false;});
+  w.appendChild(body);w.appendChild(rsz);return w;
+}
+
+function makeIframeWin(f){
+  var w=makeWin(f);
+  var body=w.querySelector('.w95-winbody');
+  var iframe=document.createElement('iframe');iframe.src='about:blank';body.appendChild(iframe);
+  var ol=document.createElement('a');ol.href=f.url;ol.target='_blank';ol.className='w95-win-openlink';ol.textContent='↗ Open in original website';w.appendChild(ol);
+  w._iframe=iframe;w._iframeUrl=f.url;return w;
+}
+
+function makeAIWin(){
+  var w=makeBaseWin('Chat with Simone AI',isMobile?Math.min(W-20,340):380,isMobile?Math.min(H-80,460):480);
+  var body=document.createElement('div');body.className='w95-winbody';
+  var inner=document.createElement('div');inner.className='ai-winbody';
+  var msgs=document.createElement('div');msgs.className='ai-messages';
+  var counter=document.createElement('div');counter.className='ai-counter';counter.textContent='5 questions remaining';
+  var inputRow=document.createElement('div');inputRow.className='ai-input-row';
+  var input=document.createElement('input');input.className='ai-input';input.type='text';input.placeholder='Ask me about Simone...';
+  var send=document.createElement('button');send.className='ai-send';send.textContent='Send';
+  inputRow.appendChild(input);inputRow.appendChild(send);
+  inner.appendChild(msgs);inner.appendChild(counter);inner.appendChild(inputRow);
+  body.appendChild(inner);w.appendChild(body);
+  var welcome=document.createElement('div');welcome.className='ai-msg bot';
+  welcome.textContent='Hi! I\'m Simone\'s AI — ask me anything about his work, projects, or background. You have 5 questions!';
+  msgs.appendChild(welcome);
+  var qLeft=5,history=[];
+  function sendMsg(){
+    if(qLeft<=0)return;
+    var text=input.value.trim();if(!text)return;
+    input.value='';
+    var um=document.createElement('div');um.className='ai-msg user';um.textContent=text;msgs.appendChild(um);
+    qLeft--;counter.textContent=qLeft+' question'+(qLeft===1?'':'s')+' remaining';
+    if(qLeft===0){input.disabled=true;send.disabled=true;}
+    var loading=document.createElement('div');loading.className='ai-msg bot loading';loading.textContent='Thinking...';msgs.appendChild(loading);
+    msgs.scrollTop=msgs.scrollHeight;
+    history.push({role:'user',content:text});
+    fetch(WORKER_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:history,system:AI_SYSTEM})})
+    .then(function(r){return r.json();})
+    .then(function(d){
+      loading.remove();
+      var reply=d.content&&d.content[0]?d.content[0].text:'Sorry, something went wrong!';
+      history.push({role:'assistant',content:reply});
+      var bm=document.createElement('div');bm.className='ai-msg bot';bm.textContent=reply;msgs.appendChild(bm);
+      msgs.scrollTop=msgs.scrollHeight;
+      if(qLeft===0){var end=document.createElement('div');end.className='ai-msg bot';end.style.fontStyle='italic';end.textContent='Session ended. Write to falcomersimone@gmail.com!';msgs.appendChild(end);}
+    }).catch(function(){
+      loading.remove();qLeft++;counter.textContent=qLeft+' questions remaining';
+      if(qLeft>0){input.disabled=false;send.disabled=false;}
+      var err=document.createElement('div');err.className='ai-msg bot';err.textContent='Connection issue — try again!';msgs.appendChild(err);
+    });
   }
-}, {passive:true});
+  send.addEventListener('click',sendMsg);
+  input.addEventListener('keydown',function(e){if(e.key==='Enter')sendMsg();});
+  return w;
+}
 
-/* Keyboard arrows */
-document.addEventListener('keydown', function(e){
-  if(e.key === 'ArrowDown' || e.key === 'ArrowRight') goTo(current + 1);
-  if(e.key === 'ArrowUp' || e.key === 'ArrowLeft') goTo(current - 1);
+var aiWinEl=null;
+function openAIWin(){if(!aiWinEl)aiWinEl=makeAIWin();aiWinEl.classList.add('open');bringToFront(aiWinEl);}
+
+var contactWin=(function(){
+  var w=makeBaseWin('Contact',270,195);
+  var body=document.createElement('div');body.className='w95-winbody padded';
+  body.innerHTML='<h1 style="font-size:13px;font-weight:700;margin-bottom:12px;">Contact</h1><a href="https://www.instagram.com/simone_falcomer/" target="_blank">📷 Instagram</a><a href="https://wa.me/34607699642" target="_blank">📱 +34 607 699 642</a><a href="mailto:falcomersimone@gmail.com">✉️ falcomersimone@gmail.com</a>';
+  w.appendChild(body);return w;
+})();
+
+document.getElementById('menu-info').addEventListener('click',function(){
+  document.getElementById('w95-start-menu').classList.remove('open');
+  window.open('https://falcomersimone-cell.github.io/sito/info.html','_blank');
 });
-</script>
+document.getElementById('menu-ai').addEventListener('click',function(){document.getElementById('w95-start-menu').classList.remove('open');openAIWin();});
+document.getElementById('menu-spotify').addEventListener('click',function(){document.getElementById('w95-start-menu').classList.remove('open');window.open('https://open.spotify.com/user/a23m6kfwzqrv5g7pn0lirqqso?si=0e79dafc47304ea4','_blank');});
+document.getElementById('menu-contact').addEventListener('click',function(){document.getElementById('w95-start-menu').classList.remove('open');contactWin.classList.add('open');bringToFront(contactWin);});
+document.getElementById('w95-start').addEventListener('click',function(e){e.stopPropagation();document.getElementById('w95-start-menu').classList.toggle('open');});
 
+FOLDERS.forEach(function(f,i){
+  var win=null;
+  if(f.type==='window') win=makeWin(f);
+  else if(f.type==='iframe') win=makeIframeWin(f);
+  var pos=getPos(f);
+  var ic=document.createElement('div');ic.className='w95-icon';
+  ic.appendChild(makeIcon(f.icon,f.photoUrl));
+  var lbl=document.createElement('div');lbl.className='w95-icon-label';lbl.textContent=f.name;ic.appendChild(lbl);
+  ic.style.cssText='left:'+pos.x+'px;top:'+pos.y+'px;z-index:'+(500+i)+';';
+  var dragging=false,moved=false,ox=0,oy=0,sx=0,sy=0,lastTap=0;
+  function openItem(){
+    showHourglass();
+    setTimeout(function(){
+      if(f.type==='newpage'){window.open(f.url,'_blank');return;}
+      if(f.type==='aiwin'){openAIWin();return;}
+      if(win){win.classList.add('open');bringToFront(win);if(win._iframe&&win._iframe.src==='about:blank')win._iframe.src=win._iframeUrl;}
+      else if(f.url&&f.url.indexOf('INSERISCI')<0) window.location.href=f.url;
+    },400);
+  }
+  function startDrag(cx,cy){dragging=true;moved=false;ox=cx-ic.offsetLeft;oy=cy-ic.offsetTop;sx=cx;sy=cy;ic.style.zIndex=++zTop;document.querySelectorAll('.w95-icon').forEach(function(w){w.classList.remove('sel');});ic.classList.add('sel');}
+  function doDrag(cx,cy){if(!dragging)return;if(Math.abs(cx-sx)>6||Math.abs(cy-sy)>6)moved=true;ic.style.left=Math.max(0,cx-ox)+'px';ic.style.top=Math.max(0,cy-oy)+'px';}
+  function endDrag(){if(!dragging)return;dragging=false;if(!moved){if(isMobile){openItem();}else{var now=Date.now();if(now-lastTap<500)openItem();lastTap=now;}}}
+  ic.addEventListener('mousedown',function(e){e.preventDefault();startDrag(e.clientX,e.clientY);});
+  ic.addEventListener('touchstart',function(e){e.preventDefault();startDrag(e.touches[0].clientX,e.touches[0].clientY);},{passive:false});
+  document.addEventListener('mousemove',function(e){doDrag(e.clientX,e.clientY);});
+  document.addEventListener('touchmove',function(e){if(dragging)doDrag(e.touches[0].clientX,e.touches[0].clientY);},{passive:true});
+  document.addEventListener('mouseup',endDrag);
+  document.addEventListener('touchend',endDrag);
+  iconLayer.appendChild(ic);
+});
+
+document.addEventListener('click',function(e){
+  if(!e.target.closest('.w95-icon'))document.querySelectorAll('.w95-icon').forEach(function(w){w.classList.remove('sel');});
+  if(!e.target.closest('#w95-start')&&!e.target.closest('#w95-start-menu'))document.getElementById('w95-start-menu').classList.remove('open');
+});
+
+// Frasi fantasma
+var PHRASES=[
+  {text:'FREE PALESTINE',top:'6%',left:'50%',delay:4000,interval:20000},
+  {text:'DRAW THE TIME',top:'22%',left:'12%',delay:8000,interval:24000},
+  {text:'I AM A GOOD MAN?',top:'58%',left:'75%',delay:13000,interval:27000},
+  {text:'AN IDEA, A CONCEPT, AN IDEA?',top:'78%',left:'35%',delay:6000,interval:32000},
+  {text:'FREE PALESTINE',top:'42%',left:'82%',delay:22000,interval:21000},
+  {text:'DRAW THE TIME',top:'68%',left:'8%',delay:16000,interval:29000},
+  {text:'I AM A GOOD MAN?',top:'15%',left:'60%',delay:30000,interval:35000},
+  {text:'AN IDEA, A CONCEPT, AN IDEA?',top:'88%',left:'55%',delay:10000,interval:38000},
+];
+PHRASES.forEach(function(p){
+  var el=document.createElement('div');el.className='phantom';
+  el.style.cssText='top:'+p.top+';left:'+p.left+';transform:translateX(-50%);';
+  el.textContent=p.text;document.body.appendChild(el);
+  function show(){el.classList.add('visible');setTimeout(function(){el.classList.remove('visible');},4000);}
+  setTimeout(function(){show();setInterval(show,p.interval);},p.delay);
+});
+
+})();
+</script>
 </body>
 </html>
