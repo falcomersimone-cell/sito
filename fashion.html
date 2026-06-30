@@ -4,227 +4,140 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Simone Falcomer — Fashion Work</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-*{box-sizing:border-box;margin:0;padding:0;}
-html,body{background:#0a0a0a;font-family:'IBM Plex Mono',monospace;overflow-x:hidden;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#000;font-family:'IBM Plex Mono',monospace;}
 
-#header{
+header{
   position:fixed;top:0;left:0;right:0;
-  padding:18px 24px;
+  height:50px;
+  background:#000;
   display:flex;align-items:center;justify-content:space-between;
-  background:rgba(10,10,10,0.5);
-  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
-  z-index:200;
-  mix-blend-mode:difference;
+  padding:0 20px;
+  z-index:100;
+  border-bottom:1px solid #222;
 }
-#header-title{font-size:11px;letter-spacing:0.25em;color:#fff;font-weight:700;}
-#back{font-size:11px;letter-spacing:0.1em;color:#fff;text-decoration:none;}
-#back:hover{opacity:0.6;}
-#counter-top{font-size:11px;letter-spacing:0.15em;color:#fff;}
+header a{color:#fff;font-size:11px;text-decoration:none;letter-spacing:0.1em;}
+header span{color:#fff;font-size:11px;letter-spacing:0.15em;}
 
-#hero{
-  position:relative;
-  height:100vh;
-  overflow:hidden;
-}
-#hero img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(0.75);}
-#hero-text{
-  position:absolute;inset:0;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
+.hero{
+  padding:130px 20px 50px;
   text-align:center;
 }
-#hero h1{
-  font-family:'Playfair Display',serif;font-weight:900;
-  font-size:clamp(48px,13vw,200px);
-  line-height:0.88;letter-spacing:-0.02em;
+.hero h1{
+  font-family:'Playfair Display',serif;
+  font-weight:900;
+  font-size:60px;
   color:#fff;
-  text-shadow:0 4px 40px rgba(0,0,0,0.5);
-}
-#hero p{
-  font-size:12px;letter-spacing:0.35em;color:rgba(255,255,255,0.8);margin-top:28px;
-  text-transform:uppercase;
+  line-height:1;
 }
 
-#gallery{background:#0a0a0a;}
-
-.frame{
-  position:relative;
+.photo{
   width:100%;
-  background:#0a0a0a;
+  text-align:center;
+  padding:10px;
 }
-.frame img{
-  width:100%;
-  height:auto;
-  display:block;
+.photo img{
+  max-width:100%;
+  max-height:90vh;
+  display:inline-block;
   cursor:pointer;
-  transition:opacity 0.4s ease;
-}
-.frame:hover img{opacity:0.92;}
-
-.frame-meta{
-  position:absolute;bottom:24px;left:24px;
-  font-size:10px;letter-spacing:0.2em;color:#fff;
-  mix-blend-mode:difference;
-  pointer-events:none;
 }
 
-.frame-pair{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#0a0a0a;}
-.frame-pair .frame img{height:100%;object-fit:cover;}
-@media(max-width:768px){.frame-pair{grid-template-columns:1fr;}}
-
-.frame-trio{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:1px;background:#0a0a0a;}
-.frame-trio .frame img{height:100%;object-fit:cover;}
-@media(max-width:768px){.frame-trio{grid-template-columns:1fr 1fr;}}
-
-#footer-cta{
-  position:relative;
-  min-height:80vh;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
+footer{
   text-align:center;
-  background:#0a0a0a;
-  padding:80px 24px;
+  padding:60px 20px;
+  border-top:1px solid #222;
 }
-#footer-cta h2{
-  font-family:'Playfair Display',serif;font-weight:900;font-style:italic;
-  font-size:clamp(36px,7vw,100px);
-  color:#fff;
-  margin-bottom:32px;
-  line-height:1.05;
-}
-#footer-cta a{
-  font-size:12px;letter-spacing:0.25em;color:#fff;
-  text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.4);
-  padding-bottom:6px;
-}
-#footer-cta a:hover{border-color:#fff;}
+footer p{color:#888;font-size:11px;letter-spacing:0.15em;margin-bottom:12px;}
+footer a{color:#fff;font-size:14px;text-decoration:none;border-bottom:1px solid #fff;}
 
-#lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.98);z-index:999;align-items:center;justify-content:center;}
+#lightbox{
+  display:none;
+  position:fixed;inset:0;
+  background:#000;
+  z-index:999;
+  align-items:center;justify-content:center;
+}
 #lightbox.open{display:flex;}
-#lightbox img{max-width:92vw;max-height:92vh;object-fit:contain;}
-#lb-close{position:fixed;top:20px;right:24px;font-size:24px;color:#fff;cursor:pointer;z-index:1000;opacity:0.7;}
-#lb-close:hover{opacity:1;}
-#lb-prev,#lb-next{position:fixed;top:50%;transform:translateY(-50%);font-size:36px;color:#fff;cursor:pointer;z-index:1000;opacity:0.5;padding:20px;}
-#lb-prev:hover,#lb-next:hover{opacity:1;}
-#lb-prev{left:10px;}#lb-next{right:10px;}
-#lb-counter{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);color:#fff;font-size:11px;letter-spacing:0.2em;opacity:0.6;}
+#lightbox img{max-width:95vw;max-height:95vh;object-fit:contain;}
+.lb-btn{position:fixed;color:#fff;font-size:30px;cursor:pointer;z-index:1000;padding:15px;}
+#lb-close{top:10px;right:15px;font-size:24px;}
+#lb-prev{left:5px;top:50%;transform:translateY(-50%);}
+#lb-next{right:5px;top:50%;transform:translateY(-50%);}
 </style>
 </head>
 <body>
-<div id="header">
-  <a href="https://simonefalcomer.art" id="back">← BACK</a>
-  <div id="header-title">SIMONE FALCOMER</div>
-  <div id="counter-top">FASHION WORK</div>
-</div>
 
-<div id="hero">
-  <img id="hero-img" src="">
-  <div id="hero-text">
-    <h1>FASHION<br>WORK</h1>
-    <p>Editorial — Barcelona</p>
-  </div>
+<header>
+  <a href="https://simonefalcomer.art">← BACK</a>
+  <span>SIMONE FALCOMER</span>
+  <span>FASHION WORK</span>
+</header>
+
+<div class="hero">
+  <h1>FASHION WORK</h1>
 </div>
 
 <div id="gallery"></div>
 
-<div id="footer-cta">
-  <h2>Let's work<br>together</h2>
+<footer>
+  <p>FOR INQUIRIES</p>
   <a href="mailto:falcomersimone@gmail.com">falcomersimone@gmail.com</a>
-</div>
+</footer>
 
 <div id="lightbox">
-  <div id="lb-close">✕</div>
-  <div id="lb-prev">‹</div>
+  <div class="lb-btn" id="lb-close">✕</div>
+  <div class="lb-btn" id="lb-prev">‹</div>
   <img id="lb-img" src="">
-  <div id="lb-next">›</div>
-  <div id="lb-counter"></div>
+  <div class="lb-btn" id="lb-next">›</div>
 </div>
 
 <script>
-var BASE='https://falcomersimone-cell.github.io/sito/fashion/';
-var EXT_OVERRIDES = {18:'jpg'};
-var PHOTOS=[];
-for(var i=1;i<=44;i++){
-  var ext = EXT_OVERRIDES[i] || 'jpeg';
-  PHOTOS.push('Simone Falcomer Fashion Photography '+i+'.'+ext);
+var BASE = 'https://falcomersimone-cell.github.io/sito/fashion/';
+var EXT = {18:'jpg'};
+var PHOTOS = [];
+for (var i = 1; i <= 44; i++) {
+  PHOTOS.push('Simone Falcomer Fashion Photography ' + i + '.' + (EXT[i] || 'jpeg'));
 }
 
-document.getElementById('hero-img').src = BASE+encodeURIComponent(PHOTOS[0]);
+var gallery = document.getElementById('gallery');
+var lightbox = document.getElementById('lightbox');
+var lbImg = document.getElementById('lb-img');
+var current = 0;
 
-var gallery=document.getElementById('gallery');
-var lightbox=document.getElementById('lightbox');
-var lbImg=document.getElementById('lb-img');
-var lbCounter=document.getElementById('lb-counter');
-var currentIndex=0;
-
-function frameNum(i){return String(i+1).padStart(2,'0')+' / '+String(PHOTOS.length).padStart(2,'0');}
-
-function makeFrame(idx, heightClass){
-  var frame=document.createElement('div');frame.className='frame';
-  var img=document.createElement('img');
-  img.src=BASE+encodeURIComponent(PHOTOS[idx]);
-  img.alt='';
-  if(heightClass) img.style.cssText = heightClass;
-  frame.appendChild(img);
-  var meta=document.createElement('div');meta.className='frame-meta';meta.textContent=frameNum(idx);
-  frame.appendChild(meta);
-  frame.addEventListener('click',function(){openLightbox(idx);});
-  return frame;
+for (var j = 0; j < PHOTOS.length; j++) {
+  (function(index) {
+    var div = document.createElement('div');
+    div.className = 'photo';
+    var img = document.createElement('img');
+    img.src = BASE + encodeURIComponent(PHOTOS[index]);
+    img.onclick = function() {
+      current = index;
+      lbImg.src = img.src;
+      lightbox.classList.add('open');
+    };
+    div.appendChild(img);
+    gallery.appendChild(div);
+  })(j);
 }
 
-// Layout: alterna full-width grandi con coppie e triple, ritmo editoriale
-var pattern = ['full','full','pair','full','trio','full','pair','full','full','pair','trio','full'];
-var idx = 1; // partiamo da 1 perché 0 è già nell'hero
-var patternIdx = 0;
-
-while(idx < PHOTOS.length){
-  var type = pattern[patternIdx % pattern.length];
-  patternIdx++;
-
-  if(type==='full'){
-    gallery.appendChild(makeFrame(idx));
-    idx++;
-  }
-  else if(type==='pair' && idx+1 < PHOTOS.length){
-    var block=document.createElement('div');block.className='frame-pair';
-    block.appendChild(makeFrame(idx,'height:65vh;object-fit:cover;')); idx++;
-    block.appendChild(makeFrame(idx,'height:65vh;object-fit:cover;')); idx++;
-    gallery.appendChild(block);
-  }
-  else if(type==='trio' && idx+2 < PHOTOS.length){
-    var block=document.createElement('div');block.className='frame-trio';
-    block.appendChild(makeFrame(idx,'height:55vh;object-fit:cover;')); idx++;
-    block.appendChild(makeFrame(idx,'height:55vh;object-fit:cover;')); idx++;
-    block.appendChild(makeFrame(idx,'height:55vh;object-fit:cover;')); idx++;
-    gallery.appendChild(block);
-  }
-  else {
-    gallery.appendChild(makeFrame(idx));
-    idx++;
-  }
-}
-
-function openLightbox(i){
-  currentIndex=i;
-  lbImg.src=BASE+encodeURIComponent(PHOTOS[i]);
-  lbCounter.textContent=frameNum(i);
-  lightbox.classList.add('open');
-}
-function closeLightbox(){lightbox.classList.remove('open');}
-document.getElementById('lb-close').addEventListener('click',closeLightbox);
-document.getElementById('lb-prev').addEventListener('click',function(){currentIndex=(currentIndex-1+PHOTOS.length)%PHOTOS.length;openLightbox(currentIndex);});
-document.getElementById('lb-next').addEventListener('click',function(){currentIndex=(currentIndex+1)%PHOTOS.length;openLightbox(currentIndex);});
-lightbox.addEventListener('click',function(e){if(e.target===lightbox)closeLightbox();});
-document.addEventListener('keydown',function(e){
-  if(!lightbox.classList.contains('open'))return;
-  if(e.key==='Escape')closeLightbox();
-  if(e.key==='ArrowLeft'){currentIndex=(currentIndex-1+PHOTOS.length)%PHOTOS.length;openLightbox(currentIndex);}
-  if(e.key==='ArrowRight'){currentIndex=(currentIndex+1)%PHOTOS.length;openLightbox(currentIndex);}
-});
-
-// Hero click apre lightbox sulla prima foto
-document.getElementById('hero-img').addEventListener('click', function(){openLightbox(0);});
-document.getElementById('hero-img').style.cursor='pointer';
+document.getElementById('lb-close').onclick = function() {
+  lightbox.classList.remove('open');
+};
+document.getElementById('lb-prev').onclick = function() {
+  current = (current - 1 + PHOTOS.length) % PHOTOS.length;
+  lbImg.src = BASE + encodeURIComponent(PHOTOS[current]);
+};
+document.getElementById('lb-next').onclick = function() {
+  current = (current + 1) % PHOTOS.length;
+  lbImg.src = BASE + encodeURIComponent(PHOTOS[current]);
+};
+lightbox.onclick = function(e) {
+  if (e.target === lightbox) lightbox.classList.remove('open');
+};
 </script>
+
 </body>
 </html>
