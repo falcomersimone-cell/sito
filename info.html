@@ -2,142 +2,169 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Simone Falcomer — Fashion Work</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Simone Falcomer — Info</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
-body{background:#000;font-family:'IBM Plex Mono',monospace;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{width:100%;background:#000;overflow-x:hidden;overflow-y:scroll;}
 
-header{
-  position:fixed;top:0;left:0;right:0;
-  height:50px;
-  background:#000;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 20px;
-  z-index:100;
-  border-bottom:1px solid #222;
-}
-header a{color:#fff;font-size:11px;text-decoration:none;letter-spacing:0.1em;}
-header span{color:#fff;font-size:11px;letter-spacing:0.15em;}
+#bg-canvas{position:fixed;inset:0;z-index:0;width:100%;height:100%;display:block;}
+#bg-overlay{position:fixed;inset:0;z-index:1;background:rgba(0,0,0,0.35);pointer-events:none;}
+#scroll-layer{position:relative;z-index:10;min-height:100vh;}
+#content{padding:8vw 6vw 20vw;}
 
-.hero{
-  padding:130px 20px 50px;
-  text-align:center;
+.bio-block{
+  font-family:'Playfair Display',serif;font-weight:900;
+  font-size:clamp(32px,6.5vw,100px);color:#fff;
+  line-height:1.05;letter-spacing:-0.02em;margin-bottom:7vw;
+  text-shadow:0 2px 30px rgba(0,0,0,0.5);
 }
-.hero h1{
-  font-family:'Playfair Display',serif;
-  font-weight:900;
-  font-size:60px;
-  color:#fff;
-  line-height:1;
+.contact-block{
+  font-size:clamp(20px,3.5vw,56px)!important;
+  margin-top:10vw;border-top:2px solid rgba(255,255,255,0.3);
+  padding-top:6vw;line-height:1.5;
 }
+.contact-block a{color:#fff;text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.4);}
 
-.photo{
-  width:100%;
-  text-align:center;
-  padding:10px;
-}
-.photo img{
-  max-width:100%;
-  max-height:90vh;
-  display:inline-block;
-  cursor:pointer;
+#back{
+  position:fixed;top:16px;left:16px;z-index:1000;
+  font-family:'IBM Plex Mono',monospace;font-size:11px;
+  color:#fff;background:rgba(0,0,0,0.6);
+  padding:8px 16px;border:1px solid rgba(255,255,255,0.4);
+  letter-spacing:0.1em;
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  text-decoration:none;display:inline-block;
 }
 
-footer{
-  text-align:center;
-  padding:60px 20px;
-  border-top:1px solid #222;
-}
-footer p{color:#888;font-size:11px;letter-spacing:0.15em;margin-bottom:12px;}
-footer a{color:#fff;font-size:14px;text-decoration:none;border-bottom:1px solid #fff;}
-
-#lightbox{
-  display:none;
-  position:fixed;inset:0;
-  background:#000;
-  z-index:999;
-  align-items:center;justify-content:center;
-}
-#lightbox.open{display:flex;}
-#lightbox img{max-width:95vw;max-height:95vh;object-fit:contain;}
-.lb-btn{position:fixed;color:#fff;font-size:30px;cursor:pointer;z-index:1000;padding:15px;}
-#lb-close{top:10px;right:15px;font-size:24px;}
-#lb-prev{left:5px;top:50%;transform:translateY(-50%);}
-#lb-next{right:5px;top:50%;transform:translateY(-50%);}
+#gallery-wrap{position:relative;z-index:10;background:#000;overflow:hidden;padding:3px 0;}
+#gallery-strip{display:flex;width:max-content;animation:stripscroll 30s linear infinite;}
+.gimg{height:38vmin;width:auto;object-fit:cover;opacity:0.78;margin-right:3px;flex-shrink:0;display:block;}
+@keyframes stripscroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
 </style>
 </head>
 <body>
 
-<header>
-  <a href="https://simonefalcomer.art">← BACK</a>
-  <span>SIMONE FALCOMER</span>
-  <span>FASHION WORK</span>
-</header>
+<a id="back" href="https://simonefalcomer.art">← BACK</a>
+<canvas id="bg-canvas"></canvas>
+<div id="bg-overlay"></div>
 
-<div class="hero">
-  <h1>FASHION WORK</h1>
-</div>
-
-<div id="gallery"></div>
-
-<footer>
-  <p>FOR INQUIRIES</p>
-  <a href="mailto:falcomersimone@gmail.com">falcomersimone@gmail.com</a>
-</footer>
-
-<div id="lightbox">
-  <div class="lb-btn" id="lb-close">✕</div>
-  <div class="lb-btn" id="lb-prev">‹</div>
-  <img id="lb-img" src="">
-  <div class="lb-btn" id="lb-next">›</div>
+<div id="scroll-layer">
+  <div id="content">
+    <div class="bio-block">Simone Falcomer is a photographer and Art Director based in Barcelona.</div>
+    <div class="bio-block">Born in Italy, he studied photojournalism at Grisart Academy in Barcelona, where he developed a solid and personal approach to the image.</div>
+    <div class="bio-block">He is currently studying Fine Arts in Barcelona while working as a freelance photographer across fashion, documentary and artistic practice.</div>
+    <div class="bio-block">His work is in constant evolution — each project brings him into unknown territory, always outside his comfort zone.</div>
+    <div class="bio-block">He shoots on analogue film, working in 35mm and medium format. He uses photography as a tool, believing his fullest expression is still ahead of him.</div>
+    <div class="bio-block">Through the lens, Simone chases time as it passes. He reflects on the relativity of time and on the inner and outer transformations of himself, of people, and of the world.</div>
+    <div class="bio-block">His visual language draws from mid-20th century photography, neoclassical sculpture, Baroque painting and Italian Renaissance art.</div>
+    <div class="bio-block">Editorial work published in Vogue Nederland, Neo2, Kultblut Magazine, Vein Magazine and Cake Magazine. Commercial clients include Marni, Missoni and Outsiders Division. Image Director at Acceptance Letter Studio.</div>
+    <div class="bio-block contact-block">
+      For inquiries<br>
+      <a href="mailto:falcomersimone@gmail.com">falcomersimone@gmail.com</a><br>
+      <a href="https://wa.me/34607699642">+34 607 699 642</a>
+    </div>
+  </div>
+  <div id="gallery-wrap">
+    <div id="gallery-strip">
+      <img class="gimg" src="https://i.ibb.co/DDN6KXQf/4.jpg">
+      <img class="gimg" src="https://i.ibb.co/C3HdzswJ/6.jpg">
+      <img class="gimg" src="https://i.ibb.co/TDBQSP6Y/Acceptance-Letter25.jpg">
+      <img class="gimg" src="https://i.ibb.co/MxcbGWbN/Edito-Sarah-Beauty5403.jpg">
+      <img class="gimg" src="https://i.ibb.co/vvhmc8DV/Edito-Sarah-Beauty5563-1.jpg">
+      <img class="gimg" src="https://falcomersimone-cell.github.io/sito/Edito%20Sarah%20Beauty5893.jpg">
+      <img class="gimg" src="https://i.ibb.co/DDN6KXQf/4.jpg">
+      <img class="gimg" src="https://i.ibb.co/C3HdzswJ/6.jpg">
+      <img class="gimg" src="https://i.ibb.co/TDBQSP6Y/Acceptance-Letter25.jpg">
+      <img class="gimg" src="https://i.ibb.co/MxcbGWbN/Edito-Sarah-Beauty5403.jpg">
+      <img class="gimg" src="https://i.ibb.co/vvhmc8DV/Edito-Sarah-Beauty5563-1.jpg">
+      <img class="gimg" src="https://falcomersimone-cell.github.io/sito/Edito%20Sarah%20Beauty5893.jpg">
+    </div>
+  </div>
 </div>
 
 <script>
-var BASE = 'https://falcomersimone-cell.github.io/sito/fashion/';
-var EXT = {18:'jpg'};
-var PHOTOS = [];
-for (var i = 1; i <= 44; i++) {
-  PHOTOS.push('Simone Falcomer Fashion Photography ' + i + '.' + (EXT[i] || 'jpeg'));
-}
+(function(){
+  var canvas=document.getElementById('bg-canvas');
+  var ctx=canvas.getContext('2d');
+  var W,H;
+  var img=new Image();
+  img.src='https://falcomersimone-cell.github.io/sito/Edito%20Sarah%20Beauty5893.jpg';
 
-var gallery = document.getElementById('gallery');
-var lightbox = document.getElementById('lightbox');
-var lbImg = document.getElementById('lb-img');
-var current = 0;
+  var isScrolling=false;
+  var scrollTimeout;
+  var liquidAmount=0;
 
-for (var j = 0; j < PHOTOS.length; j++) {
-  (function(index) {
-    var div = document.createElement('div');
-    div.className = 'photo';
-    var img = document.createElement('img');
-    img.src = BASE + encodeURIComponent(PHOTOS[index]);
-    img.onclick = function() {
-      current = index;
-      lbImg.src = img.src;
-      lightbox.classList.add('open');
-    };
-    div.appendChild(img);
-    gallery.appendChild(div);
-  })(j);
-}
+  function resize(){
+    W=canvas.width=window.innerWidth;
+    H=canvas.height=window.innerHeight;
+  }
+  window.addEventListener('resize',resize);
+  resize();
 
-document.getElementById('lb-close').onclick = function() {
-  lightbox.classList.remove('open');
-};
-document.getElementById('lb-prev').onclick = function() {
-  current = (current - 1 + PHOTOS.length) % PHOTOS.length;
-  lbImg.src = BASE + encodeURIComponent(PHOTOS[current]);
-};
-document.getElementById('lb-next').onclick = function() {
-  current = (current + 1) % PHOTOS.length;
-  lbImg.src = BASE + encodeURIComponent(PHOTOS[current]);
-};
-lightbox.onclick = function(e) {
-  if (e.target === lightbox) lightbox.classList.remove('open');
-};
+  function onScroll(){
+    isScrolling=true;
+    clearTimeout(scrollTimeout);
+    scrollTimeout=setTimeout(function(){isScrolling=false;},300);
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('touchmove',onScroll,{passive:true});
+
+  var offscreen=document.createElement('canvas');
+  var octx=offscreen.getContext('2d');
+  var imgLoaded=false;
+
+  function cacheImg(){
+    offscreen.width=W;offscreen.height=H;
+    var ratio=Math.max(W/img.naturalWidth,H/img.naturalHeight);
+    var iw=img.naturalWidth*ratio,ih=img.naturalHeight*ratio;
+    octx.drawImage(img,(W-iw)/2,(H-ih)/2,iw,ih);
+    imgLoaded=true;
+  }
+
+  function drawFrame(){
+    var target=isScrolling?1:0;
+    liquidAmount+=(target-liquidAmount)*0.07;
+    ctx.clearRect(0,0,W,H);
+
+    if(!imgLoaded){
+      ctx.fillStyle='#111';ctx.fillRect(0,0,W,H);
+      requestAnimationFrame(drawFrame);
+      return;
+    }
+
+    if(liquidAmount<0.01){
+      ctx.drawImage(offscreen,0,0);
+      requestAnimationFrame(drawFrame);
+      return;
+    }
+
+    var t=Date.now();
+    var sliceH=3;
+    for(var y=0;y<H;y+=sliceH){
+      var dx=Math.sin(y*0.018+t*0.002)*liquidAmount*35
+            +Math.cos(y*0.007+t*0.0015)*liquidAmount*15;
+      ctx.drawImage(offscreen,0,y,W,sliceH,dx,y,W,sliceH);
+    }
+    requestAnimationFrame(drawFrame);
+  }
+
+  img.onload=function(){
+    cacheImg();
+    drawFrame();
+  };
+
+  window.addEventListener('resize',function(){
+    if(imgLoaded) cacheImg();
+  });
+
+  setTimeout(function(){
+    if(!imgLoaded){
+      ctx.fillStyle='#111';ctx.fillRect(0,0,W,H);
+      drawFrame();
+    }
+  },3000);
+})();
 </script>
-
 </body>
 </html>
