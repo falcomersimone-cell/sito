@@ -251,7 +251,301 @@ function seededShuffle(arr){
   }
   return out;
 }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="https://simonefalcomer.art/favicon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simone Falcomer — Black & White Archive</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{background:#008080;font-family:'IBM Plex Mono',monospace;min-height:100%;}
+.win{margin:20px auto;width:min(1100px,96vw);background:#c0c0c0;border:2px solid;border-color:#fff #808080 #808080 #fff;box-shadow:2px 2px 0 #000;display:flex;flex-direction:column;min-height:calc(100vh - 40px);}
+.winbar{height:24px;background:linear-gradient(to right,#000080,#1084d0);display:flex;align-items:center;padding:0 6px;justify-content:space-between;flex-shrink:0;}
+.wintitle{color:#fff;font-size:12px;font-weight:700;font-family:'IBM Plex Mono',monospace;letter-spacing:0.05em;}
+.winbtns{display:flex;gap:2px;}
+.wbtn{width:16px;height:14px;background:#c0c0c0;font-size:9px;cursor:pointer;display:flex;align-items:center;justify-content:center;border:1px solid;border-color:#fff #808080 #808080 #fff;text-decoration:none;color:#000;}
+.wbtn:hover{background:#e0e0e0;}
+.menubar{display:flex;border-bottom:1px solid #808080;padding:2px 4px;font-size:11px;flex-shrink:0;}
+.menubar span{padding:2px 8px;cursor:default;}
+.menubar span:hover{background:#000080;color:#fff;}
+.toolbar{display:flex;align-items:center;gap:4px;padding:4px 6px;border-bottom:1px solid #808080;flex-shrink:0;}
+.tbtn{height:22px;padding:0 8px;background:#c0c0c0;border:1px solid;border-color:#fff #808080 #808080 #fff;font-size:10px;font-family:'IBM Plex Mono',monospace;cursor:pointer;display:flex;align-items:center;gap:4px;text-decoration:none;color:#000;}
+.tbtn:hover{background:#d8d8d8;}
+.address-bar{display:flex;align-items:center;gap:8px;padding:4px 6px;border-bottom:1px solid #808080;font-size:11px;flex-shrink:0;}
+.address-label{color:#000;white-space:nowrap;}
+.address-input{flex:1;padding:2px 6px;border:1px solid;border-color:#808080 #fff #fff #808080;background:#fff;font-size:11px;font-family:'IBM Plex Mono',monospace;color:#000;}
+.winbody{flex:1;background:#fff;overflow:auto;padding:4px;}
+#gallery{display:grid;grid-template-columns:1fr 1fr;gap:4px;}
+.photo img{width:100%;height:auto;display:block;cursor:pointer;}
+.statusbar{height:22px;border-top:1px solid #808080;display:flex;align-items:center;padding:0 8px;font-size:10px;color:#000;flex-shrink:0;}
+.status-section{border:1px solid;border-color:#808080 #fff #fff #808080;padding:2px 8px;height:16px;display:flex;align-items:center;}
+#lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.97);z-index:9999;align-items:center;justify-content:center;}
+#lightbox.open{display:flex;}
+#lb-img{max-width:95vw;max-height:95vh;object-fit:contain;}
+#lb-close{position:fixed;top:16px;right:20px;color:#fff;font-size:24px;cursor:pointer;z-index:10000;}
+#lb-prev,#lb-next{position:fixed;top:50%;transform:translateY(-50%);color:#fff;font-size:36px;cursor:pointer;z-index:10000;padding:16px;opacity:0.6;}
+#lb-prev:hover,#lb-next:hover{opacity:1;}
+#lb-prev{left:4px;}#lb-next{right:4px;}
+</style>
+</head>
+<body>
+<div class="win">
+  <div class="winbar">
+    <div class="wintitle">🖼 Black & White Archive</div>
+    <div class="winbtns">
+      <div class="wbtn">_</div>
+      <div class="wbtn">□</div>
+      <a href="https://simonefalcomer.art/personal.html" class="wbtn">✕</a>
+    </div>
+  </div>
+  <div class="menubar">
+    <span>File</span><span>Edit</span><span>View</span><span>Help</span>
+  </div>
+  <div class="toolbar">
+    <a href="https://simonefalcomer.art" class="tbtn">🏠 Home</a>
+    <a href="https://simonefalcomer.art/personal.html" class="tbtn">← Back</a>
+  </div>
+  <div class="address-bar">
+    <span class="address-label">Address:</span>
+    <div class="address-input">C:\Simone\Personal Projects\Black &amp; White Archive</div>
+  </div>
+  <div class="winbody">
+    <div id="gallery"></div>
+  </div>
+  <div class="statusbar">
+    <div class="status-section" id="status">Loading...</div>
+  </div>
+</div>
+<div id="lightbox">
+  <div id="lb-close">✕</div>
+  <div id="lb-prev">‹</div>
+  <img id="lb-img" src="">
+  <div id="lb-next">›</div>
+</div>
+<script>
+var BASE = 'https://falcomersimone-cell.github.io/sito/bw/';
+var PHOTOS = [
+  'Simone Falcomer photography 1.jpeg',
+  'Simone Falcomer photography 2.jpeg',
+  'Simone Falcomer photography3.jpeg',
+  'Simone Falcomer photography 4.jpeg',
+  'Simone Falcomer photography 5.jpeg',
+  'Simone Falcomer photography 6.jpeg',
+  'Simone Falcomer photography 7.jpeg',
+  'Simone Falcomer photography 8.jpeg',
+  'Simone Falcomer photography 9.jpeg',
+  'Simone Falcomer photography 10.jpeg',
+  'Simone Falcomer photography 11.jpeg',
+  'Simone Falcomer photography 12.jpeg',
+  'Simone Falcomer photography 13.jpeg',
+  'Simone Falcomer photography 14.jpeg',
+  'Simone Falcomer photography 15.jpeg',
+  'Simone Falcomer photography 16.jpeg',
+  'Simone Falcomer photography17.jpeg',
+  'Simone Falcomer photography 18.jpeg',
+  'Simone Falcomer photography 19.jpeg',
+  'Simone Falcomer photography 20.jpeg',
+  'Simone Falcomer photography21.jpeg',
+  'Simone Falcomer photography 22.jpeg',
+  'Simone Falcomer photography 23.jpeg',
+  'Simone Falcomer photography 24.jpeg',
+  'Simone Falcomer photography 25.jpeg',
+  'Simone Falcomer photography 26.jpeg',
+  'Simone Falcomer photography 27.jpeg',
+  'Simone Falcomer photography 28.jpeg',
+  'Simone Falcomer photography29.jpeg',
+  'Simone Falcomer photography 30.jpeg',
+  'Simone Falcomer photography 31.jpeg',
+  'Simone Falcomer photography 32.jpeg',
+  'Simone Falcomer photography 33.jpeg',
+  'Simone Falcomer photography 34.jpeg',
+  'Simone Falcomer photography 35.jpeg',
+  'Simone Falcomer photography 36.jpeg',
+  'Simone Falcomer photography 37.jpeg',
+  'Simone Falcomer photography 38.jpeg',
+  'Simone Falcomer photography 39.jpeg',
+  'Simone Falcomer photography40.jpeg',
+  'Simone Falcomer photography 41.jpeg',
+  'Simone Falcomer photography 43.jpeg',
+  'Simone Falcomer photography 44.jpeg',
+  'Simone Falcomer photography 45.jpeg',
+  'Simone Falcomer photography 46.jpeg',
+  'Simone Falcomer photography 47.jpeg',
+  'Simone Falcomer photography 48.jpeg',
+  'Simone Falcomer photography 49.jpeg',
+  'Simone Falcomer photography50.jpeg',
+  'Simone Falcomer photography51.jpeg',
+  'Simone Falcomer photography52.jpeg',
+  'Simone Falcomer photography 53.jpeg',
+  'Simone Falcomer photography 54.jpeg',
+  'Simone Falcomer photography 55.jpeg',
+  'Simone Falcomer photography 56.jpeg',
+  'Simone Falcomer photography 57.jpeg',
+  'Simone Falcomer photography 58.jpeg',
+  'Simone Falcomer photography 59.jpeg',
+  'Simone Falcomer photography 60.jpeg',
+  'Simone Falcomer photography 61.jpeg',
+  'Simone Falcomer photography 62.jpeg',
+  'Simone Falcomer photography 63.jpeg',
+  'Simone Falcomer photography 64.jpeg',
+  'Simone Falcomer photography 65.jpeg',
+  'Simone Falcomer photography 66.jpeg',
+  'Simone Falcomer photography67.jpeg',
+  'Simone Falcomer photography 68.jpeg',
+  'Simone Falcomer photography 69.jpeg',
+  'Simone Falcomer photography 70.jpeg',
+  'Simone Falcomer photography 71.jpeg',
+  'Simone Falcomer photography 72.jpeg',
+  'Simone Falcomer photography 73.jpeg',
+  'Simone Falcomer photography 74.jpeg',
+  'Simone Falcomer photography 75.jpeg',
+  'Simone Falcomer photography76.jpeg',
+  'Simone Falcomer photography 77.jpeg',
+  'Simone Falcomer photography 78 .jpeg',
+  'Simone Falcomer photography 81.jpeg',
+  'Simone Falcomer photography 82.jpeg',
+  'Simone Falcomer photography 83.jpeg',
+  'Simone Falcomer photography 84jpg',
+  'Simone Falcomer photography 85.jpeg',
+  'Simone Falcomer photography 86.jpeg',
+  'Simone Falcomer photography 88.jpeg',
+  'Simone Falcomer photography 89.jpeg',
+  'Simone Falcomer photography 90.jpeg',
+  'Simone Falcomer photography 91.jpeg',
+  'Simone Falcomer photography92.jpeg',
+  'Simone Falcomer photography 93.jpeg',
+  'Simone Falcomer photography 94.jpeg',
+  'Simone Falcomer photography 95.jpeg',
+  'Simone Falcomer photography 96.jpeg',
+  'Simone Falcomer photography 97.jpeg',
+  'Simone Falcomer photography 98.jpeg',
+  'Simone Falcomer photography 99.jpeg',
+  'Simone Falcomer photography 100.jpeg',
+  'Simone Falcomer photography 101.jpeg',
+  'Simone Falcomer photography 102.jpeg',
+  'Simone Falcomer photography 103.jpeg',
+  'Simone Falcomer photography 104.jpeg',
+  'Simone Falcomer photography 105.jpeg',
+  'Simone Falcomer photography 106.jpeg',
+  'Simone Falcomer photography 107.jpeg',
+  'Simone Falcomer photography 108.jpeg',
+  'Simone Falcomer photography 109.jpeg',
+  'Simone Falcomer photography110.jpeg',
+  'Simone Falcomer photography 111.jpeg',
+  'Simone Falcomer photography 112.jpeg',
+  'Simone Falcomer photography 113.jpeg',
+  'Simone Falcomer photography 114.jpeg',
+  'Simone Falcomer photography 115.jpeg',
+  'Simone Falcomer photography 116.jpeg',
+  'Simone Falcomer photography117.jpeg',
+  'Simone Falcomer photography118.jpeg',
+  'Simone Falcomer photography119.jpeg',
+  'Simone Falcomer photography 120.jpeg',
+  'Simone Falcomer photography121.jpeg',
+  'Simone Falcomer photography122.jpeg',
+  'Simone Falcomer photography 123.jpeg',
+  'Simone Falcomer photography124.jpeg',
+  'Simone Falcomer photography 125.jpeg',
+  'Simone Falcomer photography 126.jpeg',
+  'Simone Falcomer photography 127.jpeg',
+  'Simone Falcomer photography 128.jpeg',
+  'Simone Falcomer photography129.jpeg',
+  'Simone Falcomer photography130.jpeg',
+  'Simone Falcomer photography131.jpeg',
+  'Simone Falcomer photography132.jpeg',
+  'Simone Falcomer photography133.jpeg',
+  'Simone Falcomer photography 134.jpeg',
+  'Simone Falcomer photography 135.jpeg',
+  'Simone Falcomer photography136.jpeg',
+  'Simone Falcomer photography 137.jpeg',
+  'Simone Falcomer photography 138.jpeg',
+  'Simone Falcomer photography 139.jpeg',
+  'Simone Falcomer photography140.jpeg',
+  'Simone Falcomer photography141.jpeg',
+  'Simone Falcomer photography 142.jpeg',
+  'Simone Falcomer photography143.jpeg',
+  'Simone Falcomer photography144.jpeg',
+  'Simone Falcomer photography145.jpeg',
+  'Simone Falcomer photography146.jpeg',
+  'Simone Falcomer photography147.jpeg',
+  'Simone Falcomer photography 148.jpeg',
+  'Simone Falcomer photography149.jpeg',
+  'Simone Falcomer photography 150.jpeg',
+  'Simone Falcomer photography 151.jpeg',
+  'Simone Falcomer photography 152.jpeg',
+  'Simone Falcomer photography 153.jpeg',
+  'Simone Falcomer photography 154.jpeg',
+  'Simone Falcomer photography 155.jpeg',
+  'Simone Falcomer photography 156.jpeg',
+  'Simone Falcomer photography 157.jpeg',
+  'Simone Falcomer photography 158.jpeg',
+  'Simone Falcomer photography 159.jpeg',
+  'Simone Falcomer photography 160.jpeg',
+  'Simone Falcomer photography 161.jpeg',
+  'Simone Falcomer photography 162.jpeg',
+  'Simone Falcomer photography163.jpeg',
+];
+
+// Shuffle once using a fixed seed based on today's date
+// This means same order all day, different each day
+function seededShuffle(arr){
+  var seed = new Date().toDateString();
+  var hash = 0;
+  for(var i=0;i<seed.length;i++) hash = ((hash<<5)-hash)+seed.charCodeAt(i);
+  var s = Math.abs(hash);
+  var out = arr.slice();
+  for(var i=out.length-1;i>0;i--){
+    s = (s*1664525+1013904223)&0xffffffff;
+    var j = Math.abs(s) % (i+1);
+    var t=out[i];out[i]=out[j];out[j]=t;
+  }
+  return out;
+}
 PHOTOS = seededShuffle(PHOTOS);
+
+var gallery = document.getElementById('gallery');
+var lightbox = document.getElementById('lightbox');
+var lbImg = document.getElementById('lb-img');
+var status = document.getElementById('status');
+var current = 0;
+var loaded = 0;
+
+PHOTOS.forEach(function(name, idx){
+  var div = document.createElement('div');
+  div.className = 'photo';
+  var img = document.createElement('img');
+  img.src = BASE + encodeURIComponent(name);
+  img.loading = 'lazy';
+  img.onerror = function(){ div.style.display='none'; };
+  img.onload = function(){ loaded++; status.textContent = loaded + ' photos'; };
+  img.onclick = function(){ current=idx; lbImg.src=img.src; lightbox.classList.add('open'); };
+  div.appendChild(img);
+  gallery.appendChild(div);
+});
+
+document.getElementById('lb-close').onclick = function(){ lightbox.classList.remove('open'); };
+document.getElementById('lb-prev').onclick = function(){
+  current=(current-1+PHOTOS.length)%PHOTOS.length;
+  lbImg.src=BASE+encodeURIComponent(PHOTOS[current]);
+};
+document.getElementById('lb-next').onclick = function(){
+  current=(current+1)%PHOTOS.length;
+  lbImg.src=BASE+encodeURIComponent(PHOTOS[current]);
+};
+lightbox.onclick = function(e){ if(e.target===lightbox) lightbox.classList.remove('open'); };
+document.addEventListener('keydown', function(e){
+  if(!lightbox.classList.contains('open')) return;
+  if(e.key==='Escape') lightbox.classList.remove('open');
+  if(e.key==='ArrowLeft'){ current=(current-1+PHOTOS.length)%PHOTOS.length; lbImg.src=BASE+encodeURIComponent(PHOTOS[current]); }
+  if(e.key==='ArrowRight'){ current=(current+1)%PHOTOS.length; lbImg.src=BASE+encodeURIComponent(PHOTOS[current]); }
+});
+</script>
+</body>
+</html>
+
 
 var gallery = document.getElementById('gallery');
 var lightbox = document.getElementById('lightbox');
