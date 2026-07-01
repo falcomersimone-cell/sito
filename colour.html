@@ -146,7 +146,16 @@ PHOTOS.forEach(function(name, idx){
   var div = document.createElement('div');
   div.className = 'photo';
   var img = document.createElement('img');
-  if(name === '__SPACER__'){ div.style.background='none'; gallery.appendChild(div); return; }
+  if(name === '__SPACER__'){
+    div.style.background='transparent';
+    div.style.minHeight='0';
+    div.style.height='0';
+    var spacerImg = document.createElement('div');
+    spacerImg.style.cssText='width:100%;padding-bottom:75%;display:block;';
+    div.appendChild(spacerImg);
+    gallery.appendChild(div);
+    return;
+  }
   img.src = BASE + encodeURIComponent(name);
   img.loading = 'lazy';
   img.onerror = function(){ div.style.display='none'; };
