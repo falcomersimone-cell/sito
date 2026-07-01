@@ -94,9 +94,10 @@ var PHOTOS = [
   'Simone Falcomer Photography colour 6.jpeg',
   'Simone Falcomer Photography colour 9.jpeg',
   'Simone Falcomer Photography colour 8.jpeg',
+  '__SPACER__',
   'Simone Falcomer Photography colour 10.jpeg',
-  '_03A1795.jpeg',
   'Simone Falcomer Photography colour 11.jpeg',
+  '_03A1795.jpeg',
   'Simone Falcomer Photography colour 12.jpeg',
   'Simone Falcomer Photography colour 13.jpeg',
   'Simone Falcomer Photography colour14.jpeg',
@@ -135,6 +136,7 @@ PHOTOS.forEach(function(name, idx){
   var div = document.createElement('div');
   div.className = 'photo';
   var img = document.createElement('img');
+  if(name === '__SPACER__'){ div.style.background='none'; gallery.appendChild(div); return; }
   img.src = BASE + encodeURIComponent(name);
   img.loading = 'lazy';
   img.onerror = function(){ div.style.display='none'; };
