@@ -42,9 +42,61 @@ html,body{background:#008080;font-family:'IBM Plex Mono',monospace;min-height:10
 #lb-prev,#lb-next{position:fixed;top:50%;transform:translateY(-50%);color:#fff;font-size:36px;cursor:pointer;z-index:10000;padding:16px;opacity:0.6;}
 #lb-prev:hover,#lb-next:hover{opacity:1;}
 #lb-prev{left:4px;}#lb-next{right:4px;}
+
+/* Slideshow intro */
+#slideshow{
+  position:fixed;inset:0;z-index:500;background:#000;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+}
+#slideshow.hidden{
+  opacity:0;pointer-events:none;
+  transition:opacity 0.8s ease;
+}
+.slide-img{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;opacity:0;
+  transition:opacity 1.2s ease;
+}
+.slide-img.active{opacity:1;}
+#slide-title{
+  position:absolute;bottom:80px;left:50%;transform:translateX(-50%);
+  font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.3em;
+  color:rgba(255,255,255,0.6);text-align:center;pointer-events:none;
+  white-space:nowrap;
+}
+#view-all-btn{
+  position:absolute;bottom:24px;left:50%;transform:translateX(-50%);
+  font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.2em;
+  color:#fff;background:transparent;border:1px solid rgba(255,255,255,0.4);
+  padding:10px 28px;cursor:pointer;
+  transition:background 0.3s, border-color 0.3s;
+  white-space:nowrap;
+}
+#view-all-btn:hover{background:rgba(255,255,255,0.1);border-color:#fff;}
+#slide-counter{
+  position:absolute;top:20px;right:24px;
+  font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.2em;
+  color:rgba(255,255,255,0.4);
+}
+#reopen-btn{
+  position:fixed;top:8px;right:80px;z-index:600;
+  font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.15em;
+  color:rgba(255,255,255,0.5);background:rgba(0,0,0,0.3);
+  border:1px solid rgba(255,255,255,0.15);
+  padding:4px 10px;cursor:pointer;display:none;
+}
+#reopen-btn:hover{color:#fff;}
 </style>
 </head>
 <body>
+
+<div id="slideshow">
+  <div id="slide-counter"></div>
+  <div id="slide-title">SIMONE FALCOMER — COLOUR ARCHIVE</div>
+  <button id="view-all-btn">↓ VIEW ALL</button>
+</div>
+<button id="reopen-btn">▶ SLIDESHOW</button>
 <div class="win">
   <div class="winbar">
     <div class="wintitle">🖼 Colour Archive</div>
@@ -174,6 +226,63 @@ document.addEventListener('keydown', function(e){
   if(e.key==='ArrowLeft'){ current=(current-1+PHOTOS.length)%PHOTOS.length; lbImg.src=BASE+encodeURIComponent(PHOTOS[current]); }
   if(e.key==='ArrowRight'){ current=(current+1)%PHOTOS.length; lbImg.src=BASE+encodeURIComponent(PHOTOS[current]); }
 });
+
+
+// SLIDESHOW
+var SLIDE_PHOTOS = PHOTOS.filter(function(p){ return p !== '__SPACER__'; });
+var slideshow = document.getElementById('slideshow');
+var slideCounter = document.getElementById('slide-counter');
+var reopenBtn = document.getElementById('reopen-btn');
+var slideImgs = [];
+var currentSlide = 0;
+var slideTimer;
+
+// Preload first few
+SLIDE_PHOTOS.forEach(function(name, i){
+  var img = document.createElement('img');
+  img.className = 'slide-img';
+  img.src = BASE + encodeURIComponent(name);
+  img.loading = i < 3 ? 'eager' : 'lazy';
+  slideshow.insertBefore(img, document.getElementById('slide-counter'));
+  slideImgs.push(img);
+});
+
+function showSlide(idx){
+  slideImgs.forEach(function(img){ img.classList.remove('active'); });
+  slideImgs[idx].classList.add('active');
+  slideCounter.textContent = String(idx+1).padStart(2,'0') + ' / ' + String(SLIDE_PHOTOS.length).padStart(2,'0');
+}
+
+function nextSlide(){
+  currentSlide = (currentSlide + 1) % SLIDE_PHOTOS.length;
+  showSlide(currentSlide);
+}
+
+function startSlideshow(){
+  showSlide(0);
+  slideTimer = setInterval(nextSlide, 2800);
+}
+
+function closeSlideshow(){
+  clearInterval(slideTimer);
+  slideshow.classList.add('hidden');
+  reopenBtn.style.display = 'block';
+  setTimeout(function(){ slideshow.style.display='none'; }, 800);
+}
+
+function openSlideshow(){
+  slideshow.style.display = 'flex';
+  slideshow.classList.remove('hidden');
+  reopenBtn.style.display = 'none';
+  currentSlide = 0;
+  startSlideshow();
+}
+
+document.getElementById('view-all-btn').addEventListener('click', closeSlideshow);
+reopenBtn.addEventListener('click', openSlideshow);
+
+startSlideshow();
+
 </script>
 </body>
 </html>
