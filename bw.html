@@ -8,90 +8,31 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 html,body{background:#008080;font-family:'IBM Plex Mono',monospace;min-height:100%;}
-
-/* Win95 window */
-.win{
-  margin:20px auto;
-  width:min(1100px,96vw);
-  background:#c0c0c0;
-  border:2px solid;
-  border-color:#fff #808080 #808080 #fff;
-  box-shadow:2px 2px 0 #000;
-  display:flex;flex-direction:column;
-  min-height:calc(100vh - 40px);
-}
-.winbar{
-  height:24px;
-  background:linear-gradient(to right,#000080,#1084d0);
-  display:flex;align-items:center;padding:0 6px;
-  justify-content:space-between;flex-shrink:0;
-}
+.win{margin:20px auto;width:min(1100px,96vw);background:#c0c0c0;border:2px solid;border-color:#fff #808080 #808080 #fff;box-shadow:2px 2px 0 #000;display:flex;flex-direction:column;min-height:calc(100vh - 40px);}
+.winbar{height:24px;background:linear-gradient(to right,#000080,#1084d0);display:flex;align-items:center;padding:0 6px;justify-content:space-between;flex-shrink:0;}
 .wintitle{color:#fff;font-size:12px;font-weight:700;font-family:'IBM Plex Mono',monospace;letter-spacing:0.05em;}
 .winbtns{display:flex;gap:2px;}
 .wbtn{width:16px;height:14px;background:#c0c0c0;font-size:9px;cursor:pointer;display:flex;align-items:center;justify-content:center;border:1px solid;border-color:#fff #808080 #808080 #fff;text-decoration:none;color:#000;}
 .wbtn:hover{background:#e0e0e0;}
-
 .menubar{display:flex;border-bottom:1px solid #808080;padding:2px 4px;font-size:11px;flex-shrink:0;}
 .menubar span{padding:2px 8px;cursor:default;}
 .menubar span:hover{background:#000080;color:#fff;}
-
-.toolbar{
-  display:flex;align-items:center;gap:4px;
-  padding:4px 6px;border-bottom:1px solid #808080;flex-shrink:0;
-}
-.tbtn{
-  height:22px;padding:0 8px;
-  background:#c0c0c0;border:1px solid;border-color:#fff #808080 #808080 #fff;
-  font-size:10px;font-family:'IBM Plex Mono',monospace;cursor:pointer;
-  display:flex;align-items:center;gap:4px;
-  text-decoration:none;color:#000;
-}
+.toolbar{display:flex;align-items:center;gap:4px;padding:4px 6px;border-bottom:1px solid #808080;flex-shrink:0;}
+.tbtn{height:22px;padding:0 8px;background:#c0c0c0;border:1px solid;border-color:#fff #808080 #808080 #fff;font-size:10px;font-family:'IBM Plex Mono',monospace;cursor:pointer;display:flex;align-items:center;gap:4px;text-decoration:none;color:#000;}
 .tbtn:hover{background:#d8d8d8;}
-.tbtn:active{border-color:#808080 #fff #fff #808080;}
-
-.address-bar{
-  display:flex;align-items:center;gap:8px;
-  padding:4px 6px;border-bottom:1px solid #808080;
-  font-size:11px;flex-shrink:0;
-}
+.address-bar{display:flex;align-items:center;gap:8px;padding:4px 6px;border-bottom:1px solid #808080;font-size:11px;flex-shrink:0;}
 .address-label{color:#000;white-space:nowrap;}
-.address-input{
-  flex:1;padding:2px 6px;
-  border:1px solid;border-color:#808080 #fff #fff #808080;
-  background:#fff;font-size:11px;font-family:'IBM Plex Mono',monospace;
-  color:#000;
-}
-
+.address-input{flex:1;padding:2px 6px;border:1px solid;border-color:#808080 #fff #fff #808080;background:#fff;font-size:11px;font-family:'IBM Plex Mono',monospace;color:#000;}
 .winbody{flex:1;background:#fff;overflow:auto;padding:8px;}
-
-/* Masonry grid */
-.masonry{
-  columns:2;column-gap:4px;
-}
+.masonry{columns:2;column-gap:4px;}
 @media(min-width:600px){.masonry{columns:3;}}
 @media(min-width:900px){.masonry{columns:4;}}
-
-.photo-item{
-  break-inside:avoid;
-  margin-bottom:4px;
-  cursor:pointer;
-  overflow:hidden;
-  background:#f0f0f0;
-}
-.photo-item img{
-  width:100%;height:auto;display:block;
-  transition:opacity 0.2s;
-}
+.photo-item{break-inside:avoid;margin-bottom:4px;cursor:pointer;overflow:hidden;background:#f0f0f0;}
+.photo-item img{width:100%;height:auto;display:block;opacity:0;transition:opacity 0.4s ease;}
+.photo-item img.loaded{opacity:1;}
 .photo-item:hover img{opacity:0.85;}
-
-.statusbar{
-  height:22px;border-top:1px solid #808080;
-  display:flex;align-items:center;padding:0 8px;
-  font-size:10px;color:#000;flex-shrink:0;gap:8px;
-}
+.statusbar{height:22px;border-top:1px solid #808080;display:flex;align-items:center;padding:0 8px;font-size:10px;color:#000;flex-shrink:0;}
 .status-section{border:1px solid;border-color:#808080 #fff #fff #808080;padding:2px 8px;height:16px;display:flex;align-items:center;}
-
-/* Lightbox */
 #lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.97);z-index:9999;align-items:center;justify-content:center;}
 #lightbox.open{display:flex;}
 #lb-img{max-width:92vw;max-height:92vh;object-fit:contain;}
@@ -103,7 +44,6 @@ html,body{background:#008080;font-family:'IBM Plex Mono',monospace;min-height:10
 </style>
 </head>
 <body>
-
 <div class="win">
   <div class="winbar">
     <div class="wintitle">🖼 Black & White Archive</div>
@@ -131,7 +71,6 @@ html,body{background:#008080;font-family:'IBM Plex Mono',monospace;min-height:10
     <div class="status-section" id="status">Loading...</div>
   </div>
 </div>
-
 <div id="lightbox">
   <div id="lb-close">✕</div>
   <div id="lb-prev">‹</div>
@@ -139,7 +78,6 @@ html,body{background:#008080;font-family:'IBM Plex Mono',monospace;min-height:10
   <div id="lb-next">›</div>
   <div id="lb-counter"></div>
 </div>
-
 <script>
 var BASE = 'https://falcomersimone-cell.github.io/sito/bw/';
 var PHOTOS = [
@@ -160,10 +98,12 @@ var PHOTOS = [
   'Simone Falcomer photography 15.jpeg',
   'Simone Falcomer photography 16.jpeg',
   'Simone Falcomer photography 17.jpeg',
+  'Simone Falcomer photography17.jpeg',
   'Simone Falcomer photography 18.jpeg',
   'Simone Falcomer photography 19.jpeg',
   'Simone Falcomer photography 20.jpeg',
   'Simone Falcomer photography 21.jpeg',
+  'Simone Falcomer photography21.jpeg',
   'Simone Falcomer photography 22.jpeg',
   'Simone Falcomer photography 23.jpeg',
   'Simone Falcomer photography 24.jpeg',
@@ -172,17 +112,19 @@ var PHOTOS = [
   'Simone Falcomer photography 27.jpeg',
   'Simone Falcomer photography 28.jpeg',
   'Simone Falcomer photography 29.jpeg',
+  'Simone Falcomer photography29.jpeg',
   'Simone Falcomer photography 30.jpeg',
   'Simone Falcomer photography 31.jpeg',
   'Simone Falcomer photography 32.jpeg',
   'Simone Falcomer photography 33.jpeg',
   'Simone Falcomer photography 34.jpeg',
-  'Simone Falcomer photography 35.jpeg',
+  'Simone Falcomer photography 357.jpeg',
   'Simone Falcomer photography 36.jpeg',
   'Simone Falcomer photography 37.jpeg',
   'Simone Falcomer photography 38.jpeg',
   'Simone Falcomer photography 39.jpeg',
   'Simone Falcomer photography 40.jpeg',
+  'Simone Falcomer photography40.jpeg',
   'Simone Falcomer photography 41.jpeg',
   'Simone Falcomer photography 43.jpeg',
   'Simone Falcomer photography 44.jpeg',
@@ -192,8 +134,11 @@ var PHOTOS = [
   'Simone Falcomer photography 48.jpeg',
   'Simone Falcomer photography 49.jpeg',
   'Simone Falcomer photography 50.jpeg',
+  'Simone Falcomer photography50.jpeg',
   'Simone Falcomer photography 51.jpeg',
+  'Simone Falcomer photography51.jpeg',
   'Simone Falcomer photography 52.jpeg',
+  'Simone Falcomer photography52.jpeg',
   'Simone Falcomer photography 53.jpeg',
   'Simone Falcomer photography 54.jpeg',
   'Simone Falcomer photography 55.jpeg',
@@ -208,6 +153,8 @@ var PHOTOS = [
   'Simone Falcomer photography 64.jpeg',
   'Simone Falcomer photography 65.jpeg',
   'Simone Falcomer photography 66.jpeg',
+  'Simone Falcomer photography 67.jpeg',
+  'Simone Falcomer photography67.jpeg',
   'Simone Falcomer photography 68.jpeg',
   'Simone Falcomer photography 69.jpeg',
   'Simone Falcomer photography 70.jpeg',
@@ -216,6 +163,8 @@ var PHOTOS = [
   'Simone Falcomer photography 73.jpeg',
   'Simone Falcomer photography 74.jpeg',
   'Simone Falcomer photography 75.jpeg',
+  'Simone Falcomer photography 76.jpeg',
+  'Simone Falcomer photography76.jpeg',
   'Simone Falcomer photography 77.jpeg',
   'Simone Falcomer photography 78 .jpeg',
   'Simone Falcomer photography 81.jpeg',
@@ -228,6 +177,8 @@ var PHOTOS = [
   'Simone Falcomer photography 89.jpeg',
   'Simone Falcomer photography 90.jpeg',
   'Simone Falcomer photography 91.jpeg',
+  'Simone Falcomer photography 92.jpeg',
+  'Simone Falcomer photography92.jpeg',
   'Simone Falcomer photography 93.jpeg',
   'Simone Falcomer photography 94.jpeg',
   'Simone Falcomer photography 95.jpeg',
@@ -245,13 +196,14 @@ var PHOTOS = [
   'Simone Falcomer photography 107.jpeg',
   'Simone Falcomer photography 108.jpeg',
   'Simone Falcomer photography 109.jpeg',
+  'Simone Falcomer photography photography110.jpeg',
+  'Simone Falcomer photography110.jpeg',
   'Simone Falcomer photography 111.jpeg',
   'Simone Falcomer photography 112.jpeg',
   'Simone Falcomer photography 113.jpeg',
   'Simone Falcomer photography 114.jpeg',
   'Simone Falcomer photography 115.jpeg',
   'Simone Falcomer photography 116.jpeg',
-  'Simone Falcomer photography photography110.jpeg',
   'Simone Falcomer photography117.jpeg',
   'Simone Falcomer photography118.jpeg',
   'Simone Falcomer photography119.jpeg',
@@ -299,18 +251,12 @@ var PHOTOS = [
   'Simone Falcomer photography161.jpeg',
   'Simone Falcomer photography162.jpeg',
   'Simone Falcomer photography163.jpeg',
-  'Simone Falcomer photography17.jpeg',
-  'Simone Falcomer photography21.jpeg',
-  'Simone Falcomer photography29.jpeg',
   'Simone Falcomer photography3.jpeg',
-  'Simone Falcomer photography40.jpeg',
-  'Simone Falcomer photography50.jpeg',
-  'Simone Falcomer photography51.jpeg',
-  'Simone Falcomer photography52.jpeg',
-  'Simone Falcomer photography67.jpeg',
-  'Simone Falcomer photography76.jpeg',
-  'Simone Falcomer photography92.jpeg',
 ];
+
+// Shuffle on load
+function shuffle(arr){for(var i=arr.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=arr[i];arr[i]=arr[j];arr[j]=t;}return arr;}
+PHOTOS = shuffle(PHOTOS);
 
 var gallery = document.getElementById('gallery');
 var lightbox = document.getElementById('lightbox');
@@ -319,7 +265,6 @@ var lbCounter = document.getElementById('lb-counter');
 var status = document.getElementById('status');
 var current = 0;
 var loaded = 0;
-var visible = [];
 
 PHOTOS.forEach(function(name, idx){
   var item = document.createElement('div');
@@ -327,10 +272,10 @@ PHOTOS.forEach(function(name, idx){
   var img = document.createElement('img');
   img.src = BASE + encodeURIComponent(name);
   img.loading = 'lazy';
-  img.onerror = function(){ item.style.display='none'; };
+  img.onerror = function(){ item.remove(); };
   img.onload = function(){
+    img.classList.add('loaded');
     loaded++;
-    visible.push(idx);
     status.textContent = loaded + ' photos';
   };
   img.onclick = function(){
