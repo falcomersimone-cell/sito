@@ -35,6 +35,24 @@ html,body{background:#008080;font-family:'IBM Plex Mono',monospace;min-height:10
 #lb-prev,#lb-next{position:fixed;top:50%;transform:translateY(-50%);color:#fff;font-size:36px;cursor:pointer;z-index:10000;padding:16px;opacity:0.6;}
 #lb-prev:hover,#lb-next:hover{opacity:1;}
 #lb-prev{left:4px;}#lb-next{right:4px;}
+#top-btn{
+  position:fixed;bottom:24px;right:20px;
+  font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;
+  color:rgba(255,255,255,0.45);background:rgba(0,0,0,0.25);
+  border:1px solid rgba(255,255,255,0.2);
+  padding:6px 12px;cursor:pointer;z-index:500;
+  transition:opacity 0.3s;text-decoration:none;
+}
+#top-btn:hover{color:rgba(255,255,255,0.9);background:rgba(0,0,0,0.5);}
+#bottom-back{
+  text-align:center;padding:40px 20px;
+  background:#c0c0c0;border-top:1px solid #808080;
+}
+#bottom-back a{
+  font-family:'IBM Plex Mono',monospace;font-size:11px;
+  letter-spacing:0.1em;color:#000;text-decoration:none;
+}
+#bottom-back a:hover{text-decoration:underline;}
 </style>
 </head>
 <body>
@@ -64,7 +82,12 @@ html,body{background:#008080;font-family:'IBM Plex Mono',monospace;min-height:10
   <div class="statusbar">
     <div class="status-section" id="status">Loading...</div>
   </div>
+  <div id="bottom-back">
+    <a href="https://simonefalcomer.art/personal.html">← BACK TO PERSONAL PROJECTS</a>
+  </div>
 </div>
+
+<a id="top-btn" href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">↑ TOP</a>
 <div id="lightbox">
   <div id="lb-close">✕</div>
   <div id="lb-prev">‹</div>
