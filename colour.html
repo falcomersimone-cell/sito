@@ -147,12 +147,7 @@ PHOTOS.forEach(function(name, idx){
   div.className = 'photo';
   var img = document.createElement('img');
   if(name === '__SPACER__'){
-    div.style.background='transparent';
-    div.style.minHeight='0';
-    div.style.height='0';
-    var spacerImg = document.createElement('div');
-    spacerImg.style.cssText='width:100%;padding-bottom:75%;display:block;';
-    div.appendChild(spacerImg);
+    div.style.cssText='grid-column:1/-1;height:200px;background:transparent;';
     gallery.appendChild(div);
     return;
   }
