@@ -7,35 +7,64 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-html,body{background:#fff;font-family:'IBM Plex Mono',monospace;}
-header{position:fixed;top:0;left:0;right:0;height:50px;background:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 20px;z-index:100;border-bottom:1px solid #eee;}
-header a{color:#000;font-size:11px;text-decoration:none;letter-spacing:0.1em;}
-header span{color:#000;font-size:11px;letter-spacing:0.15em;}
-#gallery{padding:70px 4px 60px;display:grid;grid-template-columns:1fr 1fr;gap:4px;}
+html,body{background:#008080;font-family:'IBM Plex Mono',monospace;min-height:100%;}
+.win{margin:20px auto;width:min(1100px,96vw);background:#c0c0c0;border:2px solid;border-color:#fff #808080 #808080 #fff;box-shadow:2px 2px 0 #000;display:flex;flex-direction:column;min-height:calc(100vh - 40px);}
+.winbar{height:24px;background:linear-gradient(to right,#000080,#1084d0);display:flex;align-items:center;padding:0 6px;justify-content:space-between;flex-shrink:0;}
+.wintitle{color:#fff;font-size:12px;font-weight:700;font-family:'IBM Plex Mono',monospace;letter-spacing:0.05em;}
+.winbtns{display:flex;gap:2px;}
+.wbtn{width:16px;height:14px;background:#c0c0c0;font-size:9px;cursor:pointer;display:flex;align-items:center;justify-content:center;border:1px solid;border-color:#fff #808080 #808080 #fff;text-decoration:none;color:#000;}
+.wbtn:hover{background:#e0e0e0;}
+.menubar{display:flex;border-bottom:1px solid #808080;padding:2px 4px;font-size:11px;flex-shrink:0;}
+.menubar span{padding:2px 8px;cursor:default;}
+.menubar span:hover{background:#000080;color:#fff;}
+.toolbar{display:flex;align-items:center;gap:4px;padding:4px 6px;border-bottom:1px solid #808080;flex-shrink:0;}
+.tbtn{height:22px;padding:0 8px;background:#c0c0c0;border:1px solid;border-color:#fff #808080 #808080 #fff;font-size:10px;font-family:'IBM Plex Mono',monospace;cursor:pointer;display:flex;align-items:center;gap:4px;text-decoration:none;color:#000;}
+.tbtn:hover{background:#d8d8d8;}
+.address-bar{display:flex;align-items:center;gap:8px;padding:4px 6px;border-bottom:1px solid #808080;font-size:11px;flex-shrink:0;}
+.address-label{color:#000;white-space:nowrap;}
+.address-input{flex:1;padding:2px 6px;border:1px solid;border-color:#808080 #fff #fff #808080;background:#fff;font-size:11px;font-family:'IBM Plex Mono',monospace;color:#000;}
+.winbody{flex:1;background:#fff;overflow:auto;padding:4px;}
+#gallery{display:grid;grid-template-columns:1fr 1fr;gap:4px;}
 .photo img{width:100%;height:auto;display:block;cursor:pointer;}
-footer{text-align:center;padding:60px 20px;border-top:1px solid #eee;}
-footer p{color:#999;font-size:11px;letter-spacing:0.15em;margin-bottom:12px;}
-footer a{color:#000;font-size:14px;text-decoration:none;border-bottom:1px solid #000;}
-#lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.97);z-index:999;align-items:center;justify-content:center;}
+.statusbar{height:22px;border-top:1px solid #808080;display:flex;align-items:center;padding:0 8px;font-size:10px;color:#000;flex-shrink:0;}
+.status-section{border:1px solid;border-color:#808080 #fff #fff #808080;padding:2px 8px;height:16px;display:flex;align-items:center;}
+#lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.97);z-index:9999;align-items:center;justify-content:center;}
 #lightbox.open{display:flex;}
 #lb-img{max-width:95vw;max-height:95vh;object-fit:contain;}
-#lb-close{position:fixed;top:16px;right:20px;color:#fff;font-size:24px;cursor:pointer;z-index:1000;}
-#lb-prev,#lb-next{position:fixed;top:50%;transform:translateY(-50%);color:#fff;font-size:36px;cursor:pointer;z-index:1000;padding:16px;opacity:0.6;}
+#lb-close{position:fixed;top:16px;right:20px;color:#fff;font-size:24px;cursor:pointer;z-index:10000;}
+#lb-prev,#lb-next{position:fixed;top:50%;transform:translateY(-50%);color:#fff;font-size:36px;cursor:pointer;z-index:10000;padding:16px;opacity:0.6;}
 #lb-prev:hover,#lb-next:hover{opacity:1;}
 #lb-prev{left:4px;}#lb-next{right:4px;}
 </style>
 </head>
 <body>
-<header>
-  <a href="https://simonefalcomer.art/personal.html">← BACK</a>
-  <span>SIMONE FALCOMER</span>
-  <span>BLACK & WHITE ARCHIVE</span>
-</header>
-<div id="gallery"></div>
-<footer>
-  <p>FOR INQUIRIES</p>
-  <a href="mailto:falcomersimone@gmail.com">falcomersimone@gmail.com</a>
-</footer>
+<div class="win">
+  <div class="winbar">
+    <div class="wintitle">🖼 Black & White Archive</div>
+    <div class="winbtns">
+      <div class="wbtn">_</div>
+      <div class="wbtn">□</div>
+      <a href="https://simonefalcomer.art/personal.html" class="wbtn">✕</a>
+    </div>
+  </div>
+  <div class="menubar">
+    <span>File</span><span>Edit</span><span>View</span><span>Help</span>
+  </div>
+  <div class="toolbar">
+    <a href="https://simonefalcomer.art" class="tbtn">🏠 Home</a>
+    <a href="https://simonefalcomer.art/personal.html" class="tbtn">← Back</a>
+  </div>
+  <div class="address-bar">
+    <span class="address-label">Address:</span>
+    <div class="address-input">C:\Simone\Personal Projects\Black &amp; White Archive</div>
+  </div>
+  <div class="winbody">
+    <div id="gallery"></div>
+  </div>
+  <div class="statusbar">
+    <div class="status-section" id="status">Loading...</div>
+  </div>
+</div>
 <div id="lightbox">
   <div id="lb-close">✕</div>
   <div id="lb-prev">‹</div>
@@ -206,10 +235,29 @@ var PHOTOS = [
   'Simone Falcomer photography163.jpeg',
 ];
 
+// Shuffle once using a fixed seed based on today's date
+// This means same order all day, different each day
+function seededShuffle(arr){
+  var seed = new Date().toDateString();
+  var hash = 0;
+  for(var i=0;i<seed.length;i++) hash = ((hash<<5)-hash)+seed.charCodeAt(i);
+  var s = Math.abs(hash);
+  var out = arr.slice();
+  for(var i=out.length-1;i>0;i--){
+    s = (s*1664525+1013904223)&0xffffffff;
+    var j = Math.abs(s) % (i+1);
+    var t=out[i];out[i]=out[j];out[j]=t;
+  }
+  return out;
+}
+PHOTOS = seededShuffle(PHOTOS);
+
 var gallery = document.getElementById('gallery');
 var lightbox = document.getElementById('lightbox');
 var lbImg = document.getElementById('lb-img');
+var status = document.getElementById('status');
 var current = 0;
+var loaded = 0;
 
 PHOTOS.forEach(function(name, idx){
   var div = document.createElement('div');
@@ -218,6 +266,7 @@ PHOTOS.forEach(function(name, idx){
   img.src = BASE + encodeURIComponent(name);
   img.loading = 'lazy';
   img.onerror = function(){ div.style.display='none'; };
+  img.onload = function(){ loaded++; status.textContent = loaded + ' photos'; };
   img.onclick = function(){ current=idx; lbImg.src=img.src; lightbox.classList.add('open'); };
   div.appendChild(img);
   gallery.appendChild(div);
