@@ -90,14 +90,9 @@ FOLDERS.forEach(function(f){
     window.location.href=f.url;
   });
 
-  var lastTap=0;
   item.addEventListener('touchend',function(e){
     e.preventDefault();
-    var now=Date.now();
-    if(now-lastTap<400){
-      window.location.href=f.url;
-    }
-    lastTap=now;
+    window.location.href=f.url;
   });
 
   container.appendChild(item);
