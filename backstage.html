@@ -1,1 +1,238 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="https://simonefalcomer.art/favicon.png">
+<link rel="shortcut icon" href="https://simonefalcomer.art/favicon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simone Falcomer — Backstage & Runway</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{background:#000;font-family:'IBM Plex Mono',monospace;overflow:hidden;height:100%;}
+
+header{
+  position:fixed;top:0;left:0;right:0;height:50px;
+  background:rgba(0,0,0,0.7);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 20px;z-index:200;
+}
+header a{color:#fff;font-size:11px;text-decoration:none;letter-spacing:0.1em;}
+header span{color:#fff;font-size:11px;letter-spacing:0.15em;}
+
+#slides{
+  position:fixed;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  background:#000;
+}
+.slide{
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;transition:opacity 0.15s ease;
+}
+.slide.active{opacity:1;}
+.slide img{max-width:100vw;max-height:100vh;object-fit:contain;}
+
+/* Controls */
+#controls{
+  position:fixed;bottom:24px;left:50%;transform:translateX(-50%);
+  display:flex;align-items:center;gap:16px;z-index:200;
+}
+#pause-btn{
+  font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.15em;
+  color:#fff;background:rgba(0,0,0,0.6);
+  border:1px solid rgba(255,255,255,0.4);
+  padding:8px 20px;cursor:pointer;
+}
+#pause-btn:hover{background:rgba(255,255,255,0.1);}
+
+#counter{
+  font-size:11px;letter-spacing:0.2em;color:rgba(255,255,255,0.4);
+}
+
+/* Manual nav zones (hidden during auto) */
+#nav-prev,#nav-next{
+  position:fixed;top:50px;bottom:0;width:35%;
+  z-index:100;cursor:pointer;
+  display:none;
+}
+#nav-prev{left:0;}
+#nav-next{right:0;}
+
+/* Mode indicator */
+#mode-label{
+  position:fixed;top:58px;left:50%;transform:translateX(-50%);
+  font-size:10px;letter-spacing:0.2em;color:rgba(255,255,255,0.3);
+  z-index:200;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <a href="https://simonefalcomer.art">← BACK</a>
+  <span>SIMONE FALCOMER</span>
+  <span>BACKSTAGE & RUNWAY</span>
+</header>
+
+<div id="slides"></div>
+<div id="nav-prev"></div>
+<div id="nav-next"></div>
+<div id="mode-label">AUTO</div>
+
+<div id="controls">
+  <div id="counter"></div>
+  <button id="pause-btn">⏸ PAUSE</button>
+</div>
+
+<script>
+var BASE = 'https://falcomersimone-cell.github.io/sito/backstage/';
+
+var PHOTOS = [
+  '503A5181 copy.jpg',
+  'Backstage show event photography Simone Falcomer 1.jpg',
+  'Backstage show event photography Simone Falcomer 2 .jpg',
+  'Backstage show event photography Simone Falcomer 3.jpg',
+  'Backstage show event photography Simone Falcomer 4.jpg',
+  'Backstage show event photography Simone Falcomer 5.jpg',
+  'Backstage show event photography Simone Falcomer 6.jpg',
+  'Backstage show event photography Simone Falcomer 7.jpg',
+  'Backstage show event photography Simone Falcomer 8.jpg',
+  'Backstage show event photography Simone Falcomer 9.jpg',
+  'Backstage show event photography Simone Falcomer 10.jpg',
+  'Backstage show event photography Simone Falcomer 11.jpg',
+  'Backstage show event photography Simone Falcomer 12.jpg',
+  'Backstage show event photography Simone Falcomer 14.jpg',
+  'Backstage show event photography Simone Falcomer 15.jpg',
+  'Backstage show event photography Simone Falcomer 16.jpg',
+  'Backstage show event photography Simone Falcomer 17.jpg',
+  'Backstage show event photography Simone Falcomer 18.jpg',
+  'Backstage show event photography Simone Falcomer 19.jpg',
+  'Backstage show event photography Simone Falcomer 20.jpg',
+  'Backstage show event photography Simone Falcomer 21.jpg',
+  'Backstage show event photography Simone Falcomer 22.jpg',
+  'Backstage show event photography Simone Falcomer 23.jpg',
+  'Backstage show event photography Simone Falcomer 24.jpg',
+  'Backstage show event photography Simone Falcomer 25.JPG',
+  'Backstage show event photography Simone Falcomer 26.jpg',
+  'Backstage show event photography Simone Falcomer 27.jpg',
+  'Backstage show event photography Simone Falcomer 28.jpg',
+  'Backstage show event photography Simone Falcomer 29.jpg',
+  'Backstage show event photography Simone Falcomer 30.jpg',
+  'Backstage show event photography Simone Falcomer 31.JPG',
+  'Backstage show event photography Simone Falcomer 32.jpg',
+  'Backstage show event photography Simone Falcomer 33.jpg',
+  'Backstage show event photography Simone Falcomer 34.jpg',
+  'Backstage show event photography Simone Falcomer 35.jpg',
+  'Backstage show event photography Simone Falcomer 36.jpg',
+  'Backstage show event photography Simone Falcomer 37.jpg',
+  'Backstage show event photography Simone Falcomer 39.jpg',
+  'Backstage show event photography Simone Falcomer 40.jpg',
+  'Backstage show event photography Simone Falcomer 41.jpg',
+  'Backstage show event photography Simone Falcomer 42.jpg',
+  '_03A7901.jpg',
+];
+
+// Shuffle for auto mode
+var shuffled = PHOTOS.slice();
+for(var i=shuffled.length-1;i>0;i--){
+  var j=Math.floor(Math.random()*(i+1));
+  var t=shuffled[i];shuffled[i]=shuffled[j];shuffled[j]=t;
+}
+
+var slidesEl = document.getElementById('slides');
+var counterEl = document.getElementById('counter');
+var pauseBtn = document.getElementById('pause-btn');
+var modeLabel = document.getElementById('mode-label');
+var navPrev = document.getElementById('nav-prev');
+var navNext = document.getElementById('nav-next');
+
+var slideEls = [];
+var current = 0;
+var isAuto = true;
+var autoTimer = null;
+
+// Build slides
+PHOTOS.forEach(function(name){
+  var slide = document.createElement('div');
+  slide.className = 'slide';
+  var img = document.createElement('img');
+  img.src = BASE + encodeURIComponent(name);
+  img.loading = 'lazy';
+  slide.appendChild(img);
+  slidesEl.appendChild(slide);
+  slideEls.push(slide);
+});
+
+function showSlide(idx){
+  slideEls.forEach(function(s){ s.classList.remove('active'); });
+  slideEls[idx].classList.add('active');
+  counterEl.textContent = String(idx+1).padStart(2,'0') + ' / ' + String(PHOTOS.length).padStart(2,'0');
+}
+
+// Auto mode — random order
+var autoIdx = 0;
+function autoNext(){
+  autoIdx = (autoIdx + 1) % shuffled.length;
+  var realIdx = PHOTOS.indexOf(shuffled[autoIdx]);
+  current = realIdx >= 0 ? realIdx : autoIdx;
+  showSlide(current);
+}
+
+function startAuto(){
+  isAuto = true;
+  modeLabel.textContent = 'AUTO';
+  pauseBtn.textContent = '⏸ PAUSE';
+  navPrev.style.display = 'none';
+  navNext.style.display = 'none';
+  autoTimer = setInterval(autoNext, 500);
+}
+
+function stopAuto(){
+  isAuto = false;
+  clearInterval(autoTimer);
+  modeLabel.textContent = 'BROWSE';
+  pauseBtn.textContent = '▶ AUTO';
+  navPrev.style.display = 'block';
+  navNext.style.display = 'block';
+}
+
+pauseBtn.addEventListener('click', function(){
+  if(isAuto) stopAuto();
+  else startAuto();
+});
+
+// Manual nav
+navPrev.addEventListener('click', function(){ current=(current-1+PHOTOS.length)%PHOTOS.length; showSlide(current); });
+navNext.addEventListener('click', function(){ current=(current+1)%PHOTOS.length; showSlide(current); });
+
+// Swipe on mobile
+var touchStartY=0,touchStartX=0;
+document.addEventListener('touchstart',function(e){ touchStartY=e.touches[0].clientY; touchStartX=e.touches[0].clientX; },{passive:true});
+document.addEventListener('touchmove',function(e){ if(!isAuto) e.preventDefault(); },{passive:false});
+document.addEventListener('touchend',function(e){
+  if(isAuto) return;
+  var dy=touchStartY-e.changedTouches[0].clientY;
+  var dx=touchStartX-e.changedTouches[0].clientX;
+  if(Math.abs(dx)>Math.abs(dy) && Math.abs(dx)>40){
+    if(dx>0) current=(current+1)%PHOTOS.length;
+    else current=(current-1+PHOTOS.length)%PHOTOS.length;
+    showSlide(current);
+  }
+},{passive:true});
+
+// Keyboard
+document.addEventListener('keydown',function(e){
+  if(isAuto) return;
+  if(e.key==='ArrowRight'||e.key==='ArrowDown') current=(current+1)%PHOTOS.length;
+  if(e.key==='ArrowLeft'||e.key==='ArrowUp') current=(current-1+PHOTOS.length)%PHOTOS.length;
+  showSlide(current);
+});
+
+showSlide(0);
+startAuto();
+</script>
+</body>
+</html>
