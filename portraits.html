@@ -1,1 +1,155 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="https://simonefalcomer.art/favicon.png">
+<link rel="shortcut icon" href="https://simonefalcomer.art/favicon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simone Falcomer — Portraits</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{background:#000;font-family:'IBM Plex Mono',monospace;}
+header{position:fixed;top:0;left:0;right:0;height:50px;background:#000;display:flex;align-items:center;justify-content:space-between;padding:0 20px;z-index:100;border-bottom:1px solid #222;}
+header a{color:#fff;font-size:11px;text-decoration:none;letter-spacing:0.1em;}
+header span{color:#fff;font-size:11px;letter-spacing:0.15em;}
+.hero{padding:130px 20px 50px;text-align:center;}
+.hero h1{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(40px,9vw,110px);color:#fff;line-height:1;}
+#gallery{padding:0 0 60px;}
+.diptych{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-bottom:0;}
+.diptych img{width:100%;height:auto;display:block;cursor:pointer;}
+.name-label{
+  text-align:center;padding:16px 0 40px;
+  font-size:11px;letter-spacing:0.25em;color:rgba(255,255,255,0.5);
+  text-transform:uppercase;
+}
+footer{text-align:center;padding:60px 20px;border-top:1px solid #222;}
+footer p{color:#555;font-size:11px;letter-spacing:0.15em;margin-bottom:12px;}
+footer a{color:#fff;font-size:14px;text-decoration:none;border-bottom:1px solid #fff;}
+#top-btn{position:fixed;bottom:24px;right:20px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;color:rgba(255,255,255,0.45);background:rgba(0,0,0,0.25);border:1px solid rgba(255,255,255,0.2);padding:6px 12px;cursor:pointer;z-index:500;text-decoration:none;}
+#top-btn:hover{color:rgba(255,255,255,0.9);}
+#lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.97);z-index:999;align-items:center;justify-content:center;}
+#lightbox.open{display:flex;}
+#lb-img{max-width:95vw;max-height:95vh;object-fit:contain;}
+#lb-close{position:fixed;top:16px;right:20px;color:#fff;font-size:24px;cursor:pointer;z-index:1000;}
+#lb-prev,#lb-next{position:fixed;top:50%;transform:translateY(-50%);color:#fff;font-size:36px;cursor:pointer;z-index:1000;padding:16px;opacity:0.6;}
+#lb-prev:hover,#lb-next:hover{opacity:1;}
+#lb-prev{left:4px;}#lb-next{right:4px;}
+</style>
+</head>
+<body>
+<header>
+  <a href="https://simonefalcomer.art/personal.html">← BACK</a>
+  <span>SIMONE FALCOMER</span>
+  <span>PORTRAITS</span>
+</header>
+<div class="hero"><h1>PORTRAITS</h1></div>
+<div id="gallery"></div>
+<footer>
+  <p>FOR INQUIRIES</p>
+  <a href="mailto:falcomersimone@gmail.com">falcomersimone@gmail.com</a>
+</footer>
+<a id="top-btn" href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">↑ TOP</a>
+<div id="lightbox">
+  <div id="lb-close">✕</div>
+  <div id="lb-prev">‹</div>
+  <img id="lb-img" src="">
+  <div id="lb-next">›</div>
+</div>
+<script>
+var BASE = 'https://falcomersimone-cell.github.io/sito/portraits/';
+
+var DIPTYCHS = [
+  {
+    name: 'Felicia Beck',
+    photos: [
+      'Simone Falcomer Portrait Photography Felicia Beck 1.jpg',
+      'Simone Falcomer Portrait Photography Felkicia Beck 2.jpg'
+    ]
+  },
+  {
+    name: 'Guillermo Lorca Garcia',
+    photos: [
+      'Simone Falcomer Portrait Photography Guillermo Lorca Garcia.jpg',
+      'Simone Falcomer Portrait Photography Guillermo Garcia Lorca 2.jpg'
+    ]
+  },
+  {
+    name: 'Jakey Acceptance Letter',
+    photos: [
+      'Simone Falcomer Portrait Photography Jakey Ac ceptance Letter 1.jpg',
+      'Simone Falcomer Portrait Photography JAkey Acceptance Letter 2.jpg'
+    ]
+  },
+  {
+    name: 'David Outsiders Division',
+    photos: [
+      'Simone Falcomer Portrait Photography David Outsiders Divison 1.jpg',
+      'Simone Falcomer Portrait Photography David Outsiders Divison 2.jpg'
+    ]
+  },
+  {
+    name: 'Elena Urdiales',
+    photos: [
+      'Simone Falcomer Portrait Photography Elena Urdiales m1.jpg',
+      'Simone Falcomer Portrait Photography Elena Urdiales 2.jpg'
+    ]
+  }
+];
+
+var gallery = document.getElementById('gallery');
+var lightbox = document.getElementById('lightbox');
+var lbImg = document.getElementById('lb-img');
+var current = 0;
+var allPhotos = [];
+
+DIPTYCHS.forEach(function(d){
+  var block = document.createElement('div');
+
+  var grid = document.createElement('div');
+  grid.className = 'diptych';
+
+  d.photos.forEach(function(name){
+    var globalIdx = allPhotos.length;
+    allPhotos.push(name);
+    var img = document.createElement('img');
+    img.src = BASE + encodeURIComponent(name);
+    img.loading = 'lazy';
+    img.onerror = function(){ img.style.display='none'; };
+    img.onclick = function(){
+      current = globalIdx;
+      lbImg.src = img.src;
+      lightbox.classList.add('open');
+    };
+    grid.appendChild(img);
+  });
+
+  var label = document.createElement('div');
+  label.className = 'name-label';
+  label.textContent = d.name;
+
+  block.appendChild(grid);
+  block.appendChild(label);
+  gallery.appendChild(block);
+});
+
+document.getElementById('lb-close').onclick = function(){ lightbox.classList.remove('open'); };
+document.getElementById('lb-prev').onclick = function(){
+  current=(current-1+allPhotos.length)%allPhotos.length;
+  lbImg.src=BASE+encodeURIComponent(allPhotos[current]);
+};
+document.getElementById('lb-next').onclick = function(){
+  current=(current+1)%allPhotos.length;
+  lbImg.src=BASE+encodeURIComponent(allPhotos[current]);
+};
+lightbox.onclick = function(e){ if(e.target===lightbox) lightbox.classList.remove('open'); };
+document.addEventListener('keydown', function(e){
+  if(!lightbox.classList.contains('open')) return;
+  if(e.key==='Escape') lightbox.classList.remove('open');
+  if(e.key==='ArrowLeft'){ current=(current-1+allPhotos.length)%allPhotos.length; lbImg.src=BASE+encodeURIComponent(allPhotos[current]); }
+  if(e.key==='ArrowRight'){ current=(current+1)%allPhotos.length; lbImg.src=BASE+encodeURIComponent(allPhotos[current]); }
+});
+</script>
+</body>
+</html>
