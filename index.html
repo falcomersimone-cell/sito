@@ -60,10 +60,9 @@ footer>*{pointer-events:auto;}
   <div class="brand"><a class="name" href="index.html">Simone Falcomer</a><span class="role">Photographer &amp; Art Director</span></div>
   <nav>
     <a class="on" href="index.html">Home</a>
-    <a href="work.html">Work</a>
     <a href="featured.html">Featured in</a>
     <a href="info.html">Info</a>
-    <a href="mailto:falcomersimone@gmail.com">Contact</a>
+    <a href="contact.html">Contact</a>
   </nav>
 </header>
 
@@ -159,52 +158,3 @@ footer>*{pointer-events:auto;}
 
   function go(i,instant){
     if(!slides.length)return;
-    cur=Math.max(0,Math.min(slides.length-1,i));
-    ensure(cur);
-    var W=frame.clientWidth;
-    var gap=parseFloat(getComputedStyle(track).columnGap)||0;
-    if(instant){track.style.transition='none';}
-    track.style.transform='translateX('+(-cur*(W+gap))+'px)';
-    if(instant){void track.offsetWidth;track.style.transition='';}
-    var n=function(v){return (v<10?'0':'')+v;};
-    countEl.textContent=n(cur+1)+' / '+n(slides.length);
-  }
-
-  var lock=0;
-  function step(d){
-    var t=Date.now();if(t<lock)return;
-    var nxt=cur+d;if(nxt<0||nxt>=slides.length)return;
-    lock=t+900;go(nxt);
-  }
-
-  go(0,true);
-  window.addEventListener('resize',function(){layout();go(cur,true);});
-
-  /* rotella / trackpad: una schermata alla volta */
-  window.addEventListener('wheel',function(e){
-    var d=Math.abs(e.deltaY)>Math.abs(e.deltaX)?e.deltaY:e.deltaX;
-    if(Math.abs(d)>6)step(d>0?1:-1);
-    e.preventDefault();
-  },{passive:false});
-
-  /* frecce */
-  window.addEventListener('keydown',function(e){
-    if(e.key==='ArrowRight'||e.key==='ArrowDown')step(1);
-    if(e.key==='ArrowLeft'||e.key==='ArrowUp')step(-1);
-  });
-
-  /* trascinamento (mouse e dito): un gesto = una schermata */
-  var down=false,sx=0,sy=0;
-  frame.addEventListener('pointerdown',function(e){
-    down=true;sx=e.clientX;sy=e.clientY;frame.classList.add('drag');
-  });
-  window.addEventListener('pointerup',function(e){
-    if(!down)return;down=false;frame.classList.remove('drag');
-    var dx=e.clientX-sx,dy=e.clientY-sy;
-    if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy))step(dx<0?1:-1);
-  });
-  window.addEventListener('pointercancel',function(){down=false;frame.classList.remove('drag');});
-})();
-</script>
-</body>
-</html>
