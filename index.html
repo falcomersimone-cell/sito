@@ -134,7 +134,9 @@ footer>*{pointer-events:auto;}
         im.style.aspectRatio=item.w+' / '+item.h;     /* forma originale */
         layoutSlide(s);im.classList.add('ok');
       };
-      im.onerror=function(){im.style.display='none';layoutSlide(s);};
+      im.onerror=function(){
+        if(!im.dataset.alt){im.dataset.alt=1;im.src=FOLDER+encodeURIComponent(n)+'.jpg';return;}   /* prova anche .jpg */
+        im.style.display='none';layoutSlide(s);};
       var item={el:im,w:0,h:0};
       imgs.push(item);d.appendChild(im);
     });
