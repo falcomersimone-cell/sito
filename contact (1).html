@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simone Falcomer — Contact</title>
+<link rel="icon" type="image/png" href="https://simonefalcomer.art/favicon.png">
+<link rel="shortcut icon" href="https://simonefalcomer.art/favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f1f2ee;--fg:#111;--pad:clamp(14px,2.2vw,40px);--line:rgba(17,17,17,.16);}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{background:var(--bg);color:var(--fg);}
+body{font-family:'Instrument Sans',Helvetica,Arial,sans-serif;font-weight:500;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+header{position:fixed;left:0;right:0;top:0;height:11vh;min-height:64px;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:0 var(--pad);background:var(--bg);}
+.brand{display:flex;align-items:baseline;gap:clamp(10px,1.2vw,22px);}
+.name{font-weight:700;font-size:clamp(20px,1.9vw,35px);letter-spacing:-.055em;line-height:1;text-transform:lowercase;}
+.role{font-size:clamp(8px,.66vw,12px);letter-spacing:.02em;text-transform:uppercase;}
+nav{display:flex;gap:clamp(16px,2.6vw,48px);font-size:clamp(9px,.7vw,13px);text-transform:uppercase;letter-spacing:.02em;}
+nav a{padding-bottom:2px;border-bottom:1px solid transparent;transition:border-color .25s;}
+nav a:hover,nav a.on{border-bottom-color:var(--fg);}
+main{padding:calc(11vh + 7vh) var(--pad) 14vh;}
+.sec{display:grid;grid-template-columns:minmax(110px,17vw) 1fr;gap:var(--pad);padding:clamp(22px,4.4vh,44px) 0;border-top:1px solid var(--line);}
+.sec>h2{font-size:clamp(9px,.7vw,12px);font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding-top:.5em;}
+.foot{position:static;margin-top:10vh;display:flex;gap:clamp(14px,1.6vw,28px);font-size:clamp(8px,.62vw,11px);text-transform:uppercase;letter-spacing:.02em;}
+.foot a{opacity:.55;transition:opacity .25s;}.foot a:hover{opacity:1;}
+@media(max-width:768px){
+  header{height:110px;flex-direction:column;align-items:flex-start;justify-content:center;gap:10px;}
+  .brand{flex-direction:column;align-items:flex-start;gap:6px;}
+  .name{font-size:30px;white-space:nowrap;}
+  .role{font-size:9px;}
+  nav{gap:14px;font-size:10px;flex-wrap:wrap;}
+  main{padding-top:150px;}
+  .sec{grid-template-columns:1fr;gap:14px;}
+  .foot{gap:14px;font-size:9px;}
+}
+
+.big{display:block;font-weight:500;font-size:clamp(18px,2vw,34px);letter-spacing:-.03em;line-height:1.1;text-transform:lowercase;word-break:break-word;}
+.big:hover{opacity:.55;}
+.rows{margin-top:clamp(22px,5vh,56px);}
+.rows a,.rows div.r{display:grid;grid-template-columns:minmax(90px,12vw) 1fr;gap:var(--pad);padding:clamp(10px,1.6vh,16px) 0;border-top:1px solid var(--line);font-size:clamp(14px,1.15vw,20px);transition:padding .3s ease,opacity .3s;}
+.rows a:last-child,.rows div.r:last-child{border-bottom:1px solid var(--line);}
+.rows .k{font-size:clamp(9px,.7vw,12px);text-transform:uppercase;letter-spacing:.04em;opacity:.55;padding-top:.3em;}
+.rows:hover a{opacity:.4;}.rows:hover a:hover{opacity:1;padding-left:1vw;}
+.lead2{font-size:clamp(20px,2vw,34px);line-height:1.15;letter-spacing:-.03em;max-width:24ch;margin-bottom:clamp(18px,3vh,32px);}
+form{display:grid;gap:clamp(14px,2.4vh,24px);max-width:560px;}
+.f{display:grid;gap:6px;}
+.f label{font-size:clamp(9px,.7vw,12px);text-transform:uppercase;letter-spacing:.04em;opacity:.55;}
+.f input,.f textarea{font:inherit;font-size:clamp(15px,1.15vw,20px);color:var(--fg);background:transparent;border:0;border-bottom:1px solid var(--fg);padding:8px 0;border-radius:0;outline:none;resize:none;}
+.f input:focus,.f textarea:focus{border-bottom-width:2px;}
+button{justify-self:start;font:inherit;font-weight:700;font-size:clamp(14px,1.1vw,19px);letter-spacing:-.02em;background:var(--fg);color:var(--bg);border:0;border-radius:999px;padding:.85em 1.6em;cursor:pointer;display:inline-flex;gap:.6em;align-items:center;transition:transform .3s ease;}
+button:hover{transform:translateX(4px);}
+.note{font-size:clamp(10px,.8vw,13px);opacity:.55;max-width:46ch;line-height:1.5;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand"><a class="name" href="index.html">Simone Falcomer</a><span class="role">Photographer &amp; Art Director</span></div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="featured.html">Featured in</a>
+    <a href="info.html">Info</a>
+    <a class="on" href="contact.html">Contact</a>
+    <a href="index.html">Close &#10005;</a>
+  </nav>
+</header>
+
+<main>
+  <section class="sec">
+    <h2>Contact</h2>
+    <div>
+      <a class="big" href="mailto:falcomersimone@gmail.com">falcomersimone@gmail.com</a>
+      <div class="rows">
+        <a href="https://wa.me/34607699642" target="_blank" rel="noopener"><span class="k">Phone / WhatsApp</span><span>+34 607 699 642</span></a>
+        <a href="https://www.instagram.com/simone_falcomer" target="_blank" rel="noopener"><span class="k">Instagram</span><span>@simone_falcomer</span></a>
+        <a href="https://www.linkedin.com/in/simone-falcomer-5bb16828a/" target="_blank" rel="noopener"><span class="k">LinkedIn</span><span>Simone Falcomer</span></a>
+        <div class="r"><span class="k">Agency</span><span>Fang.Agency &middot; Craft.Talents</span></div>
+        <div class="r"><span class="k">Based in</span><span>Barcelona</span></div>
+      </div>
+    </div>
+  </section>
+
+
+  <div class="foot">
+    <a href="https://www.instagram.com/simone_falcomer" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://www.linkedin.com/in/simone-falcomer-5bb16828a/" target="_blank" rel="noopener">LinkedIn</a>
+  </div>
+</main>
+</body>
+</html>
