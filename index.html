@@ -4,142 +4,206 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>Simone Falcomer — Photographer & Art Director</title>
-<meta name="description" content="Simone Falcomer, photographer and art director based in Barcelona. Fashion, beauty, documentary and personal projects.">
+<meta name="description" content="Simone Falcomer, photographer and art director based in Barcelona.">
 <link rel="icon" type="image/png" href="https://simonefalcomer.art/favicon.png">
 <link rel="shortcut icon" href="https://simonefalcomer.art/favicon.png">
-<link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@500;700&display=swap" rel="stylesheet">
 <style>
+:root{--bg:#f1f2ee;--fg:#111;--gap:clamp(8px,1vw,16px);--pad:clamp(14px,2.2vw,40px);--top:5.5vh;--bot:9vh;--frame:12vw;}
 *{margin:0;padding:0;box-sizing:border-box;}
-html,body{height:100%;background:#111;color:#ece8df;overflow:hidden;overscroll-behavior:none;}
-body{font-family:'IBM Plex Mono',monospace;}
+html,body{height:100%;background:var(--bg);color:var(--fg);overflow:hidden;overscroll-behavior:none;}
+body{font-family:'Instrument Sans',Helvetica,Arial,sans-serif;font-weight:500;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
 
-#stage{position:fixed;inset:0;}
-.slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.6s ease;transform:scale(1.04);will-change:opacity,transform;}
-.slide.on{opacity:1;animation:drift 14s ease-out forwards;}
-@keyframes drift{from{transform:scale(1.04);}to{transform:scale(1.12);}}
-#veil{position:fixed;inset:0;pointer-events:none;
-  background:linear-gradient(to bottom,rgba(10,9,8,.55) 0%,rgba(10,9,8,.12) 40%,rgba(10,9,8,.12) 60%,rgba(10,9,8,.7) 100%);}
+/* nome + menu: una riga al centro dello schermo, sopra le foto */
+header{position:fixed;left:0;right:0;top:50%;transform:translateY(-50%);z-index:10;display:flex;justify-content:space-between;align-items:center;padding:0 var(--pad);pointer-events:none;color:#fff;mix-blend-mode:difference;}
+header a,header span{pointer-events:auto;}
+.brand{display:flex;align-items:baseline;gap:clamp(10px,1.2vw,22px);}
+.name{font-weight:700;font-size:clamp(20px,1.9vw,35px);letter-spacing:-.055em;line-height:1;text-transform:lowercase;}
+.role{font-size:clamp(8px,.66vw,12px);letter-spacing:.02em;text-transform:uppercase;}
+nav{display:flex;gap:clamp(16px,2.6vw,48px);font-size:clamp(9px,.7vw,13px);text-transform:uppercase;letter-spacing:.02em;}
+nav a{padding-bottom:2px;border-bottom:1px solid transparent;transition:border-color .25s;}
+nav a:hover,nav a.on{border-bottom-color:#fff;}
 
-#top{position:fixed;left:3vw;right:3vw;top:4vh;z-index:5;display:flex;justify-content:space-between;align-items:baseline;gap:20px;}
-#name{font-family:'Syncopate',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(12px,1.3vw,18px);letter-spacing:.32em;line-height:1;}
-#sub{font-size:clamp(9px,.9vw,12px);letter-spacing:.28em;text-transform:uppercase;color:#d9d3c4;text-align:right;}
+/* cornice: mostra una sola schermata alla volta (due verticali o una orizzontale) */
+#frame{position:fixed;left:var(--frame);right:var(--frame);top:var(--top);bottom:var(--bot);overflow:hidden;touch-action:pan-y;cursor:grab;}
+#frame.drag{cursor:grabbing;}
+#track{display:flex;height:100%;gap:var(--gap);will-change:transform;transition:transform .95s cubic-bezier(.65,0,.2,1);}
+.slide{flex:0 0 100%;height:100%;display:flex;align-items:center;justify-content:center;gap:var(--gap);}
+.slide img{display:block;flex:none;width:auto;user-select:none;-webkit-user-drag:none;background:#e4e5e0;opacity:0;transition:opacity .8s ease;}
+.slide img.ok{opacity:1;}
+.slide a{display:block;flex:none;}
 
-#menu{position:fixed;left:3vw;right:3vw;bottom:5vh;z-index:5;display:flex;justify-content:space-between;align-items:flex-end;}
-#menu a{font-family:'Syncopate',sans-serif;font-weight:700;font-size:clamp(11px,1.45vw,22px);letter-spacing:.14em;text-transform:uppercase;color:#ece8df;text-decoration:none;position:relative;padding-bottom:6px;opacity:.78;transition:opacity .3s;}
-#menu a::after{content:'';position:absolute;left:0;bottom:0;height:2px;width:0;background:#ece8df;transition:width .35s ease;}
-#menu a:hover,#menu a.act{opacity:1;}
-#menu a:hover::after,#menu a.act::after{width:100%;}
-
-#count{position:fixed;right:3vw;top:50%;transform:translateY(-50%);z-index:5;font-size:11px;letter-spacing:.2em;writing-mode:vertical-rl;opacity:.6;}
+footer{position:fixed;left:0;right:0;bottom:0;height:var(--bot);z-index:10;display:flex;justify-content:space-between;align-items:center;padding:0 var(--pad);pointer-events:none;}
+footer>*{pointer-events:auto;}
+.fl{display:flex;gap:clamp(14px,1.6vw,28px);font-size:clamp(8px,.62vw,11px);text-transform:uppercase;letter-spacing:.02em;align-items:baseline;}
+.fl span{font-weight:700;}
+.fl a{opacity:.55;transition:opacity .25s;}
+.fl a:hover{opacity:1;}
+.count{font-size:clamp(8px,.62vw,11px);letter-spacing:.08em;font-variant-numeric:tabular-nums;opacity:.55;}
 
 @media(max-width:768px){
-  #top{top:5vh;flex-direction:column;align-items:flex-start;gap:10px;}
-  #name{font-size:14px;letter-spacing:.28em;}
-  #sub{text-align:left;letter-spacing:.2em;}
-  #menu{flex-direction:column;align-items:flex-start;gap:14px;bottom:6vh;}
-  #menu a{font-size:15px;opacity:.9;}
-  #count{display:none;}
+  :root{--top:110px;--bot:72px;--gap:8px;--frame:14px;}
+  header{top:0;transform:none;height:var(--top);flex-direction:column;align-items:flex-start;justify-content:center;gap:10px;color:var(--fg);mix-blend-mode:normal;}
+  .brand{flex-direction:column;align-items:flex-start;gap:6px;}
+  .name{font-size:30px;white-space:nowrap;}
+  .role{font-size:9px;}
+  nav{gap:14px;font-size:10px;flex-wrap:wrap;}
+  nav a:hover,nav a.on{border-bottom-color:var(--fg);}
+  .fl{gap:14px;font-size:9px;}
 }
 </style>
 </head>
 <body>
-<div id="stage"></div>
-<div id="veil"></div>
 
-<div id="top">
-  <h1 id="name">Simone Falcomer</h1>
-  <div id="sub">Photographer &amp; Art Director &mdash; Barcelona</div>
-</div>
+<header>
+  <div class="brand"><a class="name" href="index.html">Simone Falcomer</a><span class="role">Photographer &amp; Art Director</span></div>
+  <nav>
+    <a class="on" href="index.html">Home</a>
+    <a href="work.html">Work</a>
+    <a href="featured.html">Featured in</a>
+    <a href="info.html">Info</a>
+    <a href="mailto:falcomersimone@gmail.com">Contact</a>
+  </nav>
+</header>
 
-<div id="count"></div>
+<div id="frame"><div id="track"></div></div>
 
-<nav id="menu">
-  <a href="fashion.html" data-k="fashion">Fashion</a>
-  <a href="beauty.html" data-k="beauty">Beauty</a>
-  <a href="personal.html" data-k="personal">Personal</a>
-  <a href="backstage.html" data-k="backstage">Backstage</a>
-  <a href="ecommerce.html" data-k="ecommerce">E-commerce</a>
-  <a href="featured.html" data-k="featured">Featured in</a>
-  <a href="info.html" data-k="info">Info</a>
-</nav>
+<footer>
+  <div class="fl">
+    <span>Selected Work</span>
+    <a href="https://www.instagram.com/simone_falcomer" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://www.linkedin.com/in/simone-falcomer-5bb16828a/" target="_blank" rel="noopener">LinkedIn</a>
+  </div>
+  <div class="count" id="count"></div>
+</footer>
 
 <script>
 (function(){
-  var ROOT='https://falcomersimone-cell.github.io/sito/';
-  function F(n,ext){return ROOT+'fashion/'+encodeURIComponent('Simone Falcomer Fashion Photography '+n+'.'+(ext||'jpeg'));}
-  function B(n){var nm=(n===11)?'Simone Falcomer Photography Beauty'+n+'.jpeg':'Simone Falcomer Photography Beauty '+n+'.jpeg';return ROOT+'beauty/'+encodeURIComponent(nm);}
-
-  /* SELEZIONE: k = sezione collegata (hover sul menu), src = foto */
-  var PHOTOS=[
-    {k:'fashion',  src:F(1)},
-    {k:'beauty',   src:B(12)},
-    {k:'fashion',  src:F(4)},
-    {k:'beauty',   src:B(3)},
-    {k:'fashion',  src:F(8)},
-    {k:'beauty',   src:B(7)},
-    {k:'fashion',  src:F(13)}
+  /* ============ LE FOTO DELLA HOME ============
+     Ogni riga e' una schermata: una foto sola (orizzontale) oppure due (verticali).
+     I nomi sono quelli dei file nella cartella "selected" (senza .jpeg).
+     Per cambiare ordine basta spostare le righe; per aggiungere una foto, una riga nuova. */
+  var FOLDER='selected/';
+  var EXT='.jpeg';
+  var SLIDES=[
+    ['prima'],
+    ['seconda1','seconda2'],
+    ['terza'],
+    ['quarta1','quarta2'],
+    ['quinta'],
+    ['sesta1','sesta2'],
+    ['settima'],
+    ['ottava1','ottava2'],
+    ['nona'],
+    ['decima1','decima2'],
+    ['undicesima1','undicesima2'],
+    ['dodicesima1','dodicesima2'],
+    ['tredicesima'],
+    ['quattordicesima1','quattordicesima2'],
+    ['quindicesima'],
+    ['sedicesima1','sedicesima2'],
+    ['diciassettesima'],
+    ['diciottesima1','diciottesima2'],
+    ['diciannovesima1','diciannovesima2'],
+    ['ventesima']
   ];
 
-  var stage=document.getElementById('stage');
-  var count=document.getElementById('count');
-  var links=[].slice.call(document.querySelectorAll('#menu a'));
-  var slides=[],cur=-1,timer=null,hover=false;
+  var frame=document.getElementById('frame');
+  var track=document.getElementById('track');
+  var countEl=document.getElementById('count');
+  var slides=[];
+  var cur=0;
 
-  function pad(n){return (n<10?'0':'')+n;}
-
-  function show(i){
-    if(!slides.length)return;
-    i=(i+slides.length)%slides.length;
-    if(i===cur)return;
-    if(cur>=0)slides[cur].el.classList.remove('on');
-    var el=slides[i].el;
-    el.classList.remove('on');void el.offsetWidth;el.classList.add('on');
-    cur=i;
-    count.textContent=pad(i+1)+' / '+pad(slides.length);
-    links.forEach(function(a){a.classList.toggle('act',a.getAttribute('data-k')===slides[i].k);});
-  }
-  function start(){clearInterval(timer);timer=setInterval(function(){if(!hover)show(cur+1);},5200);}
-
-  /* carica solo le foto che esistono */
-  var pending=PHOTOS.length;
-  PHOTOS.forEach(function(p){
-    var im=new Image();
-    im.onload=function(){
-      var d=document.createElement('div');d.className='slide';
-      d.style.backgroundImage='url("'+p.src+'")';
-      stage.appendChild(d);
-      slides.push({el:d,k:p.k,src:p.src});
-      if(slides.length===1){show(0);start();}
-      else count.textContent=pad(cur+1)+' / '+pad(slides.length);
-    };
-    im.onerror=function(){};
-    im.src=p.src;
-  });
-
-  /* hover sul menu: mostra una foto di quella sezione */
-  links.forEach(function(a){
-    a.addEventListener('mouseenter',function(){
-      var k=a.getAttribute('data-k');
-      for(var i=0;i<slides.length;i++){
-        if(slides[i].k===k){hover=true;show(i);return;}
-      }
-      hover=true;
+  SLIDES.forEach(function(names){
+    var d=document.createElement('div');d.className='slide';
+    var imgs=[];
+    names.forEach(function(n){
+      var im=document.createElement('img');
+      im.alt='Simone Falcomer';im.draggable=false;
+      im.dataset.src=FOLDER+encodeURIComponent(n)+EXT;
+      im.onload=function(){
+        item.w=im.naturalWidth;item.h=im.naturalHeight;
+        im.style.aspectRatio=item.w+' / '+item.h;     /* forma originale */
+        layoutSlide(s);im.classList.add('ok');
+      };
+      im.onerror=function(){im.style.display='none';layoutSlide(s);};
+      var item={el:im,w:0,h:0};
+      imgs.push(item);d.appendChild(im);
     });
-    a.addEventListener('mouseleave',function(){hover=false;});
+    var s={el:d,imgs:imgs};
+    track.appendChild(d);slides.push(s);
   });
 
-  /* swipe / frecce per cambiare foto */
-  var sx=null;
-  window.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;},{passive:true});
-  window.addEventListener('touchend',function(e){
-    if(sx===null)return;
-    var dx=e.changedTouches[0].clientX-sx;sx=null;
-    if(Math.abs(dx)>50){show(cur+(dx<0?1:-1));start();}
-  },{passive:true});
+  /* carica solo la schermata attuale e le vicine */
+  function ensure(i){
+    for(var k=i-1;k<=i+2;k++){
+      if(k<0||k>=slides.length)continue;
+      slides[k].imgs.forEach(function(it){
+        if(!it.el.src&&it.el.dataset.src)it.el.src=it.el.dataset.src;
+      });
+    }
+  }
+
+  /* ogni schermata: le foto stanno nella cornice senza deformarsi */
+  function layoutSlide(s){
+    var W=frame.clientWidth,H=frame.clientHeight;
+    var gap=parseFloat(getComputedStyle(track).columnGap)||0;
+    var ok=s.imgs.filter(function(i){return i.w&&i.h;});
+    if(!ok.length)return;
+    var sumA=0;ok.forEach(function(i){sumA+=i.w/i.h;});
+    var h=Math.min(H,(W-gap*(ok.length-1))/sumA);
+    ok.forEach(function(i){i.el.style.height=Math.floor(h)+'px';});
+  }
+  function layout(){slides.forEach(layoutSlide);}
+
+  function go(i,instant){
+    if(!slides.length)return;
+    cur=Math.max(0,Math.min(slides.length-1,i));
+    ensure(cur);
+    var W=frame.clientWidth;
+    var gap=parseFloat(getComputedStyle(track).columnGap)||0;
+    if(instant){track.style.transition='none';}
+    track.style.transform='translateX('+(-cur*(W+gap))+'px)';
+    if(instant){void track.offsetWidth;track.style.transition='';}
+    var n=function(v){return (v<10?'0':'')+v;};
+    countEl.textContent=n(cur+1)+' / '+n(slides.length);
+  }
+
+  var lock=0;
+  function step(d){
+    var t=Date.now();if(t<lock)return;
+    var nxt=cur+d;if(nxt<0||nxt>=slides.length)return;
+    lock=t+900;go(nxt);
+  }
+
+  go(0,true);
+  window.addEventListener('resize',function(){layout();go(cur,true);});
+
+  /* rotella / trackpad: una schermata alla volta */
+  window.addEventListener('wheel',function(e){
+    var d=Math.abs(e.deltaY)>Math.abs(e.deltaX)?e.deltaY:e.deltaX;
+    if(Math.abs(d)>6)step(d>0?1:-1);
+    e.preventDefault();
+  },{passive:false});
+
+  /* frecce */
   window.addEventListener('keydown',function(e){
-    if(e.key==='ArrowRight'){show(cur+1);start();}
-    if(e.key==='ArrowLeft'){show(cur-1);start();}
+    if(e.key==='ArrowRight'||e.key==='ArrowDown')step(1);
+    if(e.key==='ArrowLeft'||e.key==='ArrowUp')step(-1);
   });
+
+  /* trascinamento (mouse e dito): un gesto = una schermata */
+  var down=false,sx=0,sy=0;
+  frame.addEventListener('pointerdown',function(e){
+    down=true;sx=e.clientX;sy=e.clientY;frame.classList.add('drag');
+  });
+  window.addEventListener('pointerup',function(e){
+    if(!down)return;down=false;frame.classList.remove('drag');
+    var dx=e.clientX-sx,dy=e.clientY-sy;
+    if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy))step(dx<0?1:-1);
+  });
+  window.addEventListener('pointercancel',function(){down=false;frame.classList.remove('drag');});
 })();
 </script>
 </body>
