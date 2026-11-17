@@ -2,170 +2,94 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<link rel="icon" type="image/png" href="https://simonefalcomer.art/favicon.png">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Simone Falcomer — Info</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="https://simonefalcomer.art/favicon.png">
+<link rel="shortcut icon" href="https://simonefalcomer.art/favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@500;700&display=swap" rel="stylesheet">
 <style>
-*{box-sizing:border-box;margin:0;padding:0;}
-html,body{width:100%;background:#000;overflow-x:hidden;overflow-y:scroll;}
-
-#bg-canvas{position:fixed;inset:0;z-index:0;width:100%;height:100%;display:block;}
-#bg-overlay{position:fixed;inset:0;z-index:1;background:rgba(0,0,0,0.35);pointer-events:none;}
-#scroll-layer{position:relative;z-index:10;min-height:100vh;}
-#content{padding:8vw 6vw 20vw;}
-
-.bio-block{
-  font-family:'Playfair Display',serif;font-weight:900;
-  font-size:clamp(32px,6.5vw,100px);color:#fff;
-  line-height:1.05;letter-spacing:-0.02em;margin-bottom:7vw;
-  text-shadow:0 2px 30px rgba(0,0,0,0.5);
-}
-.contact-block{
-  font-size:clamp(20px,3.5vw,56px)!important;
-  margin-top:10vw;border-top:2px solid rgba(255,255,255,0.3);
-  padding-top:6vw;line-height:1.5;
-}
-.contact-block a{color:#fff;text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.4);}
-
-#back{
-  position:fixed;top:16px;left:16px;z-index:1000;
-  font-family:'IBM Plex Mono',monospace;font-size:11px;
-  color:#fff;background:rgba(0,0,0,0.6);
-  padding:8px 16px;border:1px solid rgba(255,255,255,0.4);
-  letter-spacing:0.1em;
-  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
-  text-decoration:none;display:inline-block;
+:root{--bg:#f1f2ee;--fg:#111;--pad:clamp(14px,2.2vw,40px);--line:rgba(17,17,17,.16);}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{background:var(--bg);color:var(--fg);}
+body{font-family:'Instrument Sans',Helvetica,Arial,sans-serif;font-weight:500;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+header{position:fixed;left:0;right:0;top:0;height:11vh;min-height:64px;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:0 var(--pad);background:var(--bg);}
+.brand{display:flex;align-items:baseline;gap:clamp(10px,1.2vw,22px);}
+.name{font-weight:700;font-size:clamp(20px,1.9vw,35px);letter-spacing:-.055em;line-height:1;text-transform:lowercase;}
+.role{font-size:clamp(8px,.66vw,12px);letter-spacing:.02em;text-transform:uppercase;}
+nav{display:flex;gap:clamp(16px,2.6vw,48px);font-size:clamp(9px,.7vw,13px);text-transform:uppercase;letter-spacing:.02em;}
+nav a{padding-bottom:2px;border-bottom:1px solid transparent;transition:border-color .25s;}
+nav a:hover,nav a.on{border-bottom-color:var(--fg);}
+main{padding:calc(11vh + 7vh) var(--pad) 14vh;}
+.sec{display:grid;grid-template-columns:minmax(110px,17vw) 1fr;gap:var(--pad);padding:clamp(22px,4.4vh,44px) 0;border-top:1px solid var(--line);}
+.sec>h2{font-size:clamp(9px,.7vw,12px);font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding-top:.5em;}
+.foot{position:static;margin-top:10vh;display:flex;gap:clamp(14px,1.6vw,28px);font-size:clamp(8px,.62vw,11px);text-transform:uppercase;letter-spacing:.02em;}
+.foot a{opacity:.55;transition:opacity .25s;}.foot a:hover{opacity:1;}
+@media(max-width:768px){
+  header{height:110px;flex-direction:column;align-items:flex-start;justify-content:center;gap:10px;}
+  .brand{flex-direction:column;align-items:flex-start;gap:6px;}
+  .name{font-size:30px;white-space:nowrap;}
+  .role{font-size:9px;}
+  nav{gap:14px;font-size:10px;flex-wrap:wrap;}
+  main{padding-top:150px;}
+  .sec{grid-template-columns:1fr;gap:14px;}
+  .foot{gap:14px;font-size:9px;}
 }
 
-#gallery-wrap{position:relative;z-index:10;background:#000;overflow:hidden;padding:3px 0;}
-#gallery-strip{display:flex;width:max-content;animation:stripscroll 30s linear infinite;}
-.gimg{height:38vmin;width:auto;object-fit:cover;opacity:0.78;margin-right:3px;flex-shrink:0;display:block;}
-@keyframes stripscroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+.txt p.lead{font-size:clamp(22px,2.5vw,44px);line-height:1.14;letter-spacing:-.03em;font-weight:500;max-width:30ch;}
+.txt p{font-size:clamp(14px,1.05vw,18px);line-height:1.55;max-width:60ch;margin-top:1.1em;}
+.clients{list-style:none;columns:2;column-gap:4vw;}
+.clients li{font-size:clamp(18px,1.9vw,32px);letter-spacing:-.025em;line-height:1.5;break-inside:avoid;}
+.links a{display:inline-block;font-size:clamp(14px,1.05vw,18px);border-bottom:1px solid var(--fg);padding-bottom:2px;margin-right:2em;}
+@media(max-width:768px){.clients{columns:1;}.lead{font-size:26px;}}
 </style>
 </head>
 <body>
 
-<a id="back" href="https://simonefalcomer.art">← BACK</a>
-<canvas id="bg-canvas"></canvas>
-<div id="bg-overlay"></div>
+<header>
+  <div class="brand"><a class="name" href="index.html">Simone Falcomer</a><span class="role">Photographer &amp; Art Director</span></div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="featured.html">Featured in</a>
+    <a class="on" href="info.html">Info</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
 
-<div id="scroll-layer">
-  <div id="content">
-    <div class="bio-block">Simone Falcomer is a photographer and Art Director based in Barcelona.</div>
-    <div class="bio-block">Born in Italy, he studied photojournalism at Grisart Academy in Barcelona, where he developed a solid and personal approach to the image.</div>
-    <div class="bio-block">He is currently studying Fine Arts in Barcelona while working as a freelance photographer across fashion, documentary and artistic practice.</div>
-    <div class="bio-block">His work is in constant evolution — each project brings him into unknown territory, always outside his comfort zone.</div>
-    <div class="bio-block">He shoots on analogue film, working in 35mm and medium format. He uses photography as a tool, believing his fullest expression is still ahead of him.</div>
-    <div class="bio-block">Through the lens, Simone chases time as it passes. He reflects on the relativity of time and on the inner and outer transformations of himself, of people, and of the world.</div>
-    <div class="bio-block">His visual language draws from mid-20th century photography, neoclassical sculpture, Baroque painting and Italian Renaissance art.</div>
-    <div class="bio-block">Editorial work published in Vogue Nederland, Neo2, Kultblut Magazine, Vein Magazine and Cake Magazine. Commercial clients include Marni, Missoni and Outsiders Division. Image Director at Acceptance Letter Studio.</div>
-    <div class="bio-block contact-block">
-      For inquiries<br>
-      <a href="mailto:falcomersimone@gmail.com">falcomersimone@gmail.com</a><br>
-      <a href="https://wa.me/34607699642">+34 607 699 642</a>
+<main>
+  <section class="sec">
+    <h2>About</h2>
+    <div class="txt">
+      <p class="lead" style="margin-top:0">Simone Falcomer is a photographer and art director based in Barcelona.</p>
+      <p>Born in Italy, he studied photojournalism at Grisart Academy in Barcelona, where he developed a solid and personal approach to the image. He is currently studying Fine Arts in Barcelona while working as a freelance photographer across fashion, documentary and artistic practice.</p>
+      <p>His work is in constant evolution &mdash; each project brings him into unknown territory, always outside his comfort zone. He shoots on analogue film, working in 35mm and medium format, and uses photography as a tool, believing his fullest expression is still ahead of him.</p>
+      <p>Through the lens, Simone explores the passage of time, reflecting on its relativity and on the inner and outer transformations of himself, of others, and of the world. Drawing inspiration from mid-20th-century photography and Baroque art, his visual language seeks to expose the pathos of contemporary existence: the unease, fragility and contradictions of our time, beneath an era increasingly shaped by artificial values and a fabricated sense of ethos. At its core is a search for human error.</p>
     </div>
+  </section>
+
+  <section class="sec">
+    <h2>Clients</h2>
+    <ul class="clients">
+      <li>Marni</li>
+      <li>Missoni</li>
+      <li>Acceptance Letter</li>
+      <li>Outsiders Division</li>
+      <li>Amazon</li>
+      <li>Aramco</li>
+      <li>It&rsquo;s Miel</li>
+      <li>Litkovska</li>
+    </ul>
+  </section>
+
+  <section class="sec">
+    <h2>More</h2>
+    <div class="links"><a href="featured.html">Featured in</a><a href="contact.html">Contact</a></div>
+  </section>
+
+  <div class="foot">
+    <a href="https://www.instagram.com/simone_falcomer" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://www.linkedin.com/in/simone-falcomer-5bb16828a/" target="_blank" rel="noopener">LinkedIn</a>
   </div>
-  <div id="gallery-wrap">
-    <div id="gallery-strip">
-      <img class="gimg" src="https://i.ibb.co/DDN6KXQf/4.jpg">
-      <img class="gimg" src="https://i.ibb.co/C3HdzswJ/6.jpg">
-      <img class="gimg" src="https://i.ibb.co/TDBQSP6Y/Acceptance-Letter25.jpg">
-      <img class="gimg" src="https://i.ibb.co/MxcbGWbN/Edito-Sarah-Beauty5403.jpg">
-      <img class="gimg" src="https://i.ibb.co/vvhmc8DV/Edito-Sarah-Beauty5563-1.jpg">
-      <img class="gimg" src="https://falcomersimone-cell.github.io/sito/Edito%20Sarah%20Beauty5893.jpg">
-      <img class="gimg" src="https://i.ibb.co/DDN6KXQf/4.jpg">
-      <img class="gimg" src="https://i.ibb.co/C3HdzswJ/6.jpg">
-      <img class="gimg" src="https://i.ibb.co/TDBQSP6Y/Acceptance-Letter25.jpg">
-      <img class="gimg" src="https://i.ibb.co/MxcbGWbN/Edito-Sarah-Beauty5403.jpg">
-      <img class="gimg" src="https://i.ibb.co/vvhmc8DV/Edito-Sarah-Beauty5563-1.jpg">
-      <img class="gimg" src="https://falcomersimone-cell.github.io/sito/Edito%20Sarah%20Beauty5893.jpg">
-    </div>
-  </div>
-</div>
-
-<script>
-(function(){
-  var canvas=document.getElementById('bg-canvas');
-  var ctx=canvas.getContext('2d');
-  var W,H;
-  var img=new Image();
-  img.src='https://falcomersimone-cell.github.io/sito/Edito%20Sarah%20Beauty5893.jpg';
-
-  var isScrolling=false;
-  var scrollTimeout;
-  var liquidAmount=0;
-
-  function resize(){
-    W=canvas.width=window.innerWidth;
-    H=canvas.height=window.innerHeight;
-  }
-  window.addEventListener('resize',resize);
-  resize();
-
-  function onScroll(){
-    isScrolling=true;
-    clearTimeout(scrollTimeout);
-    scrollTimeout=setTimeout(function(){isScrolling=false;},300);
-  }
-  window.addEventListener('scroll',onScroll,{passive:true});
-  window.addEventListener('touchmove',onScroll,{passive:true});
-
-  var offscreen=document.createElement('canvas');
-  var octx=offscreen.getContext('2d');
-  var imgLoaded=false;
-
-  function cacheImg(){
-    offscreen.width=W;offscreen.height=H;
-    var ratio=Math.max(W/img.naturalWidth,H/img.naturalHeight);
-    var iw=img.naturalWidth*ratio,ih=img.naturalHeight*ratio;
-    octx.drawImage(img,(W-iw)/2,(H-ih)/2,iw,ih);
-    imgLoaded=true;
-  }
-
-  function drawFrame(){
-    var target=isScrolling?1:0;
-    liquidAmount+=(target-liquidAmount)*0.07;
-    ctx.clearRect(0,0,W,H);
-
-    if(!imgLoaded){
-      ctx.fillStyle='#111';ctx.fillRect(0,0,W,H);
-      requestAnimationFrame(drawFrame);
-      return;
-    }
-
-    if(liquidAmount<0.01){
-      ctx.drawImage(offscreen,0,0);
-      requestAnimationFrame(drawFrame);
-      return;
-    }
-
-    var t=Date.now();
-    var sliceH=3;
-    for(var y=0;y<H;y+=sliceH){
-      var dx=Math.sin(y*0.018+t*0.002)*liquidAmount*35
-            +Math.cos(y*0.007+t*0.0015)*liquidAmount*15;
-      ctx.drawImage(offscreen,0,y,W,sliceH,dx,y,W,sliceH);
-    }
-    requestAnimationFrame(drawFrame);
-  }
-
-  img.onload=function(){
-    cacheImg();
-    drawFrame();
-  };
-
-  window.addEventListener('resize',function(){
-    if(imgLoaded) cacheImg();
-  });
-
-  setTimeout(function(){
-    if(!imgLoaded){
-      ctx.fillStyle='#111';ctx.fillRect(0,0,W,H);
-      drawFrame();
-    }
-  },3000);
-})();
-</script>
+</main>
 </body>
 </html>
