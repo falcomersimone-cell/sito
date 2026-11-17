@@ -63,6 +63,7 @@ button:hover{transform:translateX(4px);}
     <a href="featured.html">Featured in</a>
     <a href="info.html">Info</a>
     <a class="on" href="contact.html">Contact</a>
+    <a href="index.html">Close &#10005;</a>
   </nav>
 </header>
 
@@ -81,33 +82,11 @@ button:hover{transform:translateX(4px);}
     </div>
   </section>
 
-  <section class="sec">
-    <h2>Keep in touch</h2>
-    <div>
-      <p class="lead2">Say hello, ask for a quote, or just send a note.</p>
-      <form id="kit">
-        <div class="f"><label for="n">Name</label><input id="n" name="n" autocomplete="name" required></div>
-        <div class="f"><label for="e">Email</label><input id="e" name="e" type="email" autocomplete="email" required></div>
-        <div class="f"><label for="m">Message</label><textarea id="m" name="m" rows="3"></textarea></div>
-        <button type="submit">Send <span>&rarr;</span></button>
-        <p class="note" id="msg">It opens your email app with the message ready to send.</p>
-      </form>
-    </div>
-  </section>
 
   <div class="foot">
     <a href="https://www.instagram.com/simone_falcomer" target="_blank" rel="noopener">Instagram</a>
     <a href="https://www.linkedin.com/in/simone-falcomer-5bb16828a/" target="_blank" rel="noopener">LinkedIn</a>
   </div>
 </main>
-<script>
-document.getElementById('kit').addEventListener('submit',function(ev){
-  ev.preventDefault();
-  var n=document.getElementById('n').value,e=document.getElementById('e').value,m=document.getElementById('m').value;
-  var body='Hi Simone,\n\n'+(m||'I would like to keep in touch.')+'\n\n'+n+'\n'+e;
-  window.location.href='mailto:falcomersimone@gmail.com?subject='+encodeURIComponent('Keep in touch — '+n)+'&body='+encodeURIComponent(body);
-  document.getElementById('msg').textContent='Thank you — your email app should have opened. If not, write to falcomersimone@gmail.com.';
-});
-</script>
 </body>
 </html>
